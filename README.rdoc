@@ -1,2 +1,3 @@
-Generated a new blank project, and added a new default readme, if you are going to make changes branch and develop, we should practice code reviews
-and define style guides for writing code, I will clean this up later.
+Generated a new blank project, and added a new default readme, if you are going to make changes, make a branch. 
+We should be doing code reviews before commits, and making sure to adhere to a consistent style. Look at the GitHub
+style guides, especially the Ruby one: https://github.com/styleguide/ruby. 
