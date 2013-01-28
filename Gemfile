@@ -10,6 +10,9 @@ gem 'sqlite3'
 # For interfacing with MongoDB
 gem 'mongo_mapper'
 
+# manual specification of bson_ext is required for mongo_mapper
+gem 'bson_ext'
+
 # For Authentication
 gem 'devise'
 
