@@ -44,7 +44,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Qwikstubs</a>
+          <!--a class="brand" href="#">QuikStubs</a-->
+        <div class="nav" style="padding:2px;"> 
+	 <%= image_tag 'logo-tiny.png', :alt => 'logo', :id => 'logo' %>
+	</div> 
           <div class="container nav-collapse">
             <ul class="nav">
               <li><%= link_to "Link1", "/path1"  %></li>
@@ -68,7 +71,8 @@
       <footer>
         <%= bootstrap_flash %>
         <%= yield %>
-        <p>&copy; Company 2012</p>
+	
+        <p><center>&copy; QwikStubs 2012</center></p>
       </footer>
     </div>
     <!--div class="container">
