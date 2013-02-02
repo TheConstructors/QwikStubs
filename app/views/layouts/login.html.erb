@@ -55,12 +55,25 @@
         </div>
       </div>
     </div>
-
     <div class="container">
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <input type="text" class="input-block-level" placeholder="Email address">
+        <input type="password" class="input-block-level" placeholder="Password">
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+        <button class="btn btn-large btn-primary" type="submit">Sign in</button>
+      </form>
+      <footer>
+        <%= bootstrap_flash %>
+        <%= yield %>
+        <p>&copy; Company 2012</p>
+      </footer>
+    </div>
+    <!--div class="container">
         <div class="row">
           <div class="span9">
-            <%= bootstrap_flash %>
-            <%= yield %>
           </div>
           <div class="span3">
             <div class="well sidebar-nav">
@@ -75,11 +88,7 @@
           </div><!--/span-->
         </div><!--/row-->
 
-      <footer>
-        <p>&copy; Company 2012</p>
-      </footer>
-
-    </div> <!-- /container -->
+    </div--> <!-- /container -->
 
     <!-- Javascripts
     ================================================== -->
