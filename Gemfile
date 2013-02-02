@@ -39,3 +39,11 @@ gem 'jquery-rails'
 # For Mongo DB
 gem 'mongo_mapper'
 gem 'bson_ext'
+
+# for testing
+ group :development, :test do
+
+    gem 'rspec'
+    #gem 'webrat'
+    gem 'rspec-rails'
+ end
