@@ -1,0 +1,14 @@
+development:
+  adapter: mongodb
+  host: localhost
+  database: qwikstubs-dev
+
+test: &TEST
+  adapter: mongodb
+  host: localhost
+  database: qwikstubs-test
+
+production:
+  adapter: mongodb
+  host: localhost
+  database: qwikstubs
