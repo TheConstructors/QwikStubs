@@ -51,4 +51,5 @@ gem 'bson_ext'
     gem 'rspec-rails'
  end
 
-
+# encryption
+gem 'bcrypt-ruby', :require => "bcrypt"
