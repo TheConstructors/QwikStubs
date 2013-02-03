@@ -1,9 +1,11 @@
 class LoginController < ApplicationController
   def index
-    
+    @email = Email.new
   end
 
-  def new
+  def create
+    @email = Email.new(params[:email])
+    @email.save!
     
   end
 end
