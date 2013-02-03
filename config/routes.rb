@@ -14,7 +14,7 @@ Qwikstubs::Application.routes.draw do
   #   resources :products
   root :to => 'login#index'
   resources :login
-  
+  resources :register  
 
   # Sample resource route with options:
   #   resources :products do

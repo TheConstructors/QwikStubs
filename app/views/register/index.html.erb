@@ -1,11 +1,9 @@
-<%= form_for @email, :url => "/login#authenticate", :html => { :class => 'form-signin'} do |f|  %>
-        <h2 class="form-signin-heading">Login</h2>
+<%= form_for @email, :url => "/register#create", :html => { :class => 'form-signin'} do |f|  %>
+        <h2 class="form-signin-heading">Registration</h2>
         <%= f.text_field :email,  :class => 'input-block-level', :placeholder => 'Email Address' %>
         <%= f.password_field :password,  :class => 'input-block-level', :placeholder => 'Password' %>
-        <!-- 
-        <label class="checkbox">
-          <input type="checkbox" value="remember-me"> Remember me
-        </label> -->
+        <%= f.password_field :password_confirmation,  :class =>
+        'input-block-level', :placeholder => 'Password Confirmation' %>
         <%= f.submit :value => "Submit", :class=> "btn btn-large btn-primary"%>
         
 <% end %>
