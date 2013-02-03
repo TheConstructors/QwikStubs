@@ -3,10 +3,7 @@ require 'spec_helper'
 describe Venue do
   
   # do these actions once before all the tests
-  before(:all) do
-    MongoMapper.database.collections.each do |coll|
-      coll.remove
-    end
+  before(:each) do
     @v = Venue.create!(name:"SB Bowl",city:"SB",state:"CA")
   end
 
