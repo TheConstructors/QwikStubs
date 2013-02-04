@@ -1,14 +1,18 @@
-development:
+defaults: &defaults
+  host: 127.0.0.1
+  port: 27017
   adapter: mongodb
-  host: localhost
+
+development:
+  <<: *defaults
   database: qwikstubs-dev
 
-test: &TEST
-  adapter: mongodb
-  host: localhost
+test: 
+  <<: *defaults
   database: qwikstubs-test
 
 production:
-  adapter: mongodb
-  host: localhost
+  <<: *defaults
   database: qwikstubs
+  username: <%= ENV['MONGO_USERNAME'] %>
+  password: <%= ENV['MONGO_PASSWORD'] %>
