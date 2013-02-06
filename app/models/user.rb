@@ -1,6 +1,6 @@
 require 'bcrypt'
 
-       class User
+class User
   include MongoMapper::Document
   
   # key :first_name,   String
@@ -12,7 +12,7 @@ require 'bcrypt'
   key :salt,         String
   key :hashed_pw,    String
 
-	# Validate with /\w\s\w/?
+	# Validate with "/\w\s\w/
   validates :full_name, :presence => true
   validates :salt, :presence => true
   validates :hashed_pw, :presence => true
