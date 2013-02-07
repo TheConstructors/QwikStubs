@@ -25,12 +25,13 @@ class User
 	def last_name
 		@last_name ||= full_name.split.last
 	end
+
   # It is most likely better to just embed emails as an Array inside
   # of User, as each email is simply one field: an email, and all other
   # information is common to a single user.
   
   # Relationships
-  #has_many :emails
+  # has_many :emails
   
   # An accessor for password, when you do `user.passsword = "a_new_pass"
   # this method is invoked, causing the object to generate a new salt,
@@ -48,11 +49,32 @@ class User
   # plaintext passwords where we do simple comparsion to confirm, or encrypted 
   # passwords where we encrypt and decrypt, but is not safe because given the 
   # encryption key, all plain text passwords are obtainable.
+
   def password=(passw)
 	  new_salt = BCrypt::Engine.generate_salt
 	  self.salt = new_salt
 	  self.hashed_pw = BCrypt::Engine.hash_secret(passw, self.salt)
 	end
+
+  # This interface allows us to change how we represent emails internally.
+
+  # Simply returns the active email for ease of programming.
+  def email
+    self.active_email
+  end
+
+  # Make sure when we change emails that we add it to all_emails.
+  # This will make swapping emails as easy as user.email = new_email.
+  def email=(email)
+    unless all_emails.index(email) != nil
+      all_emails << email
+    end
+    active_email = email
+  end
+
+  def emails
+    all_emails
+  end
 
   # may need a better name, for now just check password correctness
   def is_auth?(passw)
