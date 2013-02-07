@@ -51,6 +51,11 @@ class User
   def password=(passw)
 	  new_salt = BCrypt::Engine.generate_salt
 	  self.salt = new_salt
-	  self.hashed_pw = BCrypt::Engine.hash_secret(passw, new_salt)
+	  self.hashed_pw = BCrypt::Engine.hash_secret(passw, self.salt)
 	end
+
+  # may need a better name, for now just check password correctness
+  def is_auth?(passw)
+    self.hashed_pw == BCrypt::Engine.hash_secret(passw, self.salt)
+  end
 end
