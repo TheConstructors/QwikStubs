@@ -22,8 +22,8 @@ end
 
 gem 'jquery-rails'
 
-# To use debugger
-# gem 'debugger'
+# Yay! Debugger
+gem 'debugger'
 
 # MongoDB
 gem 'mongo_mapper'
