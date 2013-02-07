@@ -12,7 +12,7 @@ Qwikstubs::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-  root :to => 'sessions#new'
+  root :to => 'application#homepage'
   resources :sessions
   resources :users
 
