@@ -25,4 +25,10 @@ describe User do
     first_hash.should != second_hash
     first_salt.should != first_hash
   end
+
+  it "should return true, from it.is_auth?(pass) if the password is pass" do
+    @user = User.new()
+    @user.password = "new_pass"
+    @user.is_auth?("new_pass").should == true
+  end
 end
