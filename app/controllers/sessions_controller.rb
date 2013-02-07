@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   # Login View
   def new
-    #if signed_in? redirect_to home_page
+      redirect_to root_path if signed_in? 
   end
   
   # Login HTTP POST logic 
@@ -14,7 +14,8 @@ class SessionsController < ApplicationController
       redirect_to new_session_path
     else 
       if @user.is_auth?(password)
-        redirect_to sessions_path
+        session[:user_id] = @user.id
+        redirect_to root_path
       end
     end
   end
@@ -22,5 +23,6 @@ class SessionsController < ApplicationController
   # Logout 
   def destroy
     session[:user_id] = nil
+    redirect_to root_path
   end
 end
