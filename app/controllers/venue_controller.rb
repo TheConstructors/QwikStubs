@@ -1,7 +1,0 @@
-class VenueController < ApplicationController
-
-
-
-
-
-end
