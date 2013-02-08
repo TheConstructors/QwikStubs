@@ -5,27 +5,21 @@ class UsersController < ApplicationController
 
   # Create new User (UI, registration)
   def new
+    @user = User.new
   end
 
   # Create new User Logic
   def create
-    debugger
-    name = params[:full_name]
-    email = params[:email]
-    passw = params[:password]
-    passw_conf = params[:password_conf]
-    @user = User.new full_name: name, email: email
-    if passw == passw_conf
-      @user.password = passw
-      if @user.save
-        redirect_to root_path
-      else
-        #validation failure
-        puts "Failed to save User"
-      end
+    pass = params[:password]
+    @user = User.new(params[:user])
+    @user.password = pass if pass == params[:password_conf]
+
+    if @user.save
+      redirect_to root_path
     else
-      flash[:pass_match] = false
-      redirect_to new_user_path
+      # TODO: could probably change the flash display to enumerate @user.errors
+      flash.now[:error] = "Something went wrong - please check your fields and try again!"
+      render :new
     end
   end
 
@@ -37,7 +31,7 @@ class UsersController < ApplicationController
   def edit
   end
 
-  # Edit Logic 
+  # Edit Logic
   def update
   end
 
