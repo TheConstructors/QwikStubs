@@ -9,19 +9,9 @@ describe ApplicationModel do
     a.should.is_a?(MongoMapper::Document)
   end
 
-  it "should set safe mode" do
-    base_class = ApplicationModel
-    class << base_class
-      attr_reader :safe_called
-
-      def safe
-        @safe_called = true
-      end
-    end
-
-    a_class = Class.new(base_class)
-    a = a_class.new
-    a.class.safe_called.should.== true
+  it "should set safe (:w => 1) mode" do
+    a = A.new
+    a.class.connection.write_concern[:w].should.== 1
   end
 
   it "should create timestamps!" do

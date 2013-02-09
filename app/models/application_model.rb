@@ -1,19 +1,17 @@
 class ApplicationModel
   include MongoMapper::Document
 
+  def self.inherited(derived_class)
+    derived_class.instance_eval do
+      timestamps!
+    end
+  end
+
   class << self
-    def inherited(derived_class)
-      derived_class.instance_eval do
-        safe
-
-        timestamps!
-      end
-
-      def self.ensure_index(*args)
-        super
-      rescue => ex
-        logger.warning("Exception from ensure_index:: #{ex.class.name}:#{ex}")
-      end
+    def ensure_index(*args)
+      super
+    rescue => ex
+      logger.warning("Exception from ensure_index:: #{ex.class.name}:#{ex}")
     end
 
     def logger

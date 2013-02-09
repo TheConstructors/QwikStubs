@@ -3,7 +3,7 @@ require 'bcrypt'
 class User < ApplicationModel
   # key :first_name,   String
   # key :last_name,    String
-  # Reconmended change from Andrew: full_name
+  # Recommended change from Andrew: full_name
   key :full_name,    String
   key :active_email, String
   key :all_emails,   Array
