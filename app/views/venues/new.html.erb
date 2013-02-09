@@ -1,0 +1,11 @@
+<!-- Create Venue -->
+<%= form_for @venue, :html => { :class => 'form-signin' } do |f| %>
+  <h2 class="form-signin-heading">Create Venue</h2>
+
+  <%= f.text_field :name,  :class => 'input-block-level', :placeholder => 'Name' %>
+  <%= f.text_field :city,  :class => 'input-block-level', :placeholder => 'City' %>
+  <%= f.text_field :state, :class => 'input-block-level', :placeholder => 'State' %>
+
+  <%= submit_tag "Submit", :class => "btn btn-large btn-primary" %>
+<% end %>
+

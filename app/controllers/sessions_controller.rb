@@ -1,3 +1,4 @@
+
 class SessionsController < ApplicationController
   # Login View
   def new

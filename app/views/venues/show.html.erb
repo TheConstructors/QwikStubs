@@ -1,0 +1,8 @@
+<% if @venue.blank? %>
+
+
+<% else %>
+    <h1><%= @venue.name %></h1>
+    <br><%= @venue.city %>
+    <br><%= @venue.state %>
+<% end %>
