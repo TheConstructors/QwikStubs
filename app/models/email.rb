@@ -1,7 +1,6 @@
-class Email
-  include MongoMapper::Document
+class Email < ApplicationModel
   include ActiveModel::SecurePassword
-  
+
   key :email, String
   key :password_digest, String
 
@@ -10,10 +9,6 @@ class Email
   validates_presence_of :password, :on => :create
   validates_presence_of :password_confirmation, :on => :create
 
-
-
   # Relationship
   belongs_to :user
-
-
 end

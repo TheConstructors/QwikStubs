@@ -1,8 +1,6 @@
 require 'bcrypt'
 
-class User
-  include MongoMapper::Document
-
+class User < ApplicationModel
   # key :first_name,   String
   # key :last_name,    String
   # Reconmended change from Andrew: full_name
@@ -12,19 +10,19 @@ class User
   key :salt,         String
   key :hashed_pw,    String
 
-	# Validate with "/\w\s\w/
+  # Validate with "/\w\s\w/
   validates :full_name, :presence => true
   validates :salt, :presence => true
   validates :hashed_pw, :presence => true
   validates :active_email, :presence => true
 
   def first_name
-	  @first_name ||= full_name.split.first
-	end
+    @first_name ||= full_name.split.first
+  end
 
-	def last_name
-		@last_name ||= full_name.split.last
-	end
+  def last_name
+    @last_name ||= full_name.split.last
+  end
 
   # It is most likely better to just embed emails as an Array inside
   # of User, as each email is simply one field: an email, and all other
@@ -51,10 +49,10 @@ class User
   # encryption key, all plain text passwords are obtainable.
 
   def password=(passw)
-	  new_salt = BCrypt::Engine.generate_salt
-	  self.salt = new_salt
-	  self.hashed_pw = BCrypt::Engine.hash_secret(passw, self.salt)
-	end
+    new_salt = BCrypt::Engine.generate_salt
+    self.salt = new_salt
+    self.hashed_pw = BCrypt::Engine.hash_secret(passw, self.salt)
+  end
 
   # This interface allows us to change how we represent emails internally.
 
@@ -66,9 +64,9 @@ class User
   # Make sure when we change emails that we add it to all_emails.
   # This will make swapping emails as easy as user.email = new_email.
   def email=(email)
-    unless all_emails.index(email) != nil
-      all_emails << email
-    end
+    #unless all_emails.index(email) != nil
+    #  all_emails << email
+    #end
     self.active_email = email
   end
 
