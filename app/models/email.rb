@@ -8,6 +8,7 @@ class Email < ApplicationModel
   has_secure_password
   validates_presence_of :password, :on => :create
   validates_presence_of :password_confirmation, :on => :create
+  validates_presence_of :user
 
   # Relationship
   belongs_to :user

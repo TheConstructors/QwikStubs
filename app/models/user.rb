@@ -14,7 +14,7 @@ class User < ApplicationModel
   validates :full_name, :presence => true
   validates :salt, :presence => true
   validates :hashed_pw, :presence => true
-  validates :active_email, :presence => true
+  # validates :active_email, :presence => true  Commented out temporarily so we can create user then email -Colin
 
   def first_name
     @first_name ||= full_name.split.first
@@ -29,7 +29,7 @@ class User < ApplicationModel
   # information is common to a single user.
 
   # Relationships
-  # has_many :emails
+  has_many :emails
 
   # An accessor for password, when you do `user.passsword = "a_new_pass"
   # this method is invoked, causing the object to generate a new salt,
