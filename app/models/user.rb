@@ -1,6 +1,8 @@
 require 'bcrypt'
 
-class User < ApplicationModel
+class User
+  include ApplicationModel
+
   # key :first_name,   String
   # key :last_name,    String
   # Recommended change from Andrew: full_name

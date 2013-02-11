@@ -1,13 +1,14 @@
-class ApplicationModel
+module ApplicationModel
+  extend ActiveSupport::Concern
   include MongoMapper::Document
 
-  def self.inherited(derived_class)
-    derived_class.instance_eval do
-      timestamps!
-    end
+  included do
+    safe
+
+    timestamps!
   end
 
-  class << self
+  module ClassMethods
     def ensure_index(*args)
       super
     rescue => ex

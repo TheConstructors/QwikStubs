@@ -1,4 +1,6 @@
-class Venue < ApplicationModel
+class Venue
+  include ApplicationModel
+
   key :name, String
   key :city, String
   key :state, String

@@ -1,4 +1,6 @@
-class Promoter < ApplicationModel
+class Promoter
+  include ApplicationModel
+
   key :name, String
   #key :verified, Boolean (Adding this later)
 

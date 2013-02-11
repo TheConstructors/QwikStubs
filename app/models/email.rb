@@ -1,4 +1,5 @@
-class Email < ApplicationModel
+class Email
+  include ApplicationModel
   include ActiveModel::SecurePassword
 
   key :email, String

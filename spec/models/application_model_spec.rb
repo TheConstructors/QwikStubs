@@ -1,32 +1,34 @@
 require 'spec_helper'
 
 describe ApplicationModel do
-  class A < ApplicationModel
+  class Model
+    include ApplicationModel
   end
 
   it "should mix in MongoMapper::Document" do
-    a = A.new
-    a.should.is_a?(MongoMapper::Document)
+    m = Model.new
+    m.should.is_a?(MongoMapper::Document)
   end
 
   it "should set safe (:w => 1) mode" do
-    a = A.new
-    a.class.connection.write_concern[:w].should.== 1
+    m = Model.new
+    m.class.connection.write_concern[:w].should.== 1
   end
 
   it "should create timestamps!" do
-    base_class = ApplicationModel
-    class << base_class
-      attr_reader :timestamps_set
+    class CreateTimestamps
+      class << self
+        attr_reader :timestamps_set
 
-      def timestamps!
-        @timestamps_set = true
+        def timestamps!
+          @timestamps_set = true
+        end
       end
+
+      include ApplicationModel
     end
 
-    a_class = Class.new(base_class)
-    a = a_class.new
-    a.class.timestamps_set.should.== true
+    CreateTimestamps.timestamps_set.should.== true
   end
 
   context "when ensure_index raises an exception" do
@@ -45,15 +47,20 @@ describe ApplicationModel do
       end
     end
 
-    it "should just log the exception" do
-      logger = mock(:logger)
-      logger.should_receive(:warning).with(/Exception from ensure_index/)
-      ApplicationModel.stub(:logger).and_return(logger)
+    it "should just log exception from ensure_index" do
+      class EnsureIndexDocumentTest
+        include ApplicationModel
+      end
 
       lambda do
-        class EnsureIndexDocumentTest < ApplicationModel
+        logger_mock = mock(:logger)
+        logger_mock.should_receive(:warning) .with(/Exception from ensure_index/)
+        EnsureIndexDocumentTest.stub(:logger).and_return(logger_mock)
+
+        EnsureIndexDocumentTest.instance_eval do
           ensure_index "name"
         end
+
       end.should_not raise_error(ArgumentError)
     end
   end

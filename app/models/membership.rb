@@ -1,4 +1,5 @@
-class Membership < ApplicationModel
+class Membership
+  include ApplicationModel
 
   key :role, String
 
