@@ -36,7 +36,7 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
-  config.before(:each) do 
+  config.before(:each) do
     MongoMapper.database.collections.each do |collection|
       collection.remove unless collection.name.match(/^system\./)
     end

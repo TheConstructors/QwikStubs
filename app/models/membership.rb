@@ -1,7 +1,6 @@
 class Membership
- 
- include MongoMapper::Document
-  
+  include ApplicationModel
+
   key :role, String
 
   #RELATIONSHIP
