@@ -1,4 +1,4 @@
-# QwikStubs [![Build Status](https://secure.travis-ci.org/TheConstructors/QwikStubs)](http://travis-ci.org/TheConstructors/QwikStubs)
+# QwikStubs [![Build Status](https://secure.travis-ci.org/TheConstructors/QwikStubs.png)](http://travis-ci.org/TheConstructors/QwikStubs)
 
 ## Branching 
 If you are working on new code, you should always be working in a branch. The workflow should be: master is always stable,
