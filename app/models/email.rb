@@ -6,7 +6,7 @@ class Email
   key :password_digest, String
 
   attr_accessible :email, :password, :password_confirmation
-  Email.ensure_index [[:email, 1]], :unique => true
+  ensure_index [[:email, 1]], :unique => true
   has_secure_password
   validates_presence_of :password, :on => :create
   validates_presence_of :password_confirmation, :on => :create
