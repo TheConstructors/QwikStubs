@@ -1,12 +1,21 @@
 <% if @venues.blank? %>
-<h1>HEY</h1>
+<h1>There are no venues</h1>
 
 
 <% else %>
 
-
+<table class="table">
+<tr>
+  <th>Name</th>
+  <th>City</th>
+  <th>State</th>
+</tr>
 <% @venues.each do |v| %>
-<h1><%= v.name %> </h1>
-<br><%= v.city %>, <%= v.state %>
+<tr>
+  <td><%= v.name %> </td>
+  <td><%= v.city %> </td>
+  <td><%= v.state %> </td>
+</tr>
 <% end %>
+</table>
 <% end %>
