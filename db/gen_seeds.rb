@@ -1,10 +1,12 @@
 require 'yaml'
 
-SEEDS_YAML = "./seeds.yml"
+SEEDS_YAML = "./db/seeds.yml"
+SEEDS_RB = "./db/seeds.rb"
 
 def main
 	data = YAML.load_file(SEEDS_YAML)
-	outputf = open("seeds.rb", 'w')
+	outputf = open(SEEDS_RB, 'w')
+	outputf.write("# Generated at #{Time.now} by '#{$0}'.\n")
 	for class_name, args in data
 		clazz = class_name.capitalize
 		for arg_hash in args 
