@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Section do
   before(:each) do
     @v = Venue.create!(name:"THE KYLEBOWL", city: "SB", state:"CA")
-    @s = Section.create!(name:"22F")
-    @s.venue = @v
+    @s = Section.create!(name:"22F", venue:@v)
+
   end
 
   it "should have a name" do
