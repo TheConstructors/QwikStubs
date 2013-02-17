@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe VenueController do
+describe VenuesController do
 
 end

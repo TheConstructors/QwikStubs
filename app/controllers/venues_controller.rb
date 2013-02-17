@@ -10,7 +10,7 @@ class VenuesController < ApplicationController
     if @venue.save
       redirect_to root_path # change to better location later
     else
-      flash.now[:error] = "Something went wrong - please check your fiels and try again!"
+      flash.now[:error] = "Something went wrong - please check your fields and try again!"
       render :new
     end
   end 

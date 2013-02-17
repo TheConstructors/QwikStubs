@@ -1,3 +1,11 @@
+<!-- nav bar for venue -->
+<ul class="nav nav-tabs">
+  <li class="active"> <%= link_to "Home", "/venue" %> </li>
+  <li> <%= link_to "Create", "/venue/create" %> </li>
+</ul>
+
+<!-- end nav bar for venue -->
+
 <% if @venues.blank? %>
 <h1>There are no venues</h1>
 
