@@ -8,7 +8,7 @@ class VenuesController < ApplicationController
     @venue = Venue.new(params[:venue])
 
     if @venue.save
-      redirect_to root_path # change to better location later
+      redirect_to '/venue'
     else
       flash.now[:error] = "Something went wrong - please check your fields and try again!"
       render :new

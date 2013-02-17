@@ -20,7 +20,7 @@
 </tr>
 <% @venues.each do |v| %>
 <tr>
-  <td><%= v.name %> </td>
+  <td><%= link_to v.name, "/venue/show/" + v.name %> </td>
   <td><%= v.city %> </td>
   <td><%= v.state %> </td>
 </tr>
