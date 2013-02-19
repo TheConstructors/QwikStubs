@@ -1,31 +1,44 @@
+<!-- nav bar for venue -->
+<ul class="nav nav-tabs">
+  <li class="active"> <%= link_to "Home", "/venue" %> </li>
+  <li> <%= link_to "Create", "/venue/create" %> </li>
+</ul>
+
+<!-- end nav bar for venue -->
 
 <div class="span6 offset3">
-<div class="page-header"><h1>Venues List</h2></div>
-<% if @venues.blank? %>
-<h2>There are no venues to view right now!</h2>
+  <div class="page-header">
+    <h1>Venues List</h1>
+  </div>
 
 
-<% else %>
-
-<table class="table table-striped table-bordered">
-<thead>
-  <tr>
-    <th>#</th>
-    <th>Name</th>
-    <th>City</th>
-    <th>State</th>
-  <tr>
-</thead>
-<tbody>
-<% x=0 %>
-<% @venues.each do |v| %>
-<tr><td><%= x=x+1 %></td>
-  <td><%= v.name %></td>
-  <td><%= v.city %></td>
-  <td><%= v.state %></td>
-<% end %>
-</tbody>
-</table>
+  <% if @venues.blank? %>
+  <h2>There are no venues to view right now!</h2>
 
 
-<% end %></div>
+  <% else %>
+
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>City</th>
+        <th>State</th>
+      <tr>
+    </thead>
+    <tbody>
+      <% x=0 %>
+      <% @venues.each do |v| %>
+      <tr><td><%= x=x+1 %></td>
+        <td><%= v.name %></td>
+        <td><%= v.city %></td>
+        <td><%= v.state %></td>
+        <% end %>
+    </tbody>
+  </table>
+
+
+  <% end %>
+</div>

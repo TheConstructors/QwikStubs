@@ -1,14 +1,12 @@
-class VenuesController < ApplicationController
-
+class SectionsController < ApplicationController
   def new
-    @venue = Venue.new
-  end 
-
+    @section = Section.new
+  end
+  
   def create
-    @venue = Venue.new(params[:venue])
-
-    if @venue.save
-      redirect_to '/venue'
+    @section = Section.new(params[:section])
+     if @section.save
+      redirect_to root_path # change to better location later
     else
       flash.now[:error] = "Something went wrong - please check your fields and try again!"
       render :new
@@ -16,12 +14,12 @@ class VenuesController < ApplicationController
   end 
 
   def list
-    @venues = Venue.all
+    @sections = Section.all
   end 
 
   # Show specific User
   def show
-    @venue = Venue.find_by_name(params[:name])
+    @section = Section.find_by_name(params[:name])
   end
 
   # Edit a single User (UI)
@@ -35,7 +33,6 @@ class VenuesController < ApplicationController
   # Delete a User (probably not gonna be used)
   def destroy
   end
-
 
 
 end

@@ -1,5 +1,5 @@
 class Venue
-  include MongoMapper::Document
+  include ApplicationModel
 
   key :name, String
   key :city, String
