@@ -1,3 +1,4 @@
+<div class = "span10 offset1">
 <% if @venue.blank? %>
   <h1>This venue does not exist</h1>
 
@@ -5,11 +6,24 @@
   <h1><%= @venue.name %></h1>
   <br><%= @venue.city %>
   <br><%= @venue.state %>
-  <br><canvas id="seating"></canvas>
-  <% @venue.sections.each do |xsection| %>
-    Section <br>
-    <% xsection.seat.each do |xseat| %>
-	Seat <br>
+  <br><canvas id="seating" style="border:2px solid black;"></canvas>
+  <script>
+  var canvas = document.getElementById('seating');
+  var context = canvas.getContext('2d');
+  var radius = 2;
+  <% @venue.sections.each do |section| %>
+    <% section.seat.each do |seat| %>
+    context.beginPath();
+    context.arc(<%= section.xpos + seat.xpos%>, <%= section.ypos + seat.ypos %>, radius, 0, 2 * Math.PI, false);
+    context.closePath();
+    context.fillStyle = 'green';
+    context.fill();
+    context.lineWidth = 1;
+    context.strokeStyle = '#003300';
+    context.stroke();
     <% end %>
   <% end %>
 <% end %>
+</script>
+<br><br><br>
+</div>
