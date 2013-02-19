@@ -1,8 +1,15 @@
 <% if @venue.blank? %>
-<h1>This venue does not exist</h1>
+  <h1>This venue does not exist</h1>
 
 <% else %>
-    <h1><%= @venue.name %></h1>
-    <br><%= @venue.city %>
-    <br><%= @venue.state %>
+  <h1><%= @venue.name %></h1>
+  <br><%= @venue.city %>
+  <br><%= @venue.state %>
+  <br><canvas id="seating"></canvas>
+  <% @venue.sections.each do |xsection| %>
+    Section <br>
+    <% xsection.seat.each do |xseat| %>
+	Seat <br>
+    <% end %>
+  <% end %>
 <% end %>

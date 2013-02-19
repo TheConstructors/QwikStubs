@@ -10,3 +10,23 @@ user:
   - full_name: "Alex Hamstra"
     email: "hamsterman@foo.com"
     password: pass123
+
+venue:
+  - name: "IV Theater"
+    city: "Isla Vista"
+    state: "California"
+
+section:
+  - name: "A"
+    xpos: 10
+    ypos: 10
+    venue: Venue.find_by_name("IV Theater")
+
+seat:
+  - name: "1"
+    column: 1
+    row: 1
+    xpos: 0
+    ypos: 0
+    section: Section.find_by_name("A")
+

@@ -32,7 +32,7 @@
       <% x=0 %>
       <% @venues.each do |v| %>
       <tr><td><%= x=x+1 %></td>
-        <td><%= v.name %></td>
+        <td><%= link_to v.name, "/venue/show/" + v.name %></td>
         <td><%= v.city %></td>
         <td><%= v.state %></td>
         <% end %>
