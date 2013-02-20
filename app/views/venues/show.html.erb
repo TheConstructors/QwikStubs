@@ -1,8 +1,41 @@
+<div class="container">
+<div class = "span12">
 <% if @venue.blank? %>
-<h1>This venue does not exist</h1>
+  <h1>This venue does not exist</h1>
 
 <% else %>
-    <h1><%= @venue.name %></h1>
-    <br><%= @venue.city %>
-    <br><%= @venue.state %>
+  <h1><%= @venue.name %></h1>
+  <br><%= @venue.city %>
+  <br><%= @venue.state %>
+  <br><br> 
+  <strong>Seating</strong>
+  <br><canvas id="seating" style="border:2PX solid black;" width="400"
+  height="400"></canvas>
+  <script>
+  var canvas = document.getElementById('seating');
+  var context = canvas.getContext('2d');
+  var radius = 2;
+  var pixel = 5;
+  <% @venue.sections.each do |section| %>
+  context.fillStyle = 'red';
+  context.fillRect( <%= section.xpos %> * pixel, <%= section.ypos %> *
+  pixel, 100, 100 );
+
+  
+    <% section.seat.each do |seat| %>
+    context.beginPath();
+    context.arc((<%= section.xpos %> * pixel) + (<%= seat.xpos%> * pixel), 
+    (<%= section.ypos %> * pixel) + (<%= seat.ypos%> * pixel), 
+    radius, 0, 2 * Math.PI, false);
+    context.closePath();
+    context.fillStyle = 'green';
+    context.fill();
+    context.lineWidth = 1;
+    context.strokeStyle = '#003300';
+    context.stroke();
+    <% end %>
+  <% end %>
 <% end %>
+</script>
+<br><br><br>
+</div></div>
