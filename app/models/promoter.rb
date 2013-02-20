@@ -6,6 +6,6 @@ class Promoter
 
   #RELATIONSHIP
   has_many :membership
-  #TO DO (Add Event relationship): ,:event
+  has_many :event
 
 end
