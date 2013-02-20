@@ -1,4 +1,5 @@
-<div class = "span10 offset1">
+<div class="container">
+<div class = "span12">
 <% if @venue.blank? %>
   <h1>This venue does not exist</h1>
 
@@ -6,6 +7,8 @@
   <h1><%= @venue.name %></h1>
   <br><%= @venue.city %>
   <br><%= @venue.state %>
+  <br><br>
+  <strong>Seating</strong>
   <br><canvas id="seating" style="border:2px solid black;"></canvas>
   <script>
   var canvas = document.getElementById('seating');
@@ -26,4 +29,4 @@
 <% end %>
 </script>
 <br><br><br>
-</div>
+</div></div>
