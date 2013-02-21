@@ -1,41 +1,52 @@
 <div class="container">
-<div class = "span12">
-<% if @venue.blank? %>
-  <h1>This venue does not exist</h1>
+  <% if @venue.blank? %>
+    <div class = "span12">
+      <h1>This venue does not exist</h1>
+    </div>
 
-<% else %>
-  <h1><%= @venue.name %></h1>
-  <br><%= @venue.city %>
-  <br><%= @venue.state %>
-  <br><br> 
-  <strong>Seating</strong>
-  <br><canvas id="seating" style="border:2PX solid black;" width="400"
-  height="400"></canvas>
-  <script>
-  var canvas = document.getElementById('seating');
-  var context = canvas.getContext('2d');
-  var radius = 2;
-  var pixel = 5;
-  <% @venue.sections.each do |section| %>
-  context.fillStyle = 'red';
-  context.fillRect( <%= section.xpos %> * pixel, <%= section.ypos %> *
-  pixel, 100, 100 );
-
-  
-    <% section.seat.each do |seat| %>
-    context.beginPath();
-    context.arc((<%= section.xpos %> * pixel) + (<%= seat.xpos%> * pixel), 
-    (<%= section.ypos %> * pixel) + (<%= seat.ypos%> * pixel), 
-    radius, 0, 2 * Math.PI, false);
-    context.closePath();
-    context.fillStyle = 'green';
-    context.fill();
-    context.lineWidth = 1;
-    context.strokeStyle = '#003300';
-    context.stroke();
-    <% end %>
+  <% else %>
+    <div class="row">
+      <div class = "span12">
+        <div class = "page-header">
+          <h1><%= @venue.name %></h1>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class = "span6">
+        <div class= "hero-unit">
+          <strong>City: </strong> <%= @venue.city %>
+          <br><strong>State: </strong> <%= @venue.state %>
+        </div>
+      </div>
+      <div class = "span6">
+        <h2>Seating</h2>
+        <br>
+        <canvas id="seating" style="width:100%; height:600px;"></canvas>
+        <script>
+          var canvas = document.getElementById('seating');
+          var context = canvas.getContext('2d');
+          canvas.setAttribute('width', canvas.clientWidth);
+          canvas.setAttribute('height', canvas.clientHeight);
+          var radius = 4;
+          <% @venue.sections.each do |section| %>  
+            <% section.seat.each do |seat| %>
+              context.beginPath();
+              context.arc(
+                (<%= section.xpos %>) + (<%= seat.xpos%>), 
+                (<%= section.ypos %>) + (<%= seat.ypos%>), 
+                radius, 0, 2 * Math.PI, false);
+              context.closePath();
+              context.fillStyle = 'green';
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = '#003300';
+              context.stroke();
+            <% end %>
+          <% end %>
+        </script>
+      </div>
+    </div>
   <% end %>
-<% end %>
-</script>
 <br><br><br>
-</div></div>
+</div>
