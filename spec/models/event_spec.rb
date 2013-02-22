@@ -15,7 +15,7 @@ describe Event do
   end
 
   it "should be a unique combination of name and date" do
-    @other = Venue.new(name:"Rock and Troll Concert", date: "1/9/14")
+    @other = Event.new(name:"Rock and Troll Concert", date: "1/9/14")
     @other.valid?.should be_false
     @other.errors.should_not be_empty
   end
