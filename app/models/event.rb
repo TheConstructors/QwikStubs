@@ -4,6 +4,8 @@ class Event
   key :name, String
   key :date, String
   
+  validates_presence_of :name
+  validates_presence_of :date
   #Name and date need to be unique
   validates_uniqueness_of :name, :scope => :date
   

@@ -19,12 +19,12 @@ class VenuesController < ApplicationController
     @venues = Venue.all
   end 
 
-  # Show specific User
+  # Show specific Event
   def show
     @venue = Venue.find_by_name(params[:name])
   end
 
-  # Edit a single User (UI)
+  # Edit a single Event
   def edit
   end
 
@@ -32,7 +32,7 @@ class VenuesController < ApplicationController
   def update
   end
 
-  # Delete a User (probably not gonna be used)
+  # Delete a Venue
   def destroy
   end
 
