@@ -10,8 +10,12 @@ class UsersController < ApplicationController
 
   # Create new User Logic
   def create
+    # This could use clean up, pushing for Alex right now
     pass = params[:password]
-    @user = User.new(params[:user])
+    email = params[:user][:email]
+    params[:user][:email] = nil #remove email, was causing a bug needs to be fixed
+    @user = User.new params[:user]
+    @email = Email.new email: email, user: @user
     @user.password = pass if pass == params[:password_conf]
 
     if @user.save

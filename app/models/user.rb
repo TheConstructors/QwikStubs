@@ -3,7 +3,7 @@ require 'bcrypt'
 class User
   include ApplicationModel
   
-  has_many :emails
+  many :emails
   
   key :full_name,       String
   key :salt,            String
@@ -11,7 +11,7 @@ class User
   
   validates :full_name, :presence => true # , :format => /\w+\s+\w+/
   validates :salt, :presence => true
-  validates :hashed_pw, :presence => true
+  validates :password_digest, :presence => true
   # validates :active_email, :presence => true  Commented out temporarily so we can create user then email -Colin
 
   def first_name
@@ -39,10 +39,8 @@ class User
   # passwords where we encrypt and decrypt, but is not safe because given the
   # encryption key, all plain text passwords are obtainable.
   
-  # This is for use when doing User.new/User.create!, better way to do it?
-  def email=(e)
-    Email.create! :email => e, :user_id => self._id
-  end
+  # placeholder for the form_for, again pushing for Alex, needs clean up
+  attr_accessor :email
   
   def password=(passw)
     new_salt = BCrypt::Engine.generate_salt

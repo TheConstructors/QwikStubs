@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   def create
     email = params[:email]
     password = params[:password]
-    @user = User.find_by_active_email(email)
+    @user = Email.find_by_active_email(email).user
     if @user.nil?
       flash[:invalid_creds] = true
       redirect_to new_session_path
