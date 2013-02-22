@@ -16,8 +16,9 @@ describe User do
   end
 
   it "should have the email in emails" do
-    @user = User.new full_name: "John Smith", email: "john@gmail.com", :password => "dummy_pw"
-    @user.emails.index("john@gmail.com").should_not be_nil
+    @user = User.create! full_name: "John Smith", :password => "dummy_pw"
+    @email = Email.create! :email => "john@gmail.com", :user => @user
+    @user.emails.map { |e| e.email }.index("john@gmail.com").should_not be_nil
   end
 
   it "should have both different :password_digest, and :salt after setting password" do
