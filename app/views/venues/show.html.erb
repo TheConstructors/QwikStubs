@@ -24,7 +24,10 @@
         <br>
         <canvas id="seating" style="width:100%; height:600px;"></canvas>
         <script>
-          var canvas = document.getElementById('seating');
+          //var venue = <%=raw @venue.to_json %>;
+          var debug = {};
+          
+          var canvas = document.getElementById("seating");
           var context = canvas.getContext('2d');
           canvas.setAttribute('width', canvas.clientWidth);
           canvas.setAttribute('height', canvas.clientHeight);
