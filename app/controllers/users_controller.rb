@@ -10,15 +10,17 @@ class UsersController < ApplicationController
 
   # Create new User Logic
   def create
-    # This NEEDS clean up, pushing for Alex right now, comp gonna die.
-    pass = params[:password]
-    email = params[:user][:email]
-    params[:user][:email] = nil #remove email, was causing a bug needs to be fixed
-    @user = User.new params[:user]
-    # check save here
-    @email = Email.new email: email, user: @user
-    @email.save
-    @user.password = pass if pass == params[:password_conf]
+    new_email = params[:email]
+    @user = User.new
+    @email = Email.new(email: new_email, user: @user)
+    if @email.save
+      @email.errors.messages.each do |ek, ev|
+        flash.now[ek] = ev
+      end
+      render :new
+    end
+    
+    @user.password = params[:password] if params[:password] == params[:password_conf]
 
     if @user.save
       redirect_to root_path
