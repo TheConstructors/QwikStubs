@@ -1,5 +1,5 @@
 class Qwikstubs.Collections.Venues extends Backbone.Collection
-  url: 'api/venues'
+  url: '/api/venues'
   #model: Qwikstubs.Models.Venue
   
   # fetching records GET /venues
