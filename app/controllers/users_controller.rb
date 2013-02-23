@@ -18,6 +18,8 @@ class UsersController < ApplicationController
         @user.save
         @email = Email.new email: user_email, user: @user
         @email.save
+        # Now Logged In
+        session[:user_id] = @user.id
         redirect_to root_path
       else
         flash.now[:error] = "Password's don't match."
