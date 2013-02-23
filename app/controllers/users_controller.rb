@@ -10,24 +10,22 @@ class UsersController < ApplicationController
 
   # Create new User Logic
   def create
-    new_email = params[:email]
     @user = User.new
-    @email = Email.new(email: new_email, user: @user)
-    if @email.save
-      @email.errors.messages.each do |ek, ev|
-        flash.now[ek] = ev
+    user_email = params[:email]
+    unless Email.find_by_email user_email
+      if params[:password] == params[:password_conf]
+        @user.password = params[:password]
+        @user.save
+        @email = Email.new email: user_email, user: @user
+        @email.save
+        redirect_to root_path
+      else
+        flash.now[:error] = "Password's don't match."
+        render :new; return
       end
-      render :new
-    end
-    
-    @user.password = params[:password] if params[:password] == params[:password_conf]
-
-    if @user.save
-      redirect_to root_path
     else
-      # TODO: could probably change the flash display to enumerate @user.errors
-      flash.now[:error] = "Something went wrong - please check your fields and try again!"
-      render :new
+      flash.now[:error] = "Email already exists."
+      render :new; return
     end
   end
 
