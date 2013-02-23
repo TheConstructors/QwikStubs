@@ -15,7 +15,7 @@ def new
   end 
 
  def list
-    @event = Event.all
+    @events = Event.all
   end 
 
  # Show specific Event

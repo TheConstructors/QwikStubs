@@ -38,3 +38,6 @@ gem 'bcrypt-ruby'
     #gem 'webrat'
     gem 'rspec-rails'
  end
+
+#jquery ui gem
+gem 'jquery-ui-rails'

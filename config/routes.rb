@@ -2,6 +2,7 @@ Qwikstubs::Application.routes.draw do
 
   resources :users
   resources :venues
+  resources :events
 
 
   resources :sessions, only: [:new, :create, :destroy]
@@ -15,6 +16,9 @@ Qwikstubs::Application.routes.draw do
   get '/venue/create' => 'venues#new'
   get '/venue/show/:name' => 'venues#show'
   get '/venue' => 'venues#list'
+  get '/event/create' => 'events#new'
+  get '/event/show/:name' => 'events#show'
+  get '/event' => 'events#list'
 
   root :to => 'application#homepage'
 

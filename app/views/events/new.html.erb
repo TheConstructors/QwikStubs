@@ -1,0 +1,17 @@
+<!-- nav bar for event -->
+<ul class="nav nav-tabs">
+  <li> <%= link_to "Event List", "/event" %> </li>
+  <li class="active"> <%= link_to "Create", "/event/create" %> </li>
+</ul>
+
+<!-- end nav bar for event -->
+
+<!-- Create Event -->
+<%= form_for @event, :html => { :class => 'form-signin' } do |f| %>
+  <h2 class="form-signin-heading">Create Event</h2>
+
+  <%= f.text_field :name,  :class => 'input-block-level', :placeholder => 'Event Name' %>
+  <%= f.text_field :date,  :class => 'datepicker input-block-level', :placeholder => 'Date' %>
+
+  <%= submit_tag "Submit", :class => "btn btn-large btn-primary" %>
+<% end %>

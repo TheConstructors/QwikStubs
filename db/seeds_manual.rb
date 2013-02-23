@@ -1,3 +1,4 @@
+Event.delete_all
 Seat.delete_all
 Section.delete_all
 Venue.delete_all
