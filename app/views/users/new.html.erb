@@ -1,8 +1,7 @@
 <!-- Registration Form -->
 <%= form_for @user, :html => { :class => 'form-signin' } do |f| %>
   <h2 class="form-signin-heading">Registration</h2>
-
-  <%= f.text_field :full_name, :class => 'input-block-level', :placeholder => 'Full Name' %>
+  
   <%= f.text_field :email,     :class => 'input-block-level', :placeholder => 'Email Address' %>
   <%= password_field_tag :password,      '', :class => 'input-block-level', :placeholder => 'Password' %>
   <%= password_field_tag :password_conf, '', :class => 'input-block-level', :placeholder => 'Password Confirmation' %>
