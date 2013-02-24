@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   # Show User page
   def index
+    redirect_to root_path
   end
 
   # Create new User (UI, registration)
@@ -15,7 +16,7 @@ class UsersController < ApplicationController
     @user.password = pass if pass == params[:password_conf]
 
     if @user.save
-      redirect_to root_path
+      redirect_to :index
     else
       # TODO: could probably change the flash display to enumerate @user.errors
       flash.now[:error] = "Something went wrong - please check your fields and try again!"

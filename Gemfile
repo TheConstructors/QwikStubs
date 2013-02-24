@@ -37,4 +37,8 @@ gem 'bcrypt-ruby'
     gem 'rspec'
     #gem 'webrat'
     gem 'rspec-rails'
+    gem 'factory_girl_rails'    
  end
+
+# Gemfile
+gem "mocha", :require => false
