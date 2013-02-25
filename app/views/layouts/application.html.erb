@@ -35,17 +35,15 @@
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
   </head>
   <body>
-
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
           <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <i class="icon icon-bar"></i>
+            <i class="icon-list"></i> 
           </a>
-          <!--a class="brand" href="#">QuikStubs</a-->
         <div class="nav" style="padding:2px;"> 
-	 <%= image_tag 'logo-tiny.png', :alt => 'logo', :id => 'logo' %>
-	</div> 
+          <%= image_tag 'logo-tiny.png', :alt => 'logo', :id => 'logo' %>
+        </div> 
           <div class="container nav-collapse">
             <ul class="nav">
               <li><%= link_to "Login", "/login"  %></li>
@@ -59,29 +57,21 @@
     <div class="container">
       <%= bootstrap_flash %>
       <%= yield %>
-      <footer>	
-       <p><center>&copy; QwikStubs 2013</center></p>
-      </footer>
+
+      <div class="row">
+        <div class = "span12">
+          <footer class="well">
+            <%= bootstrap_flash %>	
+            <p><center>&copy; QwikStubs 2013</center></p>
+          </footer>
+        </div>
+      </div>
+      <div class = "row">
+        <div class = "span12">
+          <%= debug(params) if Rails.env.development? %>
+        </div>
+      </div>
     </div>
-    <!--div class="container">
-        <div class="row">
-          <div class="span9">
-          </div>
-          <div class="span3">
-            <div class="well sidebar-nav">
-              <h3>Sidebar</h3>
-              <ul class="nav nav-list">
-                <li class="nav-header">Sidebar</li>
-                <li><%= link_to "Link1", "/path1"  %></li>
-                <li><%= link_to "Link2", "/path2"  %></li>
-                <li><%= link_to "Link3", "/path3"  %></li>
-              </ul>
-            </div><!--/.well -->
-          </div><!--/span-->
-        </div><!--/row-->
-
-    </div--> <!-- /container -->
-
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
