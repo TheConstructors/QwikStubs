@@ -4,7 +4,6 @@ describe Section do
   before(:each) do
     @v = Venue.create!(name:"THE KYLEBOWL", city: "SB", state:"CA")
     @s = Section.create!(name:"22F", venue:@v)
-
   end
 
   it "should have a name" do
@@ -18,9 +17,5 @@ describe Section do
   it "venue section should correspond to @v" do
     @s.venue.name.should == "THE KYLEBOWL"
   end
-
-  
-
-  
 
 end
