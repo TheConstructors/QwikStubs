@@ -41,4 +41,4 @@ gem 'bcrypt-ruby'
  end
 
 # Gemfile
-gem "mocha", :require => false
+gem 'mocha', :require => false
