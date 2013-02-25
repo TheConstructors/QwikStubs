@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     @user.password = pass if pass == params[:password_conf]
 
     if @user.save
-      render :index
+      redirect_to root_path
     else
       # TODO: could probably change the flash display to enumerate @user.errors
       flash.now[:error] = "Something went wrong - please check your fields and try again!"
