@@ -14,8 +14,8 @@
 /log/*.log
 /tmp
 *~
-#*
-.#*
+\#*\#
+.\#*
 *.swp
 
 /nbproject
