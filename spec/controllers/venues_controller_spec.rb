@@ -44,10 +44,19 @@ describe VenuesController do
     end
   end
 
+  describe "edit method" do
+    it "should " do
+    end
+  end
 
-#  it "should pass params to menu item" do
-#    post 'create', :menu_item => { :name => 'Plain' }
-#    assigns[:menu_item].name.should == 'Plain'
-#  end
+  describe "update method" do
+    it "should " do
+    end
+  end
+
+  describe "destroy method" do
+    it "should " do
+    end
+  end
 
 end
