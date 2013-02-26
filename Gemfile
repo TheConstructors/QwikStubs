@@ -38,7 +38,7 @@ gem 'bcrypt-ruby'
     gem 'rspec-rails'
     
     # Better Error Messages
-    gem "better_errors"
+    # gem "better_errors"
     
     # If we upgrade to Ruby 2.0
     # gem "binding_of_caller"
@@ -47,8 +47,13 @@ gem 'bcrypt-ruby'
     gem 'factory_girl_rails'    
     gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
     
-    # Guard with RSpec 
+    # Guard and Spork
     gem 'guard-rspec'
+    gem 'guard-spork'
+    gem 'spork'
+
+    # Linux dependency for notifications
+    gem 'rb-inotify', '~> 0.9'
  end
 
 # Gemfile
