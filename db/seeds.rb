@@ -1,4 +1,9 @@
-# Generated at 2013-02-16 18:33:16 -0800 by 'db/gen_seeds.rb'.
-User.create!({:full_name=>"Jared Roesch", :email=>"roeschinc@gmail.com", :password=>"pass123"})
-User.create!({:full_name=>"Kyle Jorgenson", :email=>"tobe@email.com", :password=>"pass123"})
-User.create!({:full_name=>"Alex Hamstra", :email=>"hamsterman@foo.com", :password=>"pass123"})
+Seat.delete_all
+Section.delete_all
+Venue.delete_all
+User.delete_all
+User.create!({:full_name=>"Jared Roesch", :password=>"pass123"})
+User.create!({:full_name=>"Kyle Jorgensen", :password=>"pass123"})
+User.create!({:full_name=>"Alex Hamstra", :password=>"pass123"})
+
+Dir[Rails.root.join("db/seed_venue*.rb")].each {|f| require f}

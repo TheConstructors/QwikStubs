@@ -3,10 +3,15 @@
 
   Use Font Awesome icons (default)
   To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
-  =require twitter-bootstrap-static/fontawesome
+  =require twitter-bootstrap-static/sprites
   */
 
-body{
-	padding-top:60px;
+body {
+  padding-top: 60px;
+}
 
+@media(max-width: 979px) {
+  body {
+    padding-top: 0px;
+  }
 }
