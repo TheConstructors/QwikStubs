@@ -35,6 +35,8 @@ gem 'bcrypt-ruby'
 # for testing
  group :development, :test do
     gem 'rspec'
-    #gem 'webrat'
     gem 'rspec-rails'
+    gem "better_errors"
+    # If we upgrade to Ruby 2.0
+    # gem "binding_of_caller"
  end
