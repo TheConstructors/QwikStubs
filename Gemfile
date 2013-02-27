@@ -38,7 +38,7 @@ gem 'bcrypt-ruby'
     gem 'rspec-rails'
     
     # Better Error Messages
-    #gem "better_errors"
+    gem "better_errors"
     
     # If we upgrade to Ruby 2.0
     # gem "binding_of_caller"
