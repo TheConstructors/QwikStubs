@@ -5,7 +5,7 @@ describe User do
   describe "name" do
 
     it "should contain both a first and last name" do
-      @user = User.new(full_name: "Alex Hamstra")
+      @user = FactoryGirl.build(:user, full_name: "Alex Hamstra")
       @user.first_name.should == "Alex"
       @user.last_name.should  == "Hamstra"
     end
@@ -13,8 +13,7 @@ describe User do
 
   context "with a password" do 
     before(:each) do
-      @user = User.new()
-      @user.password = "a_new_pass"
+      @user = FactoryGirl.build(:user, password: "a_new_pass")
     end
 
     it "should have both password_digest and salt" do
@@ -35,8 +34,8 @@ describe User do
 
   describe "email" do
     it "should be in 'emails'" do
-      @user = User.create! full_name: "John Smith", :password => "dummy_pw"
-      @email = Email.create! :email => "john@gmail.com", :user => @user
+      @user = FactoryGirl.create(:user, full_name: "John Smith", :password => "dummy_pw")
+      @email = FactoryGirl.create(:email, :email => "john@gmail.com", :user => @user)
       @user.emails.map { |e| e.email }.index("john@gmail.com").should_not be_nil
     end 
 
@@ -44,8 +43,7 @@ describe User do
   end
 
   it "should be authorized with a password" do
-    @user = User.new()
-    @user.password = "new_pass"
+    @user = FactoryGirl.build(:user, password: "new_pass")
     @user.is_auth?("new_pass").should == true
   end
 
