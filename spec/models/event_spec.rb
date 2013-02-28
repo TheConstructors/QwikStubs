@@ -3,7 +3,8 @@ require 'spec_helper'
 describe Event do
  
   before(:each) do
-    @e = Event.create!(name:"Rock and Troll Concert", date: "1/9/14")
+    @v = Venue.create!(name:"House of Blues", city: "SD", state:"CA")
+    @e = Event.create!(name:"Rock and Troll Concert", date: "1/9/14", venue:@v)
   end
 
   it "should have a name" do
@@ -19,5 +20,10 @@ describe Event do
     @other.valid?.should be_false
     @other.errors.should_not be_empty
   end
+  
+  it "should belong to a venue @v" do
+    @e.venue.name.should == "House of Blues"
+  end
+
 
 end
