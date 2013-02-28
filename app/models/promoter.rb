@@ -7,5 +7,4 @@ class Promoter
   #RELATIONSHIP
   has_many :membership
   has_many :event
-
 end

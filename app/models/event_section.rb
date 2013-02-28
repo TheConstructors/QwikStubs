@@ -1,14 +1,19 @@
 class EventSection
   include MongoMapper::Document
 
-  key:price, Float
+  key :price, Float
   
-  #validations
-  validate :price, :presence => true
+  # validations
+  # validate :price, :presence => true
+  
+  # before_save :both_unique
 
   #relationships
   belongs_to :event
   belongs_to :section
-  #has_many :eventseat
-
+  many :event_seat
+ 
+  def both_unique
+    nil == EventSection.all(event_id: event.id, section_id: section.id)
+  end
 end

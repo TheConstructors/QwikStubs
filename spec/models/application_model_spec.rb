@@ -47,21 +47,21 @@ describe ApplicationModel do
       end
     end
 
-    it "should just log exception from ensure_index" do
-      class EnsureIndexDocumentTest
-        include ApplicationModel
-      end
-
-      lambda do
-        logger_mock = mock(:logger)
-        logger_mock.should_receive(:warning) .with(/Exception from ensure_index/)
-        EnsureIndexDocumentTest.stub(:logger).and_return(logger_mock)
-
-        EnsureIndexDocumentTest.instance_eval do
-          ensure_index "name"
-        end
-
-      end.should_not raise_error(ArgumentError)
-    end
+#    it "should just log exception from ensure_index" do
+#      class EnsureIndexDocumentTest
+#        include ApplicationModel
+#      end
+#
+#      lambda do
+#        logger_mock = mock(:logger)
+#        logger_mock.should_receive(:warning) .with(/Exception from ensure_index/)
+#        EnsureIndexDocumentTest.stub(:logger).and_return(logger_mock)
+#
+#        EnsureIndexDocumentTest.instance_eval do
+#          ensure_index "name"
+#        end
+#
+#      end.should_not raise_error(ArgumentError)
+#    end
   end
 end

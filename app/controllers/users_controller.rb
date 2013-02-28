@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   # Show User page
   def index
+    redirect_to root_path
   end
 
   # Create new User (UI, registration)
@@ -10,8 +11,14 @@ class UsersController < ApplicationController
 
   # Create new User Logic
   def create
+    # This NEEDS clean up, pushing for Alex right now, comp gonna die.
     pass = params[:password]
-    @user = User.new(params[:user])
+    email = params[:user][:email]
+    params[:user][:email] = nil #remove email, was causing a bug needs to be fixed
+    @user = User.new params[:user]
+    # check save here
+    @email = Email.new email: email, user: @user
+    @email.save
     @user.password = pass if pass == params[:password_conf]
 
     if @user.save

@@ -4,7 +4,7 @@ describe Venue do
   
   # do these actions once before all the tests
   before(:each) do
-    @v = Venue.create!(name:"SB Bowl",city:"SB",state:"CA")
+    @v = FactoryGirl.create(:venue)
   end
 
   it "should have a city" do
@@ -20,7 +20,8 @@ describe Venue do
   end 
 
   it "should be a unique combination of name, city, state" do
-    @other = Venue.new(name:"SB Bowl",city:"SB",state:"CA")
+    FactoryGirl.create(:venue, name:"SB Bowl",city:"SB",state:"CA")
+    @other = FactoryGirl.build(:venue, name:"SB Bowl",city:"SB",state:"CA")
     @other.valid?.should be_false
     @other.errors.should_not be_empty
   end
