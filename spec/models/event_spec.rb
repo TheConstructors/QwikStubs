@@ -4,7 +4,8 @@ describe Event do
  
   before(:each) do
     @v = Venue.create!(name:"House of Blues", city: "SD", state:"CA")
-    @e = Event.create!(name:"Rock and Troll Concert", date: "1/9/14", venue:@v)
+    @p = Promoter.create!(name:"NHL")
+    @e = Event.create!(name:"Rock and Troll Concert", date: "1/9/14", venue:@v, promoter:@p)
   end
 
   it "should have a name" do
@@ -23,6 +24,12 @@ describe Event do
   
   it "should belong to a venue @v" do
     @e.venue.name.should == "House of Blues"
+    @e.venue.city.should == "SD"
+    @e.venue.state.should == "CA"
+  end
+  
+  it "should belong to a promoter @p" do
+    @e.promoter.name.should == "NHL"
   end
 
 
