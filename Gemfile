@@ -33,7 +33,23 @@ gem 'bcrypt-ruby'
 
 # for testing
 group :development, :test do
-    gem 'rspec'
-    #gem 'webrat'
-    gem 'rspec-rails'
+  gem 'rspec'
+  gem 'rspec-rails'
+  
+  # Better Error Messages
+  gem "better_errors"
+  
+  # If we upgrade to Ruby 2.0
+  # gem "binding_of_caller"
+  
+  # Factories 
+  gem 'factory_girl_rails'    
+  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  
+  # Guard with RSpec 
+  gem 'guard-rspec'
 end
+
+# Gemfile
+gem 'mocha', :require => false
+
