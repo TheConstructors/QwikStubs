@@ -4,6 +4,7 @@ class User
   include ApplicationModel
   
   many :emails
+  has_many :promoter_memberships
   
   key :full_name,       String
   key :salt,            String
