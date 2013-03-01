@@ -4,9 +4,9 @@ class EventSection
   key :price, Float
   
   # validations
-  # validate :price, :presence => true
+  validate :price, :presence => true
   
-  # before_save :both_unique
+  before_save :both_unique
 
   #relationships
   belongs_to :event
@@ -14,6 +14,6 @@ class EventSection
   many :event_seat
  
   def both_unique
-    nil == EventSection.all(event_id: event.id, section_id: section.id)
+    nil == EventSection.find(event_id: event.id, section_id: section.id)
   end
 end
