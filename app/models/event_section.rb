@@ -6,14 +6,14 @@ class EventSection
   # validations
   validate :price, :presence => true
 
-  before_save :validate_event_and_section_unique
+  before_save :both_unique
 
   #relationships
   belongs_to :event
   belongs_to :section
   many :event_seat
 
-  def validate_event_and_section_unique
-    EventSection.find(event_id: event.id, section_id: section.id).blank?
+  def both_unique
+    nil == EventSection.find(event_id: event.id, section_id: section.id)
   end
 end
