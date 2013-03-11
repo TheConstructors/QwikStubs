@@ -11,3 +11,10 @@ We should be doing code reviews before commits.
 ## Coding Style 
 Look at the GitHub style guides, especially the Ruby one: https://github.com/styleguide/ruby. Checkout the other 
 style guides also.
+
+## Testing
+-Rspec
+-Guard
+-Spork
+-Travis-CI
+-Coveralls
