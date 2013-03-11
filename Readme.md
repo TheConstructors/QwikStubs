@@ -13,8 +13,8 @@ Look at the GitHub style guides, especially the Ruby one: https://github.com/sty
 style guides also.
 
 ## Testing
--Rspec
--Guard
--Spork
--Travis-CI
--Coveralls
+*Rspec
+*Guard
+*Spork
+*Travis-CI
+*Coveralls
