@@ -49,6 +49,9 @@ gem 'bcrypt-ruby'
     
     # Guard with RSpec 
     gem 'guard-rspec'
+
+    # Coveralls
+    gem 'coveralls', require: false
  end
 
 # Gemfile
