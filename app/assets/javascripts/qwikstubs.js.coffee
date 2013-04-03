@@ -4,8 +4,8 @@ window.Qwikstubs =
   Views: {}
   Routers: {}
   initialize: ->
-  	new Qwikstubs.Routers.Venues
-  	Backbone.history.start(pushState: true)
+    new Qwikstubs.Routers.Venues
+    Backbone.history.start()
 
 $(document).ready ->
   Qwikstubs.initialize()

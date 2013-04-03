@@ -19,5 +19,5 @@ Qwikstubs::Application.routes.draw do
   #get '/venue' => 'venues#list'
 
   root :to => 'application#index'
-  match '*path', to: 'application#index'
+  # match '*path', to: 'application#index'
 end
