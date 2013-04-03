@@ -48,6 +48,10 @@ group :development, :test do
   
   # Guard with RSpec 
   gem 'guard-rspec'
+
+  # Jasmine JavaScript Testing
+  gem 'jasminerice'
+
 end
 
 # Gemfile
