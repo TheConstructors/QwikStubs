@@ -52,7 +52,11 @@ group :development, :test do
   # Jasmine JavaScript Testing
   gem 'jasminerice'
 
-end
+  # Coveralls
+  gem 'coveralls', require: false
+
+ end
+
 
 # Gemfile
 gem 'mocha', :require => false
