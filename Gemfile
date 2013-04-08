@@ -41,3 +41,8 @@ gem 'bcrypt-ruby'
     #gem 'webrat'
     gem 'rspec-rails'
  end
+
+ gem 'eventmachine'
+ gem 'em-http-request'
+ gem 'em-websocket'
+ gem 'em-websocket-client'
