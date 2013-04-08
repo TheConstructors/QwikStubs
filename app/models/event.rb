@@ -3,6 +3,7 @@ class Event
   
   key :name, String
   key :date, String
+  key :time, String
   
   validates_presence_of :name
   validates_presence_of :date
