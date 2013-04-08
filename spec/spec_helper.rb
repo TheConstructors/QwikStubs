@@ -47,8 +47,7 @@ Spork.prefork do
     #     --seed 1234
     config.order = "random"
   end
-
-end
+end  # end Spork prefork block
 
 Spork.each_run do
   # This code will be run each time you run your specs.
@@ -66,7 +65,6 @@ Spork.each_run do
   # This is included so that we don't have to restart the Spork server 
   # if we make changes to the factories.
   FactoryGirl.reload
-
 end
 
 # --- Instructions ---

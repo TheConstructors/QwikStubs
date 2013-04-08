@@ -1,0 +1,4 @@
+	<td><%= $('#list_venue tr').length + 1 %></td>
+	<td><%= @venue.get('name') %></td>
+	<td><%= @venue.get('city')  %></td>
+	<td><%= @venue.get('state') %></td>
