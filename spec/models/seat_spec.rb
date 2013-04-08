@@ -4,9 +4,9 @@ describe Seat do
 
   # do these actions once before all the tests
   before(:each) do
-    @v = Venue.create!(name:"THE KYLEBOWL", city: "SB", state:"CA")
-    @sec = Section.create!(name:"22F", venue:@v)
-    @s = Seat.create!(name:"109A",row:"A",column:"9")
+    @v = FactoryGirl.create(:venue)
+    @sec = FactoryGirl.create(:section)
+    @s = FactoryGirl.create(:seat)
     @s.section = @sec
   end
 
