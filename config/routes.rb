@@ -18,4 +18,5 @@ Qwikstubs::Application.routes.draw do
 
   root :to => 'application#homepage'
 
+  get '/event_test' =>'application#event_test'
 end

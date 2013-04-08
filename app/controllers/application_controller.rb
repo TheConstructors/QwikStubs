@@ -8,4 +8,7 @@ class ApplicationController < ActionController::Base
 
   def homepage
   end
+
+  def event_test
+  end
 end
