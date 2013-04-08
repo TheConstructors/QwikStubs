@@ -47,8 +47,13 @@ gem 'bcrypt-ruby'
     gem 'factory_girl_rails'    
     gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
     
-    # Guard with RSpec 
+    # Guard and Spork
     gem 'guard-rspec'
+    gem 'guard-spork'
+    gem 'spork'
+
+    # Linux dependency for notifications
+    gem 'rb-inotify', '~> 0.9'
  end
 
 # Gemfile
