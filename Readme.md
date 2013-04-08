@@ -20,3 +20,10 @@ style guides also.
 * Spork
 * Travis-CI
 * Coveralls
+
+## Guard and Spork
+To initiate the Spork server, monitored by Guard, you must first type
+
+```
+bundle exec guard
+```

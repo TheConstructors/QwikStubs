@@ -35,6 +35,9 @@ GEM
       jquery-rails
       rails (>= 3.1)
     bcrypt-ruby (3.0.1)
+    better_errors (0.8.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
     bson (1.8.2)
     bson_ext (1.8.2)
       bson (~> 1.8.2)
@@ -87,14 +90,11 @@ GEM
     guard-rspec (2.4.1)
       guard (>= 1.1)
       rspec (~> 2.11)
-<<<<<<< HEAD
     guard-spork (0.3.2)
       guard (>= 0.8.4)
       spork (>= 0.8.4)
-=======
     haml (4.0.1)
       tilt
->>>>>>> c2940661cef1051fc6de2633d5236507a73af42a
     hike (1.2.1)
     i18n (0.6.1)
     jasminerice (0.0.10)
@@ -211,17 +211,15 @@ PLATFORMS
 DEPENDENCIES
   backbone-on-rails
   bcrypt-ruby
+  better_errors
   bson_ext
   coffee-rails (~> 3.2.1)
   coveralls
   debugger
   factory_girl_rails
   guard-rspec
-<<<<<<< HEAD
   guard-spork
-=======
   jasminerice
->>>>>>> c2940661cef1051fc6de2633d5236507a73af42a
   jquery-rails
   mocha
   mongo_mapper
