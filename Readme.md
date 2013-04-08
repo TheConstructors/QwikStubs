@@ -22,7 +22,7 @@ style guides also.
 * Coveralls
 
 ## Guard and Spork
-To initiate the Spork server, monitored by Guard, you must first type
+To initiate the Spork server, monitored by Guard, you must first type the command
 
 ```
 bundle exec guard
