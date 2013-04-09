@@ -17,6 +17,7 @@
 //= require backbone
 //= require RemoteEvents
 //= require qwikstubs
+//= require event_test
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections
