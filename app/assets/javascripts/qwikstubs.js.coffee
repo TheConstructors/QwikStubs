@@ -3,8 +3,8 @@ window.Qwikstubs =
   Collections: {}
   Views: {}
   Routers: {}
-  initialize: ->
-    new Qwikstubs.Routers.Events
+  initialize: -> 
+    new Qwikstubs.Routers.Events()
     Backbone.history.start()
 $(document).ready ->
   Qwikstubs.initialize()

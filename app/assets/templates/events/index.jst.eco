@@ -29,7 +29,7 @@
 				<input id = "new_event_name" name="name" type = "text" class="input-block-level" placeholder = "Name"></input>
 				<input id = "new_event_date" name="date" type = "text" class="input-block-level" placeholder = "Date"></input>
 				<input id = "new_event_time" name="time" type = "text" class="input-block-level" placeholder = "Time"></input>
-				<select id = "new_event_venue" name = "venue" class = "input-block-level">
+				<select id = "list_event_venues" name = "venue" class = "input-block-level">
 				  <option>Milk</option>
 				  <option>Coffee</option>
 				  <option>Tea</option>
