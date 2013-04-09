@@ -42,38 +42,90 @@ $(document).ready(function() {
   RemoteEvents.api = "RemoteEvents-0.0.1"
   
   window.RemoteEvents = RemoteEvents */
-  var RemoteEvents = function(host, port, eventlist) {
-      this.wsocket = new WebSocket("ws://" + host + ":" + port)
-      this.host = host
-      this.port = port
-      this.wsocket.onopen = function() {};
-      this.wsocket.onclose = function() {};
-      this.wsocket.onerror = function() {};
-      this.wsocket.onmessage = function() {};
-      return this;
-  };
 
-  RemoteEvents.prototype = _.extend({}, Backbone.Events)
+    /* place holder for log abstract */
+    var log = function(msg) {
+        console.log(msg);
+    }
+    var host = "localhost",
+        port = '8080';
+    
+    var EventProxy = new WebSocket("ws://" + host + ":" + port)
 
-  var oldTrigger = RemoteEvents.prototype.trigger;
-  
-  var isRemoteName = function(name) {
-      var regex = /remote:.*/;
-      return regex.test(name);
-  }
+    EventProxy.onopen = function() {
+        log("Opened connection to " + host + ":" + port);
+    }
 
-  RemoteEvents.prototype.trigger = function(name) {
-      if (isRemoteName(name)) {
-          this.remoteTrigger(name.substring(7));
-      } else {
-          oldTrigger(name);
-      }
-  };
+    EventProxy.onclose = function() {
+        log("Closed connection.");
+    }
 
-  RemoteEvents.prototype.remoteTrigger = function(name) {
-      console.log("Triggering remote event: " + name);
-  };
+    EventProxy.onerror = function(error) {
+    
+    }
 
-  window.RE = RemoteEvents;
+    EventProxy.onmessage = function(e) {
+        log("Received event: " + e.data);
+    }
+    
+    /* this can be made more efficent by causing the special binding to
+     * happen once at load time */
+    EventProxy.sendEvent = function (receiver, msg) {
+        EventProxy.onmessage = function(e) {
+            log("Received event: " + e.data);
+            var response = JSON.parse(e.data);
+            var ev = response["event"];
+            var data = response["data"];
+            /* custom trigger code here, optimize like Backbone */
+            /* currently only invoke one */
+            var callback = receiver._events[ev][0].callback;
+            log(callback);
+            callback(ev, data);
+        }
+
+        EventProxy.send(msg);
+    }
+
+    var RemoteEvents = _.extend({}, Backbone.Events)
+
+    /* One needs to be careful treating a method like a function
+     * in JavaScript. Make sure to invoke this with defaultTrigger.call
+     * the method needs a 'this' parameter passed explicitly */
+    var defaultTrigger = Backbone.Events.trigger 
+    var defaultOn = Backbone.Events.on
+
+    var isRemote = function(name) {
+        var regex = /remote:.*/;
+        return regex.test(name);
+    }
+
+    RemoteEvents.trigger = function(name) {
+        if (isRemote(name)) {
+            this.triggerRemote(name.substring(7));
+        } else {
+            defaultTrigger.call(this, name);
+        }
+    };
+
+    /* RemoteEvents.on = function(name, callback) {
+        if (isRemote(name)) {
+            this.onRemote(name.substring(7));
+        } else {
+            defaultOn.call(this, name);
+        }
+    }
+    
+    /* Have a remote event be able to return data */
+    RemoteEvents.onRemote = function(name, callback) {
+       defaultOn.call(this, name); 
+    }
+
+    RemoteEvents.triggerRemote = function(name) {
+        console.log("Proxying to ...");
+        console.log(this);
+        EventProxy.sendEvent(this, name);
+    };
+
+    Backbone.Events = RemoteEvents;
 });
 
