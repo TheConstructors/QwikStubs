@@ -11,8 +11,8 @@ describe Promoter do
   end
 
   it "should fail if there is no name" do
-    no_name = Promoter.new
-    no_name.errors[:name].should_not be_empty
+    @no_name = Promoter.create(name: "")
+    @no_name.errors[:name].should_not be_empty
   end
 
 end

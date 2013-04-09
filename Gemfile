@@ -50,7 +50,7 @@ group :development, :test do
   gem 'guard-rspec'
 
   # for Linux notifications using Guard
-  gem 'rb-inotify', '~> 0.9'
+  # gem 'rb-inotify', '~> 0.9'
 
   # Jasmine JavaScript Testing
   gem 'jasminerice'
