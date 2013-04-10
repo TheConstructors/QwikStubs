@@ -24,8 +24,8 @@ describe EventSection do
     @es.event.date.should == "5/30/14"
   end
   
-  # it "should have a unique combination of an event and section" do 
-  # @saved = EventSection.create(price: 95.00, event: @e, section: @s)
-  # @saved.should be_false
-  # end
+  it "should have a unique combination of an event and section" do 
+    @saved = EventSection.create(price: 95.00, event: @e, section: @s)
+    @saved.should be_false
+   end
 end
