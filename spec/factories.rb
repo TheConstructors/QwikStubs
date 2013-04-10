@@ -31,5 +31,11 @@ FactoryGirl.define do
     sequence(:name) { |n| "Alex Hamstra Inc.#{n}"}
     verified true
   end
+  
+  factory :promoter_membership do
+    user
+    promoter
+    role "admin"
+  end
 
 end
