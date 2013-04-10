@@ -14,6 +14,6 @@ class EventSection
   many :event_seat
 
   def validate_event_and_section_unique
-    EventSection.find(event_id: event.id, section_id: section.id).blank?
+    EventSection.where(event_id: event.id, section_id: section.id).blank?
   end
 end
