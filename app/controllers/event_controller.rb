@@ -1,28 +1,22 @@
 class EventController < ApplicationController
+  respond_to :json
 
  def new
-    @event = Event.new
+    respond_with Event.new
   end 
 
   def create
-    @event = Event.new(params[:event])
-
-    if @event.save
-      redirect_to '/event'
-    else
-      flash.now[:error] = "Something went wrong - please check your fields and try again!"
-      render :new
-    end
+    respond_with Event.create(params[:event])
   end 
 
- def list
-    @event = Event.all
+  def list
+    respond_with Event.all
   end 
 
  # Show specific Event
  #NOTE: Should we be able to show a specifc event by date? If so, how do we do that exactly?
   def show
-    @event = Event.find_by_name(params[:name])
+    respond_with Event.find_by_name(params[:name])
   end
 
   # Edit a single event
