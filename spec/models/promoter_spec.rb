@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Promoter do
 
   before(:each) do
-    @p = FactoryGirl.build(:promoter)
+    @p = FactoryGirl.create(:promoter, name: "The Constructors")
   end
 
   it "should have a name" do
@@ -13,6 +13,11 @@ describe Promoter do
   it "should fail if there is no name" do
     @no_name = Promoter.create(name: "")
     @no_name.errors[:name].should_not be_empty
+  end
+
+  it "should have a unique name" do
+    @p2 = Promoter.create(name: "The Constructors")
+    @p2.errors[:name].should_not be_empty  
   end
 
 end

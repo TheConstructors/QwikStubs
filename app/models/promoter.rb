@@ -5,6 +5,7 @@ class Promoter
   key :verified, Boolean 
 
   validates_presence_of :name
+  validates :name, :uniqueness => true
   
   #RELATIONSHIP
   has_many :promoter_memberships
