@@ -25,7 +25,8 @@ describe EventSection do
   end
   
   it "should have a unique combination of an event and section" do 
-    @saved = EventSection.create(price: 95.00, event: @e, section: @s)
-    @saved.should be_false
-   end
+    @es = EventSection.new(event: @e, section: @s); @es.save
+    @es_two = EventSection.new(event: @e, section: @s)
+    @es_two.save.should be_false
+  end
 end
