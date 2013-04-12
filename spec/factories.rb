@@ -38,4 +38,10 @@ FactoryGirl.define do
     role "admin"
   end
 
+  factory :venue_membership do
+    venue
+    promoter
+    role "manager"
+  end
+
 end

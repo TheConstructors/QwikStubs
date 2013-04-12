@@ -418,7 +418,6 @@
         null,
         null,
         null,
-        null,
         null
       ],
       "/home/kylejorgensen/cs/rails_apps/QwikStubs/app/models/seat.rb": [
@@ -450,9 +449,19 @@
         null,
         1,
         1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
         null
       ]
     },
-    "timestamp": 1365580854
+    "timestamp": 1365739931
   }
 }

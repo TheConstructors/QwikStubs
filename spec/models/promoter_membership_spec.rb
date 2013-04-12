@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe PromoterMembership do
-
   before(:each) do
     @p_m = FactoryGirl.create(:promoter_membership)
   end
@@ -23,8 +22,8 @@ describe PromoterMembership do
     end
   end
   
-  it "should be associated with one promoter" do
+  it "should be associated with a promoter" do
     @p_m.promoter.should_not be_nil
   end
-      
+
 end

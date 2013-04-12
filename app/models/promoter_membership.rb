@@ -21,5 +21,4 @@ class PromoterMembership
   # NOTE: It might be necessary to put some kind of check in Mongo to prevent this type 
   # of data from being entered...
   # see: http://stackoverflow.com/questions/6155396/validates-presence-of-with-belongs-to-associations-the-right-way   
-
 end
