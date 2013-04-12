@@ -49,6 +49,9 @@ group :development, :test do
   # Guard with RSpec 
   gem 'guard-rspec'
 
+  # for Linux notifications using Guard
+  # gem 'rb-inotify', '~> 0.9'
+
   # Jasmine JavaScript Testing
   gem 'jasminerice'
 
