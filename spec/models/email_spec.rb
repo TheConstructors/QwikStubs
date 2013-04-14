@@ -9,7 +9,7 @@ describe Email do
   end
   
   it "should have a reference to user" do
-    @email = FactoryGirl.create(:email)
+    @email = FactoryGirl.build(:email)
     @email.user.should_not be_nil
   end
 end
