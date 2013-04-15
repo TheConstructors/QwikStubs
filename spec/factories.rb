@@ -59,7 +59,6 @@ FactoryGirl.define do
     billing_info
     sequence(:order_number) { |n| "123456789#{n}" }
     total_amount 156.10
-    verified true
   end
 
 end
