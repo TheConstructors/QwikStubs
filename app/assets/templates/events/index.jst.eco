@@ -13,28 +13,33 @@
 				<tr>
 					<th>#</th>
 					<th>Name</th>
-					<th>Date</th>
+					<th>Date</th>		
 					<th>Time</th>
 					<th>Venue</th>
-				<tr>
+		    <tr>
 			</thead>
 			<tbody id="list_event">
 			</tbody>
 		</table>
 	</div>
-	
 	<div id="right" class="span6">
-			<form id="new_event" class="form-signin">
-				<h2 class="form-signin-heading">New Event</h2>
-				<input id="new_event_name" name="name" type="text" class="input-block-level" placeholder="Name"></input>
-				<input id="new_event_date" name="date" type="text" class="input-block-level" placeholder="Date"></input>
-				<input id="new_event_time" name="time" type="text" class="input-block-level" placeholder="Time"></input>
-				<select id="list_event_venues" name="venue" class="input-block-level">
-				  <option>Milk</option>
-				  <option>Coffee</option>
-				  <option>Tea</option>
-				</select>
-				<button class="btn btn-large btn-primary" type="submit" >Create</button>
-			</form>
-		</div>
+		<form id="new_event" class="form-signin">
+			<h2 class="form-signin-heading">New Event</h2>
+			<input id="new_event_name" name="name" type="text" class="input-block-level" placeholder="Name"></input>
+			<input id="new_event_date" name="city" type="text" class="input-block-level" placeholder="City"></input>
+			<input id="new_event_time" name="state" type="text" class="input-block-level" placeholder="State"></input>
+			<button class="btn btn-large btn-primary" type="submit" >Create</button>
+		</form>
 	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
