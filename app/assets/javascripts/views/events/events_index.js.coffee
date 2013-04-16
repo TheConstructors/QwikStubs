@@ -11,19 +11,25 @@ class Qwikstubs.Views.EventsIndex extends Backbone.View
 
   render: ->
   	$(@el).html(@template())
-  	@collection.each(@appendVenueToList)
+  	@collection.each(@appendEventToList)
   	@
 
-  appendVenueToList: (venue) ->
-  	view = new Qwikstubs.Views.Venue(model: venue)
-  	$('#list_venue').append(view.render().el)
+  appendEventToList: (event) ->
+  	view = new Qwikstubs.Views.Event(model: event)
+  	$('#list_event').append(view.render().el)
 
-  createVenue: (event) ->
+  appendVenueToSelect: (venue) ->
+  	view = new Qwikstubs.Views.Event(model: event)
+  	$('#list_event').append(view.render().el)
+
+  createEvent: (event) ->
     #needs rework for event
-  	event.preventDefault()
+    event.preventDefault()
   	@collection.create
   		name: $('#new_event_name').val()
-  		city: $('#new_event_city').val()
-  		state: $('#new_event_state').val()
+  		date: $('#new_event_date').val()
+  		time: $('#new_event_time').val()
+  		#venue: $('#new_event_venue').val()
+  		#promoter: $('#new_event_promoter').val()
   	$('#new_venue')[0].reset()
   		

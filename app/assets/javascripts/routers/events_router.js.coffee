@@ -3,6 +3,10 @@ class Qwikstubs.Routers.Events extends Backbone.Router
     'event': 'index'
     'events/:id': 'show'
    
+  initialize: ->
+    @collection = new Qwikstubs.Collections.Events()
+    @collection.fetch()
+
   index: ->
     @collection = new Qwikstubs.Collections.Events()
     @collection.fetch()

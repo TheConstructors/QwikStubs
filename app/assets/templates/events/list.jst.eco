@@ -1,0 +1,4 @@
+
+<% for venue in @venues.models:  %>
+<%= venue.get('name') %>
+<% end %>
