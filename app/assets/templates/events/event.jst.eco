@@ -1,4 +1,4 @@
-	<td><%= $('#list_venue tr').length + 1 %></td>
-	<td><%= @venue.get('name') %></td>
-	<td><%= @venue.get('city')  %></td>
-	<td><%= @venue.get('state') %></td>
+	<td><%= $('#list_event tr').length + 1 %></td>
+	<td><%= @event.get('name') %></td>
+	<td><%= @event.get('date')  %></td>
+	<td><%= @event.get('time') %></td>
