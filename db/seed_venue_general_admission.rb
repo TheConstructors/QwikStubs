@@ -2,6 +2,8 @@
 
 @gen_ad_section = Section.create!({:name=>"General Admission", :venue=>@gen_ad})
 
-100.times do
-  Seat.create!({:name=>"Ticket", :section=>@gen_ad_section})
+seats = 1..100
+
+seats.each do |n|
+  Seat.create!({:name=>"Ticket#{n}", :section=>@gen_ad_section})
 end
