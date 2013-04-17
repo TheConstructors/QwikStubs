@@ -32,7 +32,8 @@
 
     <!-- For all other devices -->
     <!-- Size should be 32 x 32 pixels -->
-    <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
+    <!-- <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
+    %> -->
   </head>
   <body>
     <div class="navbar navbar-fixed-top">
@@ -50,7 +51,8 @@
             <ul class="nav">
               <li><%= link_to "Login", "/login"  %></li>
               <li><%= link_to "Register", "/register"  %></li>
-              <li><%= link_to "Venue", "/venue"  %></li>
+              <li><%= link_to "Venues", "/venue"  %></li>
+	      <li><%= link_to "Events", "/event"  %></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
