@@ -1,7 +1,7 @@
 class Qwikstubs.Routers.Venues extends Backbone.Router
   routes:
-  	'venue': 'index'
-  	'venue/:id': 'show'
+  	'venues': 'index'
+  	'venues/:id': 'show'
 
   initialize: ->
   	@collection = new Qwikstubs.Collections.Venues()
