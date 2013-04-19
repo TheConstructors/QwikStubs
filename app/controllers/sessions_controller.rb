@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
   def create
     email = params[:email]
     password = params[:password]
+    #debugger
     @user = Email.where(email: email).first.user
     if @user.nil?
       flash[:invalid_creds] = true
