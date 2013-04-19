@@ -1,6 +1,5 @@
 class Qwikstubs.Views.VenuesIndex extends Backbone.View
 
-
   template: JST['venues/index']
 
   events:
