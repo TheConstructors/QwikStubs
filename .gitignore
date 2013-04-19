@@ -17,8 +17,10 @@
 \#*\#
 .\#*
 *.swp
+.DS_Store
 
 /nbproject
 
 # Ignore the Gemlock file
 Gemfile.lock
+.*.swo

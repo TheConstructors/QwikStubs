@@ -12,7 +12,7 @@ class VenuesController < ApplicationController
   def show
     respond_with Venue.find_by_name(params[:name])
   end
-
+  
   def create
     respond_with Venue.create(params[:venue])
   end

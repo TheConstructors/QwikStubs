@@ -12,7 +12,7 @@
  *= require_tree .
  */
 
-
+body {background-image:url("/assets/dark.png");}
 
 .form-signin {
 	max-width: 300px;
@@ -27,6 +27,7 @@
            -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
                 box-shadow: 0 1px 2px rgba(0,0,0,.05);
 }
+
 .form-signin .form-signin-heading, 
 .form-signin .checkbox {
         margin-bottom: 10px;
@@ -38,4 +39,33 @@
         height: auto;
         margin-bottom: 15px;
         padding: 7px 9px;
+}
+
+form.login {
+  margin: 5px 0 0 0;
+  paddidng: 0px;
+}
+
+form.login input {
+  background: #F5F5F5;
+  margin:0 0 0 0;
+}
+
+/* TODO: needs a size tweak */
+form.login > .btn {
+  margin-top: 0px;
+}
+
+#logout-btn {
+    background-color: transparent;
+    border: none;
+    float: none;
+    color: #777777;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #ffffff;
+    margin-top: 7px;
+}
+
+.logout-form {
+    margin: 0px;
 }
