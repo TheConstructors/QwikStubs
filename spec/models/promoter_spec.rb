@@ -15,6 +15,11 @@ describe Promoter do
     @no_name.errors[:name].should_not be_empty
   end
 
+  it "should have a verification status" do
+    @p.verified.should_not be_nil
+    @p.errors[:verified].should be_empty
+  end
+  
   it "should have a unique name" do
     @p2 = Promoter.create(name: "The Constructors")
     @p2.errors[:name].should_not be_empty  
