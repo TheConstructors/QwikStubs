@@ -5,6 +5,17 @@ FactoryGirl.define do
     state "CA"
   end
 
+  factory :event do
+    sequence(:name) { |n| "Brittany's super cool show#{n}!" }
+    month "Feb"
+    day "28"
+    year "2014"
+    description "It's Awesome!"
+    time "1:00pm"
+    venue
+    promoter
+  end
+
   factory :section do
     sequence(:name) { |n| "1#{n}A" }
     venue

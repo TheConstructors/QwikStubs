@@ -1,5 +1,18 @@
-	<td><%= $('#list_event tr').length + 1 %></td>
-	<td><%= @event.get('name') %></td>
-	<td><%= @event.get('date')  %></td>
-	<td><%= @event.get('time') %></td>
-	<td><%= @event.get('venue') %></td>
+<td class="date">
+  <div class="month">
+    <%= @event.get('month')  %>
+  </div>
+  <div class="date">
+    <%= @event.get('day')  %>
+  </div>
+  <div class="day">
+    <%= @event.get('year')  %>
+  </div>
+</td>	
+
+
+<td>
+  <strong><%= @event.get('name') %></strong><br />
+  <small class="muted"><%= @event.get('description') %></small> 
+</td>
+<td><%= @event.get('venue_id')  %></td>		
