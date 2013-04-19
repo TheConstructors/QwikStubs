@@ -39,7 +39,7 @@ FactoryGirl.define do
   end
 
   factory :promoter do
-    sequence(:name) { |n| "Alex Hamstra Inc.#{n}"}
+    sequence(:name) { |n| "Alex Hamstra Inc.#{n}" }
     verified true
   end
   
@@ -53,6 +53,23 @@ FactoryGirl.define do
     venue
     promoter
     role "manager"
+  end
+  
+  factory :billing_info do
+    user
+    sequence (:full_name) { |n| "Bob Barker#{n}" }
+    sequence (:ccn) { |n| "1234 1234 1234 123#{n}" }
+    sequence (:address) { |n| "123#{n} Wallaby Way" }
+    city "Los Angeles"
+    state "CA"
+    zip "91601"
+    verified true
+  end
+  
+  factory :order do
+    billing_info
+    sequence(:order_number) { |n| "123456789#{n}" }
+    total_amount 156.10
   end
 
 end
