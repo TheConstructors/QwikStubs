@@ -53,3 +53,17 @@ form.login input {
 form.login > .btn {
   margin-top: 0px;
 }
+
+#logout-btn {
+    background-color: transparent;
+    border: none;
+    float: none;
+    color: #777777;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #ffffff;
+    margin-top: 7px;
+}
+
+.logout-form {
+    margin: 0px;
+}
