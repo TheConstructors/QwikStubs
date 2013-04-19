@@ -56,10 +56,9 @@ group :development, :test do
   gem 'jasminerice'
 
   # Coveralls
-  gem 'coveralls', require: false
+  gem 'coveralls', :require => false
 
  end
-
 
 # Gemfile
 gem 'mocha', :require => false

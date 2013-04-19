@@ -14,7 +14,7 @@ class Venue
 
 
   # Relationships
-  # has_many :events
+  has_many :events
   has_many :sections
   has_many :venue_memberships
 
