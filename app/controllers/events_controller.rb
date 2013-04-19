@@ -1,11 +1,17 @@
 class EventsController < ApplicationController
   respond_to :json
+
   def index
     respond_with Event.all
   end  
   
   def list
-    respond_with Event.all
+    if page = params[:page]
+      puts page
+      respond_with Event.all
+    else
+      respond_with Event.all
+    end
   end
   
   def show
