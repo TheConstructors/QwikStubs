@@ -12,6 +12,8 @@
  *= require_tree .
  */
 
+body {background-image:url("/assets/dark.png");}
+
 .form-signin {
 	max-width: 300px;
 	padding: 19px 29px 29px;
