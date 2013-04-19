@@ -11,18 +11,17 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'twitter-bootstrap-rails'
-  #gem 'less-rails-bootstrap' #added manually
-  #gem 'therubyracer'  
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end
 
+# Backbone
+gem 'backbone-on-rails'
+
+# Jquery
 gem 'jquery-rails'
 
-# Yay! Debugger
+# Debugger
 gem 'debugger'
 
 # MongoDB
@@ -36,8 +35,34 @@ gem 'bcrypt-ruby'
 # gem 'qrencoder'
 
 # for testing
- group :development, :test do
-    gem 'rspec'
-    #gem 'webrat'
-    gem 'rspec-rails'
+group :development, :test do
+  gem 'rspec'
+  gem 'rspec-rails'
+  
+  # Better Error Messages
+  gem "better_errors"
+  
+  # If we upgrade to Ruby 2.0
+  # gem "binding_of_caller"
+  
+  # Factories 
+  gem 'factory_girl_rails'    
+  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  
+  # Guard with RSpec 
+  gem 'guard-rspec'
+
+  # for Linux notifications using Guard
+  # gem 'rb-inotify', '~> 0.9'
+
+  # Jasmine JavaScript Testing
+  gem 'jasminerice'
+
+  # Coveralls
+  gem 'coveralls', :require => false
+
  end
+
+# Gemfile
+gem 'mocha', :require => false
+

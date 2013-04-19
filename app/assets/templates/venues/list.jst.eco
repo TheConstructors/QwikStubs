@@ -1,0 +1,5 @@
+<ul>
+<% for venue in @venues.models:  %>
+	<li><%= venue.get('name') %></li>
+<% end %>
+</ul>

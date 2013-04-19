@@ -1,0 +1,5 @@
+	<td><%= $('#list_event tr').length + 1 %></td>
+	<td><%= @event.get('name') %></td>
+	<td><%= @event.get('date')  %></td>
+	<td><%= @event.get('time') %></td>
+	<td><%= @event.get('venue') %></td>
