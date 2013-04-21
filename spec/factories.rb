@@ -15,6 +15,12 @@ FactoryGirl.define do
     venue
     promoter
   end
+  
+  factory :event_seat do
+  end
+  
+  factory :event_section do
+  end
 
   factory :section do
     sequence(:name) { |n| "1#{n}A" }

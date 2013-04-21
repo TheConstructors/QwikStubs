@@ -3,9 +3,11 @@ require 'spec_helper'
 describe Event do
  
   before(:each) do
-    @v = FactoryGirl.create(:venue, name:"House of Blues", city: "SD", state:"CA")
-    @p = FactoryGirl.create(:promoter, name:"NHL")
-    @e = FactoryGirl.create(:event, name:"Rock and Troll Concert", time: "8:30PM", venue:@v, promoter:@p)
+    @v = Venue.create!(name:"House of Blues", city: "SD", state:"CA")
+    @p = Promoter.create!(name:"NHL", verified:true)
+    @e = FactoryGirl.create(:event, venue:@v, promoter:@p)
+    
+    
   end
 
   it "should be saved in the database" do
@@ -14,14 +16,13 @@ describe Event do
     @e.errors[:day].should be_empty
     @e.errors[:year].should be_empty
     @e.errors[:time].should be_empty
-    @event = Event.find_by_name("Rock and Troll Concert");
-    @event.should_not be_nil
-    @event["time"].should == "8:30PM"
+    @e.should_not be_nil
+    @e.time.should == "1:00pm"
   end
 
   
   it "should be a unique combination of name and date" do
-    @other = Event.new(name:"Rock and Troll Concert", date: "1/9/14")
+    @other = Event.new(name:@e.name, month:@e.month)
     @other.valid?.should be_false
     @other.errors.should_not be_empty
   end
