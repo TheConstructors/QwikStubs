@@ -504,7 +504,7 @@
         1,
         null,
         1,
-        null,
+        1,
         null
       ],
       "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/models/event_section.rb": [
@@ -524,7 +524,7 @@
         1,
         null,
         1,
-        0,
+        6,
         null,
         null
       ],
@@ -633,6 +633,6 @@
         null
       ]
     },
-    "timestamp": 1366520687
+    "timestamp": 1366568552
   }
 }

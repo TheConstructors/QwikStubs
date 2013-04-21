@@ -3,30 +3,33 @@ require 'spec_helper'
 describe EventSection do
   
   before(:each) do
-    #@e = Event.create!(name:"Computer Science: The Musical", date: "5/30/14")
-    #@s = Section.create!(name:"21F")
+    @s = FactoryGirl.create(:section, name:"21G")
+    @e = FactoryGirl.create(:event, name:"CS: The Musical")
+    @esec = FactoryGirl.create(:event_section, section: @s, event: @e)
   end
   
   it "should have a price" do
-    #@s = Section.create!(name:"stupid poop")
-    #@es = EventSection.create!(price: 85.00, event: @e, section: @s)
-    #@es.errors[:price].should be_empty
+    @esec.errors[:price].should be_empty
+    @esec.price.should == 89.99
   end
 
   it "should belong to a section @s" do
-    #@es = EventSection.create!(price: 75.00, event: @e, section: @s)
-    #@es.section.name.should == "21F"
+    @esec.section.should_not be_nil
+    @esec.section.name.should == "21G"
   end
 
   it "should belong to an event @e" do
-    #@es = EventSection.create!(price: 85.00, event: @e, section: @s)
-    #@es.event.name.should == "Computer Science: The Musical"
-    #@es.event.date.should == "5/30/14"
+   @esec.event.should_not be_nil
+   @esec.event.name.should == "CS: The Musical"
+   @esec.event.month.should == "Feb"
+   @esec.event.day.should == "28"
+   @esec.event.year.should == "2014"
+   @esec.event.time.should == "1:00pm"
+   @esec.event.description.should == "It's Awesome!"
   end
   
   it "should have a unique combination of an event and section" do 
-    #@es = EventSection.new(event: @e, section: @s); @es.save
-    #@es_two = EventSection.new(event: @e, section: @s)
-    #@es_two.save.should be_false
+    @esec2 = EventSection.new(event: @e, section:  @s)
+    @esec2.save.should be_false
   end
 end

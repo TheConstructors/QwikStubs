@@ -17,9 +17,14 @@ FactoryGirl.define do
   end
   
   factory :event_seat do
+    event_section
+    status EventSeat::Stat::SOLD
   end
   
   factory :event_section do
+    event
+    section
+    price 89.99
   end
 
   factory :section do

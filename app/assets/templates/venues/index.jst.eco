@@ -15,7 +15,7 @@
 					<th>Name</th>
 					<th>City</th>
 					<th>State</th>
-				<tr>
+				</tr>
 			</thead>
 			<tbody id="list_venue">
 			</tbody>
