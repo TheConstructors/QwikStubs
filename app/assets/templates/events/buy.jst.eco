@@ -16,15 +16,23 @@
 </div>
 <div class="row">
   <!-- Event Details -->
-  <div class="span6 invert-text">
-    <h3>Description</h3>
-    This is a fantastic performance starring Stratos, the best
-    TA ever! It goes through the trouble and tribulation of
-    being a computer science major at UCSB. It really has
-    everything that you would ever want from a performance and
-    it's a musical as well!!! What more could you want?? So
-    come on out and see this wonderful perform and support
-    Stratos in his FIRST STARRING ROLE!!!
+  <div class = "span6">
+    <div class="white-box">
+      <h3>Purchase for 6/15/13 <input type = "button" class = "btn btn-danger pull-right" value ="Cancel"></input></h3>
+      Name<input type="text" class="input-block-level"
+                 value="Brittany Berin">
+      Address<input type="text" class="input-block-level" 
+                    value="135 Awesome Block">
+      City<input type="text" class="input-block-level" 
+                 value="Santa Barbara">
+      State<input type="text" class="input-block-level" 
+                  value="Ca">
+      Credit Card<input type="text" class="input-block-level" 
+                        value="****-****-****-****">
+      Expiration Date<input type="text" class="input-block-level" 
+                            value="7/15">
+      <input type="submit" value="Buy Now" class="btn btn-success"/>
+    </div>
   </div>
   <!-- Venue Details -->
   <div class="span6">
