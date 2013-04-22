@@ -2,8 +2,8 @@ class Qwikstubs.Views.EventsIndex extends Backbone.View
 
   template: JST['events/index']
 
-  events:
-  	'submit #new_event' : 'createEvent'
+  #events:
+  	#'submit #new_event' : 'createEvent'
 
   initialize: ->
   	@collection.on('reset' , @render, @ )
