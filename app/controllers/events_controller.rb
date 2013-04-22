@@ -2,16 +2,21 @@ class EventsController < ApplicationController
   respond_to :json
 
   def index
-    respond_with Event.all
-  end  
-  
-  def list
     if page = params[:page]
-      puts page
-      respond_with Event.all
+      page_size = params[:pagesize] || 20
+      results = Event.paginate({ 
+        :order => :created_at.asc, 
+        :per_page => page_size, 
+        :page => page
+      })
+      respond_with results
     else
       respond_with Event.all
     end
+  end  
+  
+  def list
+   respond_with Event.all 
   end
   
   def show
