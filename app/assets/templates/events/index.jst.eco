@@ -20,6 +20,8 @@
 			  <tbody id="list_event">
 			  </tbody>
 		  </table>
+      <div id="next-page" class="btn" style="float: right">Next</div>
+      <div id="previous-page" class="btn">Prev</div>
     </div>
   </div>
 </div>

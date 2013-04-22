@@ -1,5 +1,19 @@
 class Qwikstubs.Collections.Events extends Backbone.Collection
-  url: '/api/events'
+  initialize: ->
+    @page = 1
+
+  url: '/api/events?page=1'
+
+  nextPage: ->
+    @page += 1
+    @url = "/api/events?page=#{@page}"
+    @fetch(reset: true)
+
+  previousPage: ->
+    # handle more pages and less pages
+    @page -= 1
+    @url = "/api/events?page=#{@page}"
+    @fetch(reset: true)
   #model: Qwikstubs.Models.Venue
   
   # fetching records GET /venues
