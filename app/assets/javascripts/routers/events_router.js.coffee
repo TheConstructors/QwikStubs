@@ -4,15 +4,17 @@ class Qwikstubs.Routers.Events extends Backbone.Router
     'events/:id': 'show'
     'events/buy/:id': 'buy'
 
+  
   initialize: ->
     @collection = new Qwikstubs.Collections.Events()
     @collection.fetch()
+    @eventIndex = new Qwikstubs.Views.EventsIndex(collection: @collection)
+    #@listenTo(@eventIndex.collection, 'reset', @index)
 
   index: ->
-    @collection = new Qwikstubs.Collections.Events()
-    @collection.fetch()
-    view = new Qwikstubs.Views.EventsIndex(collection: @collection)
-    $('#container').html(view.render().el)
+    @collection.fetch() # investigate in the future
+    @collection.previousPage()
+    $('#container').html(@eventIndex.render().el)
 
   show: (id) ->
     @collection = new Qwikstubs.Collections.Events()
