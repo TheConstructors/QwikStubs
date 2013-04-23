@@ -2,8 +2,8 @@ class Qwikstubs.Views.EventsShow extends Backbone.View
 
   template: JST['events/show']
 
-  #events:
-  	#'submit #new_event' : 'createEvent'
+  events:
+  	'click .purchase' : 'buyEvent'
 
   #initialize: ->
   	#this.event.on('reset' , @render, @ )
@@ -12,6 +12,10 @@ class Qwikstubs.Views.EventsShow extends Backbone.View
   render: ->
     $(@el).html(@template(event: model, venue: model2))
     @
+
+  buyEvent: ->
+    view = new Qwikstubs.Views.EventBuy();
+    $('#buy').html(view.render().el)
 
   #appendEventToList: (event) ->
     #view = new Qwikstubs.Views.Event(model: event)

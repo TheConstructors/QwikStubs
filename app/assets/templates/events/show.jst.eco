@@ -21,7 +21,7 @@
     <%= @event.get('description') %>
   </div>
   <!-- Venue Details -->
-  <div class="span6">
+  <div id="buy" class="span6">
     <div class="white-box">
       <p>
         <h3>Performances</h3>
@@ -41,7 +41,9 @@
             <tr>
               <td><%=@event.get('month')%> <%=@event.get('day')%>, <%=@event.get('year')%></td>
               <td><%=@venue.get('name')%></td>
-              <td> <input type="submit" value="Buy Tickets" class="btn btn-success btn-mini pull-right"></input></td>
+              <td><div class="btn
+              btn-success btn-mini pull-right purchase">Buy Tickets
+              </div></td>
           </tbody>
         </table>
       </p>

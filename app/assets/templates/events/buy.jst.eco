@@ -1,85 +1,19 @@
-<div class="row">
-  <div class ="span12 invert-text">
-    <h1>Some Name Goes Here</h1>
-  </div>
-</div>
-<div class ="row" style="margin-bottom:20px;">
-  <!-- Photo Scroller -->
-  <div class="span12">
-    <img src="/assets/scroller1.jpg" style="height:100px;">
-    <img src="/assets/scroller2.jpg" style="height:100px;">
-    <img src="/assets/scroller3.jpg" style="height:100px;">
-    <img src="/assets/scroller4.jpg" style="height:100px;">
-    <img src="/assets/scroller1.jpg" style="height:100px;">
-    <img src="/assets/scroller2.jpg" style="height:100px;">
-  </div>
-</div>
-<div class="row">
-  <!-- Event Details -->
-  <div class = "span6">
-    <div class="white-box">
-      <h3>Purchase for 6/15/13 <input type = "button" class = "btn btn-danger pull-right" value ="Cancel"></input></h3>
-      Name<input type="text" class="input-block-level"
-                 value="Brittany Berin">
-      Address<input type="text" class="input-block-level" 
-                    value="135 Awesome Block">
-      City<input type="text" class="input-block-level" 
-                 value="Santa Barbara">
-      State<input type="text" class="input-block-level" 
-                  value="Ca">
-      Credit Card<input type="text" class="input-block-level" 
-                        value="****-****-****-****">
-      Expiration Date<input type="text" class="input-block-level" 
-                            value="7/15">
-      <input type="submit" value="Buy Now" class="btn btn-success"/>
-    </div>
-  </div>
-  <!-- Venue Details -->
-  <div class="span6">
-    <div class="white-box">
-      <p>
-        <h3>Performances</h3>
-        <table class="table table-hover table-condensed">
-          <thead>
-            <tr>
-              <th>
-                Date
-              </th>
-              <th>
-                Location
-              </th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>5/28/13</td>
-              <td>Campbell Hall</td>
-              <td> <input type="submit" value="Buy Tickets" class="btn btn-success btn-mini pull-right"></input></td>
-            </tr>
-            <tr>
-              <td>6/4/13</td>
-              <td>Campbell Hall</td>
-              <td> <input type="submit" value="Buy Tickets" class="btn btn-success btn-mini pull-right"></input></td>
-            </tr>
-            <tr>
-              <td>6/6/13</td>
-              <td>Campbell Hall</td>
-              <td> <input type="submit" value="Buy Tickets" class="btn btn-success btn-mini pull-right"></input></td>
-            </tr>
-            <tr>
-              <td>6/7/13</td>
-              <td>Campbell Hall</td>
-              <td> <input type="submit" value="Buy Tickets" class="btn btn-success btn-mini pull-right"></input></td>
-            </tr>
-            <tr>
-              <td>6/15/13</td>
-              <td>Campbell Hall</td>
-              <td> <input type="submit" value="Buy Tickets" class="btn btn-success btn-mini pull-right"></input></td>
-            </tr>
-          </tbody>
-        </table>
-      </p>
-    </div>
-  </div>
+<!-- Event Details -->
+<div class="white-box">
+  <h3>Purchase for 6/15/13 <input type = "button" class = "btn btn-danger pull-right" value ="Cancel"></input></h3>
+  Name<input type="text" class="input-block-level"
+             value="">
+  Address<input type="text" class="input-block-level" 
+                value="">
+  City<input type="text" class="input-block-level" 
+             value="">
+  State<input type="text" class="input-block-level" 
+              value="">
+  Credit Card<input type="text" class="input-block-level" 
+                    value="">
+  Expiration Date<input type="text" class="input-block-level" 
+                        value="">
+  Number of Tickets<input type="text" class="input-block-level" 
+                        value="">
+  <div class="btn btn-success purchase">Buy Now</div>
 </div>

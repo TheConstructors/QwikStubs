@@ -2,7 +2,7 @@ class Qwikstubs.Routers.Events extends Backbone.Router
   routes:
     'events': 'index'
     'events/:id': 'show'
-    'events/buy/:id': 'buy'
+    #'events/buy/:id': 'buy'
 
   
   initialize: ->
@@ -32,6 +32,6 @@ class Qwikstubs.Routers.Events extends Backbone.Router
           
     })
 
-  buy: (id) ->
-    view = new Qwikstubs.Views.EventsBuy()
-    $('#container').html(view.render().el)
+  #buy: (id) ->
+   # view = new Qwikstubs.Views.EventsBuy()
+    #$('#container').html(view.render().el)
