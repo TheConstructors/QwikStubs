@@ -2,8 +2,18 @@ class VenuesController < ApplicationController
   respond_to :json
 
   def index
-    respond_with Venue.all
-  end  
+    if page = params[:page]
+      page_size = params[:pagesize] || 20
+      results = Venue.paginate({ 
+        :order => :created_at.asc, 
+        :per_page => page_size, 
+        :page => page
+      })
+      respond_with results
+    else
+      respond_with Venue.all
+    end
+  end
 
   def list
     respond_with Venue.all

@@ -1,24 +1,35 @@
 class Qwikstubs.Views.EventsIndex extends Backbone.View
+  tagName: 'div'
 
   template: JST['events/index']
 
   events:
-  	'submit #new_event' : 'createEvent'
+    'click #next-page': 'nextPage'
+    'click #previous-page': 'previousPage'
+
+  	#'submit #new_event' : 'createEvent'
 
   initialize: ->
-  	@collection.on('reset' , @render, @ )
-  	@collection.on('add' , @appendEventToList, @ )
+    @collection.on('reset', @render, @ )
+    @collection.on('add', @appendEventToList, @ )
 
   render: ->
-  	$(@el).html(@template())
-  	@collection.each(@appendEventToList)
-  	@
+    $(@el).html(@template())
+    @collection.each(@appendEventToList)
+    @
 
   appendEventToList: (event) ->
   	view = new Qwikstubs.Views.Event(model: event)
   	$('#list_event').append(view.render().el)
+  
+  nextPage: ->
+    @collection.nextPage()
+  
+  previousPage: ->
+    @collection.previousPage()
+    
 
-  createEvent: (event) ->
+  #createEvent: (event) ->
   	#event.preventDefault()
   	#@collection.create
   	#	name: $('#new_venue_name').val()

@@ -14,5 +14,5 @@ class EventSeat
   validates_numericality_of :status, :less_than => 3
   #relationships
   belongs_to :event_section
-  #has_many :order
+  has_many :orders
 end
