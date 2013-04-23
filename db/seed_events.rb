@@ -14,13 +14,13 @@ Event.create!({:name=>"The Kyle Project", :month=>"Jul", :day=>"12", :year=>"201
 samples = 1..30
 
 samples.each do |n|
-  Event.create!({:name=>"The Pagina Monologues #{n}", 
+  Event.create!({:name=>"Some Concert #{n}", 
                 :month=>"April", :day=>"#{n}", :year=>"2013", :time=>"1:00pm", 
                 :venue=>@venue,
                 :description=>"Fake Event #{n} for testing pagination."})
 end 
 samples.each do |n|
-  Event.create!({:name=>"The Pagina Monologues #{n+30}", 
+  Event.create!({:name=>"Some Festival #{n+30}", 
                 :month=>"May", :day=>"#{n}", :year=>"2013", :time=>"1:00pm", 
                 :venue=>@venue,
                 :description=>"Fake Event #{n+30} for testing pagination."})
