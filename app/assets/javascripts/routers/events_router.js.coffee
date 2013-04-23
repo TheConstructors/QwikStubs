@@ -10,6 +10,7 @@ class Qwikstubs.Routers.Events extends Backbone.Router
     #@listenTo(@eventIndex.collection, 'reset', @index)
 
   index: ->
+    @collection.fetch() # investigate in the future
     $('#container').html(@eventIndex.render().el)
 
   show: (name) ->
