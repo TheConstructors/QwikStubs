@@ -36,17 +36,17 @@ Event.create!({:name=>"Imagine Dragons", :month=>"Nov", :day=>"11", :year=>"2013
     :description=>"Imagine Dragons travels to 25 cities on their Radioactive 2013 Tour."})
     
 
-samples = 1..30
-
-samples.each do |n|
-  Event.create!({:name=>"Some Concert #{n}", 
-                :month=>"April", :day=>"#{n}", :year=>"2013", :time=>"1:00pm", 
-                :venue=>@venue,
-                :description=>"Fake Event #{n} for testing pagination."})
-end 
-samples.each do |n|
-  Event.create!({:name=>"Some Festival #{n+30}", 
-                :month=>"May", :day=>"#{n}", :year=>"2013", :time=>"1:00pm", 
-                :venue=>@venue,
-                :description=>"Fake Event #{n+30} for testing pagination."})
-end 
+# samples = 1..30
+# 
+# samples.each do |n|
+#   Event.create!({:name=>"Some Concert #{n}", 
+#                 :month=>"April", :day=>"#{n}", :year=>"2013", :time=>"1:00pm", 
+#                 :venue=>@venue,
+#                 :description=>"Fake Event #{n} for testing pagination."})
+# end 
+# samples.each do |n|
+#   Event.create!({:name=>"Some Festival #{n+30}", 
+#                 :month=>"May", :day=>"#{n}", :year=>"2013", :time=>"1:00pm", 
+#                 :venue=>@venue,
+#                 :description=>"Fake Event #{n+30} for testing pagination."})
+# end 
