@@ -10,10 +10,13 @@ class Qwikstubs.Collections.Events extends Backbone.Collection
     @page += 1
     @url = "/api/events?page=#{@page}"
     @fetch(reset: true)
+    $('html, body').animate({ scrollTop: 0 }, 0);
+
 
   currentPage: ->
     @url = "/api/events?page=#{@page}"
     @fetch(reset: true)
+    $('html, body').animate({ scrollTop: 0 }, 0);
 
   previousPage: ->
     # handle more pages and less pages
@@ -21,6 +24,7 @@ class Qwikstubs.Collections.Events extends Backbone.Collection
       @page -= 1
       @url = "/api/events?page=#{@page}"
       @fetch(reset: true)
+      $('html, body').animate({ scrollTop: 0 }, 0);
     else
       $('#previous-page').addClass("disabled")
 
