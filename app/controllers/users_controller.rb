@@ -11,22 +11,24 @@ class UsersController < ApplicationController
 
   # Create new User Logic
   def create
-    # This NEEDS clean up, pushing for Alex right now, comp gonna die.
-    pass = params[:password]
-    email = params[:user][:email]
-    params[:user][:email] = nil #remove email, was causing a bug needs to be fixed
-    @user = User.new params[:user]
-    # check save here
-    @email = Email.new email: email, user: @user
-    @email.save
-    @user.password = pass if pass == params[:password_conf]
-
-    if @user.save
-      redirect_to root_path
+    @user = User.new
+    user_email = params[:email]
+    unless Email.find_by_email user_email
+      if params[:password] == params[:password_conf]
+        @user.password = params[:password]
+        @user.save
+        @email = Email.new email: user_email, user: @user
+        @email.save
+        # Now Logged In
+        session[:user_id] = @user.id
+        redirect_to root_path
+      else
+        flash.now[:error] = "Password's don't match."
+        render :new; return
+      end
     else
-      # TODO: could probably change the flash display to enumerate @user.errors
-      flash.now[:error] = "Something went wrong - please check your fields and try again!"
-      render :new
+      flash.now[:error] = "Email already exists."
+      render :new; return
     end
   end
 
