@@ -10,7 +10,7 @@ class Qwikstubs.Views.EventsShow extends Backbone.View
   	#this.event.on('add' , @appendEventToList, @ )
 
   render: ->
-    $(@el).html(@template(event: @model))
+    $(@el).html(@template(event: model, venue: model2))
     @
 
   #appendEventToList: (event) ->

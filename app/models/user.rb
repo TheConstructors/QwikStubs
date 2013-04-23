@@ -10,7 +10,7 @@ class User
   key :salt,            String
   key :password_digest, String
   
-  validates :full_name, :presence => true # , :format => /\w+\s+\w+/
+  #validates :full_name, :presence => true, :format => /\w+\s+\w+/
   validates :salt, :presence => true
   validates :password_digest, :presence => true
   # validates :active_email, :presence => true  Commented out temporarily so we can create user then email -Colin
@@ -39,10 +39,7 @@ class User
   # plaintext passwords where we do simple comparsion to confirm, or encrypted
   # passwords where we encrypt and decrypt, but is not safe because given the
   # encryption key, all plain text passwords are obtainable.
-  
-  # placeholder for the form_for, again pushing for Alex, needs clean up
-  attr_accessor :email
-  
+    
   def password=(passw)
     new_salt = BCrypt::Engine.generate_salt
     self.salt = new_salt
