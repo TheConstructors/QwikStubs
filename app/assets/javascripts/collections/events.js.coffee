@@ -1,6 +1,8 @@
 class Qwikstubs.Collections.Events extends Backbone.Collection
   initialize: ->
     @page = 1
+    # call this function to load the previous button to "disabled"
+    @previousPage() 
 
   url: '/api/events?page=1'
 
@@ -11,9 +13,12 @@ class Qwikstubs.Collections.Events extends Backbone.Collection
 
   previousPage: ->
     # handle more pages and less pages
-    @page -= 1
-    @url = "/api/events?page=#{@page}"
-    @fetch(reset: true)
+    if @page isnt 1
+      @page -= 1
+      @url = "/api/events?page=#{@page}"
+      @fetch(reset: true)
+    else
+      $('#previous-page').addClass("disabled")
   #model: Qwikstubs.Models.Venue
   
   # fetching records GET /venues
