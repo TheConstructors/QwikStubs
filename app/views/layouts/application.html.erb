@@ -38,44 +38,58 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <i class="icon-list"></i> 
-          </a>
-        <div class="nav" style="padding:2px;"> 
-          <%= image_tag 'logo-tiny.png', :alt => 'logo', :id => 'logo' %>
-        </div> 
-          <div class="container nav-collapse">
-            <ul class="nav">
-              <li><%= link_to "Login", "/login"  %></li>
-              <li><%= link_to "Register", "/register"  %></li>
-              <li><%= link_to "Venue", "/venue"  %></li>
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar" ></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="nav" style="padding:2px;"> 
+            <%= link_to(image_tag('logo-tiny.png', :alt => 'logo', :id => 'logo'), root_path) %>
+          </div>
+          <ul class="nav">
+            <!-- <li><%= link_to "Login", login_path %></li> -->
+              <li><%= link_to "Register", register_path  %></li>
+              <!-- Look at fixing the link to these with backbone -->
+              <li><%= link_to "Venues", "/#venues"  %></li>
+	            <li><%= link_to "Events", "/#events"  %></li>
+          </ul>
+          <ul class='nav nav-collapse collapse pull-right' style="margin-right:15px;">
+          <% if !signed_in? %>
+            <li>
+              <form method="post" action="<%= sessions_path %>" class="navbar-search login">
+                <input name="email"type="text" class="span2" placeholder="Email Address">
+                <input name="password" type="password" class="span2" placeholder="Password">
+                <input type="submit" value="Login" class="btn"/>
+              </form>
+            </li>
+          <% else %>
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">User Profile</a></li>
+            <li class="divider-vertical" style="margin: 0px 0px;"></li>
+            <li><a href="#"><i class="icon-cog"></i></a></li>
+            <li class="divider-vertical" style="margin-left: 0px;"></li>
+            <li>
+            <%= form_tag(logout_path, :method => "delete", :class => 'logout-form') do %>
+              <%= submit_tag 'Logout', :id => "logout-btn" %>
+            <% end %>
+            </li>
+            <li class="divider-vertical"></li>
+          <% end %>
             </ul>
-          </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
-    <div class="container">
+    <div id="main" class="container">
       <%= bootstrap_flash %>
       <%= yield %>
 
-      <div class="row">
-        <div class = "span12">
-          <footer class="well">
-            <%= bootstrap_flash %>	
-            <p><center>&copy; QwikStubs 2013</center></p>
-          </footer>
-        </div>
-      </div>
-      <div class = "row">
-        <div class = "span12">
-          <%= debug(params) if Rails.env.development? %>
-        </div>
-      </div>
+    </div>
+    <div id="footer">
+      Qwikstubs 2013
     </div>
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <%= javascript_include_tag "application" %>
-
+    <%= javascript_include_tag "application" %> 
   </body>
 </html>

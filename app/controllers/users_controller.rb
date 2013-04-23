@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   # Show User page
   def index
+    redirect_to root_path
   end
 
   # Create new User (UI, registration)

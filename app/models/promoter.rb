@@ -2,10 +2,15 @@ class Promoter
   include ApplicationModel
 
   key :name, String
-  #key :verified, Boolean (Adding this later)
+  key :verified, Boolean 
 
+  validates_presence_of :name
+  validates_presence_of :verified
+  validates :name, :uniqueness => true
+  
   #RELATIONSHIP
-  has_many :membership
+  has_many :promoter_memberships
+  has_many :venue_memberships
   #TO DO (Add Event relationship): ,:event
 
 end
