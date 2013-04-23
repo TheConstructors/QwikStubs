@@ -39,14 +39,15 @@
 
         </div>
         <div class = "span5">
-          <form class="form-register" >
-            <h2 style="color:white;">Register</h2>
+          <div class="white-box">
+            <form class="form-register" >
+              <h2>Register</h2>
               <input type="text" class="input-block-level" placeholder="Email Address">
               <input type="password" class="input-block-level" placeholder="Password">
               <input type="password" class="input-block-level" placeholder="Confirm Password">
               <input type="submit" value="Register" class="btn btn-large btn-primary"/>
-          </form>
-
+            </form>
+          </div>
 
 
 
