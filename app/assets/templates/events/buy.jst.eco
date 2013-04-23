@@ -1,0 +1,19 @@
+<!-- Event Details -->
+<div class="white-box">
+  <h3>Purchase<div class="btn btn-danger pull-right cancel">Cancel</div></h3>
+  Name<input type="text" class="input-block-level"
+             value="">
+  Address<input type="text" class="input-block-level" 
+                value="">
+  City<input type="text" class="input-block-level" 
+             value="">
+  State<input type="text" class="input-block-level" 
+              value="">
+  Credit Card<input type="text" class="input-block-level" 
+                    value="">
+  Expiration Date<input type="text" class="input-block-level" 
+                        value="">
+  Number of Tickets<input type="text" class="input-block-level" 
+                        value="">
+  <div class="btn btn-success purchase">Buy Now</div>
+</div>

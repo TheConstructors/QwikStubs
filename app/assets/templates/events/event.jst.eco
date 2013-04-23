@@ -1,0 +1,17 @@
+<td class="date">
+  <div class="month">
+    <%= @event.get('month')  %>
+  </div>
+  <div class="date">
+    <%= @event.get('day')  %>
+  </div>
+  <div class="day">
+    <%= @event.get('year')  %>
+  </div>
+</td>	
+
+
+<td>
+  <strong><a href="/#events/<%= @event.id %>"><%= @event.get('name') %></a></strong><br />
+  <small class="muted"><%= @event.get('description') %></small> 
+</td>
