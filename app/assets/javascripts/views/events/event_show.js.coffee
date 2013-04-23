@@ -14,7 +14,7 @@ class Qwikstubs.Views.EventsShow extends Backbone.View
     @
 
   #appendEventToList: (event) ->
-    #view = new Qwikstubs.Views.Event(model: event)
+    #view = new Qwikstubs.Views.Event(model: event, model2: venue)
     #$('#list_event').append(view.render().el)
 
   #createEvent: (event) ->

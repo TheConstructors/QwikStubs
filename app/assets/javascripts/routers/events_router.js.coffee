@@ -17,11 +17,12 @@ class Qwikstubs.Routers.Events extends Backbone.Router
     $('#container').html(@eventIndex.render().el)
 
   show: (id) ->
-    @collection = new Qwikstubs.Collections.Events()
-    @collection.fetch()
-    @model = @collection.where({id:id})
-    view = new Qwikstubs.Views.EventsShow(model: @model)
-    $('#container').html(view.render().el)
+    @collection.fetch({
+      success: (@collection) ->
+          @model = @collection.get(id)
+          view = new Qwikstubs.Views.EventsShow(model: @model)
+          $('#container').html(view.render().el)
+    })
 
   buy: (id) ->
     view = new Qwikstubs.Views.EventsBuy()

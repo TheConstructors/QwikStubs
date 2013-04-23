@@ -20,8 +20,9 @@ class Qwikstubs.Collections.Events extends Backbone.Collection
     else
       $('#previous-page').addClass("disabled")
 
-  showEvent: ->
-    Backbone.history.navigate("events/#{@model.get('id')}", true)
+  # showEvent: ->
+  #     console.log(@model)
+  #     Backbone.history.navigate("events/#{@model.id}", true)
 
   #model: Qwikstubs.Models.Venue
 
