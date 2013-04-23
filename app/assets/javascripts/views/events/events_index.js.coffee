@@ -20,8 +20,15 @@ class Qwikstubs.Views.EventsIndex extends Backbone.View
     @
 
   appendEventToList: (event) ->
-  	view = new Qwikstubs.Views.Event(model: event)
-  	$('#list_event').append(view.render().el)
+    # @collectionV = new Qwikstubs.Collections.Venues();
+    #    @collectionV.fetch({
+    #    success: (@collectionV) ->
+    #      @venue = @collectionV.get(event.get('venue_id'))
+    #      console.log(@venue)
+      view = new Qwikstubs.Views.Event(model: event)
+      $('#list_event').append(view.render().el)
+    # })
+  	
   
   nextPage: ->
     @collection.nextPage()

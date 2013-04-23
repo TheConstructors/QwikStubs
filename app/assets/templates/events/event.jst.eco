@@ -15,6 +15,3 @@
   <strong><a href="/#events/<%= @event.id %>"><%= @event.get('name') %></a></strong><br />
   <small class="muted"><%= @event.get('description') %></small> 
 </td>
-<td>
-  <%= @event.get('venue_id')  %>
-</td>		

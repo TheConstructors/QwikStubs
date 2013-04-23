@@ -40,7 +40,7 @@
           <tbody>
             <tr>
               <td><%=@event.get('month')%> <%=@event.get('day')%>, <%=@event.get('year')%></td>
-              <td><%=@event.get('venue_id') %></td>
+              <td><%=@venue.get('name')%></td>
               <td> <input type="submit" value="Buy Tickets" class="btn btn-success btn-mini pull-right"></input></td>
           </tbody>
         </table>

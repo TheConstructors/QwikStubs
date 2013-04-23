@@ -14,7 +14,6 @@
 				  <tr class="muted">
 					  <th>Date</th>		
 					  <th>Event</th>
-					  <th>Venue</th>
 		      </tr>
 			  </thead>
 			  <tbody id="list_event">
