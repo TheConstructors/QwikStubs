@@ -10,5 +10,5 @@ class Qwikstubs.Views.EventBuy extends Backbone.View
     @
 
   boughtTickets: ->
-    $('#buy').html('<div class="white-box"><h3>Success! You have bought your tickets</h3></div>')
+    $('#buy').html('<div class="white-box"><h3>Success! You have bought your tickets!</h3></div>')
 
