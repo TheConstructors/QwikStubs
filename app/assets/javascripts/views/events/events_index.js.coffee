@@ -6,6 +6,7 @@ class Qwikstubs.Views.EventsIndex extends Backbone.View
   events:
     'click #next-page': 'nextPage'
     'click #previous-page': 'previousPage'
+    'click': 'showEvent'
 
   	#'submit #new_event' : 'createEvent'
 
@@ -28,6 +29,9 @@ class Qwikstubs.Views.EventsIndex extends Backbone.View
   previousPage: ->
     @collection.previousPage()
     
+  showEvent: ->
+    @collection.showEvent()
+
 
   #createEvent: (event) ->
   	#event.preventDefault()

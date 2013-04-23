@@ -19,8 +19,13 @@ class Qwikstubs.Collections.Events extends Backbone.Collection
       @fetch(reset: true)
     else
       $('#previous-page').addClass("disabled")
+
+  showEvent: ->
+    Backbone.history.navigate("events/#{@model.get('id')}", true)
+
   #model: Qwikstubs.Models.Venue
-  
+
+    
   # fetching records GET /venues
   # creating records POST /venues
   # fetching individual GET /venues/name
