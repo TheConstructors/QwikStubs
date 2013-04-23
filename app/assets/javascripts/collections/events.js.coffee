@@ -11,6 +11,10 @@ class Qwikstubs.Collections.Events extends Backbone.Collection
     @url = "/api/events?page=#{@page}"
     @fetch(reset: true)
 
+  currentPage: ->
+    @url = "/api/events?page=#{@page}"
+    @fetch(reset: true)
+
   previousPage: ->
     # handle more pages and less pages
     if @page isnt 1
