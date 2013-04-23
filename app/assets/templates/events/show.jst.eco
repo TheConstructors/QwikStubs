@@ -31,17 +31,21 @@
               <th>
                 Date
               </th>
+               <th>
+                  Time
+               </th>
               <th>
                 Location
               </th>
-              <th></th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><%=@event.get('month')%> <%=@event.get('day')%>, <%=@event.get('year')%></td>
+              <td><%=@event.get('time')%></td>
               <td><%=@venue.get('name')%></td>
               <td> <input type="submit" value="Buy Tickets" class="btn btn-success btn-mini pull-right"></input></td>
+              </tr>
           </tbody>
         </table>
       </p>
