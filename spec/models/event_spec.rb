@@ -22,7 +22,8 @@ describe Event do
 
   
   it "should be a unique combination of name and date" do
-    @other = Event.new(name:@e.name, month:@e.month)
+    @other = FactoryGirl.build(:event, name:@e.name, day:@e.day,
+                               month:@e.month, year:@e.year)
     @other.valid?.should be_false
     @other.errors.should_not be_empty
   end
