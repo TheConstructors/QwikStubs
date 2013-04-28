@@ -18,8 +18,8 @@ class Qwikstubs.Views.VenuesIndex extends Backbone.View
   	view = new Qwikstubs.Views.Venue(model: venue)
   	$('#list_venue').append(view.render().el)
 
-  createVenue: (event) ->
-  	event.preventDefault()
+  createVenue: (venue) ->
+  	venue.preventDefault()
   	@collection.create
   		name: $('#new_venue_name').val()
   		city: $('#new_venue_city').val()

@@ -1,10 +1,10 @@
 class Qwikstubs.Collections.Events extends Backbone.Collection
+  url: '/api/events?page=1'
+
   initialize: ->
     @page = 1
     # call this function to load the previous button to "disabled"
     @previousPage() 
-
-  url: '/api/events?page=1'
 
   nextPage: ->
     @page += 1

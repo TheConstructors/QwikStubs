@@ -1,0 +1,35 @@
+  <style>
+  .invert-text{color:white;}
+  </style>
+
+  <div class="row">
+    <div class = "span7 invert-text">
+      <form class="form-search">
+        <input type="text" class="input-medium search-query span6" placeholder="Search Events">
+        <button type="submit" class="btn">go!</button>
+      </form>
+
+      <h2>Featured Events</h2>
+      <br>
+      <div id="EventMiniProfiles">
+
+      </div>
+      <br>
+
+
+    </div>
+    <div class = "span5">
+      <form class="form-register" id="new_user">
+        <h2 style="color:white;">Register</h2>
+        <input type="text"  id="new_user_email" class="input-block-level" placeholder="Email Address">
+        <input type="password" id="new_user_password" class="input-block-level" placeholder="Password">
+        <input type="password" id="new_user_password_conf" class="input-block-level" placeholder="Confirm Password">
+        <input type="submit" value="Register" class="btn btn-large btn-primary"/>
+      </form>
+
+
+
+
+
+    </div>
+  </div>

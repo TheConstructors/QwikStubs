@@ -7,7 +7,6 @@ class Qwikstubs.Routers.Dashboard extends Backbone.Router
   	@collection.fetch()
 
   index: ->
-  	@collection = new Qwikstubs.Collections.Venues()
   	@collection.fetch()
   	view = new Qwikstubs.Views.DashboardIndex(collection: @collection)
   	$('#container').html(view.render().el)
