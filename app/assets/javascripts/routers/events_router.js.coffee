@@ -3,6 +3,7 @@ class Qwikstubs.Routers.Events extends Backbone.Router
     'events': 'index'
     'events/:id': 'show'
     #'events/buy/:id': 'buy'
+    'events/sort-name': 'sort-name'
 
   
   initialize: ->
