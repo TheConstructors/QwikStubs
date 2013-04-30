@@ -63,3 +63,5 @@ group :development, :test do
 # Gemfile
 gem 'mocha', :require => false
 
+# Pusher
+gem 'pusher'
