@@ -1,5 +1,17 @@
 class EventsController < ApplicationController
   respond_to :json
+  
+  def search
+    #ask andrew why post's aren't working
+    #debugger
+    query_text = params[:qtext]
+    page = params[:page]
+    query = Event.search do
+      fulltext query_text #query_text
+      paginate :page => page, :per_page => 20
+    end
+    respond_with query.results.to_a
+  end
 
   def index
     if page = params[:page]
@@ -39,8 +51,6 @@ class EventsController < ApplicationController
     
   end
   
-  def edit
-    
+  def edit 
   end
-  
 end
