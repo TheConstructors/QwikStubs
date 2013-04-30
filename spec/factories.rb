@@ -1,4 +1,6 @@
 FactoryGirl.define do
+  require 'date'
+  
   factory :venue do
     sequence(:name) { |n| "Santa Barbara Bowl#{n}" }
     city "Santa Barbara"
