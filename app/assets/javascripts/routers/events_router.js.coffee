@@ -3,7 +3,7 @@ class Qwikstubs.Routers.Events extends Backbone.Router
     'events': 'index'
     'events/:id': 'show'
     #'events/buy/:id': 'buy'
-    'events/sort-name': 'sort-name'
+    'events/sort-name': 'sortname'
 
   
   initialize: ->
@@ -32,7 +32,17 @@ class Qwikstubs.Routers.Events extends Backbone.Router
           })
           
     })
+    
+  sortname: ->
+       @collection.fetch({
+         success: (@collection) ->
+           @collection.currentPage()
+           @eventIndex = new Qwikstubs.Views.EventsIndex(collection: @collection)
+           $('#container').html(@eventIndex.render().el)
+       })
 
+    
+    
   #buy: (id) ->
    # view = new Qwikstubs.Views.EventsBuy()
     #$('#container').html(view.render().el)

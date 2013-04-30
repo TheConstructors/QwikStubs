@@ -1,6 +1,7 @@
 <td class="date">
   <div class="month">
-    <%= @event.get('month')  %>
+    <% @date = @event.get('date') %>
+    <%= @event.get('month') %>
   </div>
   <div class="date">
     <%= @event.get('day')  %>

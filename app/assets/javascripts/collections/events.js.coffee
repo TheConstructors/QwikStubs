@@ -1,10 +1,16 @@
 class Qwikstubs.Collections.Events extends Backbone.Collection
   model: Qwikstubs.Models.Event
+  
+  
   initialize: ->
     @page = 1
+    this.sortVar = "date"
     # call this function to load the previous button to "disabled"
     @previousPage() 
-
+    
+  comparator: (collection) ->
+    return collection.get(this.sortVar)
+  
   url: '/api/events?page=1'
 
   nextPage: ->
@@ -28,10 +34,8 @@ class Qwikstubs.Collections.Events extends Backbone.Collection
       $('html, body').animate({ scrollTop: 0 }, 0);
     else
       $('#previous-page').addClass("disabled")
-
-  comparator: (model) ->
-      return model.get("name");
   
+      
   # showEvent: ->
   #     console.log(@model)
   #     Backbone.history.navigate("events/#{@model.id}", true)
