@@ -1,6 +1,6 @@
 class Event
-  include MongoMapper::Document
-  
+  include ApplicationModel
+
   key :name, String
   key :description, String
   key :day, String
@@ -8,6 +8,11 @@ class Event
   key :month, String
   key :time, String
   
+  searchable do
+   text :name
+   text :description
+  end
+
   validates_presence_of :name
   validates_presence_of :month
   validates_presence_of :day
@@ -22,6 +27,4 @@ class Event
   belongs_to :promoter
   #has_many :eventsection
   #has_many :appearance
-
-
 end
