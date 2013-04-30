@@ -24,3 +24,5 @@
 # Ignore the Gemlock file
 Gemfile.lock
 .*.swo
+
+log/*
