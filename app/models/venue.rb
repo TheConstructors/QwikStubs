@@ -12,10 +12,8 @@ class Venue
   # Make sure the combination of name, city, and state is unique
   validates_uniqueness_of :name, :scope => [:city, :state]
 
-
   # Relationships
   has_many :events
   has_many :sections
   has_many :venue_memberships
-
 end
