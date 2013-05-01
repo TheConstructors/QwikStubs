@@ -15,14 +15,14 @@ class Event
   validates_presence_of :year
   validates_presence_of :date
   #Name and date need to be unique
-  validates_uniqueness_of :name, :scope => :month # should include day
-  # and year
+  validates_uniqueness_of :name, :scope => [:month, :day, :year]
+
   
   
   #Relationships
   belongs_to :venue
   belongs_to :promoter
-  #has_many :eventsection
+  has_many :eventSection
   #has_many :appearance
 
 

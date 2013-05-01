@@ -41,7 +41,7 @@ td.date {
     border: none;
     border-top: 2px solid #EFEFEF;
     border-bottom: 10px solid #fff;
-    width: 55px;
+    width: 65px;
     padding: 0;
     text-align: center;
     text-transform: uppercase;
@@ -69,3 +69,10 @@ td.date div.day {
     padding-bottom: 3px
 }
 
+#sort-name:hover {
+  color: blue;
+}
+
+#sort-date:hover {
+  color: blue;
+}

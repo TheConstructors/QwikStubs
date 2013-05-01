@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/controllers/application_controller.rb": [
+      "/Users/hamstra/git/qwikstubs/app/controllers/application_controller.rb": [
         1,
         1,
         1,
@@ -9,7 +9,11 @@
         1,
         null,
         1,
+<<<<<<< HEAD
         0,
+=======
+        1,
+>>>>>>> 6c61e2b1cb4d6d39080143d4a8ca09c8e628f0bf
         null,
         null,
         1,
@@ -21,39 +25,39 @@
         null,
         null
       ],
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/helpers/application_helper.rb": [
+      "/Users/hamstra/git/qwikstubs/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/helpers/event_helper.rb": [
+      "/Users/hamstra/git/qwikstubs/app/helpers/event_helper.rb": [
         1,
         null
       ],
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/helpers/events_helper.rb": [
+      "/Users/hamstra/git/qwikstubs/app/helpers/events_helper.rb": [
         1,
         null
       ],
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/helpers/login_helper.rb": [
+      "/Users/hamstra/git/qwikstubs/app/helpers/login_helper.rb": [
         1,
         null
       ],
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/helpers/sections_helper.rb": [
+      "/Users/hamstra/git/qwikstubs/app/helpers/sections_helper.rb": [
         1,
         null
       ],
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/helpers/sessions_helper.rb": [
+      "/Users/hamstra/git/qwikstubs/app/helpers/sessions_helper.rb": [
         1,
         null
       ],
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/helpers/users_helper.rb": [
+      "/Users/hamstra/git/qwikstubs/app/helpers/users_helper.rb": [
         1,
         null
       ],
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/helpers/venues_helper.rb": [
+      "/Users/hamstra/git/qwikstubs/app/helpers/venues_helper.rb": [
         1,
         null
       ],
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/controllers/events_controller.rb": [
+      "/Users/hamstra/git/qwikstubs/app/controllers/events_controller.rb": [
         1,
         1,
         null,
@@ -85,77 +89,6 @@
         null,
         1,
         0,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/models/event.rb": [
-        1,
-        1,
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null,
-        1,
-        1,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/controllers/sections_controller.rb": [
-        1,
-        1,
-        0,
-        null,
-        null,
-        1,
-        0,
-        0,
-        0,
-        null,
-        0,
-        0,
-        null,
-        null,
-        null,
-        1,
-        0,
-        null,
-        null,
-        null,
-        1,
-        0,
-        null,
         null,
         null,
         1,
@@ -172,7 +105,78 @@
         null,
         null
       ],
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/models/section.rb": [
+      "/Users/hamstra/git/qwikstubs/app/models/event.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/hamstra/git/qwikstubs/app/controllers/sections_controller.rb": [
+        1,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        null,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/hamstra/git/qwikstubs/app/models/section.rb": [
         1,
         1,
         1,
@@ -192,7 +196,7 @@
         null,
         null
       ],
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/controllers/sessions_controller.rb": [
+      "/Users/hamstra/git/qwikstubs/app/controllers/sessions_controller.rb": [
         null,
         1,
         null,
@@ -227,7 +231,7 @@
         null,
         null
       ],
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/controllers/users_controller.rb": [
+      "/Users/hamstra/git/qwikstubs/app/controllers/users_controller.rb": [
         1,
         null,
         1,
@@ -241,6 +245,7 @@
         null,
         null,
         1,
+<<<<<<< HEAD
         0,
         0,
         0,
@@ -253,6 +258,20 @@
         0,
         0,
         null,
+=======
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        null,
+        2,
+        2,
+        null,
+>>>>>>> 6c61e2b1cb4d6d39080143d4a8ca09c8e628f0bf
         0,
         0,
         null,
@@ -279,7 +298,7 @@
         null,
         null
       ],
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/models/user.rb": [
+      "/Users/hamstra/git/qwikstubs/app/models/user.rb": [
         1,
         null,
         1,
@@ -323,9 +342,15 @@
         null,
         null,
         1,
+<<<<<<< HEAD
         26,
         26,
         26,
+=======
+        28,
+        28,
+        28,
+>>>>>>> 6c61e2b1cb4d6d39080143d4a8ca09c8e628f0bf
         null,
         null,
         null,
@@ -334,7 +359,7 @@
         null,
         null
       ],
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/models/application_model.rb": [
+      "/Users/hamstra/git/qwikstubs/app/models/application_model.rb": [
         1,
         1,
         1,
@@ -358,7 +383,7 @@
         null,
         null
       ],
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/controllers/venues_controller.rb": [
+      "/Users/hamstra/git/qwikstubs/app/controllers/venues_controller.rb": [
         1,
         1,
         null,
@@ -444,7 +469,7 @@
         null,
         null
       ],
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/models/venue.rb": [
+      "/Users/hamstra/git/qwikstubs/app/models/venue.rb": [
         1,
         1,
         null,
@@ -467,7 +492,7 @@
         null,
         null
       ],
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/models/billing_info.rb": [
+      "/Users/hamstra/git/qwikstubs/app/models/billing_info.rb": [
         1,
         1,
         1,
@@ -495,7 +520,7 @@
         null,
         null
       ],
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/models/email.rb": [
+      "/Users/hamstra/git/qwikstubs/app/models/email.rb": [
         1,
         1,
         1,
@@ -509,7 +534,7 @@
         1,
         null
       ],
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/models/event_seat.rb": [
+      "/Users/hamstra/git/qwikstubs/app/models/event_seat.rb": [
         1,
         1,
         null,
@@ -529,7 +554,7 @@
         1,
         null
       ],
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/models/event_section.rb": [
+      "/Users/hamstra/git/qwikstubs/app/models/event_section.rb": [
         1,
         1,
         null,
@@ -550,7 +575,7 @@
         null,
         null
       ],
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/models/order.rb": [
+      "/Users/hamstra/git/qwikstubs/app/models/order.rb": [
         1,
         1,
         1,
@@ -569,7 +594,7 @@
         null,
         null
       ],
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/models/promoter.rb": [
+      "/Users/hamstra/git/qwikstubs/app/models/promoter.rb": [
         1,
         1,
         null,
@@ -587,7 +612,7 @@
         null,
         null
       ],
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/models/promoter_membership.rb": [
+      "/Users/hamstra/git/qwikstubs/app/models/promoter_membership.rb": [
         1,
         1,
         null,
@@ -613,7 +638,7 @@
         null,
         null
       ],
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/models/seat.rb": [
+      "/Users/hamstra/git/qwikstubs/app/models/seat.rb": [
         1,
         1,
         null,
@@ -633,7 +658,7 @@
         null,
         null
       ],
-      "/Users/brittanyberin/Desktop/rails_projects/qwikstubs/app/models/venue_membership.rb": [
+      "/Users/hamstra/git/qwikstubs/app/models/venue_membership.rb": [
         1,
         1,
         null,
@@ -655,6 +680,10 @@
         null
       ]
     },
+<<<<<<< HEAD
     "timestamp": 1367353434
+=======
+    "timestamp": 1367190044
+>>>>>>> 6c61e2b1cb4d6d39080143d4a8ca09c8e628f0bf
   }
 }
