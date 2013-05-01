@@ -20,8 +20,6 @@ class Event
   #Relationships
   belongs_to :venue
   belongs_to :promoter
-  #has_many :eventsection
+  has_many :event_section
   #has_many :appearance
-
-
 end
