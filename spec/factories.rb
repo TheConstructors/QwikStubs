@@ -79,7 +79,7 @@ FactoryGirl.define do
   
   factory :order do
     billing_info
-    sequence(:order_number) { |n| "123456789#{n}" }
+    sequence(:order_number) { |n| n }
     total_amount 156.10
   end
 
