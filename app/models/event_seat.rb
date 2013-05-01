@@ -9,10 +9,10 @@ class EventSeat
 
   key :status, Integer
   
-  #validations
   validates_numericality_of :status, :greater_than => -1
   validates_numericality_of :status, :less_than => 3
-  #relationships
+
   belongs_to :event_section
+  belongs_to :seat
   has_many :orders
 end
