@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Event do
  
   before(:each) do
-    @v = Venue.create!(name:"House of Blues", city: "SD", state:"CA")
-    @p = Promoter.create!(name:"NHL", verified:true)
+    @v = FactoryGirl.create(:venue, name:"House of Blues", city: "SD", state:"CA")
+    @p = FactoryGirl.create(:promoter, name:"NHL", verified:true)
     @e = FactoryGirl.create(:event, venue:@v, promoter:@p)
     
     

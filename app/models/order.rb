@@ -1,6 +1,6 @@
 class Order
   include MongoMapper::Document
-  key :order_number, String
+  key :order_number, Integer
   key :total_amount, Float
   
   #Validations
@@ -13,5 +13,13 @@ class Order
   #has_many :event_sections  EVENT BRANCH NEEDS TO BE MERGED FIRST
   belongs_to :billing_info
 
+  # add randomization to this later
+  def self.generateOrderNumber # may have race condition if parallelizing
+    if Order.empty?
+      0
+    else 
+      Order.sort(:order_number).last.order_number + 1
+    end
+  end
 
 end
