@@ -1,6 +1,5 @@
 class Email
   include ApplicationModel
-  include MongoMapper::Document
   
   belongs_to :user
   

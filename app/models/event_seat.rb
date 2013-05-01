@@ -1,5 +1,5 @@
 class EventSeat
-  include MongoMapper::Document
+  include ApplicationModel
   
   module Stat
     UNSOLD = 0

@@ -1,5 +1,5 @@
 class Event
-  include MongoMapper::Document
+  include ApplicationModel
   
   key :name, String
   key :description, String
