@@ -4,10 +4,7 @@ describe Seat do
 
   # do these actions once before all the tests
   before(:each) do
-    @v = FactoryGirl.create(:venue)
-    @sec = FactoryGirl.create(:section)
     @s = FactoryGirl.create(:seat)
-    @s.section = @sec
   end
 
   it "should have a row" do
@@ -23,9 +20,12 @@ describe Seat do
   end 
 
 #  it "should be a unique combination of name, city, state" do
-#    @other = Seat.new(name:"109A",row:"A",column:"9")
+#    @other = FactoryGirl.build(:seat, name: @s.name, section: @s.section)
 #    @other.valid?.should be_false
 #    @other.errors.should_not be_empty
-#  end
- 
+#    @section = FactoryGirl.create(:section)
+#    @other.section = @section
+#    @other.valid?.should be_true
+#    @other.errors.should be_empty
+#  end 
 end

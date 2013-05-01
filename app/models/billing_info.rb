@@ -1,5 +1,5 @@
 class BillingInfo
-  include MongoMapper::Document
+  include ApplicationModel
   key :full_name, String
   key :ccn, Integer
   key :address, String

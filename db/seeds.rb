@@ -1,3 +1,7 @@
+Group.delete_all
+Order.delete_all
+EventSeat.delete_all
+EventSection.delete_all
 Event.delete_all
 Seat.delete_all
 Section.delete_all
@@ -10,3 +14,5 @@ User.create!({:full_name=>"Alex Hamstra", :email=>"hamsterman@foo.com", :passwor
 Dir[Rails.root.join("db/seed_venue*.rb")].each {|f| require f}
 
 Dir[Rails.root.join("db/seed_event*.rb")].each {|f| require f}
+
+Dir[Rails.root.join("db/seed_order*.rb")].each {|f| require f}
