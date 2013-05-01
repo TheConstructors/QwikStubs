@@ -1,4 +1,6 @@
 FactoryGirl.define do
+  require 'date'
+  
   factory :venue do
     sequence(:name) { |n| "Santa Barbara Bowl#{n}" }
     city "Santa Barbara"
@@ -10,6 +12,7 @@ FactoryGirl.define do
     month "Feb"
     day "28"
     year "2014"
+    date Date.new(2014, 2, 28)
     description "It's Awesome!"
     time "1:00pm"
     venue
