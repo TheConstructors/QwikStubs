@@ -1,5 +1,5 @@
 class PromoterMembership
-  include MongoMapper::Document
+  include ApplicationModel
 
   key :role, String
 

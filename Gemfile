@@ -31,6 +31,9 @@ gem 'bson_ext'
 # Bcrypt (for password Hashing)
 gem 'bcrypt-ruby'
 
+# requires libqrencoder to be installed 
+# gem 'qrencoder'
+
 # for testing
 group :development, :test do
   gem 'rspec'

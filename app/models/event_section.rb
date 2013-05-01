@@ -1,5 +1,5 @@
 class EventSection
-  include MongoMapper::Document
+  include ApplicationModel
 
   key :price, Float, :default => 20 
 
