@@ -16,14 +16,14 @@ describe Event do
     @e.errors[:day].should be_empty
     @e.errors[:year].should be_empty
     @e.errors[:time].should be_empty
+    @e.errors[:date].should be_empty
     @e.should_not be_nil
     @e.time.should == "1:00pm"
   end
 
   
   it "should be a unique combination of name and date" do
-    @other = FactoryGirl.build(:event, name:@e.name, day:@e.day,
-                               month:@e.month, year:@e.year)
+    @other = FactoryGirl.build(:event, name:@e.name, date:@e.date)
     @other.valid?.should be_false
     @other.errors.should_not be_empty
   end
