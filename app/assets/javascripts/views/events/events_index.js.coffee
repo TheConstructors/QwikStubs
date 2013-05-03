@@ -6,6 +6,7 @@ class Qwikstubs.Views.EventsIndex extends Backbone.View
   events:
     'click #next-page': 'nextPage'
     'click #previous-page': 'previousPage'
+    # 'click': 'showEvent'
 
   	#'submit #new_event' : 'createEvent'
 
@@ -19,8 +20,15 @@ class Qwikstubs.Views.EventsIndex extends Backbone.View
     @
 
   appendEventToList: (event) ->
-  	view = new Qwikstubs.Views.Event(model: event)
-  	$('#list_event').append(view.render().el)
+    # @collectionV = new Qwikstubs.Collections.Venues();
+    #    @collectionV.fetch({
+    #    success: (@collectionV) ->
+    #      @venue = @collectionV.get(event.get('venue_id'))
+    #      console.log(@venue)
+      view = new Qwikstubs.Views.Event(model: event)
+      $('#list_event').append(view.render().el)
+    # })
+  	
   
   nextPage: ->
     @collection.nextPage()
@@ -28,6 +36,9 @@ class Qwikstubs.Views.EventsIndex extends Backbone.View
   previousPage: ->
     @collection.previousPage()
     
+  # showEvent: ->
+  #         @collection.showEvent()
+
 
   #createEvent: (event) ->
   	#event.preventDefault()

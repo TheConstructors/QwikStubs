@@ -24,3 +24,6 @@
 # Ignore the Gemlock file
 Gemfile.lock
 .*.swo
+
+coverage/*
+coverage/.*

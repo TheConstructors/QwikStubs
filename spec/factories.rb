@@ -18,7 +18,8 @@ FactoryGirl.define do
   
   factory :event_seat do
     event_section
-    status EventSeat::Stat::SOLD
+    seat
+    status EventSeat::Status::SOLD
   end
   
   factory :event_section do
@@ -82,5 +83,4 @@ FactoryGirl.define do
     sequence(:order_number) { |n| "123456789#{n}" }
     total_amount 156.10
   end
-
 end

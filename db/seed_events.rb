@@ -7,7 +7,7 @@ Event.create!({:name=>"Young the Giant", :month=>"Apr", :day=>"25", :year=>"2013
 Event.create!({:name=>"The Beatles", :month=>"Apr", :day=>"25", :year=>"2013", :time=>"10:00pm", :venue=>@venue, 
     :description=>"They did it with Tupac and now you can see The Beatles in hologram form playing the hits you know and love."})
 Event.create!({:name=>"Gauchella", :month=>"Apr", :day=>"27", :year=>"2013", :time=>"All Day", :venue=>@venue,
-  :description=>"In it's debut, Gauchella is predicted to be Santa Barbara's most successful music festival to date."})            
+  :description=>"In it's debut, Gauchella is predicted to be Santa Barbara's most successful music festival to date, bringing together people from all walks of life for one thing -- a love of music.  With over 20 bands from all over the world slated to appear, festival-goers are in for a day that they won't soon forget."})            
 Event.create!({:name=>"Alex Against the Machine", :month=>"April", :day=>"28", :year=>"2013", :time=>"1:00pm", :venue=>@venue,
   :description=>"In this inspiring new art form, Alex Hamstra takes a baseball bat to all of his least favorite machines."})
 Event.create!(:name=>"Bruin Music Festival", :month=>"May", :day=>"27", :year=>"2013", :time=>"All Day", :venue=>@venue,
@@ -36,17 +36,17 @@ Event.create!({:name=>"Imagine Dragons", :month=>"Nov", :day=>"11", :year=>"2013
     :description=>"Imagine Dragons travels to 25 cities on their Radioactive 2013 Tour."})
     
 
-samples = 1..30
-
-samples.each do |n|
-  Event.create!({:name=>"Some Concert #{n}", 
-                :month=>"April", :day=>"#{n}", :year=>"2013", :time=>"1:00pm", 
-                :venue=>@venue,
-                :description=>"Fake Event #{n} for testing pagination."})
-end 
-samples.each do |n|
-  Event.create!({:name=>"Some Festival #{n+30}", 
-                :month=>"May", :day=>"#{n}", :year=>"2013", :time=>"1:00pm", 
-                :venue=>@venue,
-                :description=>"Fake Event #{n+30} for testing pagination."})
-end 
+# samples = 1..30
+# 
+# samples.each do |n|
+#   Event.create!({:name=>"Some Concert #{n}", 
+#                 :month=>"April", :day=>"#{n}", :year=>"2013", :time=>"1:00pm", 
+#                 :venue=>@venue,
+#                 :description=>"Fake Event #{n} for testing pagination."})
+# end 
+# samples.each do |n|
+#   Event.create!({:name=>"Some Festival #{n+30}", 
+#                 :month=>"May", :day=>"#{n}", :year=>"2013", :time=>"1:00pm", 
+#                 :venue=>@venue,
+#                 :description=>"Fake Event #{n+30} for testing pagination."})
+# end 

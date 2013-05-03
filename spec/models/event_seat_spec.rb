@@ -7,7 +7,7 @@ describe EventSeat do
 
   it "should have a status" do
     @eseat.errors[:status].should be_empty
-    @eseat.status.should == EventSeat::Stat::SOLD
+    @eseat.status.should == EventSeat::Status::SOLD
   end
   
 end

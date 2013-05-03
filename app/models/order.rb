@@ -1,5 +1,5 @@
 class Order
-  include MongoMapper::Document
+  include ApplicationModel
   key :order_number, String
   key :total_amount, Float
   
