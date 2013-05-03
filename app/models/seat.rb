@@ -6,6 +6,7 @@ class Seat
   key :column, String
   key :xpos, Integer
   key :ypos, Integer
+  key :quality, Integer #for seating algorithm
 
   validates_presence_of :name
 
