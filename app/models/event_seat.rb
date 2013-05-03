@@ -14,5 +14,5 @@ class EventSeat
 
   belongs_to :event_section
   belongs_to :seat
-  has_many :orders
+  belongs_to :order
 end

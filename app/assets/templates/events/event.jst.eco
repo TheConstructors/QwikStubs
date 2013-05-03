@@ -1,6 +1,7 @@
 <td class="date">
   <div class="month">
-    <%= @event.get('month')  %>
+    <% @date = @event.get('date') %>
+    <%= @event.get('month') %>
   </div>
   <div class="date">
     <%= @event.get('day')  %>
@@ -11,7 +12,12 @@
 </td>	
 
 
+
 <td>
-  <strong><a href="/#events/<%= @event.id %>"><%= @event.get('name') %></a></strong><br />
-  <small class="muted"><%= @event.get('description') %></small> 
+  <a href="/#events/<%= @event.id %>" style="display: inline-block;height:100%;width:100%;text-decoration: none">
+    <div class="event-cell" style="height:100%;width:100%">
+      <strong><%= @event.get('name') %></strong><br />
+      <small class="muted"><%= @event.get('description') %></small> 
+    </div>
+  </a>
 </td>
