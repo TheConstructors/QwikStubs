@@ -14,13 +14,13 @@ describe Group do
     @g2.valid?.should == false
   end
 
-  it "should correspond to the venue with which it was created" do
-    @event = FactoryGirl.create(:event)
-    @event2 = FactoryGirl.create(:event)
-    @section = FactoryGirl.create(:event_section, event: @event2)
-    @g2 = FactoryGirl.build(:group, event: @event)
-    @seat = FactoryGirl.create(:event_seat, event_section: @section)
-  end
-
-
+#  it "should correspond to the venue with which it was created" do
+#    @event = FactoryGirl.create(:event)
+#    @event2 = FactoryGirl.create(:event)
+#    @section = FactoryGirl.create(:event_section, event: @event2)
+#    @g2 = FactoryGirl.build(:group, size: 1, event: @event)
+#    @g2.valid?.should == false
+#    @seat = FactoryGirl.create(:event_seat, event_section: @section, group: @g2)
+#    @g2.valid?.should == true
+#  end
 end
