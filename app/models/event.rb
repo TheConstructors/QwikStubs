@@ -22,6 +22,6 @@ class Event
   #Relationships
   belongs_to :venue
   belongs_to :promoter
-  has_many :event_section
+  has_many :event_sections
   #has_many :appearance
 end
