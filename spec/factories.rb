@@ -86,4 +86,9 @@ FactoryGirl.define do
     sequence(:order_number) { |n| n }
     total_amount 156.10
   end
+
+  factory :group do
+    size 0
+    event 
+  end
 end
