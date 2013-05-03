@@ -28,3 +28,5 @@ Gemfile.lock
 # coveralls
 coverage/*
 coverage/.*
+coverage/.last_run.json
+coverage/.resultset.json

@@ -24,12 +24,12 @@ class Order
 
   def reserveSeats(seats)
     seats.each { |seat|
-      if(seat.status != 0)
+      if(seat.status != EventSeat::Stat::UNSOLD)
         return false
       end
     }
     seats.each { |seat|
-      seat.status = 1
+      seat.status = EventSeat::Stat::RESERVED
       seat.order = self
       seat.save()
     }
@@ -37,10 +37,30 @@ class Order
   end
 
   def purchaseSeats(seats)
-
+    seats.each { |seat|
+      if(seat.status != EventSeat::Stat::RESERVED)
+        return false
+      end
+    }
+    seats.each { |seat|
+      seat.status = EventSeat::Stat::SOLD
+      seat.order = self
+      seat.save()
+    }
+    true
   end
 
   def releaseSeats(seats)
-
+    seats.each { |seat|
+      if(seat.status != EventSeat::Stat::RESERVED)
+        return false
+      end
+    }
+    seats.each { |seat|
+      seat.status = EventSeat::Stat::UNSOLD
+      seat.order = self
+      seat.save()
+    }
+    true
   end
 end

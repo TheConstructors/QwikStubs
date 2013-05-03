@@ -4,8 +4,8 @@ class Section
   key :name, String
   key :xpos, Integer
   key :ypos, Integer
-
-  validate :name, :presence => true, :uniqueness => true
+  
+  validates_uniqueness_of :name, :scope => :venue
 
   ensure_index [[:name, 1]], :unique => true
 

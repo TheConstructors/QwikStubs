@@ -57,21 +57,86 @@ describe Order do
         seat.status.should == EventSeat::Stat::UNSOLD
       }
       @order = Order.new()
-      @order.reserveSeats(@seats)
+      @order.reserveSeats(@seats).should == true
       @seats2 = EventSeat.all
       @seats2.each { |seat|
         seat.status.should == EventSeat::Stat::RESERVED
       }
     end
+
+    it "should return false with a seat marked sold or reserved" do
+      @seat4 = FactoryGirl.create(:event_seat, status: EventSeat::Stat::SOLD)
+      @seats = EventSeat.all
+      @order = Order.new()
+      @order.reserveSeats(@seats).should == false
+      @seat4.status = EventSeat::Stat::RESERVED
+      @seat4.save()
+      @seats = EventSeat.all
+      @order.reserveSeats(@seats).should == false
+    end      
   end
 
   describe "purchaseSeats" do
-    it "" do
+    before (:each) do
+      @seat1 = FactoryGirl.create(:event_seat, status: EventSeat::Stat::RESERVED)
+      @seat2 = FactoryGirl.create(:event_seat, status: EventSeat::Stat::RESERVED)
+      @seat3 = FactoryGirl.create(:event_seat, status: EventSeat::Stat::RESERVED)
+    end
+    
+    it "should set all the seats to reserved" do
+      @seats = EventSeat.all
+      @seats.each { |seat|
+        seat.status.should == EventSeat::Stat::RESERVED
+      }
+      @order = Order.new()
+      @order.purchaseSeats(@seats).should == true
+      @seats2 = EventSeat.all
+      @seats2.each { |seat|
+        seat.status.should == EventSeat::Stat::SOLD
+      }
+    end
+
+    it "should return false with a seat marked sold or unsold" do
+      @seat4 = FactoryGirl.create(:event_seat, status: EventSeat::Stat::SOLD)
+      @seats = EventSeat.all
+      @order = Order.new()
+      @order.purchaseSeats(@seats).should == false
+      @seat4.status = EventSeat::Stat::UNSOLD
+      @seat4.save()
+      @seats = EventSeat.all
+      @order.purchaseSeats(@seats).should == false
     end
   end
 
   describe "releaseSeats" do
-    it "" do
+    before (:each) do
+      @seat1 = FactoryGirl.create(:event_seat, status: EventSeat::Stat::RESERVED)
+      @seat2 = FactoryGirl.create(:event_seat, status: EventSeat::Stat::RESERVED)
+      @seat3 = FactoryGirl.create(:event_seat, status: EventSeat::Stat::RESERVED)
+    end
+    
+    it "should set all the seats to reserved" do
+      @seats = EventSeat.all
+      @seats.each { |seat|
+        seat.status.should == EventSeat::Stat::RESERVED
+      }
+      @order = Order.new()
+      @order.releaseSeats(@seats).should == true
+      @seats2 = EventSeat.all
+      @seats2.each { |seat|
+        seat.status.should == EventSeat::Stat::UNSOLD
+      }
+    end
+
+    it "should return false with a seat marked sold or unsold" do
+      @seat4 = FactoryGirl.create(:event_seat, status: EventSeat::Stat::SOLD)
+      @seats = EventSeat.all
+      @order = Order.new()
+      @order.releaseSeats(@seats).should == false
+      @seat4.status = EventSeat::Stat::UNSOLD
+      @seat4.save()
+      @seats = EventSeat.all
+      @order.releaseSeats(@seats).should == false
     end
   end
 
