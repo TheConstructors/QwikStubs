@@ -31,6 +31,20 @@ class EventsController < ApplicationController
     respond_with Event.update(params[:id], params[:entry])
   end
   
+  def seats
+    @event = Event.find(params[:id])
+    @event_seats = []
+    @seats = []
+    @event.event_sections.each{ |event_section|
+      event_section.event_seats.each{ |event_seat|
+        event_seats.add(event_seat)
+        seats.add(events_seat.seat)
+      }
+      
+    }
+    {event_seats: @event_seats, seats: @seats}
+  end
+
   def delete
     
   end
