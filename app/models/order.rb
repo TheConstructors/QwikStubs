@@ -10,7 +10,7 @@ class Order
   #validates_randomness_of :order_number (?)
   
   #Relationships
-  #has_many :event_sections  EVENT BRANCH NEEDS TO BE MERGED FIRST
+  has_many :event_seat
   belongs_to :billing_info
 
   # add randomization to this later
@@ -22,4 +22,25 @@ class Order
     end
   end
 
+  def reserveSeats(seats)
+    seats.each { |seat|
+      if(seat.status != 0)
+        return false
+      end
+    }
+    seats.each { |seat|
+      seat.status = 1
+      seat.order = self
+      seat.save()
+    }
+    true
+  end
+
+  def purchaseSeats(seats)
+
+  end
+
+  def releaseSeats(seats)
+
+  end
 end

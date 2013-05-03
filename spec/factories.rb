@@ -18,7 +18,8 @@ FactoryGirl.define do
   
   factory :event_seat do
     event_section
-    status EventSeat::Stat::SOLD
+    seat
+    status EventSeat::Stat::UNSOLD
   end
   
   factory :event_section do

@@ -37,12 +37,42 @@ describe Order do
     end
 
     it "should produce a new unique order number" do
-      @ord_num = Order.generateOrderNumber
+      ord_num = Order.generateOrderNumber
       @ord2 = FactoryGirl.create(:order)
-      @ord_num2 = Order.generateOrderNumber
-      @ord_num.should < @ord_num2
+      ord_num2 = Order.generateOrderNumber
+      ord_num.should < ord_num2
     end
   end
-  
+
+  describe "reserveSeats" do
+    before (:each) do
+      @seat1 = FactoryGirl.create(:event_seat, status: EventSeat::Stat::UNSOLD)
+      @seat2 = FactoryGirl.create(:event_seat, status: EventSeat::Stat::UNSOLD)
+      @seat3 = FactoryGirl.create(:event_seat, status: EventSeat::Stat::UNSOLD)
+    end
+    
+    it "should set all the seats to reserved" do
+      @seats = EventSeat.all
+      @seats.each { |seat|
+        seat.status.should == EventSeat::Stat::UNSOLD
+      }
+      @order = Order.new()
+      @order.reserveSeats(@seats)
+      @seats2 = EventSeat.all
+      @seats2.each { |seat|
+        seat.status.should == EventSeat::Stat::RESERVED
+      }
+    end
+  end
+
+  describe "purchaseSeats" do
+    it "" do
+    end
+  end
+
+  describe "releaseSeats" do
+    it "" do
+    end
+  end
 
 end

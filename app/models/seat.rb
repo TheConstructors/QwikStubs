@@ -14,5 +14,6 @@ class Seat
 
   # Relationships
   belongs_to :section
+  has_many :event_seats
 
 end

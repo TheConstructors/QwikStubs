@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe EventSeat do
   before(:each) do
-    @eseat = FactoryGirl.create(:event_seat)
+    @eseat = FactoryGirl.create(:event_seat, status: EventSeat::Stat::SOLD)
   end
 
   it "should have a status" do
