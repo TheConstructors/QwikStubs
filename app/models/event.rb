@@ -1,5 +1,6 @@
 class Event
   include MongoMapper::Document
+  require 'date'
   
   key :name, String
   key :description, String
@@ -7,11 +8,12 @@ class Event
   key :year, String
   key :month, String
   key :time, String
-  
+  key :date, Date
   validates_presence_of :name
   validates_presence_of :month
   validates_presence_of :day
   validates_presence_of :year
+  validates_presence_of :date
   #Name and date need to be unique
   validates_uniqueness_of :name, :scope => [:month, :day, :year]
 

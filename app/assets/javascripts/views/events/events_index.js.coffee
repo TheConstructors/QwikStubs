@@ -6,6 +6,8 @@ class Qwikstubs.Views.EventsIndex extends Backbone.View
   events:
     'click #next-page': 'nextPage'
     'click #previous-page': 'previousPage'
+    'click #sort-date': 'sortdate'
+    'click #sort-name': 'sortname'
     # 'click': 'showEvent'
 
   	#'submit #new_event' : 'createEvent'
@@ -36,6 +38,20 @@ class Qwikstubs.Views.EventsIndex extends Backbone.View
   previousPage: ->
     @collection.previousPage()
     
+  sortname: ->
+    @collection.sortVar = "name"
+    @collection.sort()
+    @render()
+    $('#sort-date i').css("visibility", "hidden")
+    $('#sort-name i').css("visibility", "visible")
+  
+  sortdate: ->
+    @collection.sortVar = "date"
+    @collection.sort()
+    @render()
+    $('#sort-name i').css("visibility", "hidden")
+    $('#sort-date i').css("visibility", "visible")
+  
   # showEvent: ->
   #         @collection.showEvent()
 
