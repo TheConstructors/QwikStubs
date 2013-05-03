@@ -87,4 +87,9 @@ FactoryGirl.define do
     total_amount 156.10
   end
 
+  factory :group do
+    size 0
+    event 
+  end
+
 end
