@@ -1,18 +1,18 @@
 class EventSeat
-  include MongoMapper::Document
+  include ApplicationModel
   
-  module Stat
+  module Status
     UNSOLD = 0
     RESERVED = 1
     SOLD = 2
   end
 
-  key :status, Integer
+  key :status, Integer, :default => Status::UNSOLD
   
-  #validations
   validates_numericality_of :status, :greater_than => -1
   validates_numericality_of :status, :less_than => 3
-  #relationships
+
   belongs_to :event_section
-  has_many :orders
+  belongs_to :seat
+  belongs_to :order
 end

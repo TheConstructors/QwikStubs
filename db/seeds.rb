@@ -10,3 +10,5 @@ User.create!({:full_name=>"Alex Hamstra", :email=>"hamsterman@foo.com", :passwor
 Dir[Rails.root.join("db/seed_venue*.rb")].each {|f| require f}
 
 Dir[Rails.root.join("db/seed_event*.rb")].each {|f| require f}
+
+Dir[Rails.root.join("db/seed_order*.rb")].each {|f| require f}

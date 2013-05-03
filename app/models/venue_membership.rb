@@ -1,5 +1,5 @@
 class VenueMembership
-  include MongoMapper::Document
+  include ApplicationModel
 
   key :role, String
 

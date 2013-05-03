@@ -1,6 +1,8 @@
 class Qwikstubs.Routers.Events extends Backbone.Router
   routes:
     'events': 'index'
+    # 'events?sort-name=true': 'sortname'
+    # 'events?sort-date=true': 'sortdate'
     'events/:id': 'show'
     #'events/buy/:id': 'buy'
     'events/seating/:id': 'seating'
@@ -10,7 +12,10 @@ class Qwikstubs.Routers.Events extends Backbone.Router
     @collection.fetch()
     #@listenTo(@eventIndex.collection, 'reset', @index)
 
+  
   index: ->
+    @collection.sortVar = "date"
+    @collection.sort()
     @collection.fetch({
       success: (@collection) ->
         @collection.currentPage()
@@ -40,7 +45,8 @@ class Qwikstubs.Routers.Events extends Backbone.Router
           })
           
     })
-
+    
+    
   #buy: (id) ->
    # view = new Qwikstubs.Views.EventsBuy()
     #$('#container').html(view.render().el)
