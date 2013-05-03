@@ -6,8 +6,8 @@ class Section
 
   
   #Validations
-  validate :name, :presence => true, :uniqueness => true
-  #validate that it has a venue
+  validates_uniqueness_of :name, :scope => :venue
+
   #Index the name
   ensure_index [[:name, 1]], :unique => true
 
