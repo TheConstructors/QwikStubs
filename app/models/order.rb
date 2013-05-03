@@ -1,5 +1,5 @@
 class Order
-  include MongoMapper::Document
+  include ApplicationModel
   key :order_number, Integer
   key :total_amount, Float
   
@@ -24,12 +24,12 @@ class Order
 
   def reserveSeats(seats)
     seats.each { |seat|
-      if(seat.status != EventSeat::Stat::UNSOLD)
+      if(seat.status != EventSeat::Status::UNSOLD)
         return false
       end
     }
     seats.each { |seat|
-      seat.status = EventSeat::Stat::RESERVED
+      seat.status = EventSeat::Status::RESERVED
       seat.order = self
       seat.save()
     }
@@ -38,12 +38,12 @@ class Order
 
   def purchaseSeats(seats)
     seats.each { |seat|
-      if(seat.status != EventSeat::Stat::RESERVED)
+      if(seat.status != EventSeat::Status::RESERVED)
         return false
       end
     }
     seats.each { |seat|
-      seat.status = EventSeat::Stat::SOLD
+      seat.status = EventSeat::Status::SOLD
       seat.order = self
       seat.save()
     }
@@ -52,12 +52,12 @@ class Order
 
   def releaseSeats(seats)
     seats.each { |seat|
-      if(seat.status != EventSeat::Stat::RESERVED)
+      if(seat.status != EventSeat::Status::RESERVED)
         return false
       end
     }
     seats.each { |seat|
-      seat.status = EventSeat::Stat::UNSOLD
+      seat.status = EventSeat::Status::UNSOLD
       seat.order = self
       seat.save()
     }

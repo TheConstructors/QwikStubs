@@ -22,7 +22,7 @@ FactoryGirl.define do
   factory :event_seat do
     event_section
     seat
-    status EventSeat::Stat::UNSOLD
+    status EventSeat::Status::UNSOLD
   end
   
   factory :event_section do
@@ -91,5 +91,4 @@ FactoryGirl.define do
     size 0
     event 
   end
-
 end

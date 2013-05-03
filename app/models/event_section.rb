@@ -1,14 +1,12 @@
 class EventSection
-  include MongoMapper::Document
+  include ApplicationModel
 
-  key :price, Float
+  key :price, Float, :default => 20 
 
-  # validations
   validate :price, :presence => true
 
   before_save :validate_event_and_section_unique
 
-  #relationships
   belongs_to :event
   belongs_to :section
   has_many :event_seat

@@ -1,5 +1,5 @@
 class Seat
-  include MongoMapper::Document
+  include ApplicationModel 
 
   key :name, String
   key :row, String
@@ -16,5 +16,4 @@ class Seat
   # Relationships
   belongs_to :section
   has_many :event_seats
-
 end

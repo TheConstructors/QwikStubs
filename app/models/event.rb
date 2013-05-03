@@ -1,5 +1,5 @@
 class Event
-  include MongoMapper::Document
+  include ApplicationModel
   require 'date'
   
   key :name, String
@@ -22,8 +22,6 @@ class Event
   #Relationships
   belongs_to :venue
   belongs_to :promoter
-  has_many :eventSection
+  has_many :event_section
   #has_many :appearance
-
-
 end

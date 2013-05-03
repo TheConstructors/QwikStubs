@@ -16,7 +16,7 @@ class EventsController < ApplicationController
   end  
   
   def list
-   respond_with Event.all 
+    respond_with Event.all 
   end
   
   def show
@@ -24,7 +24,16 @@ class EventsController < ApplicationController
   end
   
   def create
-    respond_with Event.create(params[:event])
+    @event = Event.create(params[:event])
+    # error checking here
+    venue = @event.venue
+    venue.sections.each do |section|
+      es = EventSection.create :section => section, :event => @event
+      section.seats.each do |seat|
+        EventSeat.create :event_section => es, :seat => seat
+      end
+    end
+    respond_with @event
   end
   
   def update
