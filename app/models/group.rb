@@ -1,5 +1,5 @@
 class Group
-  include MongoMapper::Document
+  include ApplicationModel
   key :size, Integer
 
   belongs_to :event
