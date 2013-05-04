@@ -66,3 +66,6 @@ group :development, :test do
 # Gemfile
 gem 'mocha', :require => false
 
+gem 'sunspot_rails'
+
+gem 'sunspot_solr'
