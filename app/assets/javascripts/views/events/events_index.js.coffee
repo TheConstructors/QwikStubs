@@ -39,18 +39,40 @@ class Qwikstubs.Views.EventsIndex extends Backbone.View
     @collection.previousPage()
     
   sortname: ->
-    @collection.sortVar = "name"
-    @collection.sort()
-    @render()
-    $('#sort-date i').css("visibility", "hidden")
-    $('#sort-name i').css("visibility", "visible")
+    console.log("NAME:")
+    console.log(@collection.sortVar)
+    switch @collection.sortVar
+      when "date"
+        console.log("Fresh")
+        @collection.sortVar = "name"
+        @collection.sort()
+        @render()
+        $('#sort-name i').css("visibility", "visible")
+        $('#sort-date i').css("visibility", "hidden")
+      when "name"
+        console.log("Reverse")
+        @collection.models.reverse()
+        @render()
+        $('#sort-name i').css("visibility", "visible")
+        $('#sort-date i').css("visibility", "hidden")
   
   sortdate: ->
-    @collection.sortVar = "date"
-    @collection.sort()
-    @render()
-    $('#sort-name i').css("visibility", "hidden")
-    $('#sort-date i').css("visibility", "visible")
+    console.log("DATE:")
+    console.log(@collection.sortVar)
+    switch @collection.sortVar
+      when "name"
+        @collection.sortVar = "date"
+        @collection.sort(@collection.models)
+        @render()
+        $('#sort-name i').css("visibility", "hidden")
+        $('#sort-date i').css("visibility", "visible")
+      when "date"
+        console.log("Reverse")
+        @collection.models.reverse()
+        @render()
+        $('#sort-name i').css("visibility", "hidden")
+        $('#sort-date i').css("visibility", "visible")
+    
   
   # showEvent: ->
   #         @collection.showEvent()
