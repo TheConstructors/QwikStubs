@@ -25,7 +25,8 @@ class Event
   #has_many :appearance
 
   searchable do
-   text :name, :description
+   text :name
+   text :description
   end
 
   def generateGroups()
