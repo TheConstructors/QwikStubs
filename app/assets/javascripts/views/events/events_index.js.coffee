@@ -34,9 +34,13 @@ class Qwikstubs.Views.EventsIndex extends Backbone.View
   	
   
   nextPage: ->
+    downD = true
+    downE = false
     @collection.nextPage()
   
   previousPage: ->
+    downD = true
+    downE = false
     @collection.previousPage()
     
   sortname: ->

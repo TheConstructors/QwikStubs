@@ -50,8 +50,6 @@ class Event
       date+="11"
     when "Dec"
       date+="12"
-    else
-      date+="13"
     end
     date+=day
     date+=year
@@ -87,6 +85,7 @@ class Event
       return true
     end
   end
+  
   #Relationships
   belongs_to :venue
   belongs_to :promoter

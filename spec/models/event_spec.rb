@@ -56,6 +56,10 @@ describe Event do
     @other.save.should be_false
   end
   
+  # it "should have a date string with 8 characters" do
+  #   @e.errors[:date].should be_empty
+  # end
+  
   describe "generateGroups" do
     it "should return false if groups exist for this event" do
       @g = FactoryGirl.create(:group, event: @e)
