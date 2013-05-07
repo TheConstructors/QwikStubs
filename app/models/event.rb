@@ -23,6 +23,10 @@ class Event
   has_many :event_section
   #has_many :appearance
 
+  searchable do
+    text :name, :description
+  end
+
   def generateGroups()
     Group.where(event: self).first
     #if(@groups != 0)
