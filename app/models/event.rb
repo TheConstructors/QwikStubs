@@ -1,27 +1,15 @@
 class Event
   include ApplicationModel
-<<<<<<< HEAD
-
-=======
   require 'date'
   
->>>>>>> 0cb1527ebef77bc45b25762dd13df795e01ed678
   key :name, String
   key :description, String
   key :day, String
   key :year, String
   key :month, String
-  key :time, String
-<<<<<<< HEAD
-  
-  searchable do
-   text :name
-   text :description
-  end
-
-=======
+  key :time, String 
   key :date, Date
->>>>>>> 0cb1527ebef77bc45b25762dd13df795e01ed678
+
   validates_presence_of :name
   validates_presence_of :month
   validates_presence_of :day
@@ -35,11 +23,9 @@ class Event
   belongs_to :promoter
   has_many :event_section
   #has_many :appearance
-<<<<<<< HEAD
-=======
 
   searchable do
-    text :name, :description
+   text :name, :description
   end
 
   def generateGroups()
@@ -49,6 +35,4 @@ class Event
     #end
     #true
   end
-
->>>>>>> 0cb1527ebef77bc45b25762dd13df795e01ed678
 end
