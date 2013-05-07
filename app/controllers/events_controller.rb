@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   def search
     #ask andrew why post's aren't working
     #debugger
-    query_text = params[:qtext]
+    query_text = params[:search]
     page = params[:page]
     query = Event.search do
       fulltext query_text #query_text
@@ -14,10 +14,10 @@ class EventsController < ApplicationController
   end
 
   def index
-    @search = Event.search do
-        fulltext params[:search]
-      end
-    @events_found = @search.results
+    # @search = Event.search do
+    #     fulltext params[:search]
+    #   end
+    # @events_found = @search.results
 
     if page = params[:page]
       page_size = params[:pagesize] || 20
