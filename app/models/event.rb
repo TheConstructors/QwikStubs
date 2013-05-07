@@ -7,8 +7,9 @@ class Event
   key :day, String
   key :year, String
   key :month, String
-  key :time, String
+  key :time, String 
   key :date, Date
+
   validates_presence_of :name
   validates_presence_of :month
   validates_presence_of :day
@@ -24,7 +25,7 @@ class Event
   #has_many :appearance
 
   searchable do
-    text :name, :description
+   text :name, :description
   end
 
   def generateGroups()
@@ -34,5 +35,4 @@ class Event
     #end
     #true
   end
-
 end
