@@ -101,6 +101,12 @@
           var query = $("#search-box")[0].value;
           window.Qwikstubs.Events.navigate('search/events/' + query, { trigger: true });
         });
+        $("#search-box").keypress(function(e) {
+            if(e.which == 13) {
+              var query = $("#search-box")[0].value;
+              window.Qwikstubs.Events.navigate('search/events/' + query, { trigger: true });
+            }
+        });
       });
     </script>
   </body>
