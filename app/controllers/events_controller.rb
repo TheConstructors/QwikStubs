@@ -2,6 +2,11 @@ class EventsController < ApplicationController
   respond_to :json
 
   def index
+    @search = Event.search do
+        fulltext params[:search]
+      end
+    @events_found = @search.results
+
     if page = params[:page]
       page_size = params[:pagesize] || 20
       results = Event.paginate({ 
@@ -11,7 +16,7 @@ class EventsController < ApplicationController
       })
       respond_with results
     else
-      respond_with Event.all
+      respond_with @events_found
     end
   end  
   
