@@ -1,18 +1,14 @@
 class Section
-  include MongoMapper::Document
+  include ApplicationModel 
+  
   key :name, String
   key :xpos, Integer
   key :ypos, Integer
-
   
-  #Validations
-  validate :name, :presence => true, :uniqueness => true
-  #validate that it has a venue
-  #Index the name
+  validates_uniqueness_of :name, :scope => :venue
+
   ensure_index [[:name, 1]], :unique => true
 
-  #Relationships
   has_many :seat
   belongs_to :venue
-
 end

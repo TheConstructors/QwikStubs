@@ -1,4 +1,6 @@
 FactoryGirl.define do
+  require 'date'
+  
   factory :venue do
     sequence(:name) { |n| "Santa Barbara Bowl#{n}" }
     city "Santa Barbara"
@@ -10,6 +12,7 @@ FactoryGirl.define do
     month "Feb"
     day "28"
     year "2014"
+    date Date.new(2014, 2, 28)
     description "It's Awesome!"
     time "1:00pm"
     venue
@@ -18,7 +21,8 @@ FactoryGirl.define do
   
   factory :event_seat do
     event_section
-    status EventSeat::Stat::SOLD
+    seat
+    status EventSeat::Status::UNSOLD
   end
   
   factory :event_section do
@@ -79,8 +83,12 @@ FactoryGirl.define do
   
   factory :order do
     billing_info
-    sequence(:order_number) { |n| "123456789#{n}" }
+    sequence(:order_number) { |n| n }
     total_amount 156.10
   end
 
+  factory :group do
+    size 0
+    event 
+  end
 end

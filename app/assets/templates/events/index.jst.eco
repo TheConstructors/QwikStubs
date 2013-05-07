@@ -12,9 +12,8 @@
 		  <table class="table table-hover table-condensed">
 			  <thead>
 				  <tr class="muted">
-					  <th>Date</th>		
-					  <th>Event</th>
-					  <th>Venue</th>
+					  <th id="sort-date" style="cursor:pointer;">Date <i class="icon-chevron-down" style="visibility:visible;"></i></th>		
+					  <th id="sort-name" style="cursor:pointer;">Event <i class="icon-chevron-down" style="visibility:hidden;"></i></th>
 		      </tr>
 			  </thead>
 			  <tbody id="list_event">

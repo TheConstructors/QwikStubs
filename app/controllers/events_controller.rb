@@ -14,6 +14,11 @@ class EventsController < ApplicationController
   end
 
   def index
+    @search = Event.search do
+        fulltext params[:search]
+      end
+    @events_found = @search.results
+
     if page = params[:page]
       page_size = params[:pagesize] || 20
       results = Event.paginate({ 
@@ -23,12 +28,12 @@ class EventsController < ApplicationController
       })
       respond_with results
     else
-      respond_with Event.all
+      respond_with @events_found
     end
   end  
   
   def list
-   respond_with Event.all 
+    respond_with Event.all 
   end
   
   def show
@@ -36,7 +41,16 @@ class EventsController < ApplicationController
   end
   
   def create
-    respond_with Event.create(params[:event])
+    @event = Event.create(params[:event])
+    # error checking here
+    venue = @event.venue
+    venue.sections.each do |section|
+      es = EventSection.create :section => section, :event => @event
+      section.seats.each do |seat|
+        EventSeat.create :event_section => es, :seat => seat
+      end
+    end
+    respond_with @event
   end
   
   def update
