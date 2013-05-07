@@ -14,11 +14,6 @@ class EventsController < ApplicationController
   end
 
   def index
-    # @search = Event.search do
-    #     fulltext params[:search]
-    #   end
-    # @events_found = @search.results
-
     if page = params[:page]
       page_size = params[:pagesize] || 20
       results = Event.paginate({ 
