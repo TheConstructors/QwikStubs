@@ -25,6 +25,8 @@
 Gemfile.lock
 .*.swo
 
+log/*
+
 # coveralls
 coverage/*
 coverage/.*

@@ -6,8 +6,6 @@ describe Event do
     @v = FactoryGirl.create(:venue, name:"House of Blues", city: "SD", state:"CA")
     @p = FactoryGirl.create(:promoter, name:"NHL", verified:true)
     @e = FactoryGirl.create(:event, venue:@v, promoter:@p)
-    
-    
   end
 
   it "should be saved in the database" do
@@ -38,5 +36,14 @@ describe Event do
     @e.promoter.name.should == "NHL"
   end
 
+  describe "generateGroups" do
+    it "should return false if groups exist for this event" do
+      @g = FactoryGirl.create(:group, event: @e)
+      #@e.generateGroups().should == false
+    end
 
+    it "should create groups for all seats not sold for event" do
+
+    end
+  end
 end
