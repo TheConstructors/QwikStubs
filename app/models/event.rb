@@ -13,17 +13,14 @@ class Event
   validates_presence_of :month
   validates_presence_of :day
   validates_presence_of :year
-  validates_presence_of :date
-  
-  before_save :validate_month
-  before_save :validate_day
-  before_save :validate_year
+  validate :validate_month, :validate_day, :validate_year
+  before_save :generate_date
   
   #Name and date need to be unique
   #validate format of month day and year
-  validates_uniqueness_of :name, :scope => [:month, :day, :year]
+  validates_uniqueness_of :name, :scope => [:date]
   
-  def date
+  def generate_date
     date = ""
     case month
     when "Jan"
@@ -50,8 +47,6 @@ class Event
       date+="11"
     when "Dec"
       date+="12"
-    else
-      date+="13"
     end
     date+=day
     date+=year
@@ -59,34 +54,35 @@ class Event
   
   def validate_month
     all_months = ["Jan","Feb","Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-    all_months.include? month
+    if !(all_months.include? month)
+      errors.add(:month, "Month is not formatted correctly.")
+    end
   end
   
   def validate_day
     month31 = ["Jan", "Mar", "May", "Jul", "Aug", "Oct", "Dec"]
     month30 = ["Sep", "Apr", "Jun", "Nov"]
     if(day.length != 2)
-      return false
-    elsif (month31.include? month) && (day.to_i <= 31) && (day.to_i > 0)
-      return true
-    elsif (month30.include? month) && (day.to_i <= 30) && (day.to_i > 0)
-     return true
-    elsif (month == "Feb") && (day.to_i <= 29) && (day.to_i > 0)
-      return true
+      errors.add(:day, "Wrong day length.")
+    elsif (month31.include? month) && ((day.to_i > 31) || (day.to_i <= 0))
+      errors.add(:day, "Day does not fall within the month")
+    elsif (month30.include? month) && ((day.to_i > 30) || (day.to_i <= 0))
+      errors.add(:day, "Day does not fall within the month")
+    elsif (month == "Feb") && ((day.to_i > 29) || (day.to_i <= 0))
+      errors.add(:day, "Day does not fall within the month")
     else
-      return false
     end
   end
   
   def validate_year
     if (year.length != 4)
-      return false
+      errors.add(:year, "Invalid year length.")
     elsif(year.to_i < 0)
-      return false
+      errors.add(:year, "Can't have a negative year value")
     else
-      return true
     end
   end
+  
   #Relationships
   belongs_to :venue
   belongs_to :promoter

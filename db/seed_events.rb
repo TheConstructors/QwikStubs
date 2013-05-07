@@ -50,11 +50,11 @@ end
 
 
 
-# samples = 1..30
+# samples = 10..30
 # 
 # samples.each do |n|
 #   Event.create!({:name=>"Some Concert #{n}", 
-#                 :month=>"April", :day=>"#{n}", :year=>"2013", :time=>"1:00pm", 
+#                 :month=>"Apr", :day=>"#{n}", :year=>"2013", :time=>"1:00pm", 
 #                 :venue=>@venue,
 #                 :description=>"Fake Event #{n} for testing pagination."})
 # end 
