@@ -2,7 +2,8 @@ class Qwikstubs.Views.EventsIndex extends Backbone.View
   tagName: 'div'
 
   template: JST['events/index']
-
+  downD = true
+  downE = false
   events:
     'click #next-page': 'nextPage'
     'click #previous-page': 'previousPage'
@@ -39,39 +40,44 @@ class Qwikstubs.Views.EventsIndex extends Backbone.View
     @collection.previousPage()
     
   sortname: ->
-    console.log("NAME:")
-    console.log(@collection.sortVar)
     switch @collection.sortVar
       when "date"
-        console.log("Fresh")
         @collection.sortVar = "name"
         @collection.sort()
         @render()
-        $('#sort-name i').css("visibility", "visible")
-        $('#sort-date i').css("visibility", "hidden")
+        $('#sort-name').html("Event &#9660;")
+        $('#sort-date').html("Date")
+        downE = true
       when "name"
-        console.log("Reverse")
         @collection.models.reverse()
         @render()
-        $('#sort-name i').css("visibility", "visible")
-        $('#sort-date i').css("visibility", "hidden")
+        if downE is true
+          $('#sort-name').html("Event &#9650;")
+          $('#sort-date').html("Date")
+          downE = false
+        else
+          $('#sort-name').html("Event &#9660;")
+          $('#sort-date').html("Date")
+          downE = true
   
   sortdate: ->
-    console.log("DATE:")
-    console.log(@collection.sortVar)
     switch @collection.sortVar
       when "name"
         @collection.sortVar = "date"
         @collection.sort(@collection.models)
         @render()
-        $('#sort-name i').css("visibility", "hidden")
-        $('#sort-date i').css("visibility", "visible")
+        $('#sort-date').html("Date &#9660;")
+        $('#sort-name').html("Event")
+        downD = true
       when "date"
-        console.log("Reverse")
         @collection.models.reverse()
         @render()
-        $('#sort-name i').css("visibility", "hidden")
-        $('#sort-date i').css("visibility", "visible")
+        if downD is true
+          $('#sort-date').html("Date &#9650;")
+          downD = false
+        else
+          $('#sort-date').html("Date &#9660;")
+          downD = true
     
   
   # showEvent: ->
