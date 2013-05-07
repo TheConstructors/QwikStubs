@@ -17,6 +17,8 @@ class Event
   
   before_save :validate_month
   before_save :validate_day
+  before_save :validate_year
+  
   #Name and date need to be unique
   #validate format of month day and year
   validates_uniqueness_of :name, :scope => [:month, :day, :year]
@@ -75,7 +77,16 @@ class Event
       return false
     end
   end
-    
+  
+  def validate_year
+    if (year.length != 4)
+      return false
+    elsif(year.to_i < 0)
+      return false
+    else
+      return true
+    end
+  end
   #Relationships
   belongs_to :venue
   belongs_to :promoter

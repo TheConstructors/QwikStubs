@@ -47,8 +47,13 @@ describe Event do
   end
   
   it "should have a day that falls within the month it's in" do
-     @other = FactoryGirl.build(:event, month:"Feb", day:"32", venue:@v, promoter:@p)
-     @other.save.should be_false
+    @other = FactoryGirl.build(:event, month:"Feb", day:"32", venue:@v, promoter:@p)
+    @other.save.should be_false
+  end
+  
+  it "should have a correctly formatted year" do
+    @other = FactoryGirl.build(:event, year:"213", venue:@v, promoter:@p)
+    @other.save.should be_false
   end
   
   describe "generateGroups" do
