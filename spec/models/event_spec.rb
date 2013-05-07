@@ -35,7 +35,22 @@ describe Event do
   it "should belong to a promoter @p" do
     @e.promoter.name.should == "NHL"
   end
-
+  
+  it "should have a correctly formatted, existing month" do
+    @other = FactoryGirl.build(:event, month:"Velociraptorary", venue:@v, promoter:@p)
+    @other.save.should be_false
+  end
+  
+  it "should have a day that contains 2 digits" do
+    @other = FactoryGirl.build(:event, month:"Feb", day:"2", venue:@v, promoter:@p)
+    @other.save.should be_false
+  end
+  
+  it "should have a day that falls within the month it's in" do
+     @other = FactoryGirl.build(:event, month:"Feb", day:"32", venue:@v, promoter:@p)
+     @other.save.should be_false
+  end
+  
   describe "generateGroups" do
     it "should return false if groups exist for this event" do
       @g = FactoryGirl.create(:group, event: @e)

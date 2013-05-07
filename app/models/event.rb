@@ -15,6 +15,8 @@ class Event
   validates_presence_of :year
   validates_presence_of :date
   
+  before_save :validate_month
+  before_save :validate_day
   #Name and date need to be unique
   #validate format of month day and year
   validates_uniqueness_of :name, :scope => [:month, :day, :year]
@@ -51,6 +53,27 @@ class Event
     end
     date+=day
     date+=year
+  end
+  
+  def validate_month
+    all_months = ["Jan","Feb","Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    all_months.include? month
+  end
+  
+  def validate_day
+    month31 = ["Jan", "Mar", "May", "Jul", "Aug", "Oct", "Dec"]
+    month30 = ["Sep", "Apr", "Jun", "Nov"]
+    if(day.length != 2)
+      return false
+    elsif (month31.include? month) && (day.to_i <= 31) && (day.to_i > 0)
+      return true
+    elsif (month30.include? month) && (day.to_i <= 30) && (day.to_i > 0)
+      return true
+    elsif (month == "Feb") && (day.to_i <= 29) && (day.to_i > 0)
+      return true
+    else
+      return false
+    end
   end
     
   #Relationships
