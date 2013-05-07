@@ -70,7 +70,7 @@ class Event
     elsif (month31.include? month) && (day.to_i <= 31) && (day.to_i > 0)
       return true
     elsif (month30.include? month) && (day.to_i <= 30) && (day.to_i > 0)
-      return true
+     return true
     elsif (month == "Feb") && (day.to_i <= 29) && (day.to_i > 0)
       return true
     else
@@ -100,5 +100,15 @@ class Event
     #end
     #true
   end
-
+  
+  def self.paginate(opt={})
+    old = MongoMapper::Plugins::Pagination::ClassMethods.instance_method(:paginate)
+    old = old.bind(self)
+    opt[:per_page] ||= 20
+    opt[:page] ||= 1
+    opt[:order] ||= "created.asc"
+    (field, op) = opt[:order].split '.'
+    opt[:order] = SymbolOperator.new(field.to_sym, op.to_sym)
+    old.call(opt)
+  end
 end
