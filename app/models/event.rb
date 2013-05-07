@@ -16,12 +16,19 @@ class Event
   validates_presence_of :date
   #Name and date need to be unique
   validates_uniqueness_of :name, :scope => [:month, :day, :year]
-
-  
-  
+    
   #Relationships
   belongs_to :venue
   belongs_to :promoter
   has_many :event_section
   #has_many :appearance
+
+  def generateGroups()
+    Group.where(event: self).first
+    #if(@groups != 0)
+    #  false
+    #end
+    #true
+  end
+
 end

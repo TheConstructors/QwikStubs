@@ -34,9 +34,9 @@ Event.create!({:name=>"Justin Timberlake", :month=>"Oct", :day=>"21", :year=>"20
 Event.create!({:name=>"Deadmau5", :month=>"Nov", :day=>"1", :year=>"2013", :time=>"9:00pm", :venue=>@venue, 
     :description=>"Watch Deadmau5 spin those tracks all night long!", :date=>Date.new(2013, 11, 1)})
 Event.create!({:name=>"Miley Cyrus", :month=>"Nov", :day=>"3", :year=>"2013", :time=>"9:00pm", :venue=>@venue, 
-    :description=>"Because she can't be tamed ya'll better by some tickets for her Hannah Montana Tour, ya hear?"})
+    :description=>"Because she can't be tamed ya'll better by some tickets for her Hannah Montana Tour, ya hear?", :date=>Date.new(2013, 11, 1)})
 @event = Event.create!({:name=>"Imagine Dragons", :month=>"Nov", :day=>"11", :year=>"2013", :time=>"9:00pm", :venue=>@venue, 
-    :description=>"Imagine Dragons travels to 25 cities on their Radioactive 2013 Tour."})
+    :description=>"Imagine Dragons travels to 25 cities on their Radioactive 2013 Tour.", :date=>Date.new(2013, 11, 1)})
     
 # Event orders for Imagine Dragons
 samples = 1..30
