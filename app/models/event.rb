@@ -104,7 +104,8 @@ class Event
     opt[:page] ||= 1
     opt[:order] ||= "created.asc"
     (field, op) = opt[:order].split '.'
-    opt[:order] = SymbolOperator.new(field.to_sym, op.to_sym)
+    #debugger
+    opt[:order] = SymbolOperator.new(field.to_sym, op)
     old.call(opt)
   end
 end
