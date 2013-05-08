@@ -36,14 +36,43 @@ describe Event do
     @e.promoter.name.should == "NHL"
   end
 
+  describe "copy_seating" do
+    
+    before(:each) do
+      @venue = FactoryGirl.create(:venue)
+      @sec = FactoryGirl.create(:section, venue: @venue)
+      @seat1 = FactoryGirl.create(:seat, section: @sec)
+      @seat2 = FactoryGirl.create(:seat, section: @sec)
+      @seat3 = FactoryGirl.create(:seat, section: @sec)
+      @e = FactoryGirl.create(:event, venue: @venue)
+    end
+    
+    it "should copy over seating from venue" do 
+      event_sections = EventSection.where(event_id: @e.id).all
+      event_sections.size.should == 1
+      event_seats = EventSeat.where(event_section_id: event_sections.first.id).all
+      event_seats.size.should == 3
+      event_seats.first.event_section_id.should == event_sections.first.id
+    end
+  end
+
   describe "generateGroups" do
+    before(:each) do
+      @venue = FactoryGirl.create(:venue)
+      @sec = FactoryGirl.create(:section, venue: @venue)
+      @seat1 = FactoryGirl.create(:seat, section: @sec)
+      @seat2 = FactoryGirl.create(:seat, section: @sec)
+      @seat3 = FactoryGirl.create(:seat, section: @sec)
+      @e = FactoryGirl.create(:event, venue: @venue, promoter: @promoter)      
+    end
+
     it "should return false if groups exist for this event" do
       @g = FactoryGirl.create(:group, event: @e)
-      #@e.generateGroups().should == false
+      @e.generateGroups().should == false
     end
 
     it "should create groups for all seats not sold for event" do
-
+      #FactoryGirl.create(:event_seat, event: @e, )
     end
   end
 end

@@ -9,6 +9,6 @@ class Section
 
   ensure_index [[:name, 1]], :unique => true
 
-  has_many :seat
+  has_many :seats
   belongs_to :venue
 end
