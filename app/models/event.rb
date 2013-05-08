@@ -29,7 +29,7 @@ class Event
   has_many :event_section
   #has_many :appearance
 
-  def generateGroups()
+  def generate_groups()
     group = Group.where(event_id: self.id).all
     if(!group.empty?)
       false

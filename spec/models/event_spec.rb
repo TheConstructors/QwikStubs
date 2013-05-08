@@ -72,11 +72,11 @@ describe Event do
 
     it "should return false if groups exist for this event" do
       @g = FactoryGirl.create(:group, event: @e)
-      @e.generateGroups().should == false
+      @e.generate_groups().should == false
     end
 
     it "should create groups for all seats not sold for event" do
-      
+      @e.generate_groups().should == true
     end
   end
 end
