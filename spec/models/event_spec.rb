@@ -14,7 +14,6 @@ describe Event do
     @e.errors[:day].should be_empty
     @e.errors[:year].should be_empty
     @e.errors[:time].should be_empty
-    @e.errors[:date].should be_empty
     @e.should_not be_nil
     @e.time.should == "1:00pm"
   end
@@ -55,7 +54,31 @@ describe Event do
       event_seats.first.event_section_id.should == event_sections.first.id
     end
   end
-
+  
+  it "should have a correctly formatted, existing month" do
+    @other = FactoryGirl.build(:event, month:"Velociraptorary", venue:@v, promoter:@p)
+    @other.valid?.should be_false
+  end
+  
+  it "should have a day that contains 2 digits" do
+    @other = FactoryGirl.build(:event, month:"Feb", day:"2", venue:@v, promoter:@p)
+    @other.valid?.should be_false
+  end
+  
+  it "should have a day that falls within the month it's in" do
+    @other = FactoryGirl.build(:event, month:"Jan", day:"32", venue:@v, promoter:@p)
+    @other.valid?.should be_false
+  end
+  
+  it "should have a correctly formatted year" do
+    @other = FactoryGirl.build(:event, year:"213", venue:@v, promoter:@p)
+    @other.valid?.should be_false
+  end
+  
+  # it "should have a date string with 8 characters" do
+  #   @e.errors[:date].should be_empty
+  # end
+  
   describe "generateGroups" do
     before(:each) do
       @venue = FactoryGirl.create(:venue)
