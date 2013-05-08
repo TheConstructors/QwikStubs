@@ -44,45 +44,52 @@ class Qwikstubs.Views.EventsIndex extends Backbone.View
     @collection.previousPage()
     
   sortname: ->
-    switch @collection.sortVar
-      when "date"
-        @collection.sortVar = "name"
-        @collection.sort()
-        @render()
-        $('#sort-name').html("Event &#9660;")
-        $('#sort-date').html("Date")
-        downE = true
-      when "name"
-        @collection.models.reverse()
-        @render()
-        if downE is true
-          $('#sort-name').html("Event &#9650;")
-          $('#sort-date').html("Date")
-          downE = false
-        else
-          $('#sort-name').html("Event &#9660;")
-          $('#sort-date').html("Date")
-          downE = true
-  
-  sortdate: ->
-    switch @collection.sortVar
-      when "name"
-        @collection.sortVar = "date"
-        @collection.sort(@collection.models)
-        @render()
-        $('#sort-date').html("Date &#9660;")
-        $('#sort-name').html("Event")
-        downD = true
-      when "date"
-        @collection.models.reverse()
-        @render()
-        if downD is true
-          $('#sort-date').html("Date &#9650;")
-          downD = false
-        else
-          $('#sort-date').html("Date &#9660;")
-          downD = true
+    # switch @collection.sortVar
+    #       when "date"
+    #         @collection.sortVar = "name"
+    #         @collection.sort()
+    #         # @collection.resortEventsName()
+    #         @render()
+    #         $('#sort-name').html("Event &#9660;")
+    #         $('#sort-date').html("Date")
+    #         downE = true
+    #       when "name"
+    #         @collection.models.reverse()
+    #         @render()
+    #         if downE is true
+    #           $('#sort-name').html("Event &#9650;")
+    #           $('#sort-date').html("Date")
+    #           downE = false
+    #         else
+    #           $('#sort-name').html("Event &#9660;")
+    #           $('#sort-date').html("Date")
+    #           downE = true
+    console.log(@collection)
+    @collection.resortEventsName()
+    @render()
+    $('#sort-name').html("Event &#9660;")
+    $('#sort-date').html("Date")
     
+  sortdate: ->
+    console.log("Sorting by date")
+    # switch @collection.sortVar
+    #   when "name"
+    # @collection.sortVar = "date"
+    #         @collection.sort(@collection.models)
+    #downD = true
+    # when "date"
+    # @collection.models.reverse()
+    #    @render()
+    #    if downD is true
+    #      $('#sort-date').html("Date &#9650;")
+    #      downD = false
+    #    else
+    #      $('#sort-date').html("Date &#9660;")
+    #      downD = true
+    @collection.resortEventsDate()
+    @render()
+    $('#sort-date').html("Date &#9660;")
+    $('#sort-name').html("Event")
   
   # showEvent: ->
   #         @collection.showEvent()
