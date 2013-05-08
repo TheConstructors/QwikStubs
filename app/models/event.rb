@@ -26,7 +26,7 @@ class Event
   #Relationships
   belongs_to :venue
   belongs_to :promoter
-  has_many :event_section
+  has_many :event_sections
   #has_many :appearance
 
   def generate_groups()
@@ -34,8 +34,12 @@ class Event
     if(!group.empty?)
       false
     else
+      seats = nil
+      self.event_sections.each do |section|
+        return EventSeat.where(event_id: self.id).all
+        
+      end
       
-      true
     end
   end
 

@@ -60,8 +60,8 @@ describe Event do
     before(:each) do
       @venue = FactoryGirl.create(:venue)
       @sec = FactoryGirl.create(:section, venue: @venue)
-      rows = 0..10
-      columns = 0..10
+      rows = 0..9
+      columns = 0..9
       rows.each do |r|
         columns.each do |c|
           FactoryGirl.create(:seat, section: @sec, quality: 1, row: r, column: c)
@@ -76,7 +76,10 @@ describe Event do
     end
 
     it "should create groups for all seats not sold for event" do
-      @e.generate_groups().should == true
+      EventSection.all.size.should == 1
+      EventSeat.all.size.should == 100
+      #@e.generate_groups().should == true
+      #Groups.all.should == 10 
     end
   end
 end
