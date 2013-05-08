@@ -7,7 +7,7 @@ class Event
   key :year, String
   key :month, String
   key :time, String
-  key :date, String, :default => ""
+  key :date, Time
   
   validates_presence_of :name
   validates_presence_of :month
@@ -25,35 +25,36 @@ class Event
   validates_uniqueness_of :name, :scope => [:date]
   
   def generate_date
-    date = ""
-    case month
-    when "Jan"
-      date+="01"
-    when "Feb"
-      date+="02"
-    when "Mar"
-      date+="03"
-    when "Apr"
-      date+="04"
-    when "May"
-      date+="05"
-    when "Jun"
-      date+="06"
-    when "Jul"
-      date+="07"
-    when "Aug"
-      date+="08"
-    when "Sep"
-      date+="09"
-    when "Oct"
-      date+="10"
-    when "Nov"
-      date+="11"
-    when "Dec"
-      date+="12"
-    end
-    date+=day
-    date+=year
+    # date = ""
+    #    case month
+    #    when "Jan"
+    #      date+="01"
+    #    when "Feb"
+    #      date+="02"
+    #    when "Mar"
+    #      date+="03"
+    #    when "Apr"
+    #      date+="04"
+    #    when "May"
+    #      date+="05"
+    #    when "Jun"
+    #      date+="06"
+    #    when "Jul"
+    #      date+="07"
+    #    when "Aug"
+    #      date+="08"
+    #            when "Sep"
+    #              date+="09"
+    #            when "Oct"
+    #              date+="10"
+    #            when "Nov"
+    #              date+="11"
+    #            when "Dec"
+    #              date+="12"
+    #            end
+    #            date+=day
+    #            date+=year
+    self.date = Time.utc(year, month, day)
   end
   
   def validate_month
@@ -115,5 +116,15 @@ class Event
       end
     end
   end
-
+  
+  def self.paginate(opt={})
+    old = MongoMapper::Plugins::Pagination::ClassMethods.instance_method(:paginate)
+    old = old.bind(self)
+    opt[:per_page] ||= 20
+    opt[:page] ||= 1
+    opt[:order] ||= "created.asc"
+    (field, op) = opt[:order].split '.'
+    opt[:order] = SymbolOperator.new(field.to_sym, op)
+    old.call(opt)
+  end
 end
