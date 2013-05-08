@@ -33,8 +33,8 @@ class Qwikstubs.Collections.Events extends Backbone.Collection
       $('html, body').animate({ scrollTop: 0 }, 0);
     else
       $('#previous-page').addClass("disabled")
-  
-      
+
+
   # showEvent: ->
   #     console.log(@model)
   #     Backbone.history.navigate("events/#{@model.id}", true)
