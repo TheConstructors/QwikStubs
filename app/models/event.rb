@@ -94,8 +94,7 @@ class Event
   #has_many :appearance
 
   def generate_groups()
-    group = Group.where(event_id: self.id).all
-    if(!group.empty?)
+    if(Group.where(event_id: self.id).exists?)
       false
     else
       seats = nil
