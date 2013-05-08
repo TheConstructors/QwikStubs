@@ -29,7 +29,7 @@ describe EventSection do
   end
   
   it "should have a unique combination of an event and section" do 
-    @esec2 = EventSection.new(event: @e, section:  @s)
+    @esec2 = FactoryGirl.build(:event_section, event: @e, section:  @s)
     @esec2.save.should be_false
   end
 end
