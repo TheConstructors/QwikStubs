@@ -15,6 +15,7 @@ class Qwikstubs.Views.EventsIndex extends Backbone.View
   initialize: ->
     @collection.on('reset', @render, @ )
     @collection.on('add', @appendEventToList, @ )
+    #@collection.on('change', @render, @ )
 
   render: ->
     $(@el).html(@template())

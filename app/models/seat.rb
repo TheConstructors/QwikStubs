@@ -2,8 +2,8 @@ class Seat
   include ApplicationModel 
 
   key :name, String
-  key :row, String
-  key :column, String
+  key :row, Integer
+  key :column, Integer
   key :xpos, Integer
   key :ypos, Integer
   key :quality, Integer #for seating algorithm
