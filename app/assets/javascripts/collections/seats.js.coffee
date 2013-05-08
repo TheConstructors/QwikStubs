@@ -1,0 +1,1 @@
+class Qwikstubs.Collections.Seats extends Backbone.Collection
