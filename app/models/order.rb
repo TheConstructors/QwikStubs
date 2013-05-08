@@ -63,4 +63,22 @@ class Order
     }
     true
   end
+
+  def release_event
+    channel_id = event.id
+    data = event_seats
+    Pusher(channel_id, 'order:release', data)
+  end
+
+  def reserve_event
+    channel_id = event.id
+    data = event_seats
+    Pusher(channel_id, 'order:reserve', data)
+  end
+
+  def purchase_event
+    channel_id = event.id
+    data = events_seats
+    Pusher(channel_id, 'order:purchase', data)
+  end
 end
