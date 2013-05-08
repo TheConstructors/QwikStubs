@@ -1,11 +1,11 @@
 class Group
-  include MongoMapper::Document
+  include ApplicationModel
   key :size, Integer
 
   belongs_to :event
   has_many :event_seats
 
-  validate :event_matches_event_seat
+  #validate :event_matches_event_seat
   validate :size_matches_event_seat
 
   private

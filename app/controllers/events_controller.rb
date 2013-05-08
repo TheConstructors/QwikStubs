@@ -24,16 +24,7 @@ class EventsController < ApplicationController
   end
   
   def create
-    @event = Event.create(params[:event])
-    # error checking here
-    venue = @event.venue
-    venue.sections.each do |section|
-      es = EventSection.create :section => section, :event => @event
-      section.seats.each do |seat|
-        EventSeat.create :event_section => es, :seat => seat
-      end
-    end
-    respond_with @event
+    respond_with Event.create(params[:event])
   end
   
   def update

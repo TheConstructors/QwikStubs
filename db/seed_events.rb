@@ -1,10 +1,11 @@
-@venue = Venue.find_by_name("UCSB Campbell Hall")
+@venue = Venue.find_by_name("The Constructors Arena")
+@campbell = Venue.find_by_name("UCSB Campbell Hall")
 
 Event.create!({:name=>"Young the Giant", :month=>"Apr", :day=>"25", :year=>"2013", :time=>"7:00pm", :venue=>@venue, 
   :description=>"Young the Giant, a band based out of Irvine, CA, travels across the seven continents on their first World Tour.", :date=>Date.new(2013, 4, 25) })
 
 
-Event.create!({:name=>"Jared and the Pussycats", :month=>"Apr", :day=>"24", :year=>"2013", :time=>"1:00pm", :venue=>@venue, 
+Event.create!({:name=>"Jared and the Pussycats", :month=>"Apr", :day=>"24", :year=>"2013", :time=>"1:00pm", :venue=>@campbell, 
   :description=>"Jared Roesch debuts his new music for the 2013 season by playing with actual, LIVE cats!", :date=>Date.new(2013, 4, 24)})
   
 Event.create!({:name=>"The Beatles", :month=>"Apr", :day=>"25", :year=>"2013", :time=>"10:00pm", :venue=>@venue, 
@@ -34,9 +35,9 @@ Event.create!({:name=>"Justin Timberlake", :month=>"Oct", :day=>"21", :year=>"20
 Event.create!({:name=>"Deadmau5", :month=>"Nov", :day=>"1", :year=>"2013", :time=>"9:00pm", :venue=>@venue, 
     :description=>"Watch Deadmau5 spin those tracks all night long!", :date=>Date.new(2013, 11, 1)})
 Event.create!({:name=>"Miley Cyrus", :month=>"Nov", :day=>"3", :year=>"2013", :time=>"9:00pm", :venue=>@venue, 
-    :description=>"Because she can't be tamed ya'll better by some tickets for her Hannah Montana Tour, ya hear?"})
+    :description=>"Because she can't be tamed ya'll better by some tickets for her Hannah Montana Tour, ya hear?", :date=>Date.new(2013, 11, 1)})
 @event = Event.create!({:name=>"Imagine Dragons", :month=>"Nov", :day=>"11", :year=>"2013", :time=>"9:00pm", :venue=>@venue, 
-    :description=>"Imagine Dragons travels to 25 cities on their Radioactive 2013 Tour."})
+    :description=>"Imagine Dragons travels to 25 cities on their Radioactive 2013 Tour.", :date=>Date.new(2013, 11, 1)})
     
 # Event orders for Imagine Dragons
 samples = 1..30

@@ -1,3 +1,7 @@
+Group.delete_all
+Order.delete_all
+EventSeat.delete_all
+EventSection.delete_all
 Event.delete_all
 Seat.delete_all
 Section.delete_all

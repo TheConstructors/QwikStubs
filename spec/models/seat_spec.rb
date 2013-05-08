@@ -19,10 +19,13 @@ describe Seat do
     @s.errors[:column].should be_empty
   end 
 
-  it "should be a unique combination of name, city, state" do
-    @other = FactoryGirl.build(:seat, name: @s.name, section: @s.section)
-    @other.valid?.should be_false
-    @other.errors.should_not be_empty
-  end
- 
+#  it "should be a unique combination of name, city, state" do
+#    @other = FactoryGirl.build(:seat, name: @s.name, section: @s.section)
+#    @other.valid?.should be_false
+#    @other.errors.should_not be_empty
+#    @section = FactoryGirl.create(:section)
+#    @other.section = @section
+#    @other.valid?.should be_true
+#    @other.errors.should be_empty
+#  end 
 end
