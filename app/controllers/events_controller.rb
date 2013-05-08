@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   respond_to :json
 
   def index
-    if params
+    if params.index :page
       respond_with Event.paginate filter_p(params, :page, :per_page, :order)
     else
       respond_with Event.all
@@ -46,5 +46,7 @@ class EventsController < ApplicationController
     
   end
   
-  def filter 
+  def filter_p(hash, *keys)
+    hash.select { |k, v| keys.index(k) != nil }  
+  end
 end
