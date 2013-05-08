@@ -1,10 +1,11 @@
 @venue = Venue.find_by_name("The Constructors Arena")
+@campbell = Venue.find_by_name("UCSB Campbell Hall")
 
 Event.create!({:name=>"Young the Giant", :month=>"Apr", :day=>"25", :year=>"2013", :time=>"7:00pm", :venue=>@venue, 
   :description=>"Young the Giant, a band based out of Irvine, CA, travels across the seven continents on their first World Tour.", :date=>Date.new(2013, 4, 25) })
 
 
-Event.create!({:name=>"Jared and the Pussycats", :month=>"Apr", :day=>"24", :year=>"2013", :time=>"1:00pm", :venue=>@venue, 
+Event.create!({:name=>"Jared and the Pussycats", :month=>"Apr", :day=>"24", :year=>"2013", :time=>"1:00pm", :venue=>@campbell, 
   :description=>"Jared Roesch debuts his new music for the 2013 season by playing with actual, LIVE cats!", :date=>Date.new(2013, 4, 24)})
   
 Event.create!({:name=>"The Beatles", :month=>"Apr", :day=>"25", :year=>"2013", :time=>"10:00pm", :venue=>@venue, 
