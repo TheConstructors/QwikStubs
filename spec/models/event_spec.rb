@@ -60,9 +60,7 @@ describe Event do
     before(:each) do
       @venue = FactoryGirl.create(:venue)
       @sec = FactoryGirl.create(:section, venue: @venue)
-      @seat1 = FactoryGirl.create(:seat, section: @sec)
-      @seat2 = FactoryGirl.create(:seat, section: @sec)
-      @seat3 = FactoryGirl.create(:seat, section: @sec)
+      @seat1 = FactoryGirl.create(:seat, section: @sec, quality: 1, row: 1, column: 0)
       @e = FactoryGirl.create(:event, venue: @venue, promoter: @promoter)      
     end
 

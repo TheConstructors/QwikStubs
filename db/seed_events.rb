@@ -1,4 +1,4 @@
-@venue = Venue.find_by_name("UCSB Campbell Hall")
+@venue = Venue.find_by_name("The Constructors Arena")
 
 Event.create!({:name=>"Young the Giant", :month=>"Apr", :day=>"25", :year=>"2013", :time=>"7:00pm", :venue=>@venue, 
   :description=>"Young the Giant, a band based out of Irvine, CA, travels across the seven continents on their first World Tour.", :date=>Date.new(2013, 4, 25) })
