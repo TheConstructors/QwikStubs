@@ -23,14 +23,13 @@ class Qwikstubs.Routers.Events extends Backbone.Router
     })
   
   search: (query) ->
-    @collection.url = "/api/search/events?search=#{query}"
-    @collection.fetch({
-      success: (collection) ->
-        @eventIndex = new Qwikstubs.Views.EventsIndex(collection: collection)
-        console.log(@eventIndex)
-        $('#container').html(@eventIndex.render().el)
-    })
-
+    @collection.searchEvents(query)
+    # @collection.fetch({
+    #        success: (collection) ->
+    #          @eventIndex = new Qwikstubs.Views.EventsIndex(collection: collection)
+    #          $('#container').html(@eventIndex.render().el)
+    #    })
+    
   show: (id) ->
     @collection.fetch({
       success: (@collection) ->

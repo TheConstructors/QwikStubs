@@ -34,7 +34,15 @@ class Qwikstubs.Collections.Events extends Backbone.Collection
     else
       $('#previous-page').addClass("disabled")
   
-      
+  searchEvents: (query) ->
+    @url = "/api/search/events?search=#{query}"
+    @fetch({
+      success: (collection) ->
+        @eventIndex = new Qwikstubs.Views.EventsIndex(collection: collection)
+        $('#container').html(@eventIndex.render().el)
+        collection.fetch(reset:true)
+    })
+
   # showEvent: ->
   #     console.log(@model)
   #     Backbone.history.navigate("events/#{@model.id}", true)
