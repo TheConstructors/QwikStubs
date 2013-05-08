@@ -15,8 +15,6 @@ class Qwikstubs.Routers.Events extends Backbone.Router
 
   
   index: ->
-    @collection.sortVar = "date"
-    @collection.sort()
     @collection.fetch({
       success: (collection) ->
         collection.currentPage()
