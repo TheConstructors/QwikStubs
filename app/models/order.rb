@@ -65,19 +65,19 @@ class Order
     true
   end
 
-  def release_event
+  def trigger_release
     channel_id = event.id.to_s
     data = event_seats
     Pusher.trigger(channel_id, 'order:release', data)
   end
 
-  def reserve_event
+  def trigger_reserve
     channel_id = event.id.to_s
     data = event_seats
     Pusher.trigger(channel_id, 'order:reserve', data)
   end
 
-  def purchase_event
+  def trigger_purchase
     channel_id = event.id.to_s
     data = events_seats
     Pusher.trigger(channel_id, 'order:purchase', data)
