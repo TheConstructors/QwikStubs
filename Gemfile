@@ -61,6 +61,8 @@ group :development, :test do
   # Coveralls
   gem 'coveralls', :require => false
 
+  gem "sunspot-rails-tester", "~> 1.0.0"
+
  end
 
 # Gemfile
