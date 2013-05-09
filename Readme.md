@@ -32,4 +32,4 @@ do searchable
 end
 ```
 
-block, then you need to also perform a ```bundle exec rake sunspot:reindex```. 
+block inside of one of the models, then you need to also perform a ```bundle exec rake sunspot:reindex```. 
