@@ -20,3 +20,16 @@ style guides also.
 * Spork
 * Travis-CI
 * Coveralls
+
+## Sunspot (Solr) Configuration
+First, you need to start the Sunspot:Solr server to be running in the background. This can be performed with the ```bundle exec rake sunspot:solr:start``` command. Then, if you have not indexed before, or you make changes to something in a 
+
+```ruby
+do searchable 
+  
+  ...
+
+end
+```
+
+block, then you need to also perform a ```bundle exec rake sunspot:reindex```. 
