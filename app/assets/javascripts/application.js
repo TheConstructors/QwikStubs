@@ -15,7 +15,7 @@
 //= require twitter/bootstrap
 //= require underscore
 //= require backbone
-//= require pusher
+//= require pusher.min
 //= require qwikstubs
 //= require_tree ../templates
 //= require_tree ./models
