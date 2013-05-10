@@ -101,8 +101,10 @@ describe Event do
     it "should create groups for all seats not sold for event" do
       EventSection.all.size.should == 1
       EventSeat.all.size.should == 100
-      #@e.generate_groups().should == true
-      #Groups.all.should == 10 
+      @e.generate_groups().should == true
+      @groups = Group.all
+      @groups.size.should == 10 
+      @groups.first.event_seats.size.should == 10
     end
   end
 end

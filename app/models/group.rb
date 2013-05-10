@@ -1,6 +1,7 @@
 class Group
   include ApplicationModel
   key :size, Integer
+  key :row, Integer
 
   belongs_to :event
   has_many :event_seats

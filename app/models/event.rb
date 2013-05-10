@@ -93,16 +93,34 @@ class Event
   has_many :event_sections
   #has_many :appearance
 
+
+
   def generate_groups()
     if(Group.where(event_id: self.id).exists?)
       false
     else
       seats = nil
       self.event_sections.each do |section|
-        return EventSeat.where(event_id: self.id).all
-        
+        EventSeat.where(event_section_id: section.id).all.each do |event_seat|
+          if(Group.where(row: event_seat.seat.row).exists?)
+            @group = Group.where(row: event_seat.seat.row).all.first
+            event_seat.group = @group
+            event_seat.save()
+            @group.size += 1
+            @group.reload
+            @group.save()
+          else
+            @group = Group.create!(size: 0, event: self, row: event_seat.seat.row)
+            event_seat.group = @group
+            event_seat.save()
+            @group.reload
+            @group.size = 1
+            @group.save()
+            #return Group.where(size: 1).exists? #(row: event_seat.seat.row).all
+          end
+        end
       end
-      
+      true
     end
   end
 
