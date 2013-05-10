@@ -12,8 +12,8 @@
 		  <table class="table table-hover table-condensed">
 			  <thead>
 				  <tr class="muted">
-					  <th id="sort-date" style="cursor:pointer;">Date <i class="icon-chevron-down" style="visibility:visible;"></i></th>		
-					  <th id="sort-name" style="cursor:pointer;">Event <i class="icon-chevron-down" style="visibility:hidden;"></i></th>
+					  <th id="sort-date" style="cursor:pointer;">Date &#9660;</th>		
+					  <th id="sort-name" style="cursor:pointer;">Event</th>
 		      </tr>
 			  </thead>
 			  <tbody id="list_event">

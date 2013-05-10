@@ -5,6 +5,7 @@ Qwikstubs::Application.routes.draw do
     resources :venues
     resources :events
     get '/events/seats/:id' => 'events#seats'
+    get '/search/events' => 'events#search'
   end
 
 

@@ -10,8 +10,9 @@ class Order
   #validates_randomness_of :order_number (?)
   
   #Relationships
-  has_many :event_seat
+  has_many :event_seats
   belongs_to :billing_info
+  belongs_to :event
 
   # add randomization to this later
   def self.generateOrderNumber # may have race condition if parallelizing
@@ -62,5 +63,24 @@ class Order
       seat.save()
     }
     true
+  end
+  
+  def seat_data
+    event_seats #.map { |e| e.id } 
+  end
+
+  def trigger_release
+    channel_id = event.id.to_s
+    Pusher.trigger(channel_id, 'order:release', seat_data)
+  end
+
+  def trigger_reserve
+    channel_id = event.id.to_s
+    Pusher.trigger(channel_id, 'order:reserve', seat_data)
+  end
+
+  def trigger_purchase
+    channel_id = event.id.to_s
+    Pusher.trigger(channel_id, 'order:purchase', seat_data)
   end
 end
