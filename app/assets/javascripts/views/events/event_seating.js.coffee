@@ -36,4 +36,5 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
 
   reserveSeat: (data) ->
     console.log("Draw seat!")
+    console.log(data)
   
