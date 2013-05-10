@@ -1,10 +1,16 @@
 class Qwikstubs.Views.EventsSeating extends Backbone.View
+  template: JST['events/event_seating']
+
   events:
     'order:reserve': 'reserveSeat'
 
   tagName: 'div'
+    #render: ->
+    #$(@el).attr('id', 'event_seating')
+    #@
+
   render: ->
-    $(@el).attr('id', 'event_seating')
+    $(@el).html(@template())
     @
 
   draw: ->
@@ -34,7 +40,15 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
       })
     @layer.add(circle)
 
-  reserveSeat: (data) ->
+  reserveSeats: (data) ->
     console.log("Draw seat!")
     console.log(data)
+
+  releaseSeats: (data) ->
+    console.log(data)
+
+  purchaseSeats: (data) ->
+    console.log(data)
+
+
   
