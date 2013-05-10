@@ -4,6 +4,7 @@ Qwikstubs::Application.routes.draw do
   scope "api" do
     resources :venues
     resources :events
+    get '/search/events' => 'events#search'
   end
 
 

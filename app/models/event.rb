@@ -18,14 +18,14 @@ class Event
   after_save :copy_seating
 
   validate :validate_month, :validate_day, :validate_year
-  before_save :generate_date
+  #before_save :generate_date
   
   #Name and date need to be unique
   #validate format of month day and year
-  validates_uniqueness_of :name, :scope => [:date]
+  validates_uniqueness_of :name, :scope => [:month, :day, :year]
   
-  def generate_date
-    date = ""
+  def date
+    date=""
     case month
     when "Jan"
       date+="01"
@@ -94,6 +94,10 @@ class Event
   #has_many :appearance
 
 
+  searchable do
+   text :name
+   text :description
+  end
 
   def generate_groups()
     if(Group.where(event_id: self.id).exists?)
@@ -133,5 +137,4 @@ class Event
       end
     end
   end
-
 end
