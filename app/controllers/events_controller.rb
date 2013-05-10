@@ -37,9 +37,9 @@ class EventsController < ApplicationController
     @seats = []
     @event.event_sections.each do |event_section|
       event_section.event_seats.each do |event_seat|
-        event_seats.add(event_seat)
-        seats.add(events_seat.seat)
-      end 
+        @event_seats << event_seat
+        @seats << event_seat.seat
+      end  
     end
     response = { event_seats: @event_seats, seats: @seats }
     respond_with response

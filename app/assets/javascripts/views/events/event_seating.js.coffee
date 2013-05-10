@@ -1,17 +1,29 @@
 class Qwikstubs.Views.EventsSeating extends Backbone.View
 
-  #template: JST['events/show']
-  tagName: 'canvas'
-  #events:
-  #'click .purchase' : 'buyEvent'
-
-  #initialize: ->
-    #this.event.on('reset' , @render, @ )
-    #this.event.on('add' , @appendEventToList, @ )
+  tagName: 'div'
 
   render: ->
     $(@el).attr('id', 'seating_canvas')
-    #$(@el).id()
     @
 
+  draw: ->
+    console.log(model)
+    stage = new Kinetic.Stage({
+        container: 'seating_canvas'
+        width: 578
+        height: 200
+      })
+    shapesLayer = new Kinetic.Layer()
+    
+    circle = new Kinetic.Circle({
+        x: 1
+        y: 1
+        radius: 5
+        fill: 'red'
+        stroke: 'black'
+        strokeWidth: 2
+      })
+    shapesLayer.add(circle)
+
+    stage.add(shapesLayer)   
  
