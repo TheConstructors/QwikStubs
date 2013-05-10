@@ -66,7 +66,7 @@ class Order
   end
   
   def seat_data
-    event_seats #.map { |e| e.id } 
+    event.event_sections.first.event_seats.take(5).map { |e| e.id }
   end
 
   def trigger_release
