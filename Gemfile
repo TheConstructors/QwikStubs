@@ -61,8 +61,14 @@ group :development, :test do
   # Coveralls
   gem 'coveralls', :require => false
 
+  gem "sunspot-rails-tester", "~> 1.0.0"
+
  end
 
 # Gemfile
 gem 'mocha', :require => false
 
+# Sunspot
+gem 'sunspot_rails', '~> 2.0'
+gem 'sunspot_solr'
+gem 'sunspot_mongo_mapper', :github => 'bkeepers/sunspot_mongo_mapper'

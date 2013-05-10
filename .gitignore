@@ -25,8 +25,13 @@
 Gemfile.lock
 .*.swo
 
+log/*
+
 # coveralls
 coverage/*
 coverage/.*
 coverage/.last_run.json
 coverage/.resultset.json
+
+# Solr
+solr/*
