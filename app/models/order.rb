@@ -64,22 +64,23 @@ class Order
     }
     true
   end
+  
+  def seat_data
+    event_seats #.map { |e| e.id } 
+  end
 
   def trigger_release
     channel_id = event.id.to_s
-    data = event_seats
-    Pusher.trigger(channel_id, 'order:release', data)
+    Pusher.trigger(channel_id, 'order:release', seat_data)
   end
 
   def trigger_reserve
     channel_id = event.id.to_s
-    data = event_seats
-    Pusher.trigger(channel_id, 'order:reserve', data)
+    Pusher.trigger(channel_id, 'order:reserve', seat_data)
   end
 
   def trigger_purchase
     channel_id = event.id.to_s
-    data = events_seats
-    Pusher.trigger(channel_id, 'order:purchase', data)
+    Pusher.trigger(channel_id, 'order:purchase', seat_data)
   end
 end

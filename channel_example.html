@@ -12,7 +12,7 @@
     WEB_SOCKET_DEBUG = true;
 
     var pusher = new Pusher('733adbf86cbebd0e4c63');
-    var channel = pusher.subscribe("51889eddc4cf00f8e00005fa");
+    var channel = pusher.subscribe("518c57ddc4cf0065c10005a1");
     channel.bind('order:reserve', function(data) {
       alert(data);
     });
