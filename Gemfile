@@ -66,3 +66,10 @@ group :development, :test do
 # Gemfile
 gem 'mocha', :require => false
 
+# Pusher
+gem 'pusher'
+
+# Sunspot
+gem 'sunspot_rails', '~> 2.0'
+gem 'sunspot_solr'
+gem 'sunspot_mongo_mapper', :github => 'bkeepers/sunspot_mongo_mapper'

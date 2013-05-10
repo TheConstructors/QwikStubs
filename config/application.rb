@@ -7,6 +7,7 @@ require "action_mailer/railtie"
 require "active_resource/railtie"
 require "sprockets/railtie"
 require "rails/test_unit/railtie"
+require "pusher"
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -69,5 +70,9 @@ module Qwikstubs
     config.generators do |g|
       g.orm :mongo_mapper
     end
+
+    Pusher.app_id = 42953
+    Pusher.key = '733adbf86cbebd0e4c63'
+    Pusher.secret = 'c5dc48be950df569bb0c'
   end
 end
