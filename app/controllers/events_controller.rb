@@ -54,7 +54,16 @@ class EventsController < ApplicationController
     end
     respond_with @seats.as_json
   end
-  
+
+  def sections
+    @event = Event.find(params[:id])
+    @sections = []
+    @event.event_sections.each do |event_section|
+      @sections << {id: event_section.id, venue_section: event_section.section, event_section: event_section}
+    end
+    respond_with @sections.as_json
+  end
+
   def order_reserve_mock
     @event = Event.find(params[:id])
     order_num = (Order.last && Order.last.order_number) || 1
@@ -81,3 +90,4 @@ class EventsController < ApplicationController
   def edit 
   end
 end
+
