@@ -20,8 +20,8 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
     console.log(@)
  
   draw_seat: (seat) -> 
-    console.log(@)
-    console.log(seat)
+    # console.log(@)
+    # console.log(seat)
     circle = new Kinetic.Circle({
         x: seat.get("venue_seat").xpos
         y: seat.get("venue_seat").ypos
