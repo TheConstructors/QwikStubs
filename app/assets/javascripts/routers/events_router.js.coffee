@@ -34,12 +34,13 @@ class Qwikstubs.Routers.Events extends Backbone.Router
   seating: (id) ->
     @collection = new Qwikstubs.Collections.Seats()
     @collection.url = "/api/events/seats/" + id
-    @channel = Qwikstubs.Pusher.subscribe(id)
+    channel = Qwikstubs.Pusher.subscribe(id)
     @collection.fetch({
       success: (@collection) ->
         view = new Qwikstubs.Views.EventsSeating(collection: @collection)
-        @channel.on('order:reserve', (data) ->
-          view.trigger('order:reserve', data)
+        channel.bind('order:reserve', (data) ->
+          #view.trigger('order:reserve', data))
+          view.reserveSeat(data))
         $('#container').html(view.render().el)
         view.draw()
       })
