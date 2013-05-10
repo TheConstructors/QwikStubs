@@ -1,4 +1,6 @@
 class Qwikstubs.Views.EventsSeating extends Backbone.View
+  events:
+    'order:reserve': 'reserveSeat'
 
   tagName: 'div'
   render: ->
@@ -31,4 +33,7 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
         strokeWidth: 2
       })
     @layer.add(circle)
+
+  reserveSeat: (data) ->
+    console.log("Draw seat!")
   
