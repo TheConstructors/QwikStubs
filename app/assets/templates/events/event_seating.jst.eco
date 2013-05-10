@@ -1,0 +1,21 @@
+<div id="event_seating">
+</div>
+
+<div id="reserve-seats" class="btn">Reserve</div>
+<div id="release-seats" class="btn">Release</div>
+
+<script>
+    $(function() {
+        var id = window.location.hash.split('/').pop();
+
+        var event = new Qwikstubs.Models.Event({ id: id });
+
+        $('#reserve-seats').bind('click', function() {
+            event.reserveSeats(5);
+        });
+
+        $('#release-seats').bind('click', function() {
+            event.releaseSeats(5);
+        });
+    }); 
+</script>
