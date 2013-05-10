@@ -54,6 +54,22 @@ class EventsController < ApplicationController
     end
     respond_with @seats.as_json
   end
+  
+  def order_reserve_mock
+    @event = Event.find(params[:id])
+    order_num = (Order.last && Order.last.order_number) || 1
+    @order = Order.new event: @event, order_number: order_num, total_amount: params[:total]
+    @order.trigger_reserve
+    respond_with ""
+  end
+
+  def order_release_mock
+    @event = Event.find(params[:id])
+    order_num = (Order.last && Order.last.order_number) || 1
+    @order = Order.new event: @event, order_number: order_num, total_amount: params[:total]
+    @order.trigger_release
+    respond_with ""
+  end
 
   def delete
   end
