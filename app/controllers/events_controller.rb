@@ -36,16 +36,14 @@ class EventsController < ApplicationController
     @seats = []
     @event.event_sections.each do |event_section|
       event_section.event_seats.each do |event_seat|
-        seat = {"venue_seat" => event_seat.seat, "event_seat" => event_seat}
+        seat = { venue_seat: event_seat.seat, event_seat: event_seat }
         @seats << seat
       end  
     end
-    response = @seats
-    respond_with response
+    respond_with @seats.as_json
   end
 
   def delete
-    
   end
   
   def new
