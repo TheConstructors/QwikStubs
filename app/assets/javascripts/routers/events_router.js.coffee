@@ -24,12 +24,11 @@ class Qwikstubs.Routers.Events extends Backbone.Router
     })
 
   seating: (id) ->
-    seats = new Qwikstubs.Collections.Seats()
-    seats.url = "/api/events/seats/" + id
-    seats.fetch({
-      success: (seats) ->
-        @model = seats.first()
-        view = new Qwikstubs.Views.EventsSeating(model: @model)
+    @collection = new Qwikstubs.Collections.Seats()
+    @collection.url = "/api/events/seats/" + id
+    @collection.fetch({
+      success: (@collection) ->
+        view = new Qwikstubs.Views.EventsSeating(collection: @collection)
         $('#container').html(view.render().el)  
         view.draw()
       })

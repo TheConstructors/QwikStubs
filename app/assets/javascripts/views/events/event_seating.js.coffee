@@ -1,29 +1,34 @@
 class Qwikstubs.Views.EventsSeating extends Backbone.View
 
   tagName: 'div'
-
   render: ->
-    $(@el).attr('id', 'seating_canvas')
+    $(@el).attr('id', 'event_seating')
     @
 
   draw: ->
-    console.log(model)
-    stage = new Kinetic.Stage({
-        container: 'seating_canvas'
+    console.log(collection)
+    
+    @stage = new Kinetic.Stage({
+        container: 'event_seating'
         width: 578
         height: 200
       })
-    shapesLayer = new Kinetic.Layer()
-    
+    @layer = new Kinetic.Layer()
+    console.log(@)
+    collection.each(@draw_seat, @)
+    @stage.add(@layer)
+    console.log(@)
+ 
+  draw_seat: (seat) -> 
+    console.log(@)
+    console.log(seat)
     circle = new Kinetic.Circle({
-        x: 1
-        y: 1
+        x: seat.get("venue_seat").xpos
+        y: seat.get("venue_seat").ypos
         radius: 5
         fill: 'red'
         stroke: 'black'
         strokeWidth: 2
       })
-    shapesLayer.add(circle)
-
-    stage.add(shapesLayer)   
- 
+    @layer.add(circle)
+  

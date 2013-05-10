@@ -33,15 +33,14 @@ class EventsController < ApplicationController
   
   def seats
     @event = Event.find(params[:id])
-    @event_seats = []
     @seats = []
     @event.event_sections.each do |event_section|
       event_section.event_seats.each do |event_seat|
-        @event_seats << event_seat
-        @seats << event_seat.seat
+        seat = {"venue_seat" => event_seat.seat, "event_seat" => event_seat}
+        @seats << seat
       end  
     end
-    response = { event_seats: @event_seats, seats: @seats }
+    response = @seats
     respond_with response
   end
 
