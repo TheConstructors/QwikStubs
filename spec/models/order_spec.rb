@@ -46,6 +46,7 @@ describe Order do
 
   describe "reserveSeats" do
     before (:each) do
+      @event = FactoryGirl.create(:event)
       @seat1 = FactoryGirl.create(:event_seat, status: EventSeat::Status::UNSOLD)
       @seat2 = FactoryGirl.create(:event_seat, status: EventSeat::Status::UNSOLD)
       @seat3 = FactoryGirl.create(:event_seat, status: EventSeat::Status::UNSOLD)
@@ -56,7 +57,7 @@ describe Order do
       @seats.each { |seat|
         seat.status.should == EventSeat::Status::UNSOLD
       }
-      @order = Order.new()
+      @order = FactoryGirl.build(:order, event: @event)
       @order.reserveSeats(@seats).should == true
       @seats2 = EventSeat.all
       @seats2.each { |seat|
@@ -67,7 +68,7 @@ describe Order do
     it "should return false with a seat marked sold or reserved" do
       @seat4 = FactoryGirl.create(:event_seat, status: EventSeat::Status::SOLD)
       @seats = EventSeat.all
-      @order = Order.new()
+      @order = FactoryGirl.build(:order, event: @event)
       @order.reserveSeats(@seats).should == false
       @seat4.status = EventSeat::Status::RESERVED
       @seat4.save()
@@ -78,6 +79,7 @@ describe Order do
 
   describe "purchaseSeats" do
     before (:each) do
+      @event = FactoryGirl.create(:event)
       @seat1 = FactoryGirl.create(:event_seat, status: EventSeat::Status::RESERVED)
       @seat2 = FactoryGirl.create(:event_seat, status: EventSeat::Status::RESERVED)
       @seat3 = FactoryGirl.create(:event_seat, status: EventSeat::Status::RESERVED)
@@ -88,7 +90,7 @@ describe Order do
       @seats.each { |seat|
         seat.status.should == EventSeat::Status::RESERVED
       }
-      @order = Order.new()
+      @order = FactoryGirl.build(:order, event: @event)
       @order.purchaseSeats(@seats).should == true
       @seats2 = EventSeat.all
       @seats2.each { |seat|
@@ -99,7 +101,7 @@ describe Order do
     it "should return false with a seat marked sold or unsold" do
       @seat4 = FactoryGirl.create(:event_seat, status: EventSeat::Status::SOLD)
       @seats = EventSeat.all
-      @order = Order.new()
+      @order = FactoryGirl.build(:order, event: @event)
       @order.purchaseSeats(@seats).should == false
       @seat4.status = EventSeat::Status::UNSOLD
       @seat4.save()
@@ -110,6 +112,7 @@ describe Order do
 
   describe "releaseSeats" do
     before (:each) do
+      @event = FactoryGirl.create(:event)
       @seat1 = FactoryGirl.create(:event_seat, status: EventSeat::Status::RESERVED)
       @seat2 = FactoryGirl.create(:event_seat, status: EventSeat::Status::RESERVED)
       @seat3 = FactoryGirl.create(:event_seat, status: EventSeat::Status::RESERVED)
@@ -120,7 +123,7 @@ describe Order do
       @seats.each { |seat|
         seat.status.should == EventSeat::Status::RESERVED
       }
-      @order = Order.new()
+      @order = FactoryGirl.build(:order, event: @event)
       @order.releaseSeats(@seats).should == true
       @seats2 = EventSeat.all
       @seats2.each { |seat|
@@ -131,7 +134,7 @@ describe Order do
     it "should return false with a seat marked sold or unsold" do
       @seat4 = FactoryGirl.create(:event_seat, status: EventSeat::Status::SOLD)
       @seats = EventSeat.all
-      @order = Order.new()
+      @order = FactoryGirl.build(:order, event: @event)
       @order.releaseSeats(@seats).should == false
       @seat4.status = EventSeat::Status::UNSOLD
       @seat4.save()

@@ -7,6 +7,7 @@ class Order
   validates_presence_of :order_number
   validates_presence_of :total_amount
   validates :order_number, :uniqueness => true
+  validates_presence_of :event
   #validates_randomness_of :order_number (?)
   
   #Relationships
@@ -34,6 +35,7 @@ class Order
       seat.order = self
       seat.save()
     }
+    trigger_reserve(seats)
     true
   end
 
@@ -48,6 +50,7 @@ class Order
       seat.order = self
       seat.save()
     }
+    trigger_purchase(seats)
     true
   end
 
@@ -62,25 +65,22 @@ class Order
       seat.order = self
       seat.save()
     }
+    trigger_release(seats)
     true
   end
   
-  def seat_data
-    event.event_sections.first.event_seats.take(5).map { |e| e.id }
+  def trigger_release(seats)
+    channel_id = event.id.to_s
+    Pusher.trigger(channel_id, 'order:release', seats)
   end
 
-  def trigger_release
+  def trigger_reserve(seats)
     channel_id = event.id.to_s
-    Pusher.trigger(channel_id, 'order:release', seat_data)
+    Pusher.trigger(channel_id, 'order:reserve', seats)
   end
 
-  def trigger_reserve
+  def trigger_purchase(seats)
     channel_id = event.id.to_s
-    Pusher.trigger(channel_id, 'order:reserve', seat_data)
-  end
-
-  def trigger_purchase
-    channel_id = event.id.to_s
-    Pusher.trigger(channel_id, 'order:purchase', seat_data)
+    Pusher.trigger(channel_id, 'order:purchase', seats)
   end
 end
