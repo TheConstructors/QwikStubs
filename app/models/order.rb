@@ -24,7 +24,22 @@ class Order
     end
   end
 
-  def reserveSeats(seats)
+  def trigger_release(seats)
+    channel_id = event.id.to_s
+    Pusher.trigger(channel_id, 'order:release', seats)
+  end
+
+  def trigger_reserve(seats)
+    channel_id = event.id.to_s
+    Pusher.trigger(channel_id, 'order:reserve', seats)
+  end
+
+  def trigger_purchase(seats)
+    channel_id = event.id.to_s
+    Pusher.trigger(channel_id, 'order:purchase', seats)
+  end
+
+  def reserve_seats(seats)
     seats.each { |seat|
       if(seat.status != EventSeat::Status::UNSOLD)
         return false
@@ -39,7 +54,7 @@ class Order
     true
   end
 
-  def purchaseSeats(seats)
+  def purchase_seats(seats)
     seats.each { |seat|
       if(seat.status != EventSeat::Status::RESERVED)
         return false
@@ -54,7 +69,7 @@ class Order
     true
   end
 
-  def releaseSeats(seats)
+  def release_seats(seats)
     seats.each { |seat|
       if(seat.status != EventSeat::Status::RESERVED)
         return false
@@ -67,20 +82,5 @@ class Order
     }
     trigger_release(seats)
     true
-  end
-  
-  def trigger_release(seats)
-    channel_id = event.id.to_s
-    Pusher.trigger(channel_id, 'order:release', seats)
-  end
-
-  def trigger_reserve(seats)
-    channel_id = event.id.to_s
-    Pusher.trigger(channel_id, 'order:reserve', seats)
-  end
-
-  def trigger_purchase(seats)
-    channel_id = event.id.to_s
-    Pusher.trigger(channel_id, 'order:purchase', seats)
   end
 end
