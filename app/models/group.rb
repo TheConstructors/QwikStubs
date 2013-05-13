@@ -2,6 +2,8 @@ class Group
   include ApplicationModel
   key :size, Integer
   key :row, Integer
+  key :quality, Integer
+  key :reserved, Integer
 
   belongs_to :event
   has_many :event_seats
