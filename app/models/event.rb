@@ -18,14 +18,14 @@ class Event
   after_save :copy_seating
 
   validate :validate_month, :validate_day, :validate_year
-  before_save :generate_date
+  #before_save :generate_date
   
   #Name and date need to be unique
   #validate format of month day and year
-  validates_uniqueness_of :name, :scope => [:date]
+  validates_uniqueness_of :name, :scope => [:month, :day, :year]
   
-  def generate_date
-    date = ""
+  def date
+    date=""
     case month
     when "Jan"
       date+="01"
@@ -99,10 +99,26 @@ class Event
     else
       seats = nil
       self.event_sections.each do |section|
-        return EventSeat.where(event_id: self.id).all
-        
+        EventSeat.where(event_section_id: section.id).all.each do |event_seat|
+          if(Group.where(row: event_seat.seat.row).exists?)
+            @group = Group.where(row: event_seat.seat.row).all.first
+            event_seat.group = @group
+            event_seat.save()
+            @group.size += 1
+            @group.reload
+            @group.save()
+          else
+            @group = Group.create!(size: 0, event: self, row: event_seat.seat.row)
+            event_seat.group = @group
+            event_seat.save()
+            @group.reload
+            @group.size = 1
+            @group.save()
+            #return Group.where(size: 1).exists? #(row: event_seat.seat.row).all
+          end
+        end
       end
-      
+      true
     end
   end
 

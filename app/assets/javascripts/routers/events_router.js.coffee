@@ -27,8 +27,8 @@ class Qwikstubs.Routers.Events extends Backbone.Router
     @collection.fetch({
       success: (collection) ->
         @eventIndex = new Qwikstubs.Views.EventsIndex(collection: collection)
-        console.log(@eventIndex)
         $('#container').html(@eventIndex.render().el)
+        collection.fetch(reset:true)
     })
 
   seating: (id) ->
@@ -56,8 +56,6 @@ class Qwikstubs.Routers.Events extends Backbone.Router
             view.draw()
         })
       })
-
-
 
   show: (id) ->
     @collection.fetch({
