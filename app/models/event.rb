@@ -1,3 +1,5 @@
+require 'pry'
+
 class Event
   include ApplicationModel
   
@@ -103,26 +105,20 @@ class Event
     if(Group.where(event_id: self.id).exists?)
       false
     else
-      seats = nil
-      self.event_sections.each do |section|
-        EventSeat.where(event_section_id: section.id).all.each do |event_seat|
-          if(Group.where(row: event_seat.seat.row).exists?)
-            @group = Group.where(row: event_seat.seat.row).all.first
-            event_seat.group = @group
-            event_seat.save()
-            @group.size += 1
-            @group.reload
-            @group.save()
-          else
-            @group = Group.create!(size: 0, event: self, row: event_seat.seat.row)
-            event_seat.group = @group
-            event_seat.save()
-            @group.reload
-            @group.size = 1
-            @group.save()
-            #return Group.where(size: 1).exists? #(row: event_seat.seat.row).all
-          end
+      rows = EventSeat.grouped_by()
+      size = 0
+      #pry self
+      rows.each do |row|
+        #size += row["value"]["seats"].size
+        @group = Group.create!(size:0, event: self, row: row["value"]["row"])
+        row["value"]["seats"].each do |event_seat|
+          event_seat = EventSeat.find_by_id(event_seat["_id"])
+          event_seat.group = @group
+          event_seat.save()
+          @group.size += 1
         end
+        @group.reload
+        @group.save()
       end
       true
     end
@@ -133,7 +129,9 @@ class Event
     @venue.sections.each do |section|
       @es = EventSection.create(section: section, event: self)
       section.seats.each do |seat|
-        EventSeat.create(event_section: @es, seat: seat, status: EventSeat::Status::UNSOLD)
+        EventSeat.create(event_section: @es, seat: seat, 
+                         status: EventSeat::Status::UNSOLD,
+                         row: seat.row, column: seat.column)
       end
     end
   end
