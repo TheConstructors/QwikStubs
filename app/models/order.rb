@@ -83,4 +83,8 @@ class Order
     trigger_release(seats)
     true
   end
+
+  def find_seats(num_seats)
+    
+  end
 end

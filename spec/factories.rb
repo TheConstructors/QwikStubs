@@ -92,6 +92,7 @@ FactoryGirl.define do
 
   factory :group do
     size 0
+    reserved Group::Reserved::NO
     event 
   end
 end

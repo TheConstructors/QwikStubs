@@ -1,9 +1,15 @@
 class Group
   include ApplicationModel
+
+  module Reserved
+    NO = 0
+    YES = 1
+  end
+
   key :size, Integer
   key :row, Integer
   key :quality, Integer
-  key :reserved, Integer
+  key :reserved, Integer, :default => Reserved::NO
 
   belongs_to :event
   has_many :event_seats

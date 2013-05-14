@@ -143,4 +143,15 @@ describe Order do
     end
   end
 
+  describe "find_seats" do 
+    before(:each) do
+
+    end
+
+    it "should return a set of seats that are reserved" do
+
+    end
+
+  end
+
 end
