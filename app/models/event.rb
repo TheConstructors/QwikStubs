@@ -100,7 +100,6 @@ class Event
       false
     else
       rows = EventSeat.grouped_by()
-      size = 0
       #pry self
       rows.each do |row|
         #size += row["value"]["seats"].size
@@ -113,8 +112,12 @@ class Event
             @group.size += 1
           end
         end
+        size = @group.size
         @group.reload
-        @group.save()
+        @group.size = size
+        if !@group.save()
+          return false
+        end
       end
       true
     end

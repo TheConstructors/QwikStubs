@@ -87,7 +87,7 @@ class Order
   def find_seats(num_seats)
     update = false
     while update != true
-      @group = Group.where(reserved: 0, event_id: event.id).sort(:quality).fields(:id).all.first
+      @group = Group.where(reserved: 0, event_id: event.id, :size.gte => num_seats).sort(:quality).all.first
       update = Group.set({_id: @group.id, reserved: 0}, {reserved: 1})
       update = update["updatedExisting"]
     end
@@ -96,7 +96,18 @@ class Order
     seats.each do |seat|
       seat.group = nil
       seat.status = EventSeat::Status::RESERVED
+      seat.save()
     end
-    false
+    @group.reload
+    if @group.size <= num_seats
+      @group.delete()
+    else
+      @group.size = @group.event_seats.size
+      @group.reserved = 0
+      if !@group.save()
+        false
+      end
+    end
+    seats
   end
 end

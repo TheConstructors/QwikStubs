@@ -165,14 +165,17 @@ describe Order do
       @groups.size.should == 10 
       @order = FactoryGirl.build(:order, event: @e)
       seats = @order.find_seats(4)
-      seats.should == false
-      #columns = []
-      #seats.each do |seat|
-      #  columns << seat.column
-      #end
-      #columns
-
-
+      seats.size.should == 4
+      columns = []
+      seats.each do |seat|
+        columns << seat.column
+      end
+      columns.size.should == 4
+      value = columns.first
+      columns.each do |column|
+        column.should == value
+        value += 1
+      end
     end
 
   end
