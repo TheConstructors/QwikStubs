@@ -107,9 +107,11 @@ class Event
         @group = Group.create!(size:0, event: self, row: row["value"]["row"])
         row["value"]["seats"].each do |event_seat|
           event_seat = EventSeat.find_by_id(event_seat["_id"])
-          event_seat.group = @group
-          event_seat.save()
-          @group.size += 1
+          if event_seat != nil
+            event_seat.group = @group
+            event_seat.save()
+            @group.size += 1
+          end
         end
         @group.reload
         @group.save()
