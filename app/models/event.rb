@@ -1,3 +1,5 @@
+require 'pry'
+
 class Event
   include ApplicationModel
   
@@ -18,14 +20,14 @@ class Event
   after_save :copy_seating
 
   validate :validate_month, :validate_day, :validate_year
-  before_save :generate_date
+  #before_save :generate_date
   
   #Name and date need to be unique
   #validate format of month day and year
-  validates_uniqueness_of :name, :scope => [:date]
+  validates_uniqueness_of :name, :scope => [:month, :day, :year]
   
-  def generate_date
-    date = ""
+  def date
+    date=""
     case month
     when "Jan"
       date+="01"
@@ -93,16 +95,32 @@ class Event
   has_many :event_sections
   #has_many :appearance
 
+
+  searchable do
+   text :name
+   text :description
+  end
+
   def generate_groups()
     if(Group.where(event_id: self.id).exists?)
       false
     else
-      seats = nil
-      self.event_sections.each do |section|
-        return EventSeat.where(event_id: self.id).all
-        
+      rows = EventSeat.grouped_by()
+      size = 0
+      #pry self
+      rows.each do |row|
+        #size += row["value"]["seats"].size
+        @group = Group.create!(size:0, event: self, row: row["value"]["row"])
+        row["value"]["seats"].each do |event_seat|
+          event_seat = EventSeat.find_by_id(event_seat["_id"])
+          event_seat.group = @group
+          event_seat.save()
+          @group.size += 1
+        end
+        @group.reload
+        @group.save()
       end
-      
+      true
     end
   end
 
@@ -111,9 +129,10 @@ class Event
     @venue.sections.each do |section|
       @es = EventSection.create(section: section, event: self)
       section.seats.each do |seat|
-        EventSeat.create(event_section: @es, seat: seat, status: EventSeat::Status::UNSOLD)
+        EventSeat.create(event_section: @es, seat: seat, 
+                         status: EventSeat::Status::UNSOLD,
+                         row: seat.row, column: seat.column)
       end
     end
   end
-
 end

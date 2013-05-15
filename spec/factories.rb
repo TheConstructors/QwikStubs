@@ -22,6 +22,8 @@ FactoryGirl.define do
   factory :event_seat do
     event_section
     seat
+    row 0 
+    column 0
     status EventSeat::Status::UNSOLD
   end
   
@@ -38,8 +40,8 @@ FactoryGirl.define do
 
   factory :seat do
     sequence(:name) { |n| "1#{n}A" }
-    row "A" 
-    sequence(:column) { |n| "1#{n}" }
+    sequence(:row) { |n| n }  
+    sequence(:column) { |n| n }
     section
   end
 
