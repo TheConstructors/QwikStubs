@@ -145,11 +145,37 @@ describe Order do
 
   describe "find_seats" do 
     before(:each) do
-
+      @venue = FactoryGirl.create(:venue)
+      @sec = FactoryGirl.create(:section, venue: @venue)
+      rows = 0..9
+      columns = 0..9
+      rows.each do |r|
+        columns.each do |c|
+          FactoryGirl.create(:seat, section: @sec, quality: 1, row: r, column: c)
+        end
+      end
+      @e = FactoryGirl.create(:event, venue: @venue, promoter: @promoter)      
+      @e.generate_groups()
     end
 
     it "should return a set of seats that are reserved" do
-
+      EventSection.all.size.should == 1
+      EventSeat.all.size.should == 100
+      @groups = Group.all
+      @groups.size.should == 10 
+      @order = FactoryGirl.build(:order, event: @e)
+      seats = @order.find_seats(4)
+      seats.size.should == 4
+      columns = []
+      seats.each do |seat|
+        columns << seat.column
+      end
+      columns.size.should == 4
+      value = columns.first
+      columns.each do |column|
+        column.should == value
+        value += 1
+      end
     end
 
   end
