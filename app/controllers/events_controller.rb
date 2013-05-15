@@ -32,7 +32,7 @@ class EventsController < ApplicationController
   end
   
   def show
-    respond_with Event.find_by_name(params[:name])
+    respond_with Event.find(params[:id])
   end
   
   def create

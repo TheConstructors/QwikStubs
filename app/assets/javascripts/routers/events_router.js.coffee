@@ -32,30 +32,35 @@ class Qwikstubs.Routers.Events extends Backbone.Router
     })
 
   seating: (id) ->
-    @collection = new Qwikstubs.Collections.Seats()
-    @collection.url = "/api/events/seats/" + id
-    channel = Qwikstubs.Pusher.subscribe(id)
-    @collection.fetch({
-      success: (@collection) ->
-        @collection2 = new Qwikstubs.Collections.Sections()
-        @collection2.url = "/api/events/sections/" + id
-        @collection2.fetch({
-          success: (@collection2) ->
-            console.log(@collection2)
-            view = new Qwikstubs.Views.EventsSeating(collection: @collection, collection2: @collection2)
-            channel.bind('order:reserve', (data) ->
-              view.reserveSeats(data))
+    @event = new Qwikstubs.Models.Event({id:id})
+    @seats = new Qwikstubs.Collections.Seats()
+    @seats.url = "/api/events/seats/" + id
+    @sections = new Qwikstubs.Collections.Sections()
+    @sections.url = "/api/events/sections/" + id
+    that = @
+    complete = () =>
+      console.log(that)
+      console.log("second")
+      view = new Qwikstubs.Views.EventsSeating(collection: that.seats, collection2: that.sections)
+      channel = Qwikstubs.Pusher.subscribe(id)
+      channel.bind('order:reserve', (data) ->
+        view.reserveSeats(data))
 
-            channel.bind('order:release', (data) ->
-              view.releaseSeats(data))
+      channel.bind('order:release', (data) ->
+        view.releaseSeats(data))
 
-            channel.bind('order:purchase', (data) ->
-              view.purchaseSeats(data))
+      channel.bind('order:purchase', (data) ->
+        view.purchaseSeats(data))
 
-            $('#container').html(view.render().el)
-            view.draw()
-        })
-      })
+      $('#container').html(view.render().el)
+      view.draw()
+
+    console.log("first")
+    success = _.after(3, complete);   
+    @event.fetch({success: success})
+    @seats.fetch({success: success})
+    @sections.fetch({success: success})
+
 
   show: (id) ->
     @collection.fetch({
