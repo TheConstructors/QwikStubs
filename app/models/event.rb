@@ -26,6 +26,11 @@ class Event
   #validate format of month day and year
   validates_uniqueness_of :name, :scope => [:month, :day, :year]
   
+  searchable do
+    text :name
+    text :description
+  end
+
   def date
     date=""
     case month
