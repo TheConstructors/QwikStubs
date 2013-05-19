@@ -1,8 +1,12 @@
 class Qwikstubs.Views.EventsSeating extends Backbone.View
   template: JST['events/event_seating']
+  
+  seats_selectable: false
+  selected_seats: []
 
   events:
-    'order:reserve': 'reserveSeat'
+    'order:reserve': 'reserveSeats'
+    'click #researve-seats': 'reserveSeats'
 
   tagName: 'div'
     #render: ->
@@ -21,8 +25,8 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
     #   })
     @
 
-  draw: ->
-    console.log(@collection)
+  load_seats: ->
+    console.log(@options.seats)
     
     @stage = new Kinetic.Stage({
         container: 'event_seating'
@@ -31,29 +35,61 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
       })
     @layer = new Kinetic.Layer()
     console.log(@)
-    @collection.each(@draw_seat, @)
+    @options.seats.each(@load_seat, @)
+    @layer.setScale(2,2)
     @stage.add(@layer)
+
+    console.log(@layer.getSize())
     console.log(@)
- 
-  draw_seat: (seat) -> 
+  
+
+
+  load_seat: (seat) -> 
     # console.log(@)
     # console.log(seat)
    # console.log(seat.get("event_seat").event_section_id)
    # console.log(collection2)
-    x = seat.get("venue_seat").xpos + @options.collection2.get(seat.get("event_seat").event_section_id).get("venue_section").xpos
-    y = seat.get("venue_seat").ypos + @options.collection2.get(seat.get("event_seat").event_section_id).get("venue_section").ypos
+    x = seat.get("venue_seat").xpos + @options.sections.get(seat.get("event_seat").event_section_id).get("venue_section").xpos
+    y = seat.get("venue_seat").ypos + @options.sections.get(seat.get("event_seat").event_section_id).get("venue_section").ypos
     circle = new Kinetic.Circle({
         x: x
         y: y
         radius: 5
-        fill: 'red'
+        fill: 'grey'
         stroke: 'black'
-        strokeWidth: 2
+        strokeWidth: 1
         id: seat.get("event_seat").id
       })
+    t = @
+    circle.on("click", () -> t.add_seat(seat.get("event_seat").id))
+    circle.on("mouseenter", () -> t.view_seat(seat.get("event_seat").id))
+    circle.on("mouseleave", () -> t.unview_seat(seat.get("event_seat").id))
     @layer.add(circle)
 
-  reserveSeats: (data) ->
+  view_seat: (id) ->
+    sid = "#" + id
+    circle = @stage.get(sid)[0]
+    circle.prevFill = circle.getFill()
+    circle.setFill('blue')
+    console.log(@stage.getSize())
+    @layer.draw()
+
+  unview_seat: (id) ->
+    sid = "#" + id
+    circle = @stage.get(sid)[0]
+    circle.setFill(circle.prevFill)
+    @layer.draw()
+
+  add_seat: (id) ->
+    if @selected_seats.indexOf(id) == -1 && @selected_seats.length < 8
+      @selected_seats.push(id)
+      console.log(@selected_seats)
+
+
+  render_selected_seats: ->
+
+
+  reserveSeats: ->
     console.log(@stage)
     console.log(@layer)
     for id in data

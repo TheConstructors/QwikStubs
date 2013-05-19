@@ -32,16 +32,14 @@ class Qwikstubs.Routers.Events extends Backbone.Router
     })
 
   seating: (id) ->
-    @event = new Qwikstubs.Models.Event({id:id})
-    @seats = new Qwikstubs.Collections.Seats()
-    @seats.url = "/api/events/seats/" + id
-    @sections = new Qwikstubs.Collections.Sections()
-    @sections.url = "/api/events/sections/" + id
-    that = @
+    eventm = new Qwikstubs.Models.Event({id:id})
+    seats = new Qwikstubs.Collections.Seats()
+    seats.url = "/api/events/seats/" + id
+    sections = new Qwikstubs.Collections.Sections()
+    sections.url = "/api/events/sections/" + id
     complete = () =>
-      console.log(that)
       console.log("second")
-      view = new Qwikstubs.Views.EventsSeating(collection: that.seats, collection2: that.sections)
+      view = new Qwikstubs.Views.EventsSeating(seats: seats, sections: sections, event:eventm)
       channel = Qwikstubs.Pusher.subscribe(id)
       channel.bind('order:reserve', (data) ->
         view.reserveSeats(data))
@@ -57,24 +55,35 @@ class Qwikstubs.Routers.Events extends Backbone.Router
 
     console.log("first")
     success = _.after(3, complete);   
-    @event.fetch({success: success})
-    @seats.fetch({success: success})
-    @sections.fetch({success: success})
+    eventm.fetch({success: success})
+    seats.fetch({success: success})
+    sections.fetch({success: success})
 
 
   show: (id) ->
-    @collection.fetch({
-      success: (@collection) ->
-          @model = @collection.get(id)
-          @collectionV = new Qwikstubs.Collections.Venues()
-          @collectionV.fetch({
-            success: (@collectionV) ->
-              @model2 = @collectionV.get(@model.get('venue_id'))
-              view = new Qwikstubs.Views.EventsShow(model: @model, model2: @model2)
-              $('#container').html(view.render().el)
-          })
+    eventm = new Qwikstubs.Models.Event({id:id})
+    eventm.fetch({
+      success: ->
+        venue = new Qwikstubs.Models.Venue({id:eventm.get('venue_id')})
+        venue.fetch({
+          success: -> 
+            view = new Qwikstubs.Views.EventsShow(event: eventm , venue: venue)
+            $('#container').html(view.render().el)
+          })   
+      })
+    
+    # @collection.fetch({
+    #   success: (@collection) ->
+    #       @model = @collection.get(id)
+    #       @collectionV = new Qwikstubs.Collections.Venues()
+    #       @collectionV.fetch({
+    #         success: (@collectionV) ->
+    #           @model2 = @collectionV.get(@model.get('venue_id'))
+    #           view = new Qwikstubs.Views.EventsShow(model: @model, model2: @model2)
+    #           $('#container').html(view.render().el)
+    #       })
           
-    })
+    #})
     
     
   #buy: (id) ->

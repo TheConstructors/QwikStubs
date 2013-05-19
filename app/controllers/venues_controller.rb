@@ -20,7 +20,7 @@ class VenuesController < ApplicationController
   end
 
   def show
-    respond_with Venue.find_by_name(params[:name])
+    respond_with Venue.find(params[:id])
   end
   
   def create
