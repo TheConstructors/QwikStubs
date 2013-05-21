@@ -42,7 +42,7 @@ Event.create!({:name=>"Miley Cyrus", :month=>"Nov", :day=>"03", :year=>"2013", :
 samples = 1..30
 
 samples.each do |n|
-  Order.create!({:order_number=>n, :total_amount=>111.51})
+  Order.create!({:order_number=>n, :total_amount=>111.51, event: @event})
 
 end
 

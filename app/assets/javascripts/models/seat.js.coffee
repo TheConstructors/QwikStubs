@@ -1,0 +1,1 @@
+class Qwikstubs.Models.Seat extends Backbone.Model

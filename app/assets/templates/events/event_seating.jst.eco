@@ -1,0 +1,23 @@
+
+<div style="margin:auto;text-align:center;padding:10px;">
+<div id="reserve-seats" class="btn" >Reserve</div>&nbsp;&nbsp;
+<div id="release-seats" class="btn" >Release</div></div>
+<div id="event_seating" style="background-color:#FFFFFF;width:600px;height:800px;border-radius:15px;margin:auto;padding:15px;">
+</div>
+
+
+<script>
+    $(function() {
+        var id = window.location.hash.split('/').pop();
+
+        var event = new Qwikstubs.Models.Event({ id: id });
+
+        $('#reserve-seats').bind('click', function() {
+            event.reserveSeats(5);
+        });
+
+        $('#release-seats').bind('click', function() {
+            event.releaseSeats(5);
+        });
+    }); 
+</script>

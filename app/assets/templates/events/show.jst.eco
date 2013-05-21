@@ -4,21 +4,14 @@
   </div>
 </div>
 <div class ="row" style="margin-bottom:20px;">
-  <!-- Photo Scroller -->
-  <div class="span12">
-    <img src="/assets/scroller1.jpg" style="height:100px;">
-    <img src="/assets/scroller2.jpg" style="height:100px;">
-    <img src="/assets/scroller3.jpg" style="height:100px;">
-    <img src="/assets/scroller4.jpg" style="height:100px;">
-    <img src="/assets/scroller1.jpg" style="height:100px;">
-    <img src="/assets/scroller2.jpg" style="height:100px;">
-  </div>
+  
 </div>
 <div class="row">
   <!-- Event Details -->
   <div class="span6 invert-text">
     <h3>Description</h3>
     <%= @event.get('description') %>
+    <div id="seating">hey</div>
   </div>
   <!-- Venue Details -->
   <div id="buy" class="span6">

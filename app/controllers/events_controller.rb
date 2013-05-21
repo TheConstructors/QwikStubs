@@ -32,7 +32,7 @@ class EventsController < ApplicationController
   end
   
   def show
-    respond_with Event.find_by_name(params[:name])
+    respond_with Event.find(params[:id])
   end
   
   def create
@@ -43,8 +43,44 @@ class EventsController < ApplicationController
     respond_with Event.update(params[:id], params[:entry])
   end
   
+  def seats
+    @event = Event.find(params[:id])
+    @seats = []
+    @event.event_sections.each do |event_section|
+      event_section.event_seats.each do |event_seat|
+        seat = { venue_seat: event_seat.seat, event_seat: event_seat }
+        @seats << seat
+      end  
+    end
+    respond_with @seats.as_json
+  end
+
+  def sections
+    @event = Event.find(params[:id])
+    @sections = []
+    @event.event_sections.each do |event_section|
+      @sections << {id: event_section.id, venue_section: event_section.section, event_section: event_section}
+    end
+    respond_with @sections.as_json
+  end
+
+  def order_reserve_mock
+    @event = Event.find(params[:id])
+    order_num = (Order.last && Order.last.order_number) || 1
+    @order = Order.new event: @event, order_number: order_num, total_amount: params[:total]
+    @order.trigger_reserve
+    respond_with ""
+  end
+
+  def order_release_mock
+    @event = Event.find(params[:id])
+    order_num = (Order.last && Order.last.order_number) || 1
+    @order = Order.new event: @event, order_number: order_num, total_amount: params[:total]
+    @order.trigger_release
+    respond_with ""
+  end
+
   def delete
-    
   end
   
   def new
@@ -54,3 +90,4 @@ class EventsController < ApplicationController
   def edit 
   end
 end
+

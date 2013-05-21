@@ -4,9 +4,13 @@ Qwikstubs::Application.routes.draw do
   scope "api" do
     resources :venues
     resources :events
+    resources :orders
+    get '/events/seats/:id' => 'events#seats'
+    get '/events/sections/:id' => 'events#sections'
+    get '/events/order/reserve/:id/:total' => 'events#order_reserve_mock'
+    get '/events/order/release/:id/:total' => 'events#order_release_mock'
     get '/search/events' => 'events#search'
   end
-
 
   resources :sessions, only: [:new, :create, :destroy]
 

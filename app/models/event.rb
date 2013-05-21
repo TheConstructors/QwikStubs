@@ -10,13 +10,14 @@ class Event
   key :month, String
   key :time, String
   key :date, String, :default => ""
-  
+  key :banner_url, String
+  key :photo_url, String
+
   #Relationships
   belongs_to :venue
   belongs_to :promoter
   has_many :event_sections
   #has_many :appearance
-
 
   validates_presence_of :name
   validates_presence_of :month
@@ -39,6 +40,11 @@ class Event
   end
 
   
+  searchable do
+    text :name
+    text :description
+  end
+
   def date
     date=""
     case month
@@ -107,19 +113,24 @@ class Event
       false
     else
       rows = EventSeat.grouped_by()
-      size = 0
       #pry self
       rows.each do |row|
         #size += row["value"]["seats"].size
         @group = Group.create!(size:0, event: self, row: row["value"]["row"])
         row["value"]["seats"].each do |event_seat|
           event_seat = EventSeat.find_by_id(event_seat["_id"])
-          event_seat.group = @group
-          event_seat.save()
-          @group.size += 1
+          if event_seat != nil
+            event_seat.group = @group
+            event_seat.save()
+            @group.size += 1
+          end
         end
+        size = @group.size
         @group.reload
-        @group.save()
+        @group.size = size
+        if !@group.save()
+          return false
+        end
       end
       true
     end
@@ -136,4 +147,5 @@ class Event
       end
     end
   end
+
 end

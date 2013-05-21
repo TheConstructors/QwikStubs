@@ -87,10 +87,12 @@ FactoryGirl.define do
     billing_info
     sequence(:order_number) { |n| n }
     total_amount 156.10
+    event
   end
 
   factory :group do
     size 0
+    reserved Group::Reserved::NO
     event 
   end
 end
