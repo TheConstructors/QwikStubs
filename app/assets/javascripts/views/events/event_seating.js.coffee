@@ -36,7 +36,7 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
     @layer = new Kinetic.Layer()
     console.log(@)
     @options.seats.each(@load_seat, @)
-    @layer.setScale(2,2)
+    #@layer.setScale(2,2)
     @stage.add(@layer)
 
     console.log(@layer.getSize())
@@ -78,15 +78,22 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
     sid = "#" + id
     circle = @stage.get(sid)[0]
     circle.setFill(circle.prevFill)
+    @render_selected_seats()
     @layer.draw()
 
   add_seat: (id) ->
     if @selected_seats.indexOf(id) == -1 && @selected_seats.length < 8
       @selected_seats.push(id)
       console.log(@selected_seats)
+      @render_selected_seats()
 
 
   render_selected_seats: ->
+    for id in @selected_seats
+      sid = "#" + id
+      circle = @stage.get(sid)[0]
+      circle.setFill('yellow')
+    @layer.draw()
 
 
   reserveSeats: ->
