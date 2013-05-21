@@ -10,7 +10,9 @@ class Event
   key :month, String
   key :time, String
   key :date, String, :default => ""
-  
+  key :banner_url, String
+  key :photo_url, String
+
   validates_presence_of :name
   validates_presence_of :month
   validates_presence_of :day
