@@ -11,10 +11,18 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
 
   render: ->
     $(@el).html(@template())
+    # $("#reserve-seats").onClick({
+    #   order = new Qwikstubs.Collections.Orders()
+    #   Order.create({
+    #     order: {
+
+    #       }
+    #     })
+    #   })
     @
 
   draw: ->
-    console.log(collection)
+    console.log(@collection)
     
     @stage = new Kinetic.Stage({
         container: 'event_seating'
@@ -23,7 +31,7 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
       })
     @layer = new Kinetic.Layer()
     console.log(@)
-    collection.each(@draw_seat, @)
+    @collection.each(@draw_seat, @)
     @stage.add(@layer)
     console.log(@)
  
@@ -32,8 +40,8 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
     # console.log(seat)
    # console.log(seat.get("event_seat").event_section_id)
    # console.log(collection2)
-    x = seat.get("venue_seat").xpos + collection2.get(seat.get("event_seat").event_section_id).get("venue_section").xpos
-    y = seat.get("venue_seat").ypos + collection2.get(seat.get("event_seat").event_section_id).get("venue_section").ypos
+    x = seat.get("venue_seat").xpos + @options.collection2.get(seat.get("event_seat").event_section_id).get("venue_section").xpos
+    y = seat.get("venue_seat").ypos + @options.collection2.get(seat.get("event_seat").event_section_id).get("venue_section").ypos
     circle = new Kinetic.Circle({
         x: x
         y: y

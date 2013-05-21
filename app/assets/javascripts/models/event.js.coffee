@@ -1,4 +1,5 @@
 class Qwikstubs.Models.Event extends Backbone.Model
+  urlRoot: "/api/events"
   reserveSeats: (num) ->
     $.get("/api/events/order/reserve/#{@id}/#{num}")
 
