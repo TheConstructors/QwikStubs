@@ -16,7 +16,7 @@ class Order
   belongs_to :event
 
   # add randomization to this later
-  def self.generateOrderNumber # may have race condition if parallelizing
+  def self.generate_order_number # may have race condition if parallelizing
     if Order.empty?
       0
     else 
