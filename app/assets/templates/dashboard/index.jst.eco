@@ -3,10 +3,19 @@
   </style>
 
 <div class="row">
+        <br />
         <div class = "span12">
-          <input id="search-box" type="text" class="search-query span6", placeholder = "Search Events">
-          <input id="search-btn" type="submit" value="Find" class="btn">
+          <div class="span2"></div>
+          <div class="span8">
+          <input id="search-box" type="text" style="width:80%;" class="search-query input-large" placeholder = "Search Events">
+          <input id="search-btn" type="submit" value="Find" style="width:9%;" class="btn">
           </div>
+        </div>
+       
+</div>
+        <br />
+        <br />
+<div class="row">
         <div class = "span7 invert-text">
           <h2>Featured Events</h2>
           <br>
