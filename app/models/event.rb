@@ -1,4 +1,4 @@
-require 'pry'
+#require 'pry'
 
 class Event
   include ApplicationModel
@@ -11,6 +11,13 @@ class Event
   key :time, String
   key :date, String, :default => ""
   
+  #Relationships
+  belongs_to :venue
+  belongs_to :promoter
+  has_many :event_sections
+  #has_many :appearance
+
+
   validates_presence_of :name
   validates_presence_of :month
   validates_presence_of :day
@@ -25,6 +32,12 @@ class Event
   #Name and date need to be unique
   #validate format of month day and year
   validates_uniqueness_of :name, :scope => [:month, :day, :year]
+
+  searchable do
+   text :name
+   text :description
+  end
+
   
   def date
     date=""
@@ -87,18 +100,6 @@ class Event
       errors.add(:year, "Can't have a negative year value")
     else
     end
-  end
-  
-  #Relationships
-  belongs_to :venue
-  belongs_to :promoter
-  has_many :event_sections
-  #has_many :appearance
-
-
-  searchable do
-   text :name
-   text :description
   end
 
   def generate_groups()
