@@ -2,13 +2,12 @@
    .invert-text{color:white;}
   </style>
 
- <div class="row">
+<div class="row">
+        <div class = "span12">
+          <input id="search-box" type="text" class="search-query span2", placeholder = "Search Events">
+          <input id="search-btn" type="submit" value="Find" class="btn">
+          </div>
         <div class = "span7 invert-text">
-          <!--
-          <form class="form-search">
-            <input type="text" class="input-medium search-query span6" placeholder="Search Events">
-            <button type="submit" class="btn">go!</button>
-          </form> -->
           <h2>Featured Events</h2>
           <br>
           <div class="row">
@@ -55,4 +54,18 @@
 
         </div>
       </div>
+      <script>
+             $(document).ready(function() {
+               $("#search-btn").bind('click', function() {
+                 var query = $("#search-box")[0].value;
+                 window.Qwikstubs.Events.navigate('search/events/' + query, { trigger: true });
+               });
+               $("#search-box").keypress(function(e) {
+                   if(e.which == 13) {
+                     var query = $("#search-box")[0].value;
+                     window.Qwikstubs.Events.navigate('search/events/' + query, { trigger: true });
+                   }
+               });
+             });
+       </script>
      
