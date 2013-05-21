@@ -1,7 +1,8 @@
 
 <br />
-<div style="background-color:#FFFFFF;width:95%;height:450px;border-radius:15px;margin:auto;padding:15px;">
+<div style="background-color:#FFFFFF;width:95%;height:500px;border-radius:15px;margin:auto;padding:15px;">
 <h2 style="color:#000;">Select Your Seats</h2>
+<h3 style="color:#000;">Limit 8 Tickets</h3>
 <div id="event_seating" > </div>
 </div>
 

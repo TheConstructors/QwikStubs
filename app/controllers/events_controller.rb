@@ -48,7 +48,7 @@ class EventsController < ApplicationController
     @seats = []
     @event.event_sections.each do |event_section|
       event_section.event_seats.each do |event_seat|
-        seat = { venue_seat: event_seat.seat, event_seat: event_seat }
+        seat = {id: event_seat.id, venue_seat: event_seat.seat, event_seat: event_seat }
         @seats << seat
       end  
     end

@@ -53,7 +53,8 @@
       data-name="QwikStubs"
       data-description="Test Event"
       data-currency="usd"
-      data-address="true">
+      data-address="true"
+      data-label="Purchase Tickets">
     </script>
 </form>
       </p>
