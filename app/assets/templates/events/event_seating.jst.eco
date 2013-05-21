@@ -1,8 +1,8 @@
 
-<div style="margin:auto;text-align:center;padding:10px;">
-<div id="reserve-seats" class="btn" >Reserve</div>&nbsp;&nbsp;
-<div id="release-seats" class="btn" >Release</div></div>
-<div id="event_seating" style="background-color:#FFFFFF;width:600px;height:800px;border-radius:15px;margin:auto;padding:15px;">
+<br />
+<div style="background-color:#FFFFFF;width:95%;height:450px;border-radius:15px;margin:auto;padding:15px;">
+<h2 style="color:#000;">Select Your Seats</h2>
+<div id="event_seating" > </div>
 </div>
 
 

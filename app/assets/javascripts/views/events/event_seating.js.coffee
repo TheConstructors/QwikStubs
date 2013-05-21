@@ -30,7 +30,7 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
     
     @stage = new Kinetic.Stage({
         container: 'event_seating'
-        width: 600
+        width: 500
         height: 800
       })
     @layer = new Kinetic.Layer()
