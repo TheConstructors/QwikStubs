@@ -37,12 +37,26 @@
               <td><%=@event.get('month')%> <%=@event.get('day')%>, <%=@event.get('year')%></td>
               <td><%=@event.get('time')%></td>
               <td><%=@venue.get('name')%></td>
-              <td><div class="btn
+              <td>
+              <!--<div class="btn
               btn-success btn-mini pull-right purchase">Buy Tickets
-              </div></td>
+              </div>--></td>
               </tr>
           </tbody>
         </table>
+        <div id="reserved-seats"> </div>
+        <form id="stripepayment" class="">
+   <script
+      src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button btn-success btn-mini pull-right"
+      data-key="pk_test_PQYObKKtGMZ95f0vvlBu8VgA"
+      data-amount="2000"
+      data-name="QwikStubs"
+      data-description="Test Event"
+      data-currency="usd"
+      data-address="true"
+      data-label="Purchase Tickets">
+    </script>
+</form>
       </p>
     </div>
   </div>

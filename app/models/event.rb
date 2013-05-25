@@ -39,12 +39,6 @@ class Event
    text :description
   end
 
-  
-  searchable do
-    text :name
-    text :description
-  end
-
   def date
     date=""
     case month

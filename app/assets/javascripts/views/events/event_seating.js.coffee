@@ -26,21 +26,21 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
     @
 
   load_seats: ->
-    console.log(@options.seats)
+    #console.log(@options.seats)
     
     @stage = new Kinetic.Stage({
         container: 'event_seating'
-        width: 600
+        width: 500
         height: 800
       })
     @layer = new Kinetic.Layer()
-    console.log(@)
+    #console.log(@)
     @options.seats.each(@load_seat, @)
-    @layer.setScale(2,2)
+    #@layer.setScale(2,2)
     @stage.add(@layer)
 
-    console.log(@layer.getSize())
-    console.log(@)
+    #console.log(@layer.getSize())
+    #console.log(@)
   
 
 
@@ -71,31 +71,44 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
     circle = @stage.get(sid)[0]
     circle.prevFill = circle.getFill()
     circle.setFill('blue')
-    console.log(@stage.getSize())
+    #console.log(@stage.getSize())
     @layer.draw()
 
   unview_seat: (id) ->
     sid = "#" + id
     circle = @stage.get(sid)[0]
     circle.setFill(circle.prevFill)
+    @render_selected_seats()
     @layer.draw()
 
   add_seat: (id) ->
     if @selected_seats.indexOf(id) == -1 && @selected_seats.length < 8
       @selected_seats.push(id)
-      console.log(@selected_seats)
+      #console.log(@selected_seats)
+      @render_selected_seats()
 
 
   render_selected_seats: ->
+    html = "<h3>Reserved Seats</h3><ul>"
+    for id in @selected_seats
+      sid = "#" + id
+      circle = @stage.get(sid)[0]
+      circle.setFill('yellow')
+      seat = @options.seats.get(id)
+      #console.log(seat)
+      html = html + "<li>" + seat.get("venue_seat").name + "</li>"
+    @layer.draw()
+    html = html + "</ul>"
+    $("#reserved-seats").html(html)
 
 
   reserveSeats: ->
-    console.log(@stage)
-    console.log(@layer)
+    #console.log(@stage)
+    #console.log(@layer)
     for id in data
       sid = "#" + id
-      console.log(sid)
-      console.log(@stage.get(sid)[0])
+      #console.log(sid)
+      #console.log(@stage.get(sid)[0])
       @stage.get(sid)[0].setFill('blue')
     @layer.draw()
     console.log("Draw seat!")
@@ -106,10 +119,10 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
       sid = "#" + id
       @stage.get(sid)[0].setFill('green')
     @layer.draw()
-    console.log(data)
+    #console.log(data)
 
   purchaseSeats: (data) ->
-    console.log(data)
+    #console.log(data)
 
 
   
