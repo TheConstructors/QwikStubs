@@ -142,5 +142,20 @@ class Event
       end
     end
   end
+  
+  def self.fuzzy_search(text)
+    names = Event.search do |q|
+      q.fuzzy(:name, text)
+    end
 
+    descriptions = Event.search do |q|
+      q.fuzzy(:description, text)
+    end
+
+    normal = Event.search do |q|
+      q.fulltext text
+    end
+
+    names.results + descriptions.results + normal.results
+  end
 end

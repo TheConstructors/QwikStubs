@@ -4,18 +4,9 @@ class EventsController < ApplicationController
   def search
     query_text = params[:search]
     page = params[:page]
-    query = Event.search do |q|
-      q.fuzzy(:name, query_text)
-    end
-    query2 = Event.search do |q|
-      q.fuzzy(:description, query_text)
-    end
-    query3 = Event.search do |q|
-      q.fulltext query_text #query_text
-    end
     # query = query.paginate :page => page, :per_page => 20
     # pagination broken -- fix me?
-    respond_with (query3.results.to_a + query.results.to_a + query2.results.to_a)
+    respond_with Event.fuzzy_search query_text
   end
 
   def index
