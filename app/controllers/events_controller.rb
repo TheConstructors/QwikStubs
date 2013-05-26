@@ -1,5 +1,3 @@
-require 'sunspot-ext'
-
 class EventsController < ApplicationController
   respond_to :json
   
