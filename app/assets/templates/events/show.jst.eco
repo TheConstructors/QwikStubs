@@ -3,11 +3,14 @@
     <h1><%= @event.get('name') %></h1>
   </div>
 </div>
+
 <div class ="row" style="margin-bottom:20px;">
+
 </div>
+
 <div class="row">
   <!-- Event Details -->
-  <div class="span6">
+  <div id="buy" class="span6">
     <div class="invert-text">
     <h3>Description</h3>
     <%= @event.get('description') %>
