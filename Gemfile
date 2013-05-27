@@ -31,6 +31,9 @@ gem 'bson_ext'
 # Bcrypt (for password Hashing)
 gem 'bcrypt-ruby'
 
+# Stripe (for payment)
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
 # requires libqrencoder to be installed 
 # gem 'qrencoder'
 
