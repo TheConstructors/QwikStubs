@@ -47,7 +47,7 @@
           </tbody>
         </table>
         <div id="reserved-seats"> </div>
-        <form id="stripepayment" class="">
+        <form id="stripepayment" action="/charges" method="POST">
             <script
               src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button btn-success btn-mini pull-right"
               data-key="pk_test_PQYObKKtGMZ95f0vvlBu8VgA"
