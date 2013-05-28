@@ -23,48 +23,10 @@ class EventSeat
   belongs_to :group
   
   def self.group_by_row(event_id)
-    MongoMapper.database.collection("groups-test").drop() 
     sections = Event.find(event_id).event_sections.map(&:id)
-    debugger
-    map = <<-MAP
-      function() {
-        var sections = #{sections.as_json};
-        var id = this.event_section_id;
-        /* Use weak equality for Id conversion */
-        var contains = function(array, value) {
-          return array.reduce(function(accum, item) {
-            return accum || (item == value);
-          }, false);
-        };
-        if (contains(sections, id))
-          emit(this.row, { id: this["_id"] });
-        //else 
-         // emit(-1, -1);
-        }
-    MAP
-    reduce = <<-REDUCE
-      function(key, values) {
-        var ids = [];
-        values.forEach(function(seat) {
-          if (seat.id !== null) ids.push(seat.id);
-        });
-        return { seats: ids };
-      }
-    REDUCE
-    # purge temporary table
-    init_groups = collection.map_reduce(map, reduce, out: "groups-test").find()
-    # remove dead collections
-    # allocate groups with event_id
-    # then make request with event_id and size
-    #
-  end
-  
-  private
-
-  def self.to_object_id(array)
-    ids = array.map do |each|
-      "ObjectId(\"#{each}\")"
-    end
-    "[" + ids.join(",") + "]"
+    MongoMapper.database.collection("groups-test").drop()
+    MongoMapper.database.collection('event_seats').
+                aggregate([{ :$match => { event_section_id: { :$in => sections } }},
+                           {:$group => {:_id=>"$row", :seats => {:$addToSet=>"$_id"}}}])
   end
 end
