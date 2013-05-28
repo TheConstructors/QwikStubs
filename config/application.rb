@@ -71,8 +71,8 @@ module Qwikstubs
       g.orm :mongo_mapper
     end
 
-    Pusher.app_id = ENV["PUSHER_APP_ID"]
-    Pusher.key    = ENV["PUSHER_KEY"]
-    Pusher.secret = ENV["PUSHER_SECRET"]
+    Pusher.app_id = Figaro.env.pusher_app_id
+    Pusher.key    = Figaro.env.pusher_key
+    Pusher.secret = Figaro.env.pusher_secret
   end
 end
