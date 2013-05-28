@@ -5,6 +5,7 @@ Qwikstubs::Application.routes.draw do
     resources :venues
     resources :events
     resources :orders
+    resources :charges
     get '/events/seats/:id' => 'events#seats'
     get '/events/sections/:id' => 'events#sections'
     get '/events/order/reserve/:id/:total' => 'events#order_reserve_mock'
