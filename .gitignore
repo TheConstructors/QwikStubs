@@ -35,3 +35,5 @@ coverage/.resultset.json
 
 # Solr
 solr/*
+# Ignore application configuration
+/config/application.yml
