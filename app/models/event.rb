@@ -18,6 +18,7 @@ class Event
   belongs_to :venue
   belongs_to :promoter
   has_many :event_sections
+  has_many :groups
   #has_many :appearance
 
   validates_presence_of :name
@@ -101,44 +102,20 @@ class Event
       errors.add(:year, "Can't have a negative year value")
     else
     end
-  end
-
-  def generate_groups()
-    if(Group.where(event_id: self.id).exists?)
-      false
-    else
-      rows = EventSeat.grouped_by()
-      #pry self
-      rows.each do |row|
-        #size += row["value"]["seats"].size
-        @group = Group.create!(size:0, event: self, row: row["value"]["row"])
-        row["value"]["seats"].each do |event_seat|
-          event_seat = EventSeat.find_by_id(event_seat["_id"])
-          if event_seat != nil
-            event_seat.group = @group
-            event_seat.save()
-            @group.size += 1
-          end
-        end
-        size = @group.size
-        @group.reload
-        @group.size = size
-        if !@group.save()
-          return false
-        end
-      end
-      true
-    end
-  end
+  end  
 
   def copy_seating
     @venue = self.venue
     @venue.sections.each do |section|
       @es = EventSection.create(section: section, event: self)
       section.seats.each do |seat|
-        EventSeat.create(event_section: @es, seat: seat, 
-                         status: EventSeat::Status::UNSOLD,
-                         row: seat.row, column: seat.column)
+        EventSeat.create do |es|
+          es.event_section = @es
+          es.seat = seat 
+          es.status = EventSeat::Status::UNSOLD
+          es.row = seat.row
+          es.column = seat.column
+        end
       end
     end
   end
@@ -157,5 +134,38 @@ class Event
     end
 
     names.results + descriptions.results + normal.results
+  end
+
+  def seats
+    self.event_sections.map(&:event_seats).flatten
+  end
+
+  def generate_groups
+    groups_data = EventSeat.group_by_row(self.id)
+
+    groups = groups_data.map do |group_data|
+      unless group_data["value"]["row"] == -1
+        debugger 
+        group = Group.create(row: group_data["value"]["_id"],
+                             event: self,
+                             size: 0)
+
+        # there is something really werid going on in mapreduce
+        # at the beginging of every record's array there is a null(nil in Ruby)
+        # value, that seems completely extraneous, I can't seem to find where it
+        # is coming from, for now slicing works
+
+        seats = group_data["value"]["seats"][1..-1]
+
+        EventSeat.find(seats).each do |es|
+          es.group = group
+          group.size += 1
+        end
+
+        group
+      end
+    end
+
+    groups.select(&:present?)
   end
 end

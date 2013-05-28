@@ -1,4 +1,4 @@
-#require 'pry'
+require 'pry'
 
 class EventSeat
   include ApplicationModel
@@ -21,16 +21,50 @@ class EventSeat
   belongs_to :seat
   belongs_to :order
   belongs_to :group
-
-  def self.grouped_by()
-    map_function = "function() { emit(this.row, this); }"
-    
-    # put your logic here (not needed in my case)
-    reduce_function = %Q( function(_row, _seats) { 
-      return { row: _row, seats:_seats };
-    })
-#    pry self
-    collection.map_reduce(map_function, reduce_function, {out: "map_reduce_rows"}).find()
+  
+  def self.group_by_row(event_id)
+    MongoMapper.database.collection("groups-test").drop() 
+    sections = Event.find(event_id).event_sections.map(&:id)
+    debugger
+    map = <<-MAP
+      function() {
+        var sections = #{sections.as_json};
+        var id = this.event_section_id;
+        /* Use weak equality for Id conversion */
+        var contains = function(array, value) {
+          return array.reduce(function(accum, item) {
+            return accum || (item == value);
+          }, false);
+        };
+        if (contains(sections, id))
+          emit(this.row, { id: this["_id"] });
+        //else 
+         // emit(-1, -1);
+        }
+    MAP
+    reduce = <<-REDUCE
+      function(key, values) {
+        var ids = [];
+        values.forEach(function(seat) {
+          if (seat.id !== null) ids.push(seat.id);
+        });
+        return { seats: ids };
+      }
+    REDUCE
+    # purge temporary table
+    init_groups = collection.map_reduce(map, reduce, out: "groups-test").find()
+    # remove dead collections
+    # allocate groups with event_id
+    # then make request with event_id and size
+    #
   end
+  
+  private
 
+  def self.to_object_id(array)
+    ids = array.map do |each|
+      "ObjectId(\"#{each}\")"
+    end
+    "[" + ids.join(",") + "]"
+  end
 end
