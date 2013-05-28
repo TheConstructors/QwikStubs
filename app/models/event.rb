@@ -109,13 +109,9 @@ class Event
     @venue.sections.each do |section|
       @es = EventSection.create(section: section, event: self)
       section.seats.each do |seat|
-        EventSeat.create do |es|
-          es.event_section = @es
-          es.seat = seat 
-          es.status = EventSeat::Status::UNSOLD
-          es.row = seat.row
-          es.column = seat.column
-        end
+      EventSeat.create(event_section: @es, seat: seat, 
+                       status: EventSeat::Status::UNSOLD,
+                       row: seat.row, column: seat.column)  
       end
     end
   end
@@ -144,28 +140,24 @@ class Event
     groups_data = EventSeat.group_by_row(self.id)
 
     groups = groups_data.map do |group_data|
-      unless group_data["value"]["row"] == -1
-        debugger 
-        group = Group.create(row: group_data["value"]["_id"],
-                             event: self,
-                             size: 0)
+      group = Group.create(row: group_data["_id"],
+                           event: self,
+                           size: 0)
 
         # there is something really werid going on in mapreduce
         # at the beginging of every record's array there is a null(nil in Ruby)
         # value, that seems completely extraneous, I can't seem to find where it
         # is coming from, for now slicing works
 
-        seats = group_data["value"]["seats"][1..-1]
+      seats = group_data["seats"][1..-1]
 
-        EventSeat.find(seats).each do |es|
-          es.group = group
-          group.size += 1
-        end
-
-        group
+      EventSeat.find(seats).each do |es|
+        es.group = group
+        es.save!
+        group.size += 1
       end
+      group.save && group
     end
-
     groups.select(&:present?)
   end
 end
