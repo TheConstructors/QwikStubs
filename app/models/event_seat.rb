@@ -1,4 +1,4 @@
-#require 'pry'
+require 'pry'
 
 class EventSeat
   include ApplicationModel
@@ -21,16 +21,13 @@ class EventSeat
   belongs_to :seat
   belongs_to :order
   belongs_to :group
-
-  def self.grouped_by()
-    map_function = "function() { emit(this.row, this); }"
-    
-    # put your logic here (not needed in my case)
-    reduce_function = %Q( function(_row, _seats) { 
-      return { row: _row, seats:_seats };
-    })
-#    pry self
-    collection.map_reduce(map_function, reduce_function, {out: "map_reduce_rows"}).find()
+  
+  def self.group_by_row(event_id)
+    sections = Event.find(event_id).event_sections.map(&:id)
+    MongoMapper.database.collection("groups-test").drop()
+    MongoMapper.database.collection('event_seats').
+                aggregate([{ :$match => { event_section_id: { :$in => sections } }},
+                           { :$group => { :_id => { row: "$row", :event_section_id => "$event_section_id"},
+                                                          :seats => {:$addToSet=>"$_id"}}}])
   end
-
 end

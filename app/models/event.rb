@@ -13,11 +13,14 @@ class Event
   key :date, String, :default => ""
   key :banner_url, String
   key :photo_url, String
+  key :total_seats, Integer, :default => 0
+  key :sold_seats, Integer, :default => 0
 
   #Relationships
   belongs_to :venue
   belongs_to :promoter
   has_many :event_sections
+  has_many :groups
   #has_many :appearance
 
   validates_presence_of :name
@@ -101,46 +104,60 @@ class Event
       errors.add(:year, "Can't have a negative year value")
     else
     end
-  end
-
-  def generate_groups()
-    if(Group.where(event_id: self.id).exists?)
-      false
-    else
-      rows = EventSeat.grouped_by()
-      #pry self
-      rows.each do |row|
-        #size += row["value"]["seats"].size
-        @group = Group.create!(size:0, event: self, row: row["value"]["row"])
-        row["value"]["seats"].each do |event_seat|
-          event_seat = EventSeat.find_by_id(event_seat["_id"])
-          if event_seat != nil
-            event_seat.group = @group
-            event_seat.save()
-            @group.size += 1
-          end
-        end
-        size = @group.size
-        @group.reload
-        @group.size = size
-        if !@group.save()
-          return false
-        end
-      end
-      true
-    end
-  end
+  end  
 
   def copy_seating
     @venue = self.venue
     @venue.sections.each do |section|
       @es = EventSection.create(section: section, event: self)
       section.seats.each do |seat|
-        EventSeat.create(event_section: @es, seat: seat, 
-                         status: EventSeat::Status::UNSOLD,
-                         row: seat.row, column: seat.column)
+      EventSeat.create(event_section: @es, seat: seat, 
+                       status: EventSeat::Status::UNSOLD,
+                       row: seat.row, column: seat.column)  
       end
     end
   end
+  
+  def self.fuzzy_search(text)
+    names = Event.search do |q|
+      q.fuzzy(:name, text)
+    end
 
+    descriptions = Event.search do |q|
+      q.fuzzy(:description, text)
+    end
+
+    normal = Event.search do |q|
+      q.fulltext text
+    end
+
+    names.results + descriptions.results + normal.results
+  end
+
+  def seats
+    self.event_sections.map(&:event_seats).flatten
+  end
+
+  def generate_groups
+    groups_data = EventSeat.group_by_row(self.id)
+
+    groups = groups_data.map do |group_data|
+      group = Group.create(row: group_data["_id"]["row"],
+                           section: group_data["_id"]["column"],
+                           event: self,
+                           size: 0)
+
+      seats = group_data["seats"]
+
+      EventSeat.find(seats).each do |es|
+        es.group = group
+        es.save!
+        group.size += 1
+        self.total_seats += 1
+      end
+      group.save && group
+    end
+    self.save
+    groups
+  end
 end

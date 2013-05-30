@@ -84,30 +84,28 @@ class Order
     true
   end
 
-  def find_seats(num_seats)
-    update = false
-    while update != true
-      @group = Group.where(reserved: 0, event_id: event.id, :size.gte => num_seats).sort(:quality).all.first
-      update = Group.set({_id: @group.id, reserved: 0}, {reserved: 1})
-      update = update["updatedExisting"]
+  def self.find_seats(event, number)
+    # if we can't fufil the request fail here
+    if event.total_seats < event.sold_seats + number
+     return nil
     end
-    @group.reload
-    seats = @group.event_seats.sort(:column).all[0..(num_seats-1)]
-    seats.each do |seat|
-      seat.group = nil
-      seat.status = EventSeat::Status::RESERVED
-      seat.save()
+
+    updated = nil
+    while !updated
+      #debugger
+      group = Group.where(event_id: event.id, reserved: 0, :size.gte => number).sort(:size.asc).limit(1).first
+      updated = group && group.set(reserved: 1)["updatedExisting"]
     end
-    @group.reload
-    if @group.size <= num_seats
-      @group.delete()
-    else
-      @group.size = @group.event_seats.size
-      @group.reserved = 0
-      if !@group.save()
-        false
-      end
+    group.reload
+    acquired = group.event_seats.take(number)
+    free = group.event_seats.drop(number)
+    # clean up tomorrow 
+    reserved_group = Group.create event_id: event.id, reserved: 1, :size => number
+    # generate order here
+    free_group = Group.create event_id: event_id, reserved: 0, :size => group.size - number
+    free.each do |seat|
+      seat.group = free_group
     end
-    seats
+    reserved_group.save && free_group.save
   end
 end
