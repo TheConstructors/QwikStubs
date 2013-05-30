@@ -177,7 +177,5 @@ describe Order do
         value += 1
       end
     end
-
   end
-
 end
