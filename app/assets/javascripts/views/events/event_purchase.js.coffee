@@ -1,4 +1,4 @@
-class Qwikstubs.Views.EventBuy extends Backbone.View
+class Qwikstubs.Views.EventPurchase extends Backbone.View
 
   template: JST['events/buy']
 

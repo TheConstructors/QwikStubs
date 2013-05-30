@@ -7,12 +7,6 @@
   
 </div>
 <div class="row">
-  <!-- Event Details -->
-  <div class="span6 invert-text">
-    <h3>Description</h3>
-    <%= @event.get('description') %>
-    <div id="seating">hey</div>
-  </div>
   <!-- Venue Details -->
   <div id="buy" class="span6">
     <div class="white-box">
@@ -38,9 +32,9 @@
               <td><%=@event.get('time')%></td>
               <td><%=@venue.get('name')%></td>
               <td>
-              <!--<div class="btn
+              <div class="btn
               btn-success btn-mini pull-right purchase">Buy Tickets
-              </div>--></td>
+              </div></td>
               </tr>
           </tbody>
         </table>
@@ -59,5 +53,11 @@
 </form>
       </p>
     </div>
+  </div>
+  <!-- Event Details -->
+  <div class="span6 invert-text">
+    <h3>Description</h3>
+    <%= @event.get('description') %>
+    <div id="seating">hey</div>
   </div>
 </div>
