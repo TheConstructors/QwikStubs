@@ -42,8 +42,6 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
     #console.log(@layer.getSize())
     #console.log(@)
   
-
-
   load_seat: (seat) -> 
     # console.log(@)
     # console.log(seat)
@@ -51,11 +49,18 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
    # console.log(collection2)
     x = seat.get("venue_seat").xpos + @options.sections.get(seat.get("event_seat").event_section_id).get("venue_section").xpos
     y = seat.get("venue_seat").ypos + @options.sections.get(seat.get("event_seat").event_section_id).get("venue_section").ypos
+    
+    color = "grey"
+    if seat.get("event_seat").status == 1
+      color = "yellow"
+    if seat.get("event_seat").status == 2
+       color = "red"
+
     circle = new Kinetic.Circle({
         x: x
         y: y
         radius: 5
-        fill: 'grey'
+        fill: color
         stroke: 'black'
         strokeWidth: 1
         id: seat.get("event_seat").id
@@ -93,7 +98,7 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
     for id in @selected_seats
       sid = "#" + id
       circle = @stage.get(sid)[0]
-      circle.setFill('yellow')
+      circle.setFill('green')
       seat = @options.seats.get(id)
       #console.log(seat)
       html = html + "<li>" + seat.get("venue_seat").name + "</li>"

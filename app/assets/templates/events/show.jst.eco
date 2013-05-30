@@ -9,17 +9,15 @@
 </div>
 
 <div class="row">
-  <!-- Event Details -->
+  <!-- Venue Details -->
   <div id="buy" class="span6">
-    <div class="invert-text">
-    <h3>Description</h3>
-    <%= @event.get('description') %>
-    </div>
-    <br/>
-    <br/>
-    <div id="buy" class="white-box">
+ 
+    <div class="white-box">
       <p>
-        <h3>Performances</h3>
+        <h3>Information</h3>
+
+
+
         <table class="table table-hover table-condensed">
           <thead>
             <tr>
@@ -40,12 +38,17 @@
               <td><%=@event.get('time')%></td>
               <td><%=@venue.get('name')%></td>
               <td>
-              <!--<div class="btn
+              <div class="btn
               btn-success btn-mini pull-right purchase">Buy Tickets
-              </div>--></td>
+              </div></td>
               </tr>
           </tbody>
         </table>
+        <br>
+        <!--
+         <iframe width="400" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?ie=UTF8&amp;q=campbell+hall+ucsb&amp;fb=1&amp;gl=us&amp;hq=campbell+hall&amp;hnear=0x80e93f67f3314b37:0x4e956b7e5cb6cec2,UC+Santa+Barbara,+552+University+Rd,+Santa+Barbara,+CA+93106&amp;cid=0,0,8110465914546288772&amp;t=h&amp;ll=34.416292,-119.845562&amp;spn=0.007081,0.017166&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe><br /><small><a href="https://maps.google.com/maps?ie=UTF8&amp;q=campbell+hall+ucsb&amp;fb=1&amp;gl=us&amp;hq=campbell+hall&amp;hnear=0x80e93f67f3314b37:0x4e956b7e5cb6cec2,UC+Santa+Barbara,+552+University+Rd,+Santa+Barbara,+CA+93106&amp;cid=0,0,8110465914546288772&amp;t=h&amp;ll=34.416292,-119.845562&amp;spn=0.007081,0.017166&amp;z=15&amp;iwloc=A&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
+
+         -->
         <div id="reserved-seats"> </div>
         <form id="stripepayment" class="">
             <script
@@ -62,8 +65,10 @@
       </p>
     </div>
   </div>
-  <!-- Venue Details -->
-  <div class="span6">
+  <!-- Event Details -->
+  <div class="span6 invert-text">
+    <h3>Description</h3>
+    <%= @event.get('description') %>
     <div id="seating">hey</div>
   </div>
 </div>

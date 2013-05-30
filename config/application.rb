@@ -71,8 +71,8 @@ module Qwikstubs
       g.orm :mongo_mapper
     end
 
-    Pusher.app_id = ENV["PUSHER_APP_ID"]
-    Pusher.key    = ENV["PUSHER_KEY"]
-    Pusher.secret = ENV["PUSHER_SECRET"]
+    Pusher.app_id = 42953
+    Pusher.key = '733adbf86cbebd0e4c63'
+    Pusher.secret = 'c5dc48be950df569bb0c'
   end
 end
