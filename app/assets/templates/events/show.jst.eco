@@ -3,19 +3,21 @@
     <h1><%= @event.get('name') %></h1>
   </div>
 </div>
+
 <div class ="row" style="margin-bottom:20px;">
-  
+
 </div>
+
 <div class="row">
   <!-- Event Details -->
-  <div class="span6 invert-text">
+  <div id="buy" class="span6">
+    <div class="invert-text">
     <h3>Description</h3>
     <%= @event.get('description') %>
-    <div id="seating">hey</div>
-  </div>
-  <!-- Venue Details -->
-  <div id="buy" class="span6">
-    <div class="white-box">
+    </div>
+    <br/>
+    <br/>
+    <div id="buy" class="white-box">
       <p>
         <h3>Performances</h3>
         <table class="table table-hover table-condensed">
@@ -46,18 +48,22 @@
         </table>
         <div id="reserved-seats"> </div>
         <form id="stripepayment" class="">
-   <script
-      src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button btn-success btn-mini pull-right"
-      data-key="pk_test_PQYObKKtGMZ95f0vvlBu8VgA"
-      data-amount="2000"
-      data-name="QwikStubs"
-      data-description="Test Event"
-      data-currency="usd"
-      data-address="true"
-      data-label="Purchase Tickets">
-    </script>
-</form>
+            <script
+              src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button btn-success btn-mini pull-right"
+              data-key="pk_test_PQYObKKtGMZ95f0vvlBu8VgA"
+              data-amount="2000"
+              data-name="QwikStubs"
+              data-description="Test Event"
+              data-currency="usd"
+              data-address="true"
+              data-label="Purchase Tickets">
+            </script>
+        </form>
       </p>
     </div>
+  </div>
+  <!-- Venue Details -->
+  <div class="span6">
+    <div id="seating">hey</div>
   </div>
 </div>
