@@ -1,4 +1,5 @@
 #require 'pry'
+require 'sunspot_ext'
 
 class Event
   include ApplicationModel
