@@ -25,9 +25,9 @@ class OrdersController < ApplicationController
   end
 
   def select_best_seats
-    debugger
     event = Event.where(:id => params[:event]).first
     number = params[:amount]
-    respond_with Order.find_seats(event, number)
+    @order = Order.find_seats(event, number.to_f)
+    respond_with @order
   end
 end
