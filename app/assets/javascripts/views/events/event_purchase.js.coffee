@@ -23,9 +23,7 @@ class Qwikstubs.Views.EventPurchase extends Backbone.View
 
   select: ->
 
-  best: -> 
-    @template = JST['events/purchase_best']
-    $(@el).html(@template())
+  
 
   boughtTickets: ->
     console.log("boughtTickets!")
@@ -35,6 +33,10 @@ class Qwikstubs.Views.EventPurchase extends Backbone.View
     console.log("cancelPurchase!")
     $('#buy').html('<div class="white-box"><h3>Purchase Canceled.</h3> Refresh the page if you would like to buy more.</div>')
 
+  best: -> 
+    @template = JST['events/purchase_best']
+    $(@el).html(@template())
+
   best_1 :-> @best_find(1)
   best_2 :-> @best_find(2)
   best_3 :-> @best_find(3)
@@ -43,3 +45,6 @@ class Qwikstubs.Views.EventPurchase extends Backbone.View
   best_6 :-> @best_find(6)
   best_7 :-> @best_find(7)
   best_8 :-> @best_find(8)
+
+  best_find : (num)->
+    
