@@ -1,11 +1,11 @@
 class Order
   include ApplicationModel
   key :order_number, Integer
-  key :total_amount, Float, :default => 5
+  key :total_amount, Float# , :default => 5
   
   #Validations
   validates_presence_of :order_number
-  #validates_presence_of :total_amount
+  validates_presence_of :total_amount
   validates :order_number, :uniqueness => true
   validates_presence_of :event
   #validates_randomness_of :order_number (?)
@@ -17,7 +17,7 @@ class Order
 
   # add randomization to this later
   # change to uuid
-  def self.generate_number # may have race condition if parallelizing
+  def self.generate_order_number # may have race condition if parallelizing
     if Order.empty?
       0
     else 
@@ -93,7 +93,6 @@ class Order
     end
 
     updated = nil
-    # edge case here
     while !updated
       #debugger
       group = Group.where(event_id: event.id, reserved: 0, :size.gte => number).sort(:size.asc).limit(1).first
