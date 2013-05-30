@@ -10,9 +10,9 @@ class OrdersController < ApplicationController
       puts seat
       puts Seat.find_by_id(seat)
     end
-    puts seats
+    
     if(@order.reserve_seats(seats))
-      @order.save()
+      responds_with @order.save()
     else
       responds_with ""
     end
