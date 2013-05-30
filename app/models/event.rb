@@ -21,6 +21,7 @@ class Event
   belongs_to :promoter
   has_many :event_sections
   has_many :groups
+  has_many :orders
   #has_many :appearance
 
   validates_presence_of :name
