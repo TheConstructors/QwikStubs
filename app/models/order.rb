@@ -26,17 +26,17 @@ class Order
   end
 
   def trigger_release(seats)
-    channel_id = event.id.to_s
+    channel_id = self.event.id.to_s
     Pusher.trigger(channel_id, 'order:release', seats)
   end
 
   def trigger_reserve(seats)
-    channel_id = event.id.to_s
+    channel_id = self.event.id.to_s
     Pusher.trigger(channel_id, 'order:reserve', seats)
   end
 
   def trigger_purchase(seats)
-    channel_id = event.id.to_s
+    channel_id = self.event.id.to_s
     Pusher.trigger(channel_id, 'order:purchase', seats)
   end
 
@@ -93,6 +93,7 @@ class Order
     end
 
     updated = nil
+    # edge case here
     while !updated
       #debugger
       group = Group.where(event_id: event.id, reserved: 0, :size.gte => number).sort(:size.asc).limit(1).first
@@ -103,7 +104,7 @@ class Order
     acquired = seats.take(number)
     start_column = acquired.first.column
     end_column = start_column + number - 1
-    debugger
+    #debugger
     if (start_column..end_column).to_a == acquired.map(&:column)
       #allocate seats
       free = group.event_seats.drop(number)
