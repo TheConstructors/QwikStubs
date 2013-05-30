@@ -27,6 +27,7 @@ class EventSeat
     MongoMapper.database.collection("groups-test").drop()
     MongoMapper.database.collection('event_seats').
                 aggregate([{ :$match => { event_section_id: { :$in => sections } }},
-                           {:$group => {:_id=>"$row", :seats => {:$addToSet=>"$_id"}}}])
+                           { :$group => { :_id => { row: "$row", :event_section_id => "$event_section_id"},
+                                                          :seats => {:$addToSet=>"$_id"}}}])
   end
 end

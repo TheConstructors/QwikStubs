@@ -85,6 +85,11 @@ class Order
   end
 
   def self.find_seats(event, number)
+    # if we can't fufil the request fail here
+    if event.total_seats < event.sold_seats + number
+     return nil
+    end
+
     updated = nil
     while !updated
       #debugger
@@ -95,12 +100,11 @@ class Order
     acquired = group.event_seats.take(number)
     free = group.event_seats.drop(number)
     # clean up tomorrow 
-    reserved_group = Group.create event_id: event_id, reserved: 1, :size => number
-    acquired.each do |seat|
-      seat.group = reserved_group
-    end
+    reserved_group = Group.create event_id: event.id, reserved: 1, :size => number
+    # generate order here
     free_group = Group.create event_id: event_id, reserved: 0, :size => group.size - number
     free.each do |seat|
+      seat.group = free_group
     end
     reserved_group.save && free_group.save
   end
