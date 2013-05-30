@@ -5,7 +5,7 @@ class Order
   
   #Validations
   validates_presence_of :order_number
-  validates_presence_of :total_amount
+  #validates_presence_of :total_amount
   validates :order_number, :uniqueness => true
   validates_presence_of :event
   #validates_randomness_of :order_number (?)

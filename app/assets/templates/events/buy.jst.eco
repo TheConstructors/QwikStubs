@@ -2,7 +2,7 @@
 <div class="white-box">
   <h3>Purchase<div class="btn btn-danger pull-right cancel">Cancel</div></h3>
   <hr>
-  <h3 style="text-align:center;"><div class="btn btn-success">Select My Seats</div></h3>
+  <h3 style="text-align:center;"><div id="select" class="btn btn-success">Select My Seats</div></h3>
   <h3 style="text-align:center;">Or
-  <h3 style="text-align:center;"><div class="btn btn-success">Find Best Seats</div></h3>
+  <h3 style="text-align:center;"><div id="best" class="btn btn-success">Find Best Seats</div></h3>
 </div>

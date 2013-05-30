@@ -98,7 +98,7 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
     for id in @selected_seats
       sid = "#" + id
       circle = @stage.get(sid)[0]
-      circle.setFill('yellow')
+      circle.setFill('green')
       seat = @options.seats.get(id)
       #console.log(seat)
       html = html + "<li>" + seat.get("venue_seat").name + "</li>"
