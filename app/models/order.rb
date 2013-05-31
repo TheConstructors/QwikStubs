@@ -1,13 +1,16 @@
 class Order
   include ApplicationModel
   key :order_number, Integer
-  key :total_amount, Float
+  key :total_amount, Float# , :default => 5
   
   #Validations
+
+  before_save :generate_number
   validates_presence_of :order_number
   validates_presence_of :total_amount
   validates :order_number, :uniqueness => true
   validates_presence_of :event
+
   #validates_randomness_of :order_number (?)
   
   #Relationships
@@ -16,26 +19,28 @@ class Order
   belongs_to :event
 
   # add randomization to this later
-  def self.generate_order_number # may have race condition if parallelizing
+  # change to uuid
+
+  def generate_number # may have race condition if parallelizing
     if Order.empty?
-      0
+      order_number = 0
     else 
-      Order.sort(:order_number).last.order_number + 1
+      order_number = Order.sort(:order_number).last.order_number + 1
     end
   end
 
   def trigger_release(seats)
-    channel_id = event.id.to_s
+    channel_id = self.event.id.to_s
     Pusher.trigger(channel_id, 'order:release', seats)
   end
 
   def trigger_reserve(seats)
-    channel_id = event.id.to_s
+    channel_id = self.event.id.to_s
     Pusher.trigger(channel_id, 'order:reserve', seats)
   end
 
   def trigger_purchase(seats)
-    channel_id = event.id.to_s
+    channel_id = self.event.id.to_s
     Pusher.trigger(channel_id, 'order:purchase', seats)
   end
 
@@ -45,69 +50,99 @@ class Order
         return false
       end
     }
-    seats.each { |seat|
+    seats.each do |seat|
       seat.status = EventSeat::Status::RESERVED
-      seat.order = self
+      seat.order_id = id
       seat.save()
-    }
+    end
     trigger_reserve(seats)
     true
   end
 
-  def purchase_seats(seats)
-    seats.each { |seat|
+  def purchase_seats()
+    event_seats.each { |seat|
       if(seat.status != EventSeat::Status::RESERVED)
         return false
       end
     }
-    seats.each { |seat|
+    event_seats.each { |seat|
       seat.status = EventSeat::Status::SOLD
       seat.order = self
       seat.save()
     }
-    trigger_purchase(seats)
+    trigger_purchase(event_seats)
     true
   end
 
   def release_seats(seats)
-    seats.each { |seat|
+    seats.each do |seat|
       if(seat.status != EventSeat::Status::RESERVED)
         return false
       end
-    }
-    seats.each { |seat|
+    end
+
+    seats.each do |seat|
       seat.status = EventSeat::Status::UNSOLD
       seat.order = self
       seat.save()
-    }
+    end
     trigger_release(seats)
     true
   end
 
-  def find_seats(num_seats)
-    update = false
-    while update != true
-      @group = Group.where(reserved: 0, event_id: event.id, :size.gte => num_seats).sort(:quality).all.first
-      update = Group.set({_id: @group.id, reserved: 0}, {reserved: 1})
-      update = update["updatedExisting"]
-    end
-    @group.reload
-    seats = @group.event_seats.sort(:column).all[0..(num_seats-1)]
-    seats.each do |seat|
-      seat.group = nil
-      seat.status = EventSeat::Status::RESERVED
-      seat.save()
-    end
-    @group.reload
-    if @group.size <= num_seats
-      @group.delete()
-    else
-      @group.size = @group.event_seats.size
-      @group.reserved = 0
-      if !@group.save()
-        false
+  def find_seats(number)
+    # if we can't fufil the request fail here
+    # if event.total_seats < event.sold_seats + number
+    #  return nil
+    # end
+
+    updated = nil
+    check = 0
+    while !updated
+      #debugger
+      group = Group.where(event_id: event.id, reserved: 0, :size.gte => number).sort(:size.asc).limit(1).first
+      updated = group && group.set(reserved: 1)["updatedExisting"]
+      if check > 9
+        return nil
       end
+      check += 1
+      # sleep(1)
     end
-    seats
+    group.reload
+    seats = group.event_seats.sort(:column)
+    acquired = seats.take(number)
+    start_column = acquired.first.column
+    end_column = start_column + number - 1
+    #debugger
+    if (start_column..end_column).to_a == acquired.map(&:column)
+      #allocate seats
+      free = group.event_seats.drop(number)
+      reserved_group = Group.create! event_id: event.id, reserved: 1, :size => 0
+      acquired.each do |seat|
+        seat.group = reserved_group
+        seat.save!
+      end
+      #order = Order.new event: event
+      self.reserve_seats(acquired)
+      self.save!
+
+      # generate order here
+      free_group = Group.create event_id: event.id, reserved: 0, :size => 0
+      free.each do |seat|
+        seat.group = free_group
+        seat.save!
+      end
+      reserved_group.reload
+      reserved_group.size = number
+      reserved_group.save!
+      free_group.reload
+      free_group.size = group.size - number
+      free_group.save!
+      group.delete
+      return self
+    else
+      group.reserved = 0; group.save!
+      return nil
+    end
   end
 end

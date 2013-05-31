@@ -1,4 +1,4 @@
-#require 'pry'
+require 'pry'
 
 class EventSeat
   include ApplicationModel
@@ -22,15 +22,28 @@ class EventSeat
   belongs_to :order
   belongs_to :group
 
-  def self.grouped_by()
-    map_function = "function() { emit(this.row, this); }"
-    
-    # put your logic here (not needed in my case)
-    reduce_function = %Q( function(_row, _seats) { 
-      return { row: _row, seats:_seats };
-    })
-#    pry self
-    collection.map_reduce(map_function, reduce_function, {out: "map_reduce_rows"}).find()
+  def self.get_seats(event)
+    event_sections = event.event_sections.map(&:id)
+    event_seats = MongoMapper.database.collection('event_seats').aggregate(
+      [{ :$match => { event_section_id: { :$in => event_sections } }},
+       { :$sort => { seat_id: 1 }}])
+    sections = event.venue.sections.map(&:id)
+    seats = MongoMapper.database.collection('seats').aggregate(
+      [{ :$match => { section_id: { :$in => sections } }},
+       { :$sort => { _id: 1 }}])
+    ret = []
+    (0...seats.length).each do |i|
+      ret << {id: event_seats[i]["_id"], venue_seat: seats[i], event_seat: event_seats[i] }
+    end
+    ret
   end
-
+  
+  def self.group_by_row(event_id)
+    sections = Event.find(event_id).event_sections.map(&:id)
+    MongoMapper.database.collection("groups-test").drop()
+    MongoMapper.database.collection('event_seats').
+                aggregate([{ :$match => { event_section_id: { :$in => sections } }},
+                           { :$group => { :_id => { row: "$row", :event_section_id => "$event_section_id"},
+                                                          :seats => {:$addToSet=>"$_id"}}}])
+  end
 end

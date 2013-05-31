@@ -1,0 +1,15 @@
+<div class="white-box">
+  <h3>Purchase<div class="btn btn-danger pull-right cancel">Cancel</div></h3>
+  <hr>
+  <div style="text-align:center;">
+  <h3>I want...</h3>
+  <button style="margin:3px;" id="best_1" class="btn btn-success">1 Seat&nbsp;&nbsp;</button>
+  <button style="margin:3px;" id="best_2" class="btn btn-success">2 Seats</button>
+  <button style="margin:3px;" id="best_3" class="btn btn-success">3 Seats</button>
+  <button style="margin:3px;" id="best_4" class="btn btn-success">4 Seats</button><br>
+  <button style="margin:3px;" id="best_5" class="btn btn-success">5 Seats</button>
+  <button style="margin:3px;" id="best_6" class="btn btn-success">6 Seats</button>
+  <button style="margin:3px;" id="best_7" class="btn btn-success">7 Seats</button>
+  <button style="margin:3px;" id="best_8" class="btn btn-success">8 Seats</button>
+</div>
+</div>
