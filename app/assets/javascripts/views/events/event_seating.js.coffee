@@ -55,7 +55,8 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
       color = "yellow"
     if seat.get("event_seat").status == 2
        color = "red"
-
+    console.log(seat.get("event_seat")._id)
+    console.log(seat.get("event_seat").event_section_id)
     circle = new Kinetic.Circle({
         x: x
         y: y
@@ -63,12 +64,12 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
         fill: color
         stroke: 'black'
         strokeWidth: 1
-        id: seat.get("event_seat").id
+        id: seat.get("event_seat")._id
       })
     t = @
-    circle.on("click", () -> t.add_seat(seat.get("event_seat").id))
-    circle.on("mouseenter", () -> t.view_seat(seat.get("event_seat").id))
-    circle.on("mouseleave", () -> t.unview_seat(seat.get("event_seat").id))
+    circle.on("click", () -> t.add_seat(seat.get("event_seat")._id))
+    circle.on("mouseenter", () -> t.view_seat(seat.get("event_seat")._id))
+    circle.on("mouseleave", () -> t.unview_seat(seat.get("event_seat")._id))
     @layer.add(circle)
 
   view_seat: (id) ->
