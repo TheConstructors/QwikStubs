@@ -3,7 +3,7 @@ class UserMailer < ActionMailer::Base
 
   def welcome_email(user)
     @user = user
-    @url  = "localhost:3000/login"
+    @url  = "www.qwikstubs.com/login"
     attachments.inline['logo-tiny.png'] = File.read('app/assets/images/logo-tiny.png')
     mail(:to => @user.get_email, :subject => "Welcome to Qwikstubs!")
   end
