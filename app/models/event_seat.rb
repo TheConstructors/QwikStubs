@@ -23,23 +23,15 @@ class EventSeat
   belongs_to :group
 
   def self.get_seats(event)
-    puts "$$$$1"
     event_sections = event.event_sections.map(&:id)
-    puts "$$$$2"
     event_seats = MongoMapper.database.collection('event_seats').aggregate(
       [{ :$match => { event_section_id: { :$in => event_sections } }},
        { :$sort => { seat_id: 1 }}])
-    puts "$$$$3"
     sections = event.venue.sections.map(&:id)
-    puts "$$$$4"
     seats = MongoMapper.database.collection('seats').aggregate(
       [{ :$match => { section_id: { :$in => sections } }},
        { :$sort => { _id: 1 }}])
-    puts "$$$$5"
-
     ret = []
-    puts "$$$$6"
-
     (0...seats.length).each do |i|
       ret << {id: event_seats[i]["_id"], venue_seat: seats[i], event_seat: event_seats[i] }
     end
