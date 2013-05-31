@@ -166,7 +166,7 @@ describe Order do
       @groups = Group.all
       @groups.size.should == 10 
       @order = FactoryGirl.build(:order, event: @e)
-      seats = @order.find_seats(@e, 4)
+      seats = @order.find_seats(4).event_seats
       seats.size.should == 4
       columns = []
       seats.each do |seat|
