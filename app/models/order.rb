@@ -99,13 +99,14 @@ class Order
     check = 0
     while !updated
       #debugger
+      puts "------------ in while ------------------"
       group = Group.where(event_id: event.id, reserved: 0, :size.gte => number).sort(:size.asc).limit(1).first
       updated = group && group.set(reserved: 1)["updatedExisting"]
       if check > 9
         return nil
       end
       check += 1
-      sleep(1.0/2.0)
+      # sleep(1.0/2.0)
     end
     group.reload
     seats = group.event_seats.sort(:column)

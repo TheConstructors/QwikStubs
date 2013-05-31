@@ -4,15 +4,9 @@ class OrdersController < ApplicationController
   # Create should generate a new order with correct info
   def create
     event = Event.find_by_id(params[:event_id])
-    puts "oooooooooooooooooooo"
-    puts params
-    puts event.as_json
     amount = 0.0
     order = Order.create!(event:event, total_amount:amount.to_f, order_number: Order.generate_number)
     order.reload
-    puts "oooooooooooooooooooo"
-    puts order.as_json
-    puts "oooooooooooooooooooo"
     respond_with order
   end
   
@@ -31,13 +25,13 @@ class OrdersController < ApplicationController
     end
     if params[:type] == "best"
       puts params
-      puts "============================="
+      puts "=============================$"
       order = Order.find_by_id(params[:id])
       puts order
-      puts "============================="
-      puts order.event
+      puts "=============================%"
       order = order.find_seats(params[:num])
-      puts order.event_seats.as_json
+      puts order.as_json
+      puts "=============================*"
       respond_with order
        #event = Event.where(:id => params[:event]).first
       # number = params[:amount]
