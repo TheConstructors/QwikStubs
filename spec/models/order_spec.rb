@@ -91,7 +91,7 @@ describe Order do
         seat.status.should == EventSeat::Status::RESERVED
       }
       @order = FactoryGirl.build(:order, event: @event)
-      @order.purchase_seats(@seats).should == true
+      @order.purchase_seats().should == true
       @seats2 = EventSeat.all
       @seats2.each { |seat|
         seat.status.should == EventSeat::Status::SOLD
@@ -102,7 +102,7 @@ describe Order do
       @seat4 = FactoryGirl.create(:event_seat, status: EventSeat::Status::SOLD)
       @seats = EventSeat.all
       @order = FactoryGirl.build(:order, event: @event)
-      @order.purchase_seats(@seats).should == false
+      @order.purchase_seats().should == false
       @seat4.status = EventSeat::Status::UNSOLD
       @seat4.save()
       @seats = EventSeat.all
@@ -177,7 +177,5 @@ describe Order do
         value += 1
       end
     end
-
   end
-
 end
