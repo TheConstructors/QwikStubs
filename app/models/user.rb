@@ -23,8 +23,12 @@ class User
     @last_name ||= full_name.split.last
   end
 
-  def email
+  def get_email
     emails.first.email
+  end
+
+  def send_welcome
+    UserMailer.welcome_email(self).deliver
   end
 
   # An accessor for password, when you do `user.passsword = "a_new_pass"

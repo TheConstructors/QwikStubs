@@ -5,6 +5,6 @@ class UserMailer < ActionMailer::Base
     @user = user
     @url  = "localhost:3000/login"
     attachments.inline['logo-tiny.png'] = File.read('app/assets/images/logo-tiny.png')
-    mail(:to => @user.email, :subject => "Welcome to Qwikstubs!")
+    mail(:to => @user.get_email, :subject => "Welcome to Qwikstubs!")
   end
 end
