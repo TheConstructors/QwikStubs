@@ -1,4 +1,4 @@
-#require 'pry'
+require 'pry'
 require 'sunspot_ext'
 
 class Event
@@ -158,7 +158,10 @@ class Event
         group.size += 1
         self.total_seats += 1
       end
-      group.save && group
+      size = group.size
+      group.reload
+      group.size = size
+      group.save! && group
     end
     self.save
     groups

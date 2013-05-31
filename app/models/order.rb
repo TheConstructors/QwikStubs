@@ -6,10 +6,10 @@ class Order
   #Validations
 
   before_save :generate_number
-  # validates_presence_of :order_number
-  # validates_presence_of :total_amount
-  # validates :order_number, :uniqueness => true
-  # validates_presence_of :event
+  validates_presence_of :order_number
+  validates_presence_of :total_amount
+  validates :order_number, :uniqueness => true
+  validates_presence_of :event
 
   #validates_randomness_of :order_number (?)
   
@@ -101,6 +101,7 @@ class Order
 
     updated = nil
     while !updated
+      # pry self
       #debugger
       group = Group.where(event_id: event.id, reserved: 0, :size.gte => number).sort(:size.asc).limit(1).first
       updated = group && group.set(reserved: 1)["updatedExisting"]
