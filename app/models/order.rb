@@ -92,9 +92,12 @@ class Order
 
   def find_seats(event, number)
     # if we can't fufil the request fail here
-    if event.total_seats < event.sold_seats + number
-     return nil
-    end
+    puts "---------------------"
+    puts event
+    puts "++++---------------------"
+    # if event.total_seats < event.sold_seats + number
+    #  return nil
+    # end
 
     updated = nil
     while !updated
@@ -116,7 +119,9 @@ class Order
         seat.group = reserved_group
         seat.save!
       end
-      
+      puts "+++++++++++++"
+      puts acquired
+      puts "+++++++++++++"
       #order = Order.new event: event, order_number: Order.generate_number
       self.reserve_seats(acquired)
       self.save!
