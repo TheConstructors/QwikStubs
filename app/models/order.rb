@@ -86,7 +86,7 @@ class Order
     true
   end
 
-  def self.find_seats(event, number)
+  def find_seats(event, number)
     # if we can't fufil the request fail here
     if event.total_seats < event.sold_seats + number
      return nil
@@ -113,9 +113,9 @@ class Order
         seat.save!
       end
       
-      order = Order.new event: event, order_number: Order.generate_number
-      order.reserve_seats(acquired)
-      order.save!
+      #order = Order.new event: event, order_number: Order.generate_number
+      self.reserve_seats(acquired)
+      self.save!
 
       # generate order here
       free_group = Group.create event_id: event.id, reserved: 0, :size => group.size - number
