@@ -47,4 +47,10 @@ class Qwikstubs.Views.EventPurchase extends Backbone.View
   best_8 :-> @best_find(8)
 
   best_find : (num)->
-    
+    console.log(@order)
+    console.log(@options.order)
+    order = @options.order
+    run = ()->
+      console.log(@order)
+    @options.order.save({type:"best",num:num}, {success:run})
+
