@@ -108,17 +108,19 @@ class Event
   end  
 
   def copy_seating
-    @venue = self.venue
-    @venue.sections.each do |section|
-      @es = EventSection.create(section: section, event: self)
-      section.seats.each do |seat|
-      EventSeat.create(event_section: @es, seat: seat, 
-                       status: EventSeat::Status::UNSOLD,
-                       row: seat.row, column: seat.column)  
+    if EventSection.where(event_id: id).size == 0
+      @venue = self.venue
+      @venue.sections.each do |section|
+        @es = EventSection.create(section: section, event: self)
+        section.seats.each do |seat|
+        EventSeat.create(event_section: @es, seat: seat, 
+                         status: EventSeat::Status::UNSOLD,
+                         row: seat.row, column: seat.column)  
+        end
       end
     end
   end
-  
+
   def self.fuzzy_search(text)
     names = Event.search do |q|
       q.fuzzy(:name, text)

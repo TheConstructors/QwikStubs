@@ -80,17 +80,18 @@ describe Order do
   describe "purchase_seats" do
     before (:each) do
       @event = FactoryGirl.create(:event)
-      @seat1 = FactoryGirl.create(:event_seat, status: EventSeat::Status::RESERVED)
-      @seat2 = FactoryGirl.create(:event_seat, status: EventSeat::Status::RESERVED)
-      @seat3 = FactoryGirl.create(:event_seat, status: EventSeat::Status::RESERVED)
+      @seat1 = FactoryGirl.create(:event_seat, status: EventSeat::Status::UNSOLD)
+      @seat2 = FactoryGirl.create(:event_seat, status: EventSeat::Status::UNSOLD)
+      @seat3 = FactoryGirl.create(:event_seat, status: EventSeat::Status::UNSOLD)
     end
     
     it "should set all the seats to reserved" do
       @seats = EventSeat.all
       @seats.each { |seat|
-        seat.status.should == EventSeat::Status::RESERVED
+        seat.status.should == EventSeat::Status::UNSOLD
       }
       @order = FactoryGirl.build(:order, event: @event)
+      @order.reserve_seats(@seats).should == true
       @order.purchase_seats().should == true
       @seats2 = EventSeat.all
       @seats2.each { |seat|
@@ -99,14 +100,15 @@ describe Order do
     end
 
     it "should return false with a seat marked sold or unsold" do
-      @seat4 = FactoryGirl.create(:event_seat, status: EventSeat::Status::SOLD)
       @seats = EventSeat.all
       @order = FactoryGirl.build(:order, event: @event)
+      @order.reserve_seats(@seats).should == true
+      @seats[0].status = EventSeat::Status::SOLD
+      @seats[0].save()
       @order.purchase_seats().should == false
-      @seat4.status = EventSeat::Status::UNSOLD
-      @seat4.save()
-      @seats = EventSeat.all
-      #@order.purchaseSeats(@seats).should == false
+      @seats[0].status = EventSeat::Status::UNSOLD
+      @seats[0].save()
+      @order.purchase_seats().should == false
     end
   end
 
@@ -154,7 +156,7 @@ describe Order do
           FactoryGirl.create(:seat, section: @sec, quality: 1, row: r, column: c)
         end
       end
-      @e = FactoryGirl.create(:event, venue: @venue, promoter: @promoter)      
+      @e = FactoryGirl.create(:event, venue: @venue, promoter: @promoter)  
       @e.generate_groups()
     end
 

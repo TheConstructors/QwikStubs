@@ -66,7 +66,7 @@ class Order
       seat.order = self
       seat.save()
     }
-    trigger_purchase(seats)
+    trigger_purchase(event_seats)
     true
   end
 
