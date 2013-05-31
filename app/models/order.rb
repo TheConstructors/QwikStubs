@@ -5,7 +5,6 @@ class Order
   
   #Validations
 
-  before_save :generate_number
   validates_presence_of :order_number
   validates_presence_of :total_amount
   validates :order_number, :uniqueness => true
@@ -21,11 +20,11 @@ class Order
   # add randomization to this later
   # change to uuid
 
-  def generate_number # may have race condition if parallelizing
-    if Order.empty?
-      order_number = 0
+  def self.generate_number # may have race condition if parallelizing
+    if Order.size <= 1
+      0
     else 
-      order_number = Order.sort(:order_number).last.order_number + 1
+      Order.sort(:order_number).last.order_number + 1
     end
   end
 
@@ -106,7 +105,7 @@ class Order
         return nil
       end
       check += 1
-      # sleep(1)
+      sleep(1.0/2.0)
     end
     group.reload
     seats = group.event_seats.sort(:column)
