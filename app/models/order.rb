@@ -1,3 +1,5 @@
+require 'uuid'
+
 class Order
   include ApplicationModel
   key :order_number, Integer
@@ -19,13 +21,14 @@ class Order
 
   # add randomization to this later
   # change to uuid
+  
+  def initialize(params = {})
+    self.order_number = Order.generate_number
+    super(params)
+  end
 
   def self.generate_number # may have race condition if parallelizing
-    if Order.empty? 
-      0
-    else 
-      Order.sort(:order_number).last.order_number + 1
-    end
+    UUID.new.generate
   end
 
   def trigger_release(seats)
