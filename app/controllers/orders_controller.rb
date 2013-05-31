@@ -8,8 +8,8 @@ class OrdersController < ApplicationController
     puts params
     puts event.as_json
     amount = 0.0
-    order = Order.create(event:event, total_amount:amount.to_f)
-
+    order = Order.create!(event:event, total_amount:amount.to_f, order_number: Order.generate_number)
+    order.reload
     puts "oooooooooooooooooooo"
     puts order.as_json
     puts "oooooooooooooooooooo"
@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
       puts order
       puts "============================="
       puts order.event
-      order.find_seats(params[:num])
+      order = order.find_seats(params[:num])
       puts order.event_seats.as_json
       respond_with order
        #event = Event.where(:id => params[:event]).first
