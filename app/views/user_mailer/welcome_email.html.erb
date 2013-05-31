@@ -5,10 +5,10 @@
   </head>
   <body>
     <%= image_tag attachments['logo-tiny.png'].url %>
-    <h2>Welcome to Qwikstubs, <%= @user_email.user.full_name %></h2>
+    <h2>Welcome to Qwikstubs, <%= @user.full_name %></h2>
     <p>
       You have successfully signed up to qwikstubs.com,
-      your username is: <%= @user_email.email %>.<br/>
+      your username is: <%= @user.email %>.<br/>
     </p>
     <p>
       To login, just follow this link: <%= @url %>.

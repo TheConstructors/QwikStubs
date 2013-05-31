@@ -20,7 +20,7 @@ class UsersController < ApplicationController
         @email = Email.new email: user_email, user: @user
         @email.save
         # Now Logged In, send welcome email
-        UserMailer.welcome_email(@email).deliver
+        UserMailer.welcome_email(@user).deliver
 
         session[:user_id] = @user.id
         redirect_to root_path

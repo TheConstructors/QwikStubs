@@ -23,10 +23,9 @@ class User
     @last_name ||= full_name.split.last
   end
 
-  # I'm not sure how to access a user's email...
-  # def email
-  #   self.emails
-  # end
+  def email
+    emails.first.email
+  end
 
   # An accessor for password, when you do `user.passsword = "a_new_pass"
   # this method is invoked, causing the object to generate a new salt,
