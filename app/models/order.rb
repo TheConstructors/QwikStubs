@@ -55,13 +55,13 @@ class Order
     true
   end
 
-  def purchase_seats(seats)
-    seats.each { |seat|
+  def purchase_seats()
+    event_seats.each { |seat|
       if(seat.status != EventSeat::Status::RESERVED)
         return false
       end
     }
-    seats.each { |seat|
+    event_seats.each { |seat|
       seat.status = EventSeat::Status::SOLD
       seat.order = self
       seat.save()
