@@ -41,13 +41,7 @@ class EventsController < ApplicationController
   
   def seats
     @event = Event.find(params[:id])
-    @seats = []
-    @event.event_sections.each do |event_section|
-      event_section.event_seats.each do |event_seat|
-        seat = {id: event_seat.id, venue_seat: event_seat.seat, event_seat: event_seat }
-        @seats << seat
-      end  
-    end
+    @seats = EventSeat.get_seats(@event)
     respond_with @seats.as_json
   end
 

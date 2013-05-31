@@ -4,10 +4,13 @@ class Order
   key :total_amount, Float# , :default => 5
   
   #Validations
-  validates_presence_of :order_number
-  validates_presence_of :total_amount
-  validates :order_number, :uniqueness => true
-  validates_presence_of :event
+
+  before_save :generate_number
+  # validates_presence_of :order_number
+  # validates_presence_of :total_amount
+  # validates :order_number, :uniqueness => true
+  # validates_presence_of :event
+
   #validates_randomness_of :order_number (?)
   
   #Relationships
@@ -17,11 +20,12 @@ class Order
 
   # add randomization to this later
   # change to uuid
-  def self.generate_order_number # may have race condition if parallelizing
+
+  def generate_number # may have race condition if parallelizing
     if Order.empty?
-      0
+      order_number = 0
     else 
-      Order.sort(:order_number).last.order_number + 1
+      order_number = Order.sort(:order_number).last.order_number + 1
     end
   end
 
@@ -66,7 +70,7 @@ class Order
       seat.order = self
       seat.save()
     }
-    trigger_purchase(seats)
+    trigger_purchase(event_seats)
     true
   end
 
@@ -86,11 +90,14 @@ class Order
     true
   end
 
-  def self.find_seats(event, number)
+  def find_seats(event, number)
     # if we can't fufil the request fail here
-    if event.total_seats < event.sold_seats + number
-     return nil
-    end
+    puts "---------------------"
+    puts event
+    puts "++++---------------------"
+    # if event.total_seats < event.sold_seats + number
+    #  return nil
+    # end
 
     updated = nil
     while !updated
@@ -112,10 +119,12 @@ class Order
         seat.group = reserved_group
         seat.save!
       end
-      
-      order = Order.new event: event, order_number: Order.generate_number
-      order.reserve_seats(acquired)
-      order.save!
+      puts "+++++++++++++"
+      puts acquired
+      puts "+++++++++++++"
+      #order = Order.new event: event, order_number: Order.generate_number
+      self.reserve_seats(acquired)
+      self.save!
 
       # generate order here
       free_group = Group.create event_id: event.id, reserved: 0, :size => group.size - number
