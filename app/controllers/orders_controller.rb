@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
       puts order
       puts "============================="
       puts order.event
-      order.find_seats(order.event, params[:num])
+      order.find_seats(params[:num])
       puts order.event_seats.as_json
       respond_with order
        #event = Event.where(:id => params[:event]).first
