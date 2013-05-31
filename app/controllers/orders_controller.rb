@@ -28,7 +28,8 @@ class OrdersController < ApplicationController
       puts params
       puts "fjdsklfjkladsjfkladsjfk;ladsjkfjadsklfjadskljfdskljfk;ldsjfk;ladsjklfjadsklfjadsk;lfj"
       order = Order.find_by_id(params[:id])
-      order.find_seats(order.event, params[:num])
+      order = order.find_seats(order.event, params[:num])
+      
       respond_with order
        #event = Event.where(:id => params[:event]).first
       # number = params[:amount]
