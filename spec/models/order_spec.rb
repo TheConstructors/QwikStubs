@@ -31,11 +31,6 @@ describe Order do
   end
     
   describe "generate_order_number" do
-    it "should produce 0 if there are no orders" do
-      Order.stubs(:empty?).returns(true)
-      Order.generate_number.should == 0
-    end
-
     it "should produce a new unique order number" do
       ord_num = Order.generate_number
       @ord2 = FactoryGirl.create(:order)
