@@ -32,7 +32,12 @@ class OrdersController < ApplicationController
       order = order.find_seats(params[:num])
       puts order.as_json
       puts "=============================*"
-      respond_with order
+      o = []
+      
+      o << {order:order,response:{seats: order.event_seats}}
+      puts "RRRRREEETTYTUUURRRNNN"
+      puts o.as_json
+      respond_with o.as_json
        #event = Event.where(:id => params[:event]).first
       # number = params[:amount]
       # order = Order.find_seats(event, number.to_f)
