@@ -21,7 +21,7 @@ class Order
   # change to uuid
 
   def self.generate_number # may have race condition if parallelizing
-    if Order.size <= 1
+    if Order.empty? 
       0
     else 
       Order.sort(:order_number).last.order_number + 1

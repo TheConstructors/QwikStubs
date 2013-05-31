@@ -33,13 +33,13 @@ describe Order do
   describe "generate_order_number" do
     it "should produce 0 if there are no orders" do
       Order.stubs(:empty?).returns(true)
-      @ord.generate_number.should == 0
+      Order.generate_number.should == 0
     end
 
     it "should produce a new unique order number" do
-      ord_num = @ord.generate_number
+      ord_num = Order.generate_number
       @ord2 = FactoryGirl.create(:order)
-      ord_num2 = @ord.generate_number
+      ord_num2 = Order.generate_number
       ord_num.should < ord_num2
     end
   end
