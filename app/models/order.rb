@@ -22,11 +22,6 @@ class Order
   # add randomization to this later
   # change to uuid
   
-  def initialize(params = {})
-    self.order_number = Order.generate_number
-    super(params)
-  end
-
   def self.generate_number # may have race condition if parallelizing
     UUID.new.generate
   end
@@ -102,7 +97,6 @@ class Order
     check = 0
     while !updated
       #debugger
-      puts "------------ in while ------------------"
       group = Group.where(event_id: event.id, reserved: 0, :size.gte => number).sort(:size.asc).limit(1).first
       updated = group && group.set(reserved: 1)["updatedExisting"]
       if check > 9

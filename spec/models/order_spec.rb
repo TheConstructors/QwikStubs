@@ -152,7 +152,7 @@ describe Order do
         end
       end
       @e = FactoryGirl.create(:event, venue: @venue, promoter: @promoter)  
-      @e.generate_groups()
+      #@e.generate_groups()
     end
 
     it "should return a set of seats that are reserved" do
