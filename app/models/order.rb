@@ -90,21 +90,23 @@ class Order
     true
   end
 
-  def find_seats(event, number)
+  def find_seats(number)
     # if we can't fufil the request fail here
-    puts "---------------------"
-    puts event
-    puts "++++---------------------"
     # if event.total_seats < event.sold_seats + number
     #  return nil
     # end
 
     updated = nil
+    check = 0
     while !updated
-      # pry self
       #debugger
       group = Group.where(event_id: event.id, reserved: 0, :size.gte => number).sort(:size.asc).limit(1).first
       updated = group && group.set(reserved: 1)["updatedExisting"]
+      if check > 9
+        return nil
+      end
+      check += 1
+      # sleep(1)
     end
     group.reload
     seats = group.event_seats.sort(:column)
@@ -115,26 +117,29 @@ class Order
     if (start_column..end_column).to_a == acquired.map(&:column)
       #allocate seats
       free = group.event_seats.drop(number)
-      reserved_group = Group.create event_id: event.id, reserved: 1, :size => number
+      reserved_group = Group.create! event_id: event.id, reserved: 1, :size => 0
       acquired.each do |seat|
         seat.group = reserved_group
         seat.save!
       end
-      puts "+++++++++++++"
-      puts acquired
-      puts "+++++++++++++"
-      #order = Order.new event: event, order_number: Order.generate_number
+      #order = Order.new event: event
       self.reserve_seats(acquired)
       self.save!
 
       # generate order here
-      free_group = Group.create event_id: event.id, reserved: 0, :size => group.size - number
+      free_group = Group.create event_id: event.id, reserved: 0, :size => 0
       free.each do |seat|
         seat.group = free_group
         seat.save!
       end
-      reserved_group.save!; free_group.save!
-      return order
+      reserved_group.reload
+      reserved_group.size = number
+      reserved_group.save!
+      free_group.reload
+      free_group.size = group.size - number
+      free_group.save!
+      group.delete
+      return self
     else
       group.reserved = 0; group.save!
       return nil

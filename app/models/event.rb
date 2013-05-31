@@ -31,6 +31,7 @@ class Event
 
   #doesn't work if venue is changed after event was created
   after_save :copy_seating
+  # after_save :generate_groups
 
   validate :validate_month, :validate_day, :validate_year
   #before_save :generate_date
@@ -142,6 +143,9 @@ class Event
   end
 
   def generate_groups
+    # if Group.where(event_id: id).all != 0
+    #   return false
+    # end
     groups_data = EventSeat.group_by_row(self.id)
 
     groups = groups_data.map do |group_data|
