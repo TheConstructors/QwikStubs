@@ -10,6 +10,7 @@ Qwikstubs::Application.routes.draw do
     get '/events/order/reserve/:id/:total' => 'events#order_reserve_mock'
     get '/events/order/release/:id/:total' => 'events#order_release_mock'
     get '/events/order/best/:event/:amount' => 'orders#select_best_seats'
+    get '/orders/seats/:id' => 'orders#seats'
     get '/search/events' => 'events#search'
   end
 
