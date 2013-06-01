@@ -13,10 +13,10 @@ class OrdersController < ApplicationController
   # Update should allow us to modify the order to be completed, or modify some aspect of it like
   # willcall, printing, ect.
   def update
-    puts "params ======================"
-    puts params
-    puts "============================="
-
+    #puts "params ======================"
+    #puts params
+    #puts "============================="
+    #debugger 
     if params[:type] == "select"
       params[:seats].each do |seat|
         puts seat
@@ -24,19 +24,17 @@ class OrdersController < ApplicationController
       end
     end
     if params[:type] == "best"
-      puts params
-      puts "=============================$"
+      #puts params
+      #puts "=============================$"
       order = Order.find_by_id(params[:id])
-      puts order
-      puts "=============================%"
-      order = order.find_seats(params[:num])
-      puts order.as_json
-      puts "=============================*"
-      o = []
-      
-      o << {order:order,response:{seats: order.event_seats}}
-      puts "RRRRREEETTYTUUURRRNNN"
-      puts o.as_json
+      #puts order
+      #puts "=============================%"
+      order = order.find_seats(params[:num].to_f)
+      #puts order.as_json
+      #puts "=============================*"
+      o = [{ order: order, response: { seats: order.event_seats }}]
+      #puts "RRRRREEETTYTUUURRRNNN"
+      #puts o.as_json
       respond_with o.as_json
        #event = Event.where(:id => params[:event]).first
       # number = params[:amount]

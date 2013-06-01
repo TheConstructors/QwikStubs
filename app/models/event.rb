@@ -155,19 +155,20 @@ class Event
                            size: 0)
 
       seats = group_data["seats"]
+      
+      size = 0
 
       EventSeat.find(seats).each do |es|
         es.group = group
         es.save!
-        group.size += 1
+        size += 1
         self.total_seats += 1
-      end
-      size = group.size
+      end 
       group.reload
       group.size = size
       group.save! && group
     end
-    self.save
+    self.save!
     groups
   end
 end
