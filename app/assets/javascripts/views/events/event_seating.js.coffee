@@ -5,7 +5,7 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
   selected_seats: []
 
   events:
-    'order:reserve': 'reserveSeats'
+    #'order:reserve': 'reserveSeats'
     'click #researve-seats': 'reserveSeats'
 
   tagName: 'div'
@@ -20,17 +20,29 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
     @
 
   post_render: ->
+    a = @
     channel = Qwikstubs.Pusher.subscribe(@options.event.id)
-    channel.bind('order:reserve', (data) ->
-      @reserveSeats(data))
-    channel.bind('order:release', (data) ->
-      @releaseSeats(data))
-    channel.bind('order:purchase', (data) ->
-      @purchaseSeats(data))
+    channel.bind(
+      'order:reserve', 
+      (data) ->
+        console.log("reserve")
+        a.reserve_seats(data)
+        console.log(data)
+      )  #@reserveSeats(data))
+    channel.bind(
+      'order:release',
+      (data) ->
+        console.log(data)
+      )#@releaseSeats(data))
+    channel.bind(
+      'order:purchase',
+      (data) ->
+        console.log(data)
+      )
+      #@purchaseSeats(data))
 
   load_seats: ->
     #console.log(@options.seats)
-    
     @stage = new Kinetic.Stage({
         container: 'event_seating'
         width: 500
@@ -111,7 +123,7 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
     $("#reserved-seats").html(html)
 
 
-  reserveSeats: (data) ->
+  reserve_seats: (data) ->
     #console.log(@stage)
     console.log(data)
     #console.log(@layer)
