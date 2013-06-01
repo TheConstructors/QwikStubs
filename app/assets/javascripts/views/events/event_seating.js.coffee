@@ -1,4 +1,4 @@
-class Qwikstubs.Views.EventsSeating extends Backbone.View
+class Qwikstubs.Views.EventSeating extends Backbone.View
   template: JST['events/event_seating']
   
   seats_selectable: false
@@ -13,17 +13,20 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
     #$(@el).attr('id', 'event_seating')
     #@
 
+
+
   render: ->
     $(@el).html(@template())
-    # $("#reserve-seats").onClick({
-    #   order = new Qwikstubs.Collections.Orders()
-    #   Order.create({
-    #     order: {
-
-    #       }
-    #     })
-    #   })
     @
+
+  post_render: ->
+    channel = Qwikstubs.Pusher.subscribe(@options.event.id)
+    channel.bind('order:reserve', (data) ->
+      @reserveSeats(data))
+    channel.bind('order:release', (data) ->
+      @releaseSeats(data))
+    channel.bind('order:purchase', (data) ->
+      @purchaseSeats(data))
 
   load_seats: ->
     #console.log(@options.seats)
@@ -108,11 +111,12 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
     $("#reserved-seats").html(html)
 
 
-  reserveSeats: ->
+  reserveSeats: (data) ->
     #console.log(@stage)
+    console.log(data)
     #console.log(@layer)
     for id in data
-      sid = "#" + id
+      sid = "#" + id.id
       #console.log(sid)
       #console.log(@stage.get(sid)[0])
       @stage.get(sid)[0].setFill('blue')
