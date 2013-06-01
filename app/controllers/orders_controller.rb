@@ -32,12 +32,7 @@ class OrdersController < ApplicationController
       order = order.find_seats(params[:num])
       puts order.as_json
       puts "=============================*"
-      o = []
-      
-      o << {order:order,response:{seats: order.event_seats}}
-      puts "RRRRREEETTYTUUURRRNNN"
-      puts o.as_json
-      respond_with o.as_json
+      respond_with order
        #event = Event.where(:id => params[:event]).first
       # number = params[:amount]
       # order = Order.find_seats(event, number.to_f)
@@ -46,8 +41,10 @@ class OrdersController < ApplicationController
   end
   
   def seats
-    respond_with Order.find(:id)
-
+    # puts "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTtt"
+    # puts params
+    # puts "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
+    respond_with Order.find(params[:id]).event_seats.as_json
   end
   # Destroy should release an Order's ticket back into the pool, firing the correct event.
   def destroy

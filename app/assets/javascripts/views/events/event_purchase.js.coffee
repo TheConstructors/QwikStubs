@@ -47,14 +47,20 @@ class Qwikstubs.Views.EventPurchase extends Backbone.View
   best_8 :-> @best_find(8)
 
   best_find : (num)->
+   #$('#buy').html('<h3 style="text-align:center;"">Searching</h3>')
     console.log(@options.order)
     order = @options.order
-    ret = null
     run = (x,y,z)->
       console.log("success")
       console.log(x)
       console.log(y)
       console.log(z)
+      order_seats = new Backbone.Collection()    
+      order_seats.url = '/api/orders/seats/' + order.id
+      after = (order_seats) ->
+        console.log(order_seats)
+      order_seats.fetch({success: after(order_seats)})
     @options.order.save({type:"best",num:num}, {success:(order,response,options)->run(order,response,options)})
+    
     
 
