@@ -55,6 +55,6 @@ class Qwikstubs.Views.EventPurchase extends Backbone.View
       console.log(x)
       console.log(y)
       console.log(z)
-    ret = @options.order.save({type:"best",num:num}, {success:(order,response,options)->run(order,response,options)})
-
+    @options.order.save({type:"best",num:num}, {success:(order,response,options)->run(order,response,options)})
+    
 

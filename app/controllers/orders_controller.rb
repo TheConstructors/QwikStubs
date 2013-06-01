@@ -45,6 +45,10 @@ class OrdersController < ApplicationController
     end
   end
   
+  def seats
+    respond_with Order.find(:id)
+
+  end
   # Destroy should release an Order's ticket back into the pool, firing the correct event.
   def destroy
 
