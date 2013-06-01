@@ -10,9 +10,9 @@ def build_request(event_id)
   Proc.new { |i| Faraday.put (ticket_request + i.to_s) }
 end
 
-request = build_request('51a956b3c4cf0040bf0005a1')
+request = build_request('51a9448d1d41c81b180005a1')
 
 (0..100).each do |i|
-  request.call(8)
+  request.call(3)
   sleep(1)
 end
