@@ -42,6 +42,7 @@ class EventsController < ApplicationController
   def seats
     @event = Event.find(params[:id])
     @seats = EventSeat.get_seats(@event)
+    #@seats = []
     respond_with @seats.as_json
   end
 

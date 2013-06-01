@@ -81,3 +81,7 @@ gem 'sunspot_mongo_mapper', :github => 'bkeepers/sunspot_mongo_mapper'
 
 # Figaro (for sensitive environment variables)
 gem "figaro"
+
+gem 'uuid'
+
+gem 'faraday'

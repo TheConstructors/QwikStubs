@@ -1,11 +1,11 @@
-class Qwikstubs.Views.EventsSeating extends Backbone.View
+class Qwikstubs.Views.EventSeating extends Backbone.View
   template: JST['events/event_seating']
   
   seats_selectable: false
   selected_seats: []
 
   events:
-    'order:reserve': 'reserveSeats'
+    #'order:reserve': 'reserveSeats'
     'click #researve-seats': 'reserveSeats'
 
   tagName: 'div'
@@ -13,21 +13,36 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
     #$(@el).attr('id', 'event_seating')
     #@
 
+
+
   render: ->
     $(@el).html(@template())
-    # $("#reserve-seats").onClick({
-    #   order = new Qwikstubs.Collections.Orders()
-    #   Order.create({
-    #     order: {
-
-    #       }
-    #     })
-    #   })
     @
+
+  post_render: ->
+    a = @
+    channel = Qwikstubs.Pusher.subscribe(@options.event.id)
+    channel.bind(
+      'order:reserve', 
+      (data) ->
+        console.log("reserve")
+        a.reserve_seats(data)
+        console.log(data)
+      )  #@reserveSeats(data))
+    channel.bind(
+      'order:release',
+      (data) ->
+        console.log(data)
+      )#@releaseSeats(data))
+    channel.bind(
+      'order:purchase',
+      (data) ->
+        console.log(data)
+      )
+      #@purchaseSeats(data))
 
   load_seats: ->
     #console.log(@options.seats)
-    
     @stage = new Kinetic.Stage({
         container: 'event_seating'
         width: 500
@@ -55,7 +70,8 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
       color = "yellow"
     if seat.get("event_seat").status == 2
        color = "red"
-
+    console.log(seat.get("event_seat")._id)
+    console.log(seat.get("event_seat").event_section_id)
     circle = new Kinetic.Circle({
         x: x
         y: y
@@ -63,12 +79,12 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
         fill: color
         stroke: 'black'
         strokeWidth: 1
-        id: seat.get("event_seat").id
+        id: seat.get("event_seat")._id
       })
     t = @
-    circle.on("click", () -> t.add_seat(seat.get("event_seat").id))
-    circle.on("mouseenter", () -> t.view_seat(seat.get("event_seat").id))
-    circle.on("mouseleave", () -> t.unview_seat(seat.get("event_seat").id))
+    circle.on("click", () -> t.add_seat(seat.get("event_seat")._id))
+    circle.on("mouseenter", () -> t.view_seat(seat.get("event_seat")._id))
+    circle.on("mouseleave", () -> t.unview_seat(seat.get("event_seat")._id))
     @layer.add(circle)
 
   view_seat: (id) ->
@@ -107,11 +123,12 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
     $("#reserved-seats").html(html)
 
 
-  reserveSeats: ->
+  reserve_seats: (data) ->
     #console.log(@stage)
+    console.log(data)
     #console.log(@layer)
     for id in data
-      sid = "#" + id
+      sid = "#" + id.id
       #console.log(sid)
       #console.log(@stage.get(sid)[0])
       @stage.get(sid)[0].setFill('blue')
