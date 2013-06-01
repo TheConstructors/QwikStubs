@@ -72,3 +72,14 @@
     <div id="seating">hey</div>
   </div>
 </div>
+
+<div id="qs-email" class="payment"><article>
+  <div class="message"></div>
+
+  <div class="name">
+    <label for="paymentName">Email</label>
+    <input style="width: 290px" type="text"></input>
+    <div class="placeholder"></div>
+    <div class="type"></div>
+  </div>
+</div>
