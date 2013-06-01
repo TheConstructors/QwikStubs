@@ -14,8 +14,7 @@ class Qwikstubs.Views.EventsShow extends Backbone.View
     @
 
   purchase: ->
-    orders = new Qwikstubs.Collections.Orders()
-    order = orders.create(event_id:@options.event.id)
+    
     console.log(order)
     view = new Qwikstubs.Views.EventPurchase(order:order)
     $('#buy').html(view.render().el)

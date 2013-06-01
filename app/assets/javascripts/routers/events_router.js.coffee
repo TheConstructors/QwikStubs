@@ -5,14 +5,11 @@ class Qwikstubs.Routers.Events extends Backbone.Router
     # 'events?sort-name=true': 'sortname'
     # 'events?sort-date=true': 'sortdate'
     'events/:id': 'show'
-    'events/buy/:id': 'buy'
+    'events/:id/purchase': 'purchase'
     'events/seating/:id': 'seating'
   
   initialize: ->
     @collection = new Qwikstubs.Collections.Events()
-    @collection.fetch()
-    #@listenTo(@eventIndex.collection, 'reset', @index)
-
   
   index: ->
     @collection.fetch({
@@ -32,14 +29,13 @@ class Qwikstubs.Routers.Events extends Backbone.Router
     })
 
   seating: (id) ->
-    eventm = new Qwikstubs.Models.Event({id:id})
-    seats = new Qwikstubs.Collections.Seats()
-    seats.url = "/api/events/seats/" + id
-    sections = new Qwikstubs.Collections.Sections()
-    sections.url = "/api/events/sections/" + id
+    e = new Qwikstubs.Models.Event({id:id})
+    e_seats = new Qwikstubs.Collections.Seats()
+    e_seats.url = "/api/events/seats/" + id
+    e_sections = new Qwikstubs.Collections.Sections()
+    e_sections.url = "/api/events/sections/" + id
     complete = () =>
-      console.log("second")
-      view = new Qwikstubs.Views.EventsSeating(seats: seats, sections: sections, event:eventm)
+      view = new Qwikstubs.Views.EventsSeating(seats: e_seats, sections: e_sections, event:e)
       channel = Qwikstubs.Pusher.subscribe(id)
       channel.bind('order:reserve', (data) ->
         view.reserveSeats(data))
@@ -53,11 +49,60 @@ class Qwikstubs.Routers.Events extends Backbone.Router
       $('#container').html(view.render().el)
       view.draw()
 
-    console.log("first")
     success = _.after(3, complete);   
-    eventm.fetch({success: success})
-    seats.fetch({success: success})
-    sections.fetch({success: success})
+    e.fetch({success: success})
+    e_seats.fetch({success: success})
+    e_sections.fetch({success: success})
+
+  purchase: (id) ->
+    # e = event
+    options = @options
+
+    o_orders = new Qwikstubs.Collections.Orders()
+    o = null
+
+    e = new Qwikstubs.Models.Event({id:id})
+    e_venue = null
+    e_seats = new Qwikstubs.Collections.Seats()
+
+    e_seats.url = "/api/events/seats/" + id
+    e_sections = new Qwikstubs.Collections.Sections()
+    e_sections.url = "/api/events/sections/" + id
+
+    complete = () =>
+      console.log(o)
+      # view = new Qwikstubs.Views.EventsSeating(seats: e_seats, sections: e_sections, event:e)
+      # channel = Qwikstubs.Pusher.subscribe(id)
+      # channel.bind('order:reserve', (data) ->
+      #   view.reserveSeats(data))
+      # channel.bind('order:release', (data) ->
+      #   view.releaseSeats(data))
+      # channel.bind('order:purchase', (data) ->
+      #   view.purchaseSeats(data))
+      view = new Qwikstubs.Views.EventPurchase
+        event:    e
+        venue:    e_venue
+        sections: e_sections
+        seats:    e_seats
+        order:    o
+      $('#container').html(view.render().el)
+      #$('#seating').html(view.render().el)
+      console.log(view)
+      view.post_render()
+      # view.load_seats()
+
+    # -----------------------------------------------------
+    
+    success = _.after(4, complete); 
+    e.fetch({
+      success: ->
+        e_venue = new Qwikstubs.Models.Venue({id:e.get('venue_id')})
+        e_venue.fetch({success: success})
+        o = o_orders.create({event_id:e.id},{success: success})
+      })
+
+    e_seats.fetch({success:success})
+    e_sections.fetch({success:success})
 
 
   show: (id) ->

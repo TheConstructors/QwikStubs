@@ -1,11 +1,11 @@
-class Qwikstubs.Views.EventsSeating extends Backbone.View
+class Qwikstubs.Views.EventSeating extends Backbone.View
   template: JST['events/event_seating']
   
   seats_selectable: false
   selected_seats: []
 
   events:
-    'order:reserve': 'reserveSeats'
+    #'order:reserve': 'reserveSeats'
     'click #researve-seats': 'reserveSeats'
 
   tagName: 'div'
@@ -13,21 +13,36 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
     #$(@el).attr('id', 'event_seating')
     #@
 
+
+
   render: ->
     $(@el).html(@template())
-    # $("#reserve-seats").onClick({
-    #   order = new Qwikstubs.Collections.Orders()
-    #   Order.create({
-    #     order: {
-
-    #       }
-    #     })
-    #   })
     @
+
+  post_render: ->
+    a = @
+    channel = Qwikstubs.Pusher.subscribe(@options.event.id)
+    channel.bind(
+      'order:reserve', 
+      (data) ->
+        console.log("reserve")
+        a.reserve_seats(data)
+        console.log(data)
+      )  #@reserveSeats(data))
+    channel.bind(
+      'order:release',
+      (data) ->
+        console.log(data)
+      )#@releaseSeats(data))
+    channel.bind(
+      'order:purchase',
+      (data) ->
+        console.log(data)
+      )
+      #@purchaseSeats(data))
 
   load_seats: ->
     #console.log(@options.seats)
-    
     @stage = new Kinetic.Stage({
         container: 'event_seating'
         width: 500
@@ -108,11 +123,12 @@ class Qwikstubs.Views.EventsSeating extends Backbone.View
     $("#reserved-seats").html(html)
 
 
-  reserveSeats: ->
+  reserve_seats: (data) ->
     #console.log(@stage)
+    console.log(data)
     #console.log(@layer)
     for id in data
-      sid = "#" + id
+      sid = "#" + id.id
       #console.log(sid)
       #console.log(@stage.get(sid)[0])
       @stage.get(sid)[0].setFill('blue')
