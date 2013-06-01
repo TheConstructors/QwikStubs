@@ -2,7 +2,7 @@ require 'uuid'
 
 class Order
   include ApplicationModel
-  key :order_number, Integer
+  key :order_number, String
   key :total_amount, Float# , :default => 5
   
   #Validations

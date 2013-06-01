@@ -50,11 +50,4 @@ class OrdersController < ApplicationController
   def destroy
 
   end
-
-  def select_best_seats
-    event = Event.where(:id => params[:event]).first
-    number = params[:amount]
-    @order = Order.find_seats(event, number.to_f)
-    respond_with @order
-  end
 end
