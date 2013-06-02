@@ -1,11 +1,12 @@
+require 'uuid'
+
 class Order
   include ApplicationModel
-  key :order_number, Integer
+  key :order_number, String
   key :total_amount, Float# , :default => 5
   
   #Validations
 
-  before_save :generate_number
   validates_presence_of :order_number
   validates_presence_of :total_amount
   validates :order_number, :uniqueness => true
@@ -20,13 +21,9 @@ class Order
 
   # add randomization to this later
   # change to uuid
-
-  def generate_number # may have race condition if parallelizing
-    if Order.empty?
-      order_number = 0
-    else 
-      order_number = Order.sort(:order_number).last.order_number + 1
-    end
+  
+  def self.generate_number # may have race condition if parallelizing
+    UUID.new.generate
   end
 
   def trigger_release(seats)
@@ -95,19 +92,28 @@ class Order
     # if event.total_seats < event.sold_seats + number
     #  return nil
     # end
-
+    #debugger
     updated = nil
     check = 0
+
     while !updated
       #debugger
-      group = Group.where(event_id: event.id, reserved: 0, :size.gte => number).sort(:size.asc).limit(1).first
+      group = Group.where(event_id: event.id, reserved: 0, :size.gte => number).
+                    sort(:size.asc).
+                    sort(:quality.asc).
+                    limit(1).first
       updated = group && group.set(reserved: 1)["updatedExisting"]
+
       if check > 9
         return nil
+      elsif check > 4
+        sleep(1.0)
+      elsif check > 2
+        sleep(1.0/2.0)
       end
       check += 1
-      # sleep(1)
     end
+
     group.reload
     seats = group.event_seats.sort(:column)
     acquired = seats.take(number)
@@ -122,23 +128,28 @@ class Order
         seat.group = reserved_group
         seat.save!
       end
-      #order = Order.new event: event
+      
       self.reserve_seats(acquired)
       self.save!
 
-      # generate order here
-      free_group = Group.create event_id: event.id, reserved: 0, :size => 0
-      free.each do |seat|
-        seat.group = free_group
-        seat.save!
-      end
       reserved_group.reload
       reserved_group.size = number
       reserved_group.save!
-      free_group.reload
-      free_group.size = group.size - number
-      free_group.save!
-      group.delete
+    
+      if free.length > 0
+        # generate order here
+        free_group = Group.create event_id: event.id, reserved: 0, :size => 0
+        free.each do |seat|
+          seat.group = free_group
+          seat.save!
+        end
+
+        free_group.reload
+        free_group.size = group.size - number
+        free_group.save!
+      end
+  
+      group.destroy
       return self
     else
       group.reserved = 0; group.save!

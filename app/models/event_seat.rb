@@ -46,4 +46,9 @@ class EventSeat
                            { :$group => { :_id => { row: "$row", :event_section_id => "$event_section_id"},
                                                           :seats => {:$addToSet=>"$_id"}}}])
   end
+  
+  # quality should be attached to event_seats to speed up the algorithm
+  def quality
+    seat.quality
+  end
 end

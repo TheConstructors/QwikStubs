@@ -30,8 +30,8 @@ class Event
   validates_presence_of :year
 
   #doesn't work if venue is changed after event was created
-  after_save :copy_seating
-  # after_save :generate_groups
+  after_create :copy_seating
+  after_create :generate_groups
 
   validate :validate_month, :validate_day, :validate_year
   #before_save :generate_date
@@ -155,19 +155,24 @@ class Event
                            size: 0)
 
       seats = group_data["seats"]
+      
+      size = 0
+      quality = 0
 
       EventSeat.find(seats).each do |es|
         es.group = group
         es.save!
-        group.size += 1
+        size += 1
+        quality += es.quality
         self.total_seats += 1
       end
-      size = group.size
+
       group.reload
       group.size = size
+      group.quality = quality/size
       group.save! && group
     end
-    self.save
+    self.save!
     groups
   end
 end
