@@ -2,7 +2,8 @@ require 'faraday'
 require 'json'
 require 'debugger'
 
-event_id = ARGV[0] 
+event_id = ARGV[0]
+number = ARGV[1]
 
 def build_request(event_id)
   result = Faraday.post "http://localhost:3000/api/orders?event_id=#{event_id}"
@@ -15,6 +16,6 @@ end
 request = build_request(event_id)
 
 (0..100).each do |i|
-  request.call(3)
+  request.call(number)
   sleep(1)
 end
