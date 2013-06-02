@@ -100,8 +100,10 @@ class Order
       #debugger
       group = Group.where(event_id: event.id, reserved: 0, :size.gte => number).
                     sort(:size.asc).
+                    sort(:quality.asc).
                     limit(1).first
       updated = group && group.set(reserved: 1)["updatedExisting"]
+
       if check > 9
         return nil
       elsif check > 4
