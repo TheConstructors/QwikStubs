@@ -42,6 +42,7 @@ FactoryGirl.define do
     sequence(:name) { |n| "1#{n}A" }
     sequence(:row) { |n| n }  
     sequence(:column) { |n| n }
+    sequence(:quality) { |n| n }
     section
   end
 
