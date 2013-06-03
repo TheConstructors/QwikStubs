@@ -1,0 +1,35 @@
+td.date {
+  border: none;
+  border-top: 2px solid #EFEFEF;
+  border-bottom: 10px solid #fff;
+  width: 65px;
+  padding: 0;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: top;
+
+  div.month {
+    background-color: #EFEFEF;
+    font-size: 12px;
+    padding-top: 2px
+  }
+
+  div.date {
+    background-color: #EFEFEF;
+    color: #414141;
+    font-size: 25px;
+    line-height: 24px;
+  }
+
+  div.day {
+    background-color: #EFEFEF;
+    color: #afafaf;
+    font-size: 12px;
+    font-weight: bold;
+    padding-bottom: 3px
+  }
+}
+
+#sort-name:hover { color: blue; }
+
+#sort-date:hover { color: blue; }
