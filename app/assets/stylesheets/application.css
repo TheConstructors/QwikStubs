@@ -8,16 +8,22 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
  *= require_tree .
+ *= require_self
  */
 
-body {background-image:url("/assets/dark.png");}
+//body {background-image:url("/assets/dark.png");}
 
 /*#main {
   height: 500px;
 }*/
 
+@font-face {
+    font-family: 'SJ'; /*a name to be used later*/
+    src: url('/assets/fonts/Starjedi.ttf'); /*URL to font*/
+}
+
+/* Topbar */
 .form-signin {
 	max-width: 300px;
 	padding: 19px 29px 29px;
@@ -45,19 +51,44 @@ body {background-image:url("/assets/dark.png");}
         padding: 7px 9px;
 }
 
-form.login {
-  margin: 5px 0 0 0;
-  paddidng: 0px;
+.navbar .nav > li:first-child > a {
+    -webkit-border-radius: 0 0 0 0px;
+    -moz-border-radius: 0 0 0 0px;
+    border-radius: 0 0 0 0px;
 }
 
-form.login input {
+.links a {}
+
+.nav.links > li > a:hover{
+    background-color: #3498DB;
+    color: white;
+}
+
+
+form.qs-login {
+  margin: 5px 0 0 0;
+  //padding: 0px;
+}
+
+form.qs-login input {
   background: #F5F5F5;
   margin:0 0 0 0;
 }
 
 /* TODO: needs a size tweak */
-form.login > .btn {
-  margin-top: -9px;
+form.qs-login > .btn {
+  margin-top: -10px;
+  margin-left: 1px;
+  background-color: #3498DB;
+}
+
+form.qs-login > .btn:hover {
+    background-color: #2980B9;
+}
+
+form.qs-login > input:hover,
+form.qs-login > input:focus {
+    border-color: #3498DB;
 }
 
 #logout-btn {
@@ -74,18 +105,40 @@ form.login > .btn {
     margin: 0px;
 }
 
-#footer {
-  color: #aaa;
+.navbar-fixed-top .navbar-inner, 
+.navbar-static-top .navbar-inner {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.page-header.invert-text {
+  padding-bottom: 0px;
+  border-bottom: none;
+}
+
+.login-bar {
+    margin-top: 10px;
+}
+
+#logo-wrapper {
+    margin-top: 20px;
+}
+
+
+/* Footer */
+footer {
+  /* color: #aaa;
   width: 100%;
   height: 50px;
   text-align: center;
   padding: 30px 0;
   margin-top: 70px;
   border-top: 1px solid #343434;
-  background-color: #454545;
-}
-
-.page-header.invert-text {
-  padding-bottom: 0px;
-  border-bottom: none;
+  background-color: #454545; */
+    background-color: #ECF0F1;
+    //font-family: 'SJ';
 }

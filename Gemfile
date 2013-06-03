@@ -85,3 +85,5 @@ gem "figaro"
 gem 'uuid'
 
 gem 'faraday'
+
+gem 'thin'
