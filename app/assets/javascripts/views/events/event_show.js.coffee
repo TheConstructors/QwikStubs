@@ -1,34 +1,19 @@
-class Qwikstubs.Views.EventsShow extends Backbone.View
+class Qwikstubs.Views.EventShow extends Backbone.View
 
   template: JST['events/show']
 
   events:
   	'click .purchase' : 'purchase'
 
-  #initialize: ->
-  	#this.event.on('reset' , @render, @ )
-  	#this.event.on('add' , @appendEventToList, @ )
-
   render: ->
     $(@el).html(@template(event: @options.event, venue: @options.venue))
     @
 
-  purchase: ->
-    
-    console.log(order)
-    view = new Qwikstubs.Views.EventPurchase(order:order)
-    $('#buy').html(view.render().el)
-
-
-  #appendEventToList: (event) ->
-    #view = new Qwikstubs.Views.Event(model: event)
-    #$('#list_event').append(view.render().el)
-
-  #createEvent: (event) ->
-  	#event.preventDefault()
-  	#@collection.create
-  	#	name: $('#new_venue_name').val()
-  	#	city: $('#new_venue_city').val()
-  	#	state: $('#new_venue_state').val()
-  	#$('#new_venue')[0].reset()
-  		
+  post_render : ->
+    @seating = new Qwikstubs.Views.EventSeating
+      seats: @options.seats
+      sections: @options.sections
+      event: @options.event
+    $('#seating').html(@seating.render().el)
+    @seating.post_render()
+    @seating.load_seats()  		

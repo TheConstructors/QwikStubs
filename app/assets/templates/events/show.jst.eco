@@ -16,8 +16,6 @@
       <p>
         <h3>Information</h3>
 
-
-
         <table class="table table-hover table-condensed">
           <thead>
             <tr>
@@ -38,9 +36,10 @@
               <td><%=@event.get('time')%></td>
               <td><%=@venue.get('name')%></td>
               <td>
+<a href="/#events/<%=@event.get('id')%>/purchase">
               <div class="btn
               btn-success btn-mini pull-right purchase">Buy Tickets
-              </div></td>
+              </div></a></td>
               </tr>
           </tbody>
         </table>
@@ -50,18 +49,6 @@
 
          -->
         <div id="reserved-seats"> </div>
-        <form id="stripepayment" action="/charges" method="POST">
-            <script
-              src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button btn-success btn-mini pull-right"
-              data-key="pk_test_PQYObKKtGMZ95f0vvlBu8VgA"
-              data-amount="2000"
-              data-name="QwikStubs"
-              data-description="Test Event"
-              data-currency="usd"
-              data-address="true"
-              data-label="Purchase Tickets">
-            </script>
-        </form>
       </p>
     </div>
   </div>
@@ -69,17 +56,6 @@
   <div class="span6 invert-text">
     <h3>Description</h3>
     <%= @event.get('description') %>
-    <div id="seating">hey</div>
-  </div>
-</div>
-
-<div id="qs-email" class="payment"><article>
-  <div class="message"></div>
-
-  <div class="name">
-    <label for="paymentName">Email</label>
-    <input style="width: 290px" type="text"></input>
-    <div class="placeholder"></div>
-    <div class="type"></div>
+    <div id="seating"></div>
   </div>
 </div>
