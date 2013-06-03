@@ -11,7 +11,7 @@
     <div id="stripebuttonabc" style="visibility:hidden;">
       <script
         src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button btn-success btn-mini pull-right"
-        data-key="<%= ENV['STRIPE_TEST_PUBLIC_KEY']%>"
+        data-key="pk_test_PQYObKKtGMZ95f0vvlBu8VgA"
         data-amount="<%= @order.get('total_amount')*100 %>"
         data-name="QwikStubs"
         data-description="Test Event"
