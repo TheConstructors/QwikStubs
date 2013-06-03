@@ -191,7 +191,7 @@ you can use the generic selector below, but it's slower:
   line-height: 100px;
 }
 .demo-logo .logo {
-  background: url(../images/demo/logo-mask.png) center 0 no-repeat;
+  background: url(/images/demo/logo-mask.png) center 0 no-repeat;
   background-size: 256px 186px;
   height: 186px;
   margin: 0 auto 26px;
@@ -333,7 +333,7 @@ you can use the generic selector below, but it's slower:
   color: #1abc9c;
 }
 .demo-browser {
-  background: #2c3e50 url(../images/demo/browser.png) 0 0 no-repeat;
+  background: #2c3e50 url(/assets/flat-images/demo/browser.png) 0 0 no-repeat;
   background-size: 659px 42px;
   color: #ffffff;
   margin: 0 41px 140px 0;
@@ -359,7 +359,7 @@ you can use the generic selector below, but it's slower:
   text-transform: none;
 }
 .demo-browser-author {
-  background: url(../images/demo/browser-author.jpg) center center no-repeat;
+  background: url(/assets/flat-images/demo/browser-author.jpg) center center no-repeat;
   border: 3px solid #ffffff;
   display: block;
   height: 84px;
@@ -406,10 +406,10 @@ you can use the generic selector below, but it's slower:
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 2) {
   .logo {
-    background-image: url(../images/demo/logo-mask-2x.png);
+    background-image: url(/assets/flat-images/demo/logo-mask-2x.png);
   }
   .demo-browser {
-    background-image: url(../images/demo/browser-2x.png);
+    background-image: url(/assets/flat-images/demo/browser-2x.png);
   }
 }
 body {
@@ -2548,8 +2548,8 @@ textarea[class*="span"] {
   position: relative;
   text-align: left;
   width: 80px;
-  -webkit-mask: url('../images/switch/mask.png') 0 0 no-repeat;
-  mask: url('../images/switch/mask.png') 0 0 no-repeat;
+  -webkit-mask: url('/assets/flat-images/switch/mask.png') 0 0 no-repeat;
+  mask: url('/assets/flat-images/switch/mask.png') 0 0 no-repeat;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -2653,8 +2653,8 @@ textarea[class*="span"] {
 }
 .switch-square {
   border-radius: 6px;
-  -webkit-mask: url('../images/switch/mask.png') 0 0 no-repeat;
-  mask: url('../images/switch/mask.png') 0 0 no-repeat;
+  -webkit-mask: url('/assets/flat-images/switch/mask.png') 0 0 no-repeat;
+  mask: url('/assets/flat-images/switch/mask.png') 0 0 no-repeat;
 }
 .switch-square > div.switch-off label {
   border-color: #7f8c9a;
@@ -2832,7 +2832,7 @@ textarea[class*="span"] {
   text-align: center;
 }
 .tile.tile-hot:before {
-  background: url(../images/tile/ribbon.png) 0 0 no-repeat;
+  background: url(/assets/flat-images/tile/ribbon.png) 0 0 no-repeat;
   background-size: 82px 82px;
   content: '';
   height: 82px;
@@ -2861,7 +2861,7 @@ textarea[class*="span"] {
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 2) {
   .tile.tile-hot:before {
-    background-image: url(../images/tile/ribbon-2x.png);
+    background-image: url(/assets/flat-images/tile/ribbon-2x.png);
   }
 }
 .todo {
@@ -2877,7 +2877,7 @@ textarea[class*="span"] {
   list-style-type: none;
 }
 .todo li {
-  background: #34495e url(../images/todo/todo.png) 92% center no-repeat;
+  background: #34495e url(/assets/flat-images/todo/todo.png) 92% center no-repeat;
   background-size: 20px 20px;
   cursor: pointer;
   margin-top: 2px;
@@ -2899,7 +2899,7 @@ textarea[class*="span"] {
   padding-bottom: 18px;
 }
 .todo li.todo-done {
-  background: transparent url(../images/todo/done.png) 92% center no-repeat;
+  background: transparent url(/assets/flat-images/todo/done.png) 92% center no-repeat;
   background-size: 20px 20px;
   color: #1abc9c;
 }
@@ -2963,13 +2963,13 @@ input.todo-search-field.placeholder {
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 2) {
   .todo li {
-    background-image: url(../images/todo/todo-2x.png);
+    background-image: url(/assets/flat-images/todo/todo-2x.png);
   }
   .todo li.todo-done {
-    background-image: url(../images/todo/done-2x.png);
+    background-image: url(/assets/flat-images/todo/done-2x.png);
   }
   .todo-search {
-    background-image: url(../images/todo/search-2x.png);
+    background-image: url(/assets/flat-images/todo/search-2x.png);
   }
 }
 footer {
@@ -3245,7 +3245,7 @@ body.vjs-full-window {
   margin: .5em auto 0;
 }
 .vjs-mute-control {
-  background: url(../images/video/volume-full.png) center -48px no-repeat;
+  background: url(/assets/flat-images/video/volume-full.png) center -48px no-repeat;
   background-size: 16px 64px;
   cursor: pointer !important;
   position: absolute;
@@ -3258,10 +3258,10 @@ body.vjs-full-window {
 }
 .vjs-mute-control.vjs-vol-0,
 .vjs-mute-control.vjs-vol-0 div {
-  background-image: url(../images/video/volume-off.png);
+  background-image: url(/assets/flat-images/video/volume-off.png);
 }
 .vjs-mute-control div {
-  background: #273747 url(../images/video/volume-full.png) no-repeat center 2px;
+  background: #273747 url(/assets/flat-images/video/volume-full.png) no-repeat center 2px;
   background-size: 16px 64px;
   height: 18px;
   -webkit-transition: opacity 0.25s;
@@ -3384,7 +3384,7 @@ body.vjs-full-window {
   float: right;
 }
 .vjs-fullscreen-control {
-  background-image: url(../images/video/fullscreen.png);
+  background-image: url(/assets/flat-images/video/fullscreen.png);
   background-position: center -47px;
   background-size: 15px 64px;
   cursor: pointer !important;
@@ -3398,7 +3398,7 @@ body.vjs-full-window {
 }
 .vjs-fullscreen-control div {
   height: 18px;
-  background: url(../images/video/fullscreen.png) no-repeat center 2px;
+  background: url(/assets/flat-images/video/fullscreen.png) no-repeat center 2px;
   background-size: 15px 64px;
   -webkit-transition: opacity 0.25s;
   -moz-transition: opacity 0.25s;
@@ -3567,7 +3567,7 @@ body.vjs-full-window {
   border-radius: 10px;
 }
 .login {
-  background: url(../images/login/imac.png) 0 0 no-repeat;
+  background: url(/assets/flat-images/login/imac.png) 0 0 no-repeat;
   background-size: 940px 778px;
   color: #ffffff;
   margin-bottom: 77px;
@@ -3660,7 +3660,7 @@ body.vjs-full-window {
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 2) {
   .login {
-    background-image: url(../images/login/imac-2x.png);
+    background-image: url(/assets/flat-images/login/imac-2x.png);
   }
 }
 .last-col {
