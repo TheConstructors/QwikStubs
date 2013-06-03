@@ -17,7 +17,8 @@
         data-description="Test Event"
         data-currency="usd"
         data-address="true"
-        data-label="Purchase Tickets">
+        data-label="Purchase Tickets"
+        data-nostyle="true">
       </script>
     </div>
   </form>
