@@ -35,8 +35,7 @@
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
   </head>
   <body>
-    <div class="container">
-    <div class="navbar navbar-fixed-top">
+    <div id="topbar" class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -46,6 +45,7 @@
           </button>
           <div class="nav" id="logo-wrapper"> 
             <%= link_to(image_tag('logo-tiny.png', :alt => 'logo', :id => 'logo'), root_path) %>
+            <!-- <h2 class="QwikStubs" style="display: inline">QwikStubs</h2> -->
           </div>
           <ul class="nav links">
             <!-- <li><%= link_to "Login", login_path %></li> -->
@@ -66,15 +66,15 @@
           <% else %>
             <li class="active"><a href="#">Home</a></li>
             <li><a href="#">User Profile</a></li>
-            <li class="divider-vertical" style="margin: 0px 0px;"></li>
+            <li style="margin: 0px 0px;"></li>
             <li><a href="#"><i class="icon-cog"></i></a></li>
-            <li class="divider-vertical" style="margin-left: 0px;"></li>
+            <li style="margin-left: 0px;"></li>
             <li>
             <%= form_tag(logout_path, :method => "delete", :class => 'logout-form') do %>
               <%= submit_tag 'Logout', :id => "logout-btn" %>
             <% end %>
             </li>
-            <li class="divider-vertical"></li>
+            <li></li>
           <% end %>
             </ul>
         </div>
@@ -83,24 +83,25 @@
     <div id="main" class="container">
       <%= bootstrap_flash %>
       <%= yield %>
-
-    </div>
     </div>
     <footer>
       <div class="container">
         <div class="row">
-          <div class="span7">
-            <h3 class="QwikStubs">
-              QwikStubs
-            </h3>
-          </div>
+            <div class="span4"></div>
+            <div class="span6">
+                <div id="footer-bar">
+                <h2 class="QwikStubs" style="display: inline">
+                    QwikStubs
+                </h2>
+                <small>by The Constructors</h4>
+                </div>
+            </div> 
         <div>
       </div>
-    <footer> 
+    </footer> 
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
-
   </body>
 </html>

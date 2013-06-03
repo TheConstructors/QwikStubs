@@ -12,18 +12,23 @@
  *= require_self
  */
 
-//body {background-image:url("/assets/dark.png");}
-
-/*#main {
-  height: 500px;
-}*/
-
+/* Miscellanous */
 @font-face {
     font-family: 'SJ'; /*a name to be used later*/
     src: url('/assets/fonts/Starjedi.ttf'); /*URL to font*/
 }
 
+/* straighten out edges */
+.btn, input {
+  border-radius: 3px;
+}
+
+a { color: #2980B9; }
+a:hover { color: #3498DB; }
 /* Topbar */
+#topbar {
+    margin-bottom: 25px;
+}
 .form-signin {
 	max-width: 300px;
 	padding: 19px 29px 29px;
@@ -59,11 +64,19 @@
 
 .links a {}
 
-.nav.links > li > a:hover{
+/* Right side links */
+.navbar .nav > li.active > a, 
+.navbar .nav > li.active > a:hover, 
+.navbar .nav > li.active > a:focus {
+    color: #526476;
+}
+
+.navbar .nav > li.active > a:hover,
+.navbar .nav > li > a:hover, 
+.navbar .nav > li > a:focus {
     background-color: #3498DB;
     color: white;
 }
-
 
 form.qs-login {
   margin: 5px 0 0 0;
@@ -126,8 +139,40 @@ form.qs-login > input:focus {
 
 #logo-wrapper {
     margin-top: 20px;
+    padding-right: 15px;
 }
 
+/* Search */
+#search {
+  padding-top: 100px;
+  padding-bottom: 175px;
+}
+
+#search-bar-wrapper {
+  
+}
+
+#search > h1 {
+  margin-left: 225px;
+}
+
+#search > .btn {
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#search-btn {
+  background-color: #3498DB;
+  width: 150px;
+  margin-top: 25px;
+  margin-left: 250px;
+}
+
+/* Purchase Page */
+#purchase-wrapper {
+  padding-top: 100px
+}
 
 /* Footer */
 footer {
@@ -141,4 +186,21 @@ footer {
   background-color: #454545; */
     background-color: #ECF0F1;
     //font-family: 'SJ';
+}
+
+footer h4, footer h2, footer small {
+    display: inline;
+}
+
+footer small {
+    padding-right: 4px;
+    padding-left: 2px;
+}
+
+#footer-bar {
+    /* padding-left: 25px;
+    margin-right: 100px;
+    background-color: #3498DB; */
+    padding-top: 25px;
+    /* margin-bottom: -25px; */
 }
