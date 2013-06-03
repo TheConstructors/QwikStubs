@@ -6,14 +6,12 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
 
   events:
     #'order:reserve': 'reserveSeats'
-    'click #researve-seats': 'reserveSeats'
+   # 'click #researve-seats': 'reserveSeats'
 
   tagName: 'div'
     #render: ->
     #$(@el).attr('id', 'event_seating')
     #@
-
-
 
   render: ->
     $(@el).html(@template())
@@ -108,7 +106,6 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
       #console.log(@selected_seats)
       @render_selected_seats()
 
-
   render_selected_seats: ->
     html = "<h3>Reserved Seats</h3><ul>"
     for id in @selected_seats
@@ -121,7 +118,6 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
     @layer.draw()
     html = html + "</ul>"
     $("#reserved-seats").html(html)
-
 
   reserve_seats: (data) ->
     #console.log(@stage)
