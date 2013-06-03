@@ -61,20 +61,25 @@ class Qwikstubs.Views.EventPurchase extends Backbone.View
     $('#purchase').html('<div class="white-box"><h3 style="text-align:center;">Finding Your Seats!</h3></div>')
     console.log(@options.order)
     order = @options.order
+    a = @
     run = (x,y,z)->
-      console.log("success")
-      order_seats = new Backbone.Collection()    
-      order_seats.url = '/api/orders/seats/' + order.id
-      after = () ->
-        out = '<div class="white-box"><h3 style="text-align:center;">'
-        test = (seat) -> 
-          out = out + seat.id + "<br>"
-        order_seats.each(test)
-          # console.log(x)
-          # 
-        out = out+ '</h3></div>'
-        $('#purchase').html(out)
-      order_seats.fetch({success: after})
+      a.best_c()
     @options.order.save({type:"best",num:num}, {success:(order,response,options)->run(order,response,options)})
-    
+  
   best_c : () ->
+    console.log("success")
+    order = @options.order
+    order_seats = new Backbone.Collection()    
+    order_seats.url = '/api/orders/seats/' + order.id
+    after = () ->
+      $('#purchase').html(JST['events/purchase_checkout'])
+      out = '<h3 style="text-align:center;">'
+      test = (seat) -> 
+        out = out + seat.id + "<br>"
+      order_seats.each(test)
+        # console.log(x)
+        # 
+      out = out+ '</h3>'
+      out = out+ order.id
+      $('#reserved-seats').html(out)
+    order_seats.fetch({success: after})
