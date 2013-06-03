@@ -23,6 +23,14 @@ class User
     @last_name ||= full_name.split.last
   end
 
+  def get_email
+    emails.first.email
+  end
+
+  def send_welcome
+    UserMailer.welcome_email(self).deliver
+  end
+
   # An accessor for password, when you do `user.passsword = "a_new_pass"
   # this method is invoked, causing the object to generate a new salt,
   # and store the hashed contents of the password, as well as the new

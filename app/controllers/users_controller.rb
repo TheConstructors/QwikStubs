@@ -19,7 +19,9 @@ class UsersController < ApplicationController
         @user.save
         @email = Email.new email: user_email, user: @user
         @email.save
-        # Now Logged In
+        # Now Logged In, send welcome email
+        UserMailer.welcome_email(@user).deliver
+
         session[:user_id] = @user.id
         redirect_to root_path
       else

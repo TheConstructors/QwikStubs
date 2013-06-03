@@ -47,4 +47,11 @@ describe User do
     @user.is_auth?("new_pass").should == true
   end
 
+  it "should send a welcome email properly" do
+    @user = FactoryGirl.create(:user)
+    @email = FactoryGirl.create(:email, :email => "john@gmail.com", :user => @user)
+    @user.send_welcome
+    UserMailer.deliveries.last.to.should == [@user.get_email]
+  end
+
 end
