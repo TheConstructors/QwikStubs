@@ -185,7 +185,7 @@ footer {
   border-top: 1px solid #343434;
   background-color: #454545; */
     background-color: #ECF0F1;
-    //font-family: 'SJ';
+    /* font-family: 'SJ'; */
 }
 
 footer h4, footer h2, footer small {
@@ -202,5 +202,12 @@ footer small {
     margin-right: 100px;
     background-color: #3498DB; */
     padding-top: 25px;
+    padding-bottom: 25px;
     /* margin-bottom: -25px; */
+}
+
+#mobile-footer {
+  margin-left: -20px;
+  margin-right: -20px;
+  padding-left: 20px;
 }

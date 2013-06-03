@@ -56,7 +56,7 @@
           </ul>
           <ul class='nav nav-collapse collapse pull-right' style="margin-right:15px;">
           <% if !signed_in? %>
-            <li class="login-bar">
+            <li class="login-bar hidden-mobile">
               <form method="post" action="<%= sessions_path %>" class="navbar-search qs-login">
                 <input name="email"type="text" class="span2" placeholder="Email Address">
                 <input name="password" type="password" class="span2" placeholder="Password">
@@ -84,21 +84,31 @@
       <%= bootstrap_flash %>
       <%= yield %>
     </div>
-    <footer>
+    
+    <footer class="visible-desktop">
       <div class="container">
         <div class="row">
             <div class="span4"></div>
             <div class="span6">
                 <div id="footer-bar">
-                <h2 class="QwikStubs" style="display: inline">
+                  <h2 class="QwikStubs" style="display: inline">
                     QwikStubs
-                </h2>
-                <small>by The Constructors</h4>
+                  </h2>
+                  <h4>by The Constructors</h4>
                 </div>
-            </div> 
+            </div>
         <div>
       </div>
-    </footer> 
+    </footer>
+    
+    <footer id="mobile-footer" class="visible-mobile hidden-desktop">
+      <div id="footer-bar">
+        <h2 class="QwikStubs" style="display: inline">
+          QwikStubs
+        </h2>
+        <small>by The Constructors</h4>
+      </div>
+    </footer>
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
