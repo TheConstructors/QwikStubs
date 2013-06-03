@@ -73,9 +73,6 @@ class Qwikstubs.Views.EventPurchase extends Backbone.View
     order_seats.url = '/api/orders/seats/' + order.id
     after = () ->
       $('#purchase').html(JST['events/purchase_checkout'](order:order))
-      $('.stripe-button-el').ready () ->
-        console.log("yay")
-        $('.stripe-button-el').hide()
       
       
       $("#stripeemailabc").keyup () ->
@@ -84,9 +81,9 @@ class Qwikstubs.Views.EventPurchase extends Backbone.View
         result = re.test($("#stripeemailabc").val())
         console.log(result)
         if result
-          $("#stripebuttonabc").show()
+          $(".stripe-button-el").show()
         else
-          $("#stripebuttonabc").hide()
+          $(".stripe-button-el").hide()
 
       out = '<h3 style="text-align:center;">'
       test = (seat) -> 
