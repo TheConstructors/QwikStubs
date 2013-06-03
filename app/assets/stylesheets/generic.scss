@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'SJ'; // A name to be used later
+    src: url('/assets/fonts/Starjedi.ttf');
+}
+
+// Straighten out edges
+.btn, input { @include border-radius(3px); }
+
+a {
+  color: #2980B9;
+  &:hover { color: #3498DB; }
+}
