@@ -1097,7 +1097,7 @@ if (!JSON) {
     Button.prototype.defaults = {
       label: 'Pay with Card',
       host: 'https://button.stripe.com',
-      cssPath: '/assets/inner/button.css',
+      cssPath: 'https://checkout.stripe.com/v2/assets/inner/button.css',
       tokenName: 'stripeToken'
     };
 
