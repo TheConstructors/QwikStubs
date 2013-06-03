@@ -148,7 +148,13 @@ class Order
         free_group.size = group.size - number
         free_group.save!
       end
-  
+      
+      self.reload
+      self.total_amount = 0
+      self.event_seats.each do |seat|
+        self.total_amount += seat.event_section.price
+      end
+
       group.destroy
       return self
     else
