@@ -1,6 +1,7 @@
 Qwikstubs::Application.routes.draw do
 
   resources :users
+  resources :charges
   scope "api" do
     resources :venues
     resources :events
@@ -13,7 +14,9 @@ Qwikstubs::Application.routes.draw do
     get '/orders/seats/:id' => 'orders#seats'
     get '/search/events' => 'events#search'
   end
-
+  
+  get '/orders/:id'=> 'orders#show'
+  
   resources :sessions, only: [:new, :create, :destroy]
 
   # Helpful aliases for routes

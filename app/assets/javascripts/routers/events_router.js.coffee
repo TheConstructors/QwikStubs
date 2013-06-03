@@ -28,31 +28,31 @@ class Qwikstubs.Routers.Events extends Backbone.Router
         collection.fetch(reset:true)
     })
 
-  seating: (id) ->
-    e = new Qwikstubs.Models.Event({id:id})
-    e_seats = new Qwikstubs.Collections.Seats()
-    e_seats.url = "/api/events/seats/" + id
-    e_sections = new Qwikstubs.Collections.Sections()
-    e_sections.url = "/api/events/sections/" + id
-    complete = () =>
-      view = new Qwikstubs.Views.EventsSeating(seats: e_seats, sections: e_sections, event:e)
-      channel = Qwikstubs.Pusher.subscribe(id)
-      channel.bind('order:reserve', (data) ->
-        view.reserveSeats(data))
+  # seating: (id) ->
+  #   e = new Qwikstubs.Models.Event({id:id})
+  #   e_seats = new Qwikstubs.Collections.Seats()
+  #   e_seats.url = "/api/events/seats/" + id
+  #   e_sections = new Qwikstubs.Collections.Sections()
+  #   e_sections.url = "/api/events/sections/" + id
+  #   complete = () =>
+  #     view = new Qwikstubs.Views.EventsSeating(seats: e_seats, sections: e_sections, event:e)
+  #     channel = Qwikstubs.Pusher.subscribe(id)
+  #     channel.bind('order:reserve', (data) ->
+  #       view.reserveSeats(data))
 
-      channel.bind('order:release', (data) ->
-        view.releaseSeats(data))
+  #     channel.bind('order:release', (data) ->
+  #       view.releaseSeats(data))
 
-      channel.bind('order:purchase', (data) ->
-        view.purchaseSeats(data))
+  #     channel.bind('order:purchase', (data) ->
+  #       view.purchaseSeats(data))
 
-      $('#container').html(view.render().el)
-      view.draw()
+  #     $('#container').html(view.render().el)
+  #     view.draw()
 
-    success = _.after(3, complete);   
-    e.fetch({success: success})
-    e_seats.fetch({success: success})
-    e_sections.fetch({success: success})
+  #   success = _.after(3, complete);   
+  #   e.fetch({success: success})
+  #   e_seats.fetch({success: success})
+  #   e_sections.fetch({success: success})
 
   purchase: (id) ->
     # e = event
@@ -116,15 +116,15 @@ class Qwikstubs.Routers.Events extends Backbone.Router
     complete = () =>
       console.log("second")
       view = new Qwikstubs.Views.EventsSeating(seats: seats, sections: sections, event:eventm)
-      channel = Qwikstubs.Pusher.subscribe(id)
-      channel.bind('order:reserve', (data) ->
-        view.reserveSeats(data))
+      # channel = Qwikstubs.Pusher.subscribe(id)
+      # channel.bind('order:reserve', (data) ->
+      #   view.reserveSeats(data))
 
-      channel.bind('order:release', (data) ->
-        view.releaseSeats(data))
+      # channel.bind('order:release', (data) ->
+      #   view.releaseSeats(data))
 
-      channel.bind('order:purchase', (data) ->
-        view.purchaseSeats(data))
+      # channel.bind('order:purchase', (data) ->
+      #   view.purchaseSeats(data))
 
       template = new Qwikstubs.Views.EventsShow(event: eventm , venue: venue)
       $('#container').html(template.render().el)

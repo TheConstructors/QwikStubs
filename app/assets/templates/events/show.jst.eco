@@ -50,7 +50,7 @@
 
          -->
         <div id="reserved-seats"> </div>
-        <form id="stripepayment" class="">
+        <form id="stripepayment" action="/charges" method="POST">
             <script
               src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button btn-success btn-mini pull-right"
               data-key="pk_test_PQYObKKtGMZ95f0vvlBu8VgA"
@@ -70,5 +70,16 @@
     <h3>Description</h3>
     <%= @event.get('description') %>
     <div id="seating">hey</div>
+  </div>
+</div>
+
+<div id="qs-email" class="payment"><article>
+  <div class="message"></div>
+
+  <div class="name">
+    <label for="paymentName">Email</label>
+    <input style="width: 290px" type="text"></input>
+    <div class="placeholder"></div>
+    <div class="type"></div>
   </div>
 </div>
