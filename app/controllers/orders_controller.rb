@@ -17,6 +17,10 @@ class OrdersController < ApplicationController
     #puts params
     #puts "============================="
     #debugger 
+    if params[:type] == "checkout"
+      order = Order.find_by_id(params[:id])
+      order.purchase()
+    end
     if params[:type] == "select"
       params[:seats].each do |seat|
         puts seat

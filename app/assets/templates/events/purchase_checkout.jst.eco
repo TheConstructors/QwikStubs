@@ -1,6 +1,7 @@
 <div class="white-box">
   <h3>Purchase<div class="btn btn-danger pull-right cancel">Cancel</div></h3>
   <hr>
+  <div id="reserved-seats"></div>
   <form id="stripepayment" action="/charges" method="POST" style="text-align:center;">
     <script
       src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button btn-success btn-mini pull-right"
