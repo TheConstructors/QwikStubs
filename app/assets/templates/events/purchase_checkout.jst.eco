@@ -2,16 +2,44 @@
   <h3>Purchase<div class="btn btn-danger pull-right cancel">Cancel</div></h3>
   <hr>
   <div id="reserved-seats"></div>
-  <form id="stripepayment" action="/charges" method="POST" style="text-align:center;">
-    <script
-      src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button btn-success btn-mini pull-right"
-      data-key="pk_test_PQYObKKtGMZ95f0vvlBu8VgA"
-      data-amount="2000"
-      data-name="QwikStubs"
-      data-description="Test Event"
-      data-currency="usd"
-      data-address="true"
-      data-label="Purchase Tickets">
-    </script>
+  <form id="stripepayment" action="/api/orders/<%= @order.get('id') %>" method="PUT" style="text-align:center;">
+    <input type="hidden" name="type" value="checkout">
+
+    <input id="stripeemailabc" type="text" name="email_address" >
+    <br>
+    <span class="stripe-button-el"></span>
+    <div id="stripebuttonabc" style="visibility:hidden;">
+      <script
+        src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button btn-success btn-mini pull-right"
+        data-key="pk_test_PQYObKKtGMZ95f0vvlBu8VgA"
+        data-amount="<%= @order.get('total_amount')*100 %>"
+        data-name="QwikStubs"
+        data-description="Test Event"
+        data-currency="usd"
+        data-address="true"
+        data-label="Purchase Tickets">
+      </script>
+    </div>
   </form>
+
+  <script>
+  console.log($(".stripe-button-el"));
+    //$(".stripe-button-el").hide();
+      // console.log("our script")
+
+      
+
+      // function validateEmail(email) {
+      //   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      //   return re.test(email);
+      // } 
+
+      // function emailabc(){
+      //   console.log("email changed");
+      //   var isvalid = validateEmail($("#stripeemailabc").value());
+      //   if(isvalid){
+      //     $("#stripebuttonabc").show();
+      //   }
+      // }
+    </script>
 </div>

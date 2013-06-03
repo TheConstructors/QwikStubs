@@ -13,9 +13,6 @@ Qwikstubs::Application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
-
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 
@@ -28,4 +25,14 @@ Qwikstubs::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # ActionMailer 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :user_name            => 'qwikstubs@gmail.com',
+    :password             => ENV["QWIKSTUBS_GMAIL_PASSWORD"],
+    :authentication       => 'plain',
+    :enable_starttls_auto => true  }
 end

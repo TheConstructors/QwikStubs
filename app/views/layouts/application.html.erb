@@ -49,7 +49,9 @@
           </div>
           <ul class="nav">
             <!-- <li><%= link_to "Login", login_path %></li> -->
-              <li><%= link_to "Register", register_path  %></li>
+              <% if !signed_in? %>
+                <li><%= link_to "Register", register_path  %></li>
+              <% end %>
               <!-- Look at fixing the link to these with backbone -->
               <!-- <li><%= link_to "Venues", "/#venues"  %></li> -->
 	            <li><%= link_to "Events", "/#events"  %></li>
