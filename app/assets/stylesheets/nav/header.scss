@@ -6,6 +6,12 @@
             border-radius: 0px !important;
 }
 
+@media (min-width:768px) {
+  .navbar-search .btn {
+    margin:-9px 0 -9px 0;
+  }
+}
+
 /* Right side links */
 .navbar .nav > li.active > a,
 .navbar .nav > li.active > a:hover,
