@@ -49,6 +49,10 @@ class OrdersController < ApplicationController
     # puts "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
     respond_with Order.find(params[:id]).event_seats.as_json
   end
+  
+  def show
+  
+  end
   # Destroy should release an Order's ticket back into the pool, firing the correct event.
   def destroy
 
