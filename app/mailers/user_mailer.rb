@@ -15,4 +15,8 @@ class UserMailer < ActionMailer::Base
     attachments.inline['logo-tiny.png'] = File.read('app/assets/images/logo-tiny.png')
     mail(:to => @user.get_email, :subject => "Welcome to Qwikstubs!")
   end
+
+  def confirmation_email(email)
+
+  end
 end
