@@ -81,6 +81,8 @@ class Qwikstubs.Views.EventPurchase extends Backbone.View
         result = re.test($("#stripeemailabc").val())
         console.log(result)
         if result
+          $("#stripebuttonabc button").addClass("btn")
+          $("#stripebuttonabc button").addClass("btn-primary")
           $("#stripebuttonabc").css("visibility", "visible")
         else
           $("#stripebuttonabc").css("visibility", "hidden")
