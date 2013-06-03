@@ -83,3 +83,5 @@ gem 'sunspot_mongo_mapper', :github => 'bkeepers/sunspot_mongo_mapper'
 gem "figaro"
 
 gem 'uuid'
+
+gem 'thin'
