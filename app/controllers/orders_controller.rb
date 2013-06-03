@@ -19,6 +19,10 @@ class OrdersController < ApplicationController
     #debugger 
     if params[:type] == "checkout"
       order = Order.find_by_id(params[:id])
+      puts params
+
+      # Stripe Stuff
+
       order.purchase()
     end
     if params[:type] == "select"
