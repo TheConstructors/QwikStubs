@@ -4,7 +4,7 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
   seats_selectable: false
   selected_seats: []
 
-  events:
+  #events:
     #'order:reserve': 'reserveSeats'
    # 'click #researve-seats': 'reserveSeats'
 
