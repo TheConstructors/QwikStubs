@@ -74,7 +74,7 @@ class Qwikstubs.Views.EventPurchase extends Backbone.View
     after = () ->
       $('#purchase').html(JST['events/purchase_checkout'](order:order))
       
-      
+      # This is a hack to make the purchase tickets button appear after you type in a valid email address
       $("#stripeemailabc").keyup () ->
         re = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
         console.log $("#stripeemailabc").val()
