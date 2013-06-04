@@ -1,0 +1,57 @@
+.form-signin {
+  @include border-radius(5px);
+  border: 1px solid #e5e5e5;
+  margin: 0 auto 20px;
+  max-width: 300px;
+  padding: 19px 29px 29px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+          box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+
+.form-signin input[type="text"],
+.form-signin input[type="password"] {
+  font-size: 16px;
+  height: auto;
+  margin-bottom: 15px;
+  padding: 7px 9px;
+}
+
+form.qs-login {
+  margin: 5px 0 0 0;
+
+  input {
+    background: #F5F5F5;
+    margin:0 0 0 0;
+  }
+
+  & > .btn {
+    margin-top: -10px;
+    margin-left: 1px;
+    background-color: #3498DB;
+
+    &:hover { background-color: #2980B9; }
+  }
+
+  & > input:hover,
+  & > input:focus { border-color: #3498DB; }
+}
+
+#logout-btn {
+  background-color: transparent;
+  border: none;
+  color: #777777;
+  float: none;
+  margin-top: 7px;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #ffffff;
+}
+
+.logout-form { margin: 0px; }
+
+.login-bar { margin-top: 10px; }

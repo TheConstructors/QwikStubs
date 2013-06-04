@@ -1,0 +1,41 @@
+// =require twitter-bootstrap-static/bootstrap
+// =require twitter-bootstrap-static/sprites
+//= require_self
+//= require lib/flat-ui
+
+@import "lib/mixins";
+@import "generic";
+@import "overrides";
+@import "nav/header";
+@import "nav/footer";
+@import "login";
+
+
+/* Search */
+#search {
+  padding-top: 100px;
+  padding-bottom: 175px;
+
+  & > h1 { margin-left: 225px; }
+
+  & > .btn {
+    display: block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+#search-bar-wrapper {}
+
+#search-btn {
+  background-color: #3498DB;
+  width: 150px;
+  margin-top: 25px;
+  margin-left: 250px;
+}
+
+
+/* Purchase Page */
+#purchase-wrapper {
+  padding-top: 100px
+}
