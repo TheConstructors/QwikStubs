@@ -64,9 +64,11 @@ class OrdersController < ApplicationController
   end
 
   def checkin
-    seat = EventSeat.find_by_id(params[:id])
-    seat.checkin
-    seat.save!
+    order = Order.find_by_id(params[:id])
+    order.event_seats.each do |seat|
+      seat.checkin
+      seat.save!
+    end
   end
 
   # Destroy should release an Order's ticket back into the pool, firing the correct event.
@@ -81,13 +83,14 @@ class OrdersController < ApplicationController
 
     # Stripe Stuff
     charge = Stripe::Charge.create(
-      :amount      => order.calculate_total.to_i * 100,
+      :amount      => order.calculate_total.to_i * 100, #amount in cents
       :description => "Qwikstubs event: #{order.event.name}, ordered by #{params[:email_address]}",
       :currency    => 'usd',
       :card        => params[:stripeToken]
     )
 
     order.purchase_seats()
+    UserMailer.confirmation_email(order, params[:email_address]).deliver
     redirect_to "/#order/#{params[:id]}"
 
   rescue Stripe::CardError => e
