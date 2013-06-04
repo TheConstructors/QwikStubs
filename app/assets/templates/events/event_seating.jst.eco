@@ -1,11 +1,22 @@
 <div class="white-box">
-    <h3 style="text-align:center;">Seating Map</h3>
-    <hr>
-    <table class="table table-condensed">
-    	<tr>
-    		<td id="seatname"></td>
-    		<td id="seatprice"></td>
-    	</tr>
+    <table class="table" id ="seatinginfo">
+     	<thead>
+            <tr>
+              <th id="seatnamelabel">
+                Click a seat for more information.
+              </th>
+               <th id="seatpricelabel">
+                  
+               </th>
+            </tr>
+          </thead>
+        <tbody>
+      <tr>
+        <td id='seatname' style='width:50%;'></td>
+        <td id='seatprice'></td>
+      </tr>
+      </tbody>
     </table>
+      <h3 style="text-align:center;">Stage</h3>
     <div id="event_seating" > </div>
 </div>

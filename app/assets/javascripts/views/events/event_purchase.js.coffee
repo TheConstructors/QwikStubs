@@ -26,6 +26,7 @@ class Qwikstubs.Views.EventPurchase extends Backbone.View
     @
 
   post_render : ->
+    @best()
     @seating = new Qwikstubs.Views.EventSeating
       seats: @options.seats
       sections: @options.sections
@@ -33,6 +34,7 @@ class Qwikstubs.Views.EventPurchase extends Backbone.View
     $('#seating').html(@seating.render().el)
     @seating.post_render()
     @seating.load_seats()
+
 
   select: ->
 

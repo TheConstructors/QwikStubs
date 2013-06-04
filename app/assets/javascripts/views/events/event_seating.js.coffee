@@ -57,7 +57,7 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
         width: 460 
         height: 375
         fill: "#eee"
-    @layer.add(bg) 
+    #@layer.add(bg) 
     @options.seats.each(@load_seat, @)
     @layer.setScale($("#event_seating").innerWidth()/460,$("#event_seating").innerWidth()/460)
     @stage.add(@layer)
@@ -83,16 +83,18 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
     circle._id = seat.get("event_seat")._id
     t = @
     #circle.on("click", () -> t.add_seat(seat.get("event_seat")._id))
-    circle.on("mouseenter", () -> t.view_seat(seat.get("event_seat")._id))
-    circle.on("mouseleave", () -> t.unview_seat(seat.get("event_seat")._id))
+    circle.on("click", () -> t.view_seat(seat.get("event_seat")._id))
+    #circle.on("mouseleave", () -> t.unview_seat(seat.get("event_seat")._id))
     @layer.add(circle)
 
   view_seat: (id) ->
     sid = "#" + id
     seat = @options.seats.get(id)
     price = @options.sections.get(seat.get("event_seat").event_section_id).get("event_section").price
+    $("#seatnamelabel").html("Seat")
+    $("#seatpricelabel").html("Price")
     $("#seatname").html(@options.seats.get(id).get("venue_seat").name)
-    $("#seatprice").html price
+    $("#seatprice").html "$" + price
 
     # circle = @stage.get(sid)[0]
     # circle.prevFill = circle.getFill()
@@ -101,8 +103,12 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
     # @layer.draw()
 
   unview_seat: (id) ->
-    console.log @options.seats.get(id)
     sid = "#" + id
+    $("seatnamelabel").html("Click for more seating information")
+    $("seatnamelabel").html(" ")
+    $("#seatname").html(" ")
+    $("#seatprice").html(" ")
+
     # circle = @stage.get(sid)[0]
     # circle.setFill(circle.prevFill)
     # @render_selected_seats()

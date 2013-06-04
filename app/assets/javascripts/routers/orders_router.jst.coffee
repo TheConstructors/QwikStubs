@@ -3,5 +3,6 @@ class Qwikstubs.Routers.Orders extends Backbone.Router
     'order/:id': 'show'
    
   show: ->
+  	
   	view = new Qwikstubs.Views.OrderShow()
   	$('#container').html(view.render().el)

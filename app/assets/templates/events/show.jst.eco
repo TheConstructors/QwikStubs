@@ -58,6 +58,7 @@
   <div class="span6">
     <h3>Description</h3>
     <%= @event.get('description') %>
+    <br>
     <div id="seating"></div>
   </div>
 </div>
