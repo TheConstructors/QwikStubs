@@ -7,21 +7,16 @@ class SessionsController < ApplicationController
 
   # Login HTTP POST logic
   def create
-    email = params[:email]
-    password = params[:password]
-    #debugger
-    @user = Email.where(email: email).first.user
-    if @user.nil?
-      flash[:invalid_creds] = true
-      redirect_to new_session_path
+    @email = Email.where(email: params[:email]).first
+    @user  = (@email.present?) ? @email.user : nil
+    authorized = @user.present? && @user.is_auth?(params[:password])
+
+    if @email.present? && authorized
+      session[:user_id] = @user.id
+      redirect_to root_path
     else
-      if @user.is_auth?(password)
-        session[:user_id] = @user.id
-        redirect_to root_path
-      else
-        flash.now[:error] = "Invalid email or password"
-        render :new
-      end
+      flash.now[:error] = "Invalid email or password"
+      render :new
     end
   end
 
