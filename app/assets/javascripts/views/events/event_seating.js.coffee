@@ -33,7 +33,7 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
     channel.bind(
       'order:purchase',
       (data) ->
-        purchase_seats
+        a.purchase_seats(data)
       )
 
   load_seats: ->
