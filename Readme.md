@@ -28,5 +28,5 @@ Then, if you have not indexed before, or you perform a ```bundle exec rake db:se
 then you need to also perform a ```bundle exec rake sunspot:reindex```.
 
 ## Simulator 
-For now you can simply run the simulator with: ruby simulator.rb event-id seat-amount.
+For now you can simply run the simulator with: `ruby simulator.rb event-id seat-amount`.
 
