@@ -80,10 +80,18 @@ class OrdersController < ApplicationController
     puts params
 
     # Stripe Stuff
+    charge = Stripe::Charge.create(
+      :amount      => order.calculate_total.to_i * 100,
+      :description => "Qwikstubs event: #{order.event.name}, ordered by #{params[:email_address]}",
+      :currency    => 'usd',
+      :card        => params[:stripeToken]
+    )
 
-    
     order.purchase_seats()
     redirect_to "/#order/#{params[:id]}"
 
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
+    redirect_to charges_path  
   end
 end
