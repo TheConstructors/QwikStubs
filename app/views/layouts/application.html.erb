@@ -38,47 +38,46 @@
     <div id="topbar" class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar" ></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+          <button id="menu-dropdown" 
+                  type="button" 
+                  class="btn btn-navbar" 
+                  data-toggle="collapse" 
+                  data-target=".nav-collapse">
           </button>
           <div class="nav" id="logo-wrapper"> 
             <%= link_to(image_tag('logo-tiny.png', :alt => 'logo', :id => 'logo'), root_path) %>
-            <!-- <h2 class="QwikStubs" style="display: inline">QwikStubs</h2> -->
           </div>
-          <ul class="nav links">
-            <!-- <li><%= link_to "Login", login_path %></li> -->
-              <li><%= link_to "Register", register_path  %></li>
-              <!-- Look at fixing the link to these with backbone -->
-              <!-- <li><%= link_to "Venues", "/#venues"  %></li> -->
-	            <li><%= link_to "Events", "/#events"  %></li>
-          </ul>
-          <ul class='nav nav-collapse collapse pull-right' style="margin-right:15px;">
-          <% if !signed_in? %>
-            <li class="login-bar hidden-mobile">
-              <form method="post" action="<%= sessions_path %>" class="navbar-search qs-login">
-                <input name="email"type="text" class="span2" placeholder="Email Address">
-                <input name="password" type="password" class="span2" placeholder="Password">
-                <input type="submit" value="Login" class="login-btn btn"/>
-              </form>
-            </li>
-          <% else %>
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">User Profile</a></li>
-            <li style="margin: 0px 0px;"></li>
-            <li><a href="#"><i class="icon-cog"></i></a></li>
-            <li style="margin-left: 0px;"></li>
-            <li>
-            <%= form_tag(logout_path, :method => "delete", :class => 'logout-form') do %>
-              <%= submit_tag 'Logout', :id => "logout-btn" %>
+          <div class="nav-collapse collapse pull-right" style="height: auto;">
+            <ul class='nav' style="margin-right:15px;">
+              <% if !signed_in? %>
+                <li><%= link_to "Register", register_path, :class => "lead-link"  %></li>
+                <li><%= link_to "Events", "/#events", :class => "second-link" %></li>
+              <% else %>
+                <li><%= link_to "Events", "/#events", :class => "lead-link" %></li>
+              <% end %>
+              <li class="active"><a class="home" href="#">Home</a></li>
+              <li class="active"><a class="mobile-login" href="#">Login</a></li>
+              <% if !signed_in? %>
+                <li class="hidden-mobile login-bar">
+                  <form method="post" action="<%= sessions_path %>" class="navbar-search qs-login">
+                    <input name="email"type="text" class="span2" placeholder="Email Address">
+                    <input name="password" type="password" class="span2" placeholder="Password">
+                    <input type="submit" value="Login" class="login-btn btn"/>
+                  </form>
+                </li>
+              <% else %>
+                <li style="margin: 0px 0px;"></li>
+                <li style="margin-left: 0px;"></li>
+                <li>
+                  <%= form_tag(logout_path, :method => "delete", :class => 'logout-form') do %>
+                    <%= submit_tag 'Logout', :id => "logout-btn" %>
+                  <% end %>
+                </li>
             <% end %>
-            </li>
-            <li></li>
-          <% end %>
             </ul>
         </div>
       </div>
+    </div>
     </div>
     <div id="main" class="container">
       <%= bootstrap_flash %>
@@ -88,17 +87,18 @@
     <footer class="visible-desktop">
       <div class="container">
         <div class="row">
-            <div class="span4"></div>
-            <div class="span6">
-                <div id="footer-bar">
-                  <h2 class="QwikStubs" style="display: inline">
-                    QwikStubs
-                  </h2>
-                  <h4>by The Constructors</h4>
-                </div>
-            </div>
-        <div>
-      </div>
+          <div class="span4"></div>
+          <div class="span6">
+              <div id="footer-bar">
+                <h2 class="QwikStubs" style="display: inline">
+                  QwikStubs
+                </h2>
+                <h4>by The Constructors</h4>
+                <!-- <div id="GitHub-Logo">
+                  <a><img src="/assets/GitHub-Mark.png" style="width: 32px; height: 32px;"></a>
+                </div><D-s>
+              </div> -->
+          </div>
     </footer>
     
     <footer id="mobile-footer" class="visible-mobile hidden-desktop">
@@ -107,6 +107,9 @@
           QwikStubs
         </h2>
         <small>by The Constructors</h4>
+        <!-- <div id="GitHub-Logo">
+          <a><img src="/assets/GitHub-Mark.png" style="width: 32px; height: 32px;"></a>
+        </div> -->
       </div>
     </footer>
     <!-- Javascripts
