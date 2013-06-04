@@ -7,6 +7,7 @@ class EventSeat
     UNSOLD = 0
     RESERVED = 1
     SOLD = 2
+    CHECKED = 3
   end
 
   key :status, Integer, :default => Status::UNSOLD
@@ -14,7 +15,7 @@ class EventSeat
   key :column, Integer
   
   validates_numericality_of :status, :greater_than => -1
-  validates_numericality_of :status, :less_than => 3
+  validates_numericality_of :status, :less_than => 4
 
   validates_presence_of :row, :column
   belongs_to :event_section
@@ -45,6 +46,12 @@ class EventSeat
                 aggregate([{ :$match => { event_section_id: { :$in => sections } }},
                            { :$group => { :_id => { row: "$row", :event_section_id => "$event_section_id"},
                                                           :seats => {:$addToSet=>"$_id"}}}])
+  end
+
+  def checkin
+    status = Status::CHECKED
+    channel_id = self.event_section.event.id.to_s
+    Pusher.trigger(channel_id, 'event_seat:checkin', self)
   end
   
   # quality should be attached to event_seats to speed up the algorithm
