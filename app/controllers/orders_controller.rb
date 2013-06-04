@@ -54,6 +54,19 @@ class OrdersController < ApplicationController
   def show
   
   end
+
+  def release
+    order = Order.find_by_id(params[:id])
+    seats = order.release_seats()
+    respond_with seats
+  end
+
+  def checkin
+    seat = EventSeat.find_by_id(params[:id])
+    seat.checkin
+    seat.save!
+  end
+
   # Destroy should release an Order's ticket back into the pool, firing the correct event.
   def destroy
 

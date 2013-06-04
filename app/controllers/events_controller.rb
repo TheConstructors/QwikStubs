@@ -38,6 +38,12 @@ class EventsController < ApplicationController
   def update
     respond_with Event.update(params[:id], params[:entry])
   end
+
+  def checkin
+    seat = EventSeat.find_by_id(params[:id])
+    seat.checkin
+    seat.save!
+  end
   
   def seats
     @event = Event.find(params[:id])

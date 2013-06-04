@@ -110,9 +110,11 @@ describe Order do
   describe "release_seats" do
     before (:each) do
       @event = FactoryGirl.create(:event)
-      @seat1 = FactoryGirl.create(:event_seat, status: EventSeat::Status::RESERVED)
-      @seat2 = FactoryGirl.create(:event_seat, status: EventSeat::Status::RESERVED)
-      @seat3 = FactoryGirl.create(:event_seat, status: EventSeat::Status::RESERVED)
+      @order = FactoryGirl.create(:order, event: @event)
+      @sec = FactoryGirl.create(:event_section, event:@event)
+      @seat1 = FactoryGirl.create(:event_seat, status: EventSeat::Status::RESERVED, order: @order, event_section: @sec)
+      @seat2 = FactoryGirl.create(:event_seat, status: EventSeat::Status::RESERVED, order: @order, event_section: @sec)
+      @seat3 = FactoryGirl.create(:event_seat, status: EventSeat::Status::RESERVED, order: @order, event_section: @sec)
     end
     
     it "should set all the seats to reserved" do
@@ -120,8 +122,7 @@ describe Order do
       @seats.each { |seat|
         seat.status.should == EventSeat::Status::RESERVED
       }
-      @order = FactoryGirl.build(:order, event: @event)
-      @order.release_seats(@seats).should == true
+      @order.release_seats().should == true
       @seats2 = EventSeat.all
       @seats2.each { |seat|
         seat.status.should == EventSeat::Status::UNSOLD
@@ -129,14 +130,13 @@ describe Order do
     end
 
     it "should return false with a seat marked sold or unsold" do
-      @seat4 = FactoryGirl.create(:event_seat, status: EventSeat::Status::SOLD)
+      @seat4 = FactoryGirl.create(:event_seat, status: EventSeat::Status::SOLD, order: @order, event_section: @sec)
       @seats = EventSeat.all
-      @order = FactoryGirl.build(:order, event: @event)
-      @order.release_seats(@seats).should == false
+      @order.release_seats().should == false
       @seat4.status = EventSeat::Status::UNSOLD
       @seat4.save()
       @seats = EventSeat.all
-      @order.release_seats(@seats).should == false
+      @order.release_seats().should == false
     end
   end
 

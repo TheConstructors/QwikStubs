@@ -71,19 +71,23 @@ class Order
     true
   end
 
-  def release_seats(seats)
-    seats.each do |seat|
+  def release_seats()
+    event_seats.each do |seat|
       if(seat.status != EventSeat::Status::RESERVED)
         return false
       end
     end
 
-    seats.each do |seat|
+    group = Group.create event_id: self.event.id, reserved: 0, :size => 0
+    event_seats.each do |seat|
       seat.status = EventSeat::Status::UNSOLD
-      seat.order = self
-      seat.save()
+      seat.group = group
+      seat.save!
     end
-    trigger_release(seats)
+    group.reload
+    group.size = event_seats.size
+    group.save!
+    trigger_release(event_seats)
     true
   end
 

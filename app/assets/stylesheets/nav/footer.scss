@@ -1,0 +1,21 @@
+footer {
+  background-color: #ECF0F1;
+
+  h4, h2, small { display: inline; }
+
+  small {
+    padding-right: 4px;
+    padding-left: 2px;
+  }
+}
+
+#footer-bar {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+#mobile-footer {
+  margin-left: -20px;
+  margin-right: -20px;
+  padding-left: 20px;
+}
