@@ -2,7 +2,8 @@
   <h3>Purchase<div class="btn btn-danger pull-right cancel">Cancel</div></h3>
   <hr>
   <div id="reserved-seats"></div>
- 
+  
+  <p>Test.. <%= @order.get('total_amount') %></p>
   <input id="stripeemailabc" type="text" name="email_address" >
   <br>
   <form id="stripepayment" action="/api/orders/<%= @order.get('id') %>/purchase" method="POST" style="text-align:center;" onsubmit="return false;">

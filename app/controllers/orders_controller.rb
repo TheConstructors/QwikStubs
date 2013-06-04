@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
     amount = 0.0
     order = Order.create!(event:event, total_amount:amount.to_f, order_number: Order.generate_number)
     order.reload
+    order.calculate_total
     respond_with order
   end
   
@@ -33,6 +34,7 @@ class OrdersController < ApplicationController
       order = order.find_seats(params[:num].to_f)
       #puts order.as_json
       #puts "=============================*"
+      order.total_amount = order.calculate_total
       o = [{ order: order, response: { seats: order.event_seats }}]
       #puts "RRRRREEETTYTUUURRRNNN"
       #puts o.as_json
@@ -79,7 +81,7 @@ class OrdersController < ApplicationController
 
     # Stripe Stuff
 
-
+    
     order.purchase_seats()
     redirect_to "/#order/#{params[:id]}"
 
