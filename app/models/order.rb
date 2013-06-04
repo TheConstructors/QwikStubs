@@ -166,4 +166,12 @@ class Order
       return nil
     end
   end
+
+  def calculate_total
+    temp = 0
+    event_seats.each do |seat|
+      temp += seat.get_price
+    end
+    return temp
+  end
 end

@@ -58,4 +58,8 @@ class EventSeat
   def quality
     seat.quality
   end
+
+  def get_price
+    event_section.price
+  end
 end
