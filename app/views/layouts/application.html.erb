@@ -35,7 +35,7 @@
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
   </head>
   <body>
-    <div id="topbar" class="navbar navbar-fixed-top">
+    <div id="topbar" class="navbar navbar-static-top">
       <div class="navbar-inner">
         <div class="container">
           <button id="menu-dropdown" 
@@ -44,7 +44,7 @@
                   data-toggle="collapse" 
                   data-target=".nav-collapse">
           </button>
-          <div class="nav" id="logo-wrapper"> 
+          <div class="nav" id="logo-wrapper">
             <%= link_to(image_tag('logo-tiny.png', :alt => 'logo', :id => 'logo'), root_path) %>
           </div>
           <div class="nav-collapse collapse pull-right" style="height: auto;">
@@ -83,7 +83,7 @@
       <%= bootstrap_flash %>
       <%= yield %>
     </div>
-    
+
     <footer class="visible-desktop">
       <div class="container">
         <div class="row">
@@ -100,7 +100,7 @@
               </div> -->
           </div>
     </footer>
-    
+
     <footer id="mobile-footer" class="visible-mobile hidden-desktop">
       <div id="footer-bar">
         <h2 class="QwikStubs" style="display: inline">

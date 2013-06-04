@@ -13,14 +13,6 @@ a {
   &:hover { color: #3498DB; }
 }
 
-body {
-  padding-top: 60px;
-
-  @media(max-width: 979px) {
-    padding-top: 0px;
-  }
-}
-
 .invert-text{ color:white; }
 
 .white-box{
