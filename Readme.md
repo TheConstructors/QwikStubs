@@ -22,4 +22,11 @@ style guides also.
 * Coveralls
 
 ## Sunspot (Solr) Configuration
-First, you need to start the Sunspot:Solr server to be running in the background. This can be performed with the ```bundle exec rake sunspot:solr:start``` command. Then, if you have not indexed before, or you perform a ```bundle exec rake db:seed```, then you need to also perform a ```bundle exec rake sunspot:reindex```. 
+First, you need to start the Sunspot:Solr server to be running in the background. 
+This can be performed with the ```bundle exec rake sunspot:solr:start``` command. 
+Then, if you have not indexed before, or you perform a ```bundle exec rake db:seed```, 
+then you need to also perform a ```bundle exec rake sunspot:reindex```.
+
+## Simulator 
+For now you can simply run the simulator with: ruby simulator.rb <event-id> <seat-amount>.
+
