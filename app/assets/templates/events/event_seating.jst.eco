@@ -1,5 +1,11 @@
 <div class="white-box">
     <h3 style="text-align:center;">Seating Map</h3>
     <hr>
+    <table class="table table-condensed">
+    	<tr>
+    		<td id="seatname"></td>
+    		<td id="seatprice"></td>
+    	</tr>
+    </table>
     <div id="event_seating" > </div>
 </div>

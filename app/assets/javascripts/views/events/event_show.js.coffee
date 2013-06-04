@@ -13,4 +13,10 @@ class Qwikstubs.Views.EventShow extends Backbone.View
       event: @options.event
     $('#seating').html(@seating.render().el)
     @seating.post_render()
-    @seating.load_seats()  		
+    @seating.load_seats() 
+    $('#gmap').width($("#gmap-contain").innerWidth())
+    $('#gmap').height($("#gmap-contain").innerWidth())
+ 	
+    $(window).resize () ->
+      $('#gmap').width($("#gmap-contain").innerWidth())
+      $('#gmap').height($("#gmap-contain").innerWidth())
