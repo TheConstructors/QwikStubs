@@ -17,10 +17,7 @@ class OrdersController < ApplicationController
     #puts params
     #puts "============================="
     #debugger 
-    if params[:type] == "checkout"
-      order = Order.find_by_id(params[:id])
-      order.purchase()
-    end
+
     if params[:type] == "select"
       params[:seats].each do |seat|
         puts seat
@@ -59,6 +56,19 @@ class OrdersController < ApplicationController
   end
   # Destroy should release an Order's ticket back into the pool, firing the correct event.
   def destroy
+
+  end
+
+  def purchase
+    order = Order.find_by_id(params[:id])
+    puts "CHECKOUT SUCCESS **************"
+    puts params
+
+    # Stripe Stuff
+
+
+    order.purchase_seats()
+    redirect_to "/#order/#{params[:id]}"
 
   end
 end

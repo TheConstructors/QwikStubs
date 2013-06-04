@@ -6,6 +6,8 @@ class ChargesController < ApplicationController
     # Amount in cents
     @amount = 2000
 
+    puts params
+
     customer = Stripe::Customer.create(
       :email => 'example@stripe.com',
       :card  => params[:stripeToken]
@@ -18,8 +20,11 @@ class ChargesController < ApplicationController
       :currency    => 'usd'
     )
 
+    puts charge
+
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to charges_path
   end
+
 end

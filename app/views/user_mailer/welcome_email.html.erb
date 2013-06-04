@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <%= image_tag attachments['logo-tiny.png'].url %>
+    <h2>Welcome to Qwikstubs, <%= @user.full_name %></h2>
+    <p>
+      You have successfully signed up to qwikstubs.com,
+      your username is: <%= @user.get_email %>.<br/>
+    </p>
+    <p>
+      To login, just follow this link: <%= @url %>.
+    </p>
+    <p> Or, use this QR Code </p>
+    <%= image_tag attachments['qr_code.png'].url %>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>

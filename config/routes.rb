@@ -13,9 +13,8 @@ Qwikstubs::Application.routes.draw do
     get '/events/order/best/:event/:amount' => 'orders#select_best_seats'
     get '/orders/seats/:id' => 'orders#seats'
     get '/search/events' => 'events#search'
+    post '/orders/:id/purchase' => 'orders#purchase'
   end
-  
-  get '/orders/:id'=> 'orders#show'
   
   resources :sessions, only: [:new, :create, :destroy]
 
