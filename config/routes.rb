@@ -23,6 +23,7 @@ Qwikstubs::Application.routes.draw do
   match 'logout' => 'sessions#destroy', as: 'logout'
   match 'create_venue' => 'venues#new', as: 'create_venue'
   match 'create_event' => 'events#new', as: 'create_event'
+  get '/orders/:id/checkin' => 'orders#checkin'
 
   get '/register' => 'users#new'
   
