@@ -4,9 +4,9 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
   seats_selectable: false
   selected_seats: []
 
-  #events:
-    #'order:reserve': 'reserveSeats'
-   # 'click #researve-seats': 'reserveSeats'
+  #  events:
+  #    'order:reserve': 'reserveSeats'
+  #    'click #researve-seats': 'reserveSeats'
 
   tagName: 'div'
     #render: ->
@@ -33,7 +33,7 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
     channel.bind(
       'order:purchase',
       (data) ->
-        console.log(data)
+        purchase_seats
       )
 
   load_seats: ->
@@ -51,7 +51,7 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
   load_seat: (seat) -> 
     x = seat.get("venue_seat").xpos + @options.sections.get(seat.get("event_seat").event_section_id).get("venue_section").xpos
     y = seat.get("venue_seat").ypos + @options.sections.get(seat.get("event_seat").event_section_id).get("venue_section").ypos
-    
+
     color = "grey"
     if seat.get("event_seat").status == 1
       color = "yellow"
@@ -66,6 +66,7 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
         strokeWidth: 1
         id: seat.get("event_seat")._id
       })
+    circle._id = seat.get("event_seat")._id
     t = @
     circle.on("click", () -> t.add_seat(seat.get("event_seat")._id))
     circle.on("mouseenter", () -> t.view_seat(seat.get("event_seat")._id))
@@ -110,7 +111,15 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
     console.log(data)
     for id in data
       sid = "#" + id.id
-      @stage.get(sid)[0].setFill('blue')
+      # console.log "RESERVING"
+      # console.log id
+      # console.log id.id
+      # console.log @stage
+      # console.log @stage.get(sid)
+      # console.log @stage.get(sid)[0]
+      # console.log "---------"
+
+      @stage.get(sid)[0].setFill('yellow')
     @layer.draw()
     console.log("Draw seat!")
     console.log(data)
@@ -121,8 +130,21 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
       @stage.get(sid)[0].setFill('green')
     @layer.draw()
 
-  purchaseSeats: (data) ->
-    #console.log(data)
+  purchase_seats: (data) ->
+    for id in data
+      sid = "#" + id.id
+      # console.log "RESERVING"
+      # console.log id
+      # console.log id.id
+      # console.log @stage
+      # console.log @stage.get(sid)
+      # console.log @stage.get(sid)[0]
+      # console.log "---------"
+
+      @stage.get(sid)[0].setFill('red')
+    @layer.draw()
+    console.log("Draw seat!")
+    console.log(data)
 
 
   
