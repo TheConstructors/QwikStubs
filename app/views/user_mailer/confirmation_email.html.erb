@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <%= image_tag attachments['logo-tiny.png'].url %>
+    <h2><strong>Confirmation of Order <%= @order.order_number %></strong></h2>
+    <p>Thank you, <%= @email %>. Your payment has been successfully processed.  
+    </p>
+    <p><strong>Event:</strong> <%= @order.event.name %></p>
+    <p><strong>Venue:</strong> <%= @order.event.venue.name %></p>
+    <p><strong>Date:</strong> <%= @order.event.month %> <%= @order.event.day %>, <%= @order.event.year %></p>
+    <p><strong>Time:</strong> <%= @order.event.time %></p>
+    <p><strong>Number of seats:</strong> <%= @order.event_seats.all.length %></p>
+    <p>
+      <% @order.event_seats.each do |s| %>
+        <div>Seat: <%= s.seat.name %> </div>
+        <div>Section: <%= s.seat.section.name %></div>
+        <br>
+      <% end %>
+    </p>
+    <p>When you arrive at your event, use this QR Code to check in </p>
+    <%= image_tag attachments['qr_code.png'].url %>
+
+    <p>Thanks for using Qwikstubs and enjoy your event!</p>
+  </body>
+</html>

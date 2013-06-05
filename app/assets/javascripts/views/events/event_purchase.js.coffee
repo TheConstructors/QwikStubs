@@ -98,7 +98,7 @@ class Qwikstubs.Views.EventPurchase extends Backbone.View
       
       $("#stripeemailabc").keyup () ->
         re = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
-        console.log $("#stripeemailabc").val()
+        #console.log $("#stripeemailabc").val()
         result = re.test($("#stripeemailabc").val())
         console.log(result)
         if result

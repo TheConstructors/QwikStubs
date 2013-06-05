@@ -1,0 +1,18 @@
+Confirmation of Order <%= @order.order_number %>
+================================================
+
+Thank you, <%= @email %>. Your payment has been successfully processed.
+
+Event: <%= @order.event.name %>
+Venue: <%= @order.event.venue.name %>
+Date: <%= @order.event.month %> <%= @order.event.day %>, <%= @order.event.year %>
+Time: <%= @order.event.time %>
+Number of seats: <%= @order.event_seats.all.length %>
+
+<% @order.event_seats.each do |s| %>
+	Seat: <%= s.seat.name %>
+	Section: <%= s.seat.section.name %>
+
+<% end %>
+
+Thanks for using Qwikstubs and enjoy your event!

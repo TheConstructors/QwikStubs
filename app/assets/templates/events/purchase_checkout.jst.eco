@@ -2,8 +2,10 @@
   <h3>Purchase<div class="btn btn-danger pull-right cancel">Cancel</div></h3>
   <hr>
   <div id="reserved-seats"></div>
+
   <div style ="text-align:center;">
   <h4>Enter You Email Address</h4>
+
   <input id="stripeemailabc" type="text" name="email_address" >
   </div>
   <br>
