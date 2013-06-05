@@ -87,6 +87,10 @@ a, .navbar .nav > li > a {
     padding-top: 10px;
     padding-bottom: 10px;
   }
+
+  & > .btn:hover {
+    background-color: #2980B9;
+  }
 }
 
 #mobile-search {
@@ -166,4 +170,8 @@ a.thumbnail:focus {
     border-color: #3498DB;
 }
 
-
+/* footer */
+footer h2 > a {
+    color: #bac1c8;
+    text-decoration: none;
+}
