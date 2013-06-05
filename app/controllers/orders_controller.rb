@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
       order = order.find_seats(params[:num].to_f)
       #puts order.as_json
       #puts "=============================*"
-      o = [{ order: order, response: { seats: order.event_seats }}]
+      o = order.event_seats
       #puts "RRRRREEETTYTUUURRRNNN"
       #puts o.as_json
       respond_with o.as_json #respond_with order

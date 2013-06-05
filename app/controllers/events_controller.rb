@@ -23,6 +23,10 @@ class EventsController < ApplicationController
     end
   end  
   
+  def purchase_reroute
+    redirect_to "/#events/#{params[:id]}/purchase"
+  end
+
   def list
     respond_with Event.all 
   end

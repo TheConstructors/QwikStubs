@@ -137,13 +137,13 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
     console.log(data)
     for id in data
       sid = "#" + id.id
-      # console.log "RESERVING"
-      # console.log id
-      # console.log id.id
-      # console.log @stage
-      # console.log @stage.get(sid)
-      # console.log @stage.get(sid)[0]
-      # console.log "---------"
+      console.log "RESERVING"
+      console.log id
+      console.log id.id
+      console.log @stage
+      console.log @stage.get(sid)
+      console.log @stage.get(sid)[0]
+      console.log "---------"
 
       @stage.get(sid)[0].setFill('yellow')
     @layer.draw()

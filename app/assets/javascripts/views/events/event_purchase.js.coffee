@@ -69,12 +69,29 @@ class Qwikstubs.Views.EventPurchase extends Backbone.View
     @options.order.save({type:"best",num:num}, {success:(order,response,options)->run(order,response,options)})
   
   best_c : () ->
+    a = @options
     console.log("success")
     order = @options.order
     order_seats = new Backbone.Collection()    
     order_seats.url = '/api/orders/seats/' + order.id
     after = () ->
-      $('#purchase').html(JST['events/purchase_checkout'](order:order))
+      total = 0
+      out = '<h4 style="text-align:center;"><span class="pull-left">Seat</span><span class="pull-right">Price</span><br><hr style="margin:0px;">'
+      display_seat = (seat) -> 
+        console.log a.seats.get(seat.id)
+        s = a.seats.get(seat.id)
+        price = a.sections.get(s.get("event_seat").event_section_id).get("event_section").price
+        total = total + price
+        name = a.seats.get(seat.id).get("venue_seat").name
+        out = out + "<span class='pull-left'>" +name + "</span><span class='pull-right'>" + price+ "</span><br>"
+      order_seats.each(display_seat)
+        # console.log(x)
+        # 
+      out = out + '<hr style="margin:0px;"><span class="pull-left">Total</span><span class="pull-right"> $' + total + '</span>'
+      out = out+ '</h4><br><br>'
+
+      total = total*100 
+      $('#purchase').html(JST['events/purchase_checkout'](order:order, total:total))
       
       # This is a hack to make the purchase tickets button appear after you type in a valid email address
 
@@ -93,13 +110,8 @@ class Qwikstubs.Views.EventPurchase extends Backbone.View
           $("#stripebuttonabc").css("visibility", "hidden")
 
 
-      out = '<h3 style="text-align:center;">'
-      test = (seat) -> 
-        out = out + seat.id + "<br>"
-      order_seats.each(test)
-        # console.log(x)
-        # 
-      out = out+ '</h3>'
-      out = out+ order.id
+      
+      
+
       $('#reserved-seats').html(out)
     order_seats.fetch({success: after})

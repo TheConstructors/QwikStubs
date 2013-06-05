@@ -1,6 +1,6 @@
 <div class="row">
   <div class ="span12">
-    <h1><%= @event.get('name') %></h1>
+    
   </div>
 </div>
 
@@ -11,8 +11,11 @@
 <div class="row">
   <!-- Venue Details -->
   <div id="buy" class="span6">
- 
+    <h1><%= @event.get('name') %></h1>
     <div class="white-box">
+    <h3>Description</h3>
+    <%= @event.get('description') %>
+    <br>
       <p>
         <h3>Information</h3>
 
@@ -36,7 +39,7 @@
               <td><%=@event.get('time')%></td>
               <td><%=@venue.get('name')%></td>
               <td>
-<a href="/#events/<%=@event.get('id')%>/purchase">
+<a href="/api/events/<%=@event.get('id')%>/purchase">
               <div class="btn
               btn-success btn-mini pull-right purchase">Buy Tickets
               </div></a></td>
@@ -56,9 +59,9 @@
   </div>
   <!-- Event Details -->
   <div class="span6">
-    <h3>Description</h3>
-    <%= @event.get('description') %>
-    <br>
+    
+    <img style="border-radius:15px;width:100%;" src="<%= @event.get('banner_url') %>" >
+    <br><br>
     <div id="seating"></div>
   </div>
 </div>

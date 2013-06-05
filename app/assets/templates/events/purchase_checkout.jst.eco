@@ -2,8 +2,10 @@
   <h3>Purchase<div class="btn btn-danger pull-right cancel">Cancel</div></h3>
   <hr>
   <div id="reserved-seats"></div>
- 
+  <div style ="text-align:center;">
+  <h4>Enter You Email Address</h4>
   <input id="stripeemailabc" type="text" name="email_address" >
+  </div>
   <br>
   <form id="stripepayment" action="/api/orders/<%= @order.get('id') %>/purchase" method="POST" style="text-align:center;" onsubmit="return false;">
     <input type="hidden" name="type" value="checkout">
@@ -12,7 +14,7 @@
       <script
         src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
         data-key="pk_test_PQYObKKtGMZ95f0vvlBu8VgA"
-        data-amount="<%= @order.get('total_amount')*100 %>"
+        data-amount="<%= @total %>"
         data-name="QwikStubs"
         data-description="Test Event"
         data-currency="usd"

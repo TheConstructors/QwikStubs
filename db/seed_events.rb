@@ -15,7 +15,7 @@
 #   :description=>"In this inspiring new art form, Alex Hamstra takes a baseball bat to all of his least favorite machines."})
 # Event.create!({:name=>"Bruin Music Festival", :month=>"May", :day=>"27", :year=>"2013", :time=>"All Day", :venue=>@campbell,
 #   :description=>"A music festival in Los Angeles specifically for UCLA Students."})
- Event.create!({:name=>"Ben and the Boo Boo Bears", :month=>"Jun", :day=>"14", :year=>"2013", :time=>"1:00pm", :venue=>@campbell,
+ Event.create!({:name=>"Ben and the Boo Boo Bears", :month=>"Jun", :day=>"14", :year=>"2013", :time=>"1:00pm", :banner_url=> "/assets/booboobears.jpg", :venue=>@campbell,
    :description=>"In this not creepy at all kid's show, Ben McCurdy wins the hearts of kids and parents nationwide."})
 # Event.create!({:name=>"The Kyle Project", :month=>"Jul", :day=>"12", :year=>"2013", :time=>"1:00pm", :venue=>@campbell,
 #   :description=>"Kyle sings so quietly so make sure to bring your hearing aids folks."})
