@@ -47,7 +47,7 @@
           <div class="nav" id="logo-wrapper">
             <%= link_to(image_tag('logo-tiny.png', :alt => 'logo', :id => 'logo'), root_path) %>
           </div>
-          <div class="nav-collapse collapse pull-right" style="height: auto;">
+          <div class="nav-collapse collapse pull-right" style="height: 0px;">
             <ul class='nav' style="margin-right:15px;">
               <% if !signed_in? %>
                 <li><%= link_to "Register", register_path, :class => "lead-link"  %></li>
@@ -55,8 +55,7 @@
               <% else %>
                 <li><%= link_to "Events", "/#events", :class => "lead-link" %></li>
               <% end %>
-              <li class="active"><a class="home" href="#">Search</a></li>
-              <li class="active"><a class="mobile-login" href="#">Login</a></li>
+              <li class="active"><a class="third-link" href="#">Search</a></li>
               <% if !signed_in? %>
                 <li class="hidden-mobile login-bar">
                   <form method="post" action="<%= sessions_path %>" class="navbar-search qs-login">
@@ -65,9 +64,8 @@
                     <input type="submit" value="Login" class="login-btn btn"/>
                   </form>
                 </li>
+                <li class="active"><a class="fourth-link mobile-login hidden-desktop" href="#">Login</a></li>
               <% else %>
-                <li style="margin: 0px 0px;"></li>
-                <li style="margin-left: 0px;"></li>
                 <li>
                   <%= form_tag(logout_path, :method => "delete", :class => 'logout-form') do %>
                     <%= submit_tag 'Logout', :id => "logout-btn" %>

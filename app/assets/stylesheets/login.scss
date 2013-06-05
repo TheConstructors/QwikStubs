@@ -1,5 +1,6 @@
 .form-signin {
-  @include border-radius(5px);
+  //@include border-radius(5px);
+  border-radius: 0px;
   border: 1px solid #e5e5e5;
   margin: 0 auto 20px;
   max-width: 300px;
@@ -12,6 +13,7 @@
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
   margin-bottom: 10px;
+  border-radius: 0px;
 }
 
 .form-signin input[type="text"],
@@ -89,6 +91,12 @@ form.qs-login {
     .mobile-login {
         display: block;
     }
+
+    #logout-btn {
+        width: 300px;
+        margin: 0px;
+        padding-left: 65px;
+    }
 }
 
 @media (min-width:768px) {
@@ -101,4 +109,10 @@ form.qs-login {
     display: inline;
     padding-left: 5px;
     margin-bottom: -5px;
+}
+
+.btn.btn-primary:hover, 
+.btn.btn-primary:focus, 
+.btn-group:focus .btn.btn-primary.dropdown-toggle {
+    background-color: #2980B9;
 }

@@ -11,6 +11,10 @@
 @import "nav/footer";
 @import "login";
 
+#main {
+    min-height: 625px;
+}
+
 /* top bar */
 a.lead-link:hover, .navbar .nav > li > a.lead-link:hover, 
 .navbar .nav > li > a.lead-link:focus {
@@ -20,11 +24,29 @@ a.lead-link:hover, .navbar .nav > li > a.lead-link:hover,
 a.second-link:hover, .navbar .nav > li > a.second-link:hover, 
 .navbar .nav > li > a.second-link:focus {
   background-color: #F1C40F;
+  border-radius: 0px;
 }
 
-a.home:hover, .navbar .nav > li > a.home:hover, 
-.navbar .nav > li > a.home:focus {
+a.third-link:hover, .navbar .nav > li > a.third-link:hover, 
+.navbar .nav > li > a.third-link:focus {
   background-color: #2ECC71;
+  border-radius: 0px;
+}
+
+a.fourth-link:hover, .navbar .nav > li > a.fourth-link:hover, 
+.navbar .nav > li > a.fourth-link:focus {
+  background-color: #E74C3C;
+  border-radius: 0px;
+}
+
+/* fix border edges */
+a, .navbar .nav > li > a {
+    border-radius: 0px;
+}
+
+.navbar .btn-navbar:hover, 
+.navbar .btn-navbar:focus {
+    color: #3498DB;
 }
 
 #menu-dropdown {
@@ -143,3 +165,5 @@ a.thumbnail:focus {
     box-shadow: none;
     border-color: #3498DB;
 }
+
+

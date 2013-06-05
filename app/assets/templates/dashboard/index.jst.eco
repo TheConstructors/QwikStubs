@@ -69,6 +69,28 @@
             </a>
         </li>
     </ul>
+    <ul class="thumbnails">
+        <li class="span3">
+            <a href="/#events/5176ed0ae206a514e9000603" class="thumbnail">
+                <img src = "/assets/3oh.jpg" data-src="" alt="260x180" style="width: 260px;height: 180px;">
+            </a>
+        </li>
+        <li class="span3">
+            <a href="/#events/5176ed0ae206a514e9000602" class="thumbnail">
+                <img src = "/assets/shrek.jpg" data-src="" alt="260x180" style="width: 260px;height: 180px;">
+            </a>
+        </li>
+        <li class="span3">
+            <a href="/#events/5176ed0ae206a514e9000603" class="thumbnail">
+                <img src = "/assets/3oh.jpg" data-src="" alt="260x180" style="width: 260px;height: 180px;">
+            </a>
+        </li>
+        <li class="span3">
+            <a href="/#events/5176ed0ae206a514e9000602" class="thumbnail">
+                <img src = "/assets/shrek.jpg" data-src="" alt="260x180" style="width: 260px;height: 180px;">
+            </a>
+        </li>
+    </ul>
 </div>
        <!-- <div class = "span7 invert-text">
           <h2>Featured Events</h2>
