@@ -1,8 +1,3 @@
-<div class="row">
-  <div class ="span12">
-    
-  </div>
-</div>
 
 <div class ="row" style="margin-bottom:20px;">
 
@@ -11,13 +6,32 @@
 <div class="row">
   <!-- Venue Details -->
   <div id="buy" class="span6">
-    <h1><%= @event.get('name') %></h1>
+    <h1><%= @event.get('name') %>
+      <a href="/api/events/<%=@event.get('id')%>/purchase" >
+              <div class="btn
+              btn-success purchase pull-right">Buy Tickets
+              </div></a></h1>
+  
+        <img style="border-radius:5px;width:100%;" src="<%= @event.get('banner_url') %>" >
+
+<br><br>
     <div class="white-box">
     <h3>Description</h3>
     <%= @event.get('description') %>
     <br>
+    <h3>Location</h3>
       <p>
-        <h3>Information</h3>
+        <div id="gmap-contain" style="width:100%;">
+        <iframe id="gmap" width="500" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?ie=UTF8&amp;q=campbell+hall+ucsb&amp;fb=1&amp;gl=us&amp;hq=campbell+hall&amp;hnear=0x80e93f67f3314b37:0x4e956b7e5cb6cec2,UC+Santa+Barbara,+552+University+Rd,+Santa+Barbara,+CA+93106&amp;cid=0,0,8110465914546288772&amp;t=m&amp;source=embed&amp;ll=34.416292,-119.845562&amp;spn=0.008851,0.01075&amp;z=16&amp;output=embed"></iframe><br /><small><a href="https://maps.google.com/maps?ie=UTF8&amp;q=campbell+hall+ucsb&amp;fb=1&amp;gl=us&amp;hq=campbell+hall&amp;hnear=0x80e93f67f3314b37:0x4e956b7e5cb6cec2,UC+Santa+Barbara,+552+University+Rd,+Santa+Barbara,+CA+93106&amp;cid=0,0,8110465914546288772&amp;t=m&amp;source=embed&amp;ll=34.416292,-119.845562&amp;spn=0.008851,0.01075&amp;z=16" style="color:#0000FF;text-align:left">View Larger Map</a></small>
+         </div>
+        <div id="reserved-seats"> </div>
+      </p>
+    </div>
+  </div>
+  <!-- Event Details -->
+  <div class="span6">
+        
+          <h3>Information</h3>
 
         <table class="table table-hover table-condensed">
           <thead>
@@ -38,30 +52,12 @@
               <td><%=@event.get('month')%> <%=@event.get('day')%>, <%=@event.get('year')%></td>
               <td><%=@event.get('time')%></td>
               <td><%=@venue.get('name')%></td>
-              <td>
-<a href="/api/events/<%=@event.get('id')%>/purchase">
-              <div class="btn
-              btn-success btn-mini pull-right purchase">Buy Tickets
-              </div></a></td>
+              
               </tr>
           </tbody>
         </table>
-        <br>
-        <div id="gmap-contain" style="width:100%;">
 
-        <iframe id="gmap" width="500" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?ie=UTF8&amp;q=campbell+hall+ucsb&amp;fb=1&amp;gl=us&amp;hq=campbell+hall&amp;hnear=0x80e93f67f3314b37:0x4e956b7e5cb6cec2,UC+Santa+Barbara,+552+University+Rd,+Santa+Barbara,+CA+93106&amp;cid=0,0,8110465914546288772&amp;t=m&amp;source=embed&amp;ll=34.416292,-119.845562&amp;spn=0.008851,0.01075&amp;z=16&amp;output=embed"></iframe><br /><small><a href="https://maps.google.com/maps?ie=UTF8&amp;q=campbell+hall+ucsb&amp;fb=1&amp;gl=us&amp;hq=campbell+hall&amp;hnear=0x80e93f67f3314b37:0x4e956b7e5cb6cec2,UC+Santa+Barbara,+552+University+Rd,+Santa+Barbara,+CA+93106&amp;cid=0,0,8110465914546288772&amp;t=m&amp;source=embed&amp;ll=34.416292,-119.845562&amp;spn=0.008851,0.01075&amp;z=16" style="color:#0000FF;text-align:left">View Larger Map</a></small>
-
-         hey
-         </div>
-        <div id="reserved-seats"> </div>
-      </p>
-    </div>
-  </div>
-  <!-- Event Details -->
-  <div class="span6">
-    
-    <img style="border-radius:15px;width:100%;" src="<%= @event.get('banner_url') %>" >
-    <br><br>
+          <br>
     <div id="seating"></div>
   </div>
 </div>
