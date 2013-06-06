@@ -4,7 +4,7 @@
   <div id="reserved-seats"></div>
 
   <div style ="text-align:center;">
-  <h4>Enter You Email Address</h4>
+  <h4>Enter the email address where you would like to receive your tickets</h4>
 
   <input id="stripeemailabc" type="text" name="email_address" >
   </div>
