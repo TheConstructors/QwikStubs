@@ -2,20 +2,29 @@ require 'faraday'
 require 'json'
 require 'debugger'
 
+HOSTNAME = "localhost:8080" 
+
 event_id = ARGV[0]
-number = ARGV[1]
 
 def build_request(event_id)
-  result = Faraday.post "http://localhost:3000/api/orders?event_id=#{event_id}"
+  result = Faraday.post "http://#{HOSTNAME}/api/orders?event_id=#{event_id}"
   order = JSON.parse(result.body)
   id = order["id"]
-  ticket_request = "http://localhost:3000/api/orders/#{id}.json?type=best&num="
+  ticket_request = "http://#{HOSTNAME}/api/orders/#{id}.json?type=best&num="
   Proc.new { |i| Faraday.put (ticket_request + i.to_s) }
 end
 
 request = build_request(event_id)
 
-(0..100).each do |i|
-  request.call(number)
-  sleep(1)
+threads = (1..8).map do |number|
+  Thread.start do
+    (0..107).each do |i|
+      request.call(number)
+      sleep(1)
+    end
+  end
+end
+
+threads.each do |th|
+  th.join
 end
