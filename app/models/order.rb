@@ -111,9 +111,9 @@ class Order
       if check > 9
         return nil
       elsif check > 4
-        sleep(1.0)
+        #sleep(0.25)
       elsif check > 2
-        sleep(1.0/2.0)
+        #sleep(0.25)
       end
       check += 1
     end

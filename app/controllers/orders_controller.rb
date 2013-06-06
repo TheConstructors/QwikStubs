@@ -75,7 +75,6 @@ class OrdersController < ApplicationController
 
   # Destroy should release an Order's ticket back into the pool, firing the correct event.
   def destroy
-
   end
 
   def purchase
@@ -97,8 +96,9 @@ class OrdersController < ApplicationController
     UserMailer.confirmation_email(order, params[:email_address]).deliver
     redirect_to "/#order/#{order.order_number}"
 
-  rescue Stripe::CardError => e
-    flash[:error] = e.message
-    redirect_to charges_path  
-  end
+    #rescue Stripe::CardError => e
+     # flash[:error] = e.message
+     # redirect_to charges_path  
+    #end
+   end
 end

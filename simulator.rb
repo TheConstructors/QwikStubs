@@ -13,22 +13,20 @@ def buy_tickets(event_id, number)
   ticket_reserve = "http://#{HOSTNAME}/api/orders/#{id}.json?type=best&num="
   ticket_purchase = "http://#{HOSTNAME}/api/orders/#{id}/purchase.json?email_address=qwikstubs@gmail.com" 
   Faraday.put (ticket_reserve + number.to_s)
-  sleep(5)
+  sleep(Random.rand(15))
   Faraday.post ticket_purchase 
 end
 
-threads = (1..4).map do |number|
+threads = (1..8).map do |number|
   Thread.start do
     (0..(50/number)).each do |i|
       buy_tickets(event_id, number)
-      sleep(2)
+      sleep(Random.rand(10))
     end
-
-    sleep(10)
 
     (0..(57/number)).each do |i|
       buy_tickets(event_id, number)
-      sleep(2)
+      sleep(Random.rand(10))
     end
   end
 end
