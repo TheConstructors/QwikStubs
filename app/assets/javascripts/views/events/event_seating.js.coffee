@@ -12,7 +12,8 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
     #render: ->
     #$(@el).attr('id', 'event_seating')
     #@
-
+  select: (seat) ->
+    @selected_seats.push seat
   render: ->
     $(@el).html(@template())
     @
@@ -91,10 +92,9 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
     sid = "#" + id
     seat = @options.seats.get(id)
     price = @options.sections.get(seat.get("event_seat").event_section_id).get("event_section").price
-    $("#seatnamelabel").html("Seat")
-    $("#seatpricelabel").html("Price")
-    $("#seatname").html(@options.seats.get(id).get("venue_seat").name)
-    $("#seatprice").html "$" + price
+
+    $("#seatname").html("Seat: " + @options.seats.get(id).get("venue_seat").name)
+    $("#seatprice").html "Price: $" + price
 
     # circle = @stage.get(sid)[0]
     # circle.prevFill = circle.getFill()
@@ -121,17 +121,13 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
       @render_selected_seats()
 
   render_selected_seats: ->
-    html = "<h3>Reserved Seats</h3><ul>"
     for id in @selected_seats
-      sid = "#" + id
+      sid = "#" + id.id
       circle = @stage.get(sid)[0]
-      circle.setFill('green')
+      circle.setFill('blue')
       seat = @options.seats.get(id)
-      # console.log(seat)
-      html = html + "<li>" + seat.get("venue_seat").name + "</li>"
+      # console.log(sea
     @layer.draw()
-    html = html + "</ul>"
-    $("#reserved-seats").html(html)
 
   reserve_seats: (data) ->
     # # console.log(data)
@@ -144,8 +140,8 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
       # # console.log @stage.get(sid)
       # # console.log @stage.get(sid)[0]
       # # console.log "---------"
-
-      @stage.get(sid)[0].setFill('yellow')
+      if(!@stage.get(sid)[0].getFill() == 'blue')
+        @stage.get(sid)[0].setFill('yellow')
     @layer.draw()
     # # console.log("Draw seat!")
     # # console.log(data)

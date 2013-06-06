@@ -4,7 +4,7 @@
   <div id="reserved-seats"></div>
 
   <div style ="text-align:center;">
-  <h4>Enter the email address where you would like to receive your tickets</h4>
+  <h4>Enter Email Address</h4>
 
   <input id="stripeemailabc" type="text" name="email_address" >
   </div>
@@ -26,5 +26,5 @@
       </script>
     </div>
   </form>
-
+  <div style="text-align:center;">Your tickets will be sent to your email address after your purchase is complete.</div>
 </div>

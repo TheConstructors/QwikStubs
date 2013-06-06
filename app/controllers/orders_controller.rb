@@ -84,12 +84,12 @@ class OrdersController < ApplicationController
     # puts params
 
     # Stripe Stuff
-    charge = Stripe::Charge.create(
-      :amount      => order.calculate_total.to_i * 100, #amount in cents
-      :description => "Qwikstubs event: #{order.event.name}, ordered by #{params[:email_address]}",
-      :currency    => 'usd',
-      :card        => params[:stripeToken]
-    )
+    # charge = Stripe::Charge.create(
+    #   :amount      => order.calculate_total.to_i * 100, #amount in cents
+    #   :description => "Qwikstubs event: #{order.event.name}, ordered by #{params[:email_address]}",
+    #   :currency    => 'usd',
+    #   :card        => params[:stripeToken]
+    # )
 
     order.purchase_seats()
     UserMailer.confirmation_email(order, params[:email_address]).deliver

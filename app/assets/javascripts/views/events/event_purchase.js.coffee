@@ -25,15 +25,16 @@ class Qwikstubs.Views.EventPurchase extends Backbone.View
     $(@el).html(@template())
     @
 
+  seatingview: null
   post_render : ->
     @best()
-    @seating = new Qwikstubs.Views.EventSeating
+    @seatingview = new Qwikstubs.Views.EventSeating
       seats: @options.seats
       sections: @options.sections
       event: @options.event
-    $('#seating').html(@seating.render().el)
-    @seating.post_render()
-    @seating.load_seats()
+    $('#seating').html(@seatingview.render().el)
+    @seatingview.post_render()
+    @seatingview.load_seats()
 
 
   select: ->
@@ -74,17 +75,22 @@ class Qwikstubs.Views.EventPurchase extends Backbone.View
     order = @options.order
     order_seats = new Backbone.Collection()    
     order_seats.url = '/api/orders/seats/' + order.id
+    seatingview = @seatingview
     after = () ->
+      
+      
       total = 0
       out = '<h4 style="text-align:center;"><span class="pull-left">Seat</span><span class="pull-right">Price</span><br><hr style="margin:0px;">'
       display_seat = (seat) -> 
-        # console.log a.seats.get(seat.id)
+        seatingview.select(seat)
+        # console.log a.seas.get(seat.id)
         s = a.seats.get(seat.id)
         price = a.sections.get(s.get("event_seat").event_section_id).get("event_section").price
         total = total + price
         name = a.seats.get(seat.id).get("venue_seat").name
         out = out + "<span class='pull-left'>" +name + "</span><span class='pull-right'>" + price+ "</span><br>"
       order_seats.each(display_seat)
+      seatingview.render_selected_seats()
         #console.log(x)
         # 
       out = out + '<hr style="margin:0px;"><span class="pull-left">Total</span><span class="pull-right"> $' + total + '</span>'

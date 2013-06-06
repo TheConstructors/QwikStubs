@@ -1,22 +1,12 @@
 <div class="white-box">
-    <table class="table" id ="seatinginfo">
-     	<thead>
-            <tr>
-              <th id="seatnamelabel">
-                Click a seat for more information.
-              </th>
-               <th id="seatpricelabel">
-                  
-               </th>
-            </tr>
-          </thead>
-        <tbody>
+    <img src="/assets/key.png" style ="width:90%;margin-bottom:5px;">
+    <table class="table" id ="seatinginfo" style="margin:2px;">
+
       <tr>
-        <td id='seatname' style='width:50%;'></td>
-        <td id='seatprice'></td>
-      </tr>
-      </tbody>
+        <div id='seatname' style='width:50%;clear:none;float:left'>Click a seat for more information.</div>
+        <div id='seatprice' style="clear:none;width:49%;float:left;"></div></tr>
+
     </table>
-      <h3 style="text-align:center;">Stage</h3>
+    <h3 style="text-align:center;margin:2px;padding:2px;">Stage</h3>
     <div id="event_seating" > </div>
 </div>
