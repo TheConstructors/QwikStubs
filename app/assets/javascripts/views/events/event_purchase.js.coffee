@@ -21,7 +21,7 @@ class Qwikstubs.Views.EventPurchase extends Backbone.View
     'click #best_c' : 'best_c'
   
   render: ->
-    console.log("Rendering!")
+    # console.log("Rendering!")
     $(@el).html(@template())
     @
 
@@ -43,11 +43,11 @@ class Qwikstubs.Views.EventPurchase extends Backbone.View
     $('#purchase').html(purchase_best_1())
 
   boughtTickets: ->
-    console.log("boughtTickets!")
+    # console.log("boughtTickets!")
     $('#buy').html('<div class="white-box"><h3>Success! You have bought your tickets!</h3> Refresh the page if you would like to buy more.</div>')
 
   cancelPurchase: ->
-    console.log("cancelPurchase!")
+    # console.log("cancelPurchase!")
     $('#buy').html('<div class="white-box"><h3>Purchase Canceled.</h3> Refresh the page if you would like to buy more.</div>')
 
   best_1 :-> @best_f(1)
@@ -61,7 +61,7 @@ class Qwikstubs.Views.EventPurchase extends Backbone.View
 
   best_f : (num)->
     $('#purchase').html('<div class="white-box"><h3 style="text-align:center;">Finding Your Seats!</h3></div>')
-    console.log(@options.order)
+    # console.log(@options.order)
     order = @options.order
     a = @
     run = (x,y,z)->
@@ -70,7 +70,7 @@ class Qwikstubs.Views.EventPurchase extends Backbone.View
   
   best_c : () ->
     a = @options
-    console.log("success")
+    # console.log("success")
     order = @options.order
     order_seats = new Backbone.Collection()    
     order_seats.url = '/api/orders/seats/' + order.id
@@ -78,14 +78,14 @@ class Qwikstubs.Views.EventPurchase extends Backbone.View
       total = 0
       out = '<h4 style="text-align:center;"><span class="pull-left">Seat</span><span class="pull-right">Price</span><br><hr style="margin:0px;">'
       display_seat = (seat) -> 
-        console.log a.seats.get(seat.id)
+        # console.log a.seats.get(seat.id)
         s = a.seats.get(seat.id)
         price = a.sections.get(s.get("event_seat").event_section_id).get("event_section").price
         total = total + price
         name = a.seats.get(seat.id).get("venue_seat").name
         out = out + "<span class='pull-left'>" +name + "</span><span class='pull-right'>" + price+ "</span><br>"
       order_seats.each(display_seat)
-        # console.log(x)
+        #console.log(x)
         # 
       out = out + '<hr style="margin:0px;"><span class="pull-left">Total</span><span class="pull-right"> $' + total + '</span>'
       out = out+ '</h4><br><br>'
@@ -98,9 +98,9 @@ class Qwikstubs.Views.EventPurchase extends Backbone.View
       
       $("#stripeemailabc").keyup () ->
         re = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
-        #console.log $("#stripeemailabc").val()
+        # console.log $("#stripeemailabc").val()
         result = re.test($("#stripeemailabc").val())
-        console.log(result)
+        # console.log(result)
         if result
           $("#stripebuttonabc button").addClass("btn")
           $("#stripebuttonabc button").addClass("btn-primary")

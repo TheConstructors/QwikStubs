@@ -28,7 +28,7 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
     channel.bind(
       'order:release',
       (data) ->
-        console.log(data)
+        # # console.log(data)
       )
     channel.bind(
       'order:purchase',
@@ -43,11 +43,11 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
         height: $("#event_seating").innerWidth() * 375/460
       })
     @layer = new Kinetic.Layer()
-    #console.log(@)
+    # console.log(@)
     s = @stage
     l = @layer
     $(window).resize () ->
-      console.log("resize")
+      # # console.log("resize")
       s.setSize($("#event_seating").innerWidth(),$("#event_seating").innerWidth() * 375/460)
       l.setScale($("#event_seating").innerWidth()/460,$("#event_seating").innerWidth()/460)
    
@@ -99,7 +99,7 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
     # circle = @stage.get(sid)[0]
     # circle.prevFill = circle.getFill()
     # circle.setFill('blue')
-    #console.log(@stage.getSize())
+    # console.log(@stage.getSize())
     # @layer.draw()
 
   unview_seat: (id) ->
@@ -117,7 +117,7 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
   add_seat: (id) ->
     if @selected_seats.indexOf(id) == -1 && @selected_seats.length < 8
       @selected_seats.push(id)
-      #console.log(@selected_seats)
+      # console.log(@selected_seats)
       @render_selected_seats()
 
   render_selected_seats: ->
@@ -127,28 +127,28 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
       circle = @stage.get(sid)[0]
       circle.setFill('green')
       seat = @options.seats.get(id)
-      #console.log(seat)
+      # console.log(seat)
       html = html + "<li>" + seat.get("venue_seat").name + "</li>"
     @layer.draw()
     html = html + "</ul>"
     $("#reserved-seats").html(html)
 
   reserve_seats: (data) ->
-    console.log(data)
+    # # console.log(data)
     for id in data
       sid = "#" + id.id
-      console.log "RESERVING"
-      console.log id
-      console.log id.id
-      console.log @stage
-      console.log @stage.get(sid)
-      console.log @stage.get(sid)[0]
-      console.log "---------"
+      # # console.log "RESERVING"
+      # # console.log id
+      # # console.log id.id
+      # # console.log @stage
+      # # console.log @stage.get(sid)
+      # # console.log @stage.get(sid)[0]
+      # # console.log "---------"
 
       @stage.get(sid)[0].setFill('yellow')
     @layer.draw()
-    console.log("Draw seat!")
-    console.log(data)
+    # # console.log("Draw seat!")
+    # # console.log(data)
 
   releaseSeats: (data) ->
     for id in data
@@ -169,8 +169,8 @@ class Qwikstubs.Views.EventSeating extends Backbone.View
 
       @stage.get(sid)[0].setFill('red')
     @layer.draw()
-    console.log("Draw seat!")
-    console.log(data)
+    # # console.log("Draw seat!")
+    # # console.log(data)
 
 
   
