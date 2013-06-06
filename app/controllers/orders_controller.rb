@@ -35,7 +35,7 @@ class OrdersController < ApplicationController
       #puts order.as_json
       #puts "=============================*"
 
-      order.total_amount = order.calculate_total
+      #order.total_amount = order.calculate_total
       o = order.event_seats
 
       #puts "RRRRREEETTYTUUURRRNNN"
@@ -56,7 +56,7 @@ class OrdersController < ApplicationController
   end
   
   def show
-  
+    
   end
 
   def release
@@ -93,7 +93,7 @@ class OrdersController < ApplicationController
 
     order.purchase_seats()
     UserMailer.confirmation_email(order, params[:email_address]).deliver
-    redirect_to "/#order/#{params[:id]}"
+    redirect_to "/#order/#{order.order_number}"
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
