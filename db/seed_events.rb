@@ -3,10 +3,10 @@
 
 # Event.create!({:name=>"Young the Giant", :month=>"Apr", :day=>"25", :year=>"2013", :time=>"7:00pm", :venue=>@campbell, 
 #   :description=>"Young the Giant, a band based out of Irvine, CA, travels across the seven continents on their first World Tour."})
-
+# 
 # Event.create!({:name=>"Jared and the Pussycats", :month=>"Apr", :day=>"24", :year=>"2013", :time=>"1:00pm", :venue=>@campbell, 
 #   :description=>"Jared Roesch debuts his new music for the 2013 season by playing with actual, LIVE cats!"})
-  
+#   
 # Event.create!({:name=>"The Beatles", :month=>"Apr", :day=>"25", :year=>"2013", :time=>"10:00pm", :venue=>@campbell, 
 #     :description=>"They did it with Tupac and now you can see The Beatles in hologram form playing the hits you know and love."})
 # Event.create!({:name=>"Gauchella", :month=>"Apr", :day=>"27", :year=>"2013", :time=>"All Day", :venue=>@campbell,
@@ -15,7 +15,9 @@
 #   :description=>"In this inspiring new art form, Alex Hamstra takes a baseball bat to all of his least favorite machines."})
 # Event.create!({:name=>"Bruin Music Festival", :month=>"May", :day=>"27", :year=>"2013", :time=>"All Day", :venue=>@campbell,
 #   :description=>"A music festival in Los Angeles specifically for UCLA Students."})
- Event.create!({:name=>"Ben and the Boo Boo Bears", :month=>"Jun", :day=>"14", :year=>"2013", :time=>"1:00pm", :banner_url=> "/assets/booboobears.jpg", :venue=>@campbell,
+Event.create!({:name=>"The Rolling Capstones", :month=>"Jun", :day=>"06", :year=>"2013", :time=>"1:00pm", :banner_url=> "/assets/rollingcapstones.jpg", :venue=>@campbell,
+  :description=>"This band is so amazingly awesome that they rock with the power of 9 groups of Computer Science students presenting projects.  In their musical debut, get ready for these nerds from other herds to BLOW YOUR MIND!"})
+Event.create!({:name=>"Ben and the Boo Boo Bears", :month=>"Jun", :day=>"14", :year=>"2013", :time=>"1:00pm", :banner_url=> "/assets/booboobears.jpg", :venue=>@campbell,
    :description=>"In this not creepy at all kid's show, Ben McCurdy wins the hearts of kids and parents nationwide."})
 # Event.create!({:name=>"The Kyle Project", :month=>"Jul", :day=>"12", :year=>"2013", :time=>"1:00pm", :venue=>@campbell,
 #   :description=>"Kyle sings so quietly so make sure to bring your hearing aids folks."})
