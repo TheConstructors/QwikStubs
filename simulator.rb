@@ -6,21 +6,29 @@ HOSTNAME = "localhost:8080"
 
 event_id = ARGV[0]
 
-def build_request(event_id)
+def buy_tickets(event_id, number)
   result = Faraday.post "http://#{HOSTNAME}/api/orders?event_id=#{event_id}"
   order = JSON.parse(result.body)
   id = order["id"]
-  ticket_request = "http://#{HOSTNAME}/api/orders/#{id}.json?type=best&num="
-  Proc.new { |i| Faraday.put (ticket_request + i.to_s) }
+  ticket_reserve = "http://#{HOSTNAME}/api/orders/#{id}.json?type=best&num="
+  ticket_purchase = "http://#{HOSTNAME}/api/orders/#{id}/purchase.json?email_address=qwikstubs@gmail.com" 
+  Faraday.put (ticket_reserve + number.to_s)
+  sleep(5)
+  Faraday.post ticket_purchase 
 end
 
-request = build_request(event_id)
-
-threads = (1..8).map do |number|
+threads = (1..4).map do |number|
   Thread.start do
-    (0..107).each do |i|
-      request.call(number)
-      sleep(1)
+    (0..(50/number)).each do |i|
+      buy_tickets(event_id, number)
+      sleep(2)
+    end
+
+    sleep(10)
+
+    (0..(57/number)).each do |i|
+      buy_tickets(event_id, number)
+      sleep(2)
     end
   end
 end
