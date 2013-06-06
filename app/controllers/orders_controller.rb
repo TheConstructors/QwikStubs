@@ -80,8 +80,8 @@ class OrdersController < ApplicationController
 
   def purchase
     order = Order.find_by_id(params[:id])
-    puts "CHECKOUT SUCCESS **************"
-    puts params
+    # puts "CHECKOUT SUCCESS **************"
+    # puts params
 
     # Stripe Stuff
     #charge = Stripe::Charge.create(

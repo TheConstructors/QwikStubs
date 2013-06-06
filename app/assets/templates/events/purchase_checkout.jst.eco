@@ -1,5 +1,5 @@
 <div class="white-box">
-  <h3>Purchase<div class="btn btn-danger pull-right cancel">Cancel</div></h3>
+  <h3>Purchase<a href="/#events"><div class="btn btn-danger pull-right cancel">Cancel</div></a></h3>
   <hr>
   <div id="reserved-seats"></div>
 
