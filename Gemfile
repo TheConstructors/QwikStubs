@@ -87,3 +87,6 @@ gem 'uuid'
 gem 'faraday'
 
 gem 'thin'
+
+# For heroku platform
+gem 'rails_12factor', group: :production
