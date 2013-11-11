@@ -90,3 +90,5 @@ gem 'thin'
 
 # For heroku platform
 gem 'rails_12factor', group: :production
+
+ruby '1.9.3'
