@@ -13,7 +13,4 @@ test:
 
 production:
   <<: *defaults
-  uri: <%= ENV['MONGOHQ_URL'] %>
-  database: qwikstubs
-  username: <%= ENV['MONGO_USERNAME'] %>
-  password: <%= ENV['MONGO_PASSWORD'] %>
+  uri: <%= ENV['MONGOHQ_URL'] %>ss
