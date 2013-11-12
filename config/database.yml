@@ -9,8 +9,7 @@ development:
 
 test: 
   <<: *defaults
-  database: qwikstubs-test
+  database: qwistubs-test
 
 production:
-  <<: *defaults
-  uri: <%= ENV['MONGOHQ_URL'] %>ss
+  uri: <%= ENV['MONGOHQ_URL'] %>
